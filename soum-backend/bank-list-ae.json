@@ -1,0 +1,154 @@
+{
+    "bankList": [
+        {
+            "status": "Active",
+            "bankName": "Emirates NBD",
+            "bankCode": "EBILAEAD",
+            "bankName_ar": "بنك الإمارات دبي الوطني"
+        },
+        {
+            "status": "Active",
+            "bankName": "Abu Dhabi Commercial Bank",
+            "bankCode": "ADCBAEAA",
+            "bankName_ar": "بنك أبوظبي التجاري"
+        },
+        {
+            "status": "Active",
+            "bankName": "Abu Dhabi Islamic Bank",
+            "bankCode": "ABDIAEAD",
+            "bankName_ar": "مصرف أبو ظبي الإسلامي"
+        },
+        {
+            "status": "Active",
+            "bankName": "Arab Emirates Investment Bank",
+            "bankCode": "AEINAEAD",
+            "bankName_ar": "بنك الإمارات العربية للاستثمار"
+        },
+        {
+            "status": "Active",
+            "bankName": "Bank of Sharjah",
+            "bankCode": "SHARAEAS",
+            "bankName_ar": "بنك الشارقة"
+        },
+        {
+            "status": "Active",
+            "bankName": "Sharjah Islamic Bank",
+            "bankCode": "NBSHAEAS",
+            "bankName_ar": "مصرف الشارقة الإسلامي"
+        },
+        {
+            "status": "Active",
+            "bankName": "Commercial Bank International",
+            "bankCode": "CLBIAEAD",
+            "bankName_ar": "البنك التجاري الدولي (الإمارات)"
+        },
+        {
+            "status": "Active",
+            "bankName": "Commercial Bank of Dubai",
+            "bankCode": "CBDUAEAD",
+            "bankName_ar": "بنك دبي التجاري"
+        },
+        {
+            "status": "Active",
+            "bankName": "Dubai Bank PJSC",
+            "bankCode": "DBXPAEAD",
+            "bankName_ar": "بنك دبي"
+        },
+        {
+            "status": "Active",
+            "bankName": "Dubai Islamic Bank",
+            "bankCode": "DUIBAEAD",
+            "bankName_ar": "بنك دبي الإسلامي"
+        },
+        {
+            "status": "Active",
+            "bankName": "Dunia Finance",
+            "bankCode": "E082XXXX",
+            "bankName_ar": "دنيا التمويل"
+        },
+        {
+            "status": "Active",
+            "bankName": "Emirates Islamic Bank",
+            "bankCode": "MEBLAEAD",
+            "bankName_ar": "بنك الإمارات الإسلامي"
+        },
+        {
+            "status": "Active",
+            "bankName": "Finance House",
+            "bankCode": "FHOUAEAD",
+            "bankName_ar": "دار التمويل"
+        },
+        {
+            "status": "Active",
+            "bankName": "First Gulf Bank",
+            "bankCode": "FGBMAEAA",
+            "bankName_ar": "بنك الخليج الأول"
+        },
+        {
+            "status": "Active",
+            "bankName": "HSBC Bank Middle East Limited",
+            "bankCode": "BBMEAEAD",
+            "bankName_ar": "إتش إس بي سي الشرق الأوسط"
+        },
+        {
+            "status": "Active",
+            "bankName": "Invest Bank",
+            "bankCode": "IBTFAEAS",
+            "bankName_ar": "بنك الاستثمار"
+        },
+        {
+            "status": "Active",
+            "bankName": "Mashreq Bank",
+            "bankCode": "BOMLAEAD",
+            "bankName_ar": "بنك المشرق"
+        },
+        {
+            "status": "Active",
+            "bankName": "National Bank of Abu Dhabi",
+            "bankCode": "NBADAEAA",
+            "bankName_ar": "بنك أبو ظبي الوطني"
+        },
+        {
+            "status": "Active",
+            "bankName": "National Bank of Fujairah",
+            "bankCode": "NBFUAEAF",
+            "bankName_ar": "بنك الفجيرة الوطني"
+        },
+        {
+            "status": "Active",
+            "bankName": "National Bank of Umm Al-Qaiwain",
+            "bankCode": "UMMQAEAD",
+            "bankName_ar": "بنك أم القيوين الوطني"
+        },
+        {
+            "status": "Active",
+            "bankName": "Noor Bank",
+            "bankCode": "NISLAEAD",
+            "bankName_ar": "بنك نور"
+        },
+        {
+            "status": "Active",
+            "bankName": "RAK Bank",
+            "bankCode": "NRAKAEAK",
+            "bankName_ar": "بنك رأس الخيمة الوطني"
+        },
+        {
+            "status": "Active",
+            "bankName": "Union National Bank",
+            "bankCode": "UNBEAEAA",
+            "bankName_ar": "بنك الاتحاد الوطني"
+        },
+        {
+            "status": "Active",
+            "bankName": "United Arab Bank",
+            "bankCode": "UARBAEAA",
+            "bankName_ar": "البنك العربي المتحد"
+        },
+        {
+            "status": "Active",
+            "bankName": "Arab Islamic Bank",
+            "bankCode": "AISBPS22",
+            "bankName_ar": "البنك الإسلامي العربي"
+        }
+    ]
+}

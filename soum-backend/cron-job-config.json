@@ -1,0 +1,8 @@
+[
+  {
+    "name": "invalid-cronjob",
+    "schedule": "0 */1 * * *",
+    "path": "api/v1/cron/invali-url",
+    "method": "GET"
+  }
+]

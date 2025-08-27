@@ -1,0 +1,88 @@
+{
+  "bankList": [
+    {
+      "bankName": "AlJazira Bank",
+      "bankCode": "BJAZSAJE"
+    },
+    {
+      "bankName": "Alinma Bank",
+      "bankCode": "INMASARI"
+    },
+    {
+      "bankName": "The Saudi Investment Bank",
+      "bankCode": "SIBCSARI"
+    },
+    {
+      "bankName": "Banque Saudi Fransi",
+      "bankCode": "BSFRSARI"
+    },
+    {
+      "bankName": "TC ZIRAAT BANKASI AS",
+      "bankCode": "TCZBSAJE"
+    },
+    {
+      "bankName": "State Bank of India - jeddah",
+      "bankCode": "SBINSAJE"
+    },
+    {
+      "bankName": "SABB BANK RIYADH",
+      "bankCode": "SABBSARI"
+    },
+    {
+      "bankName": "RIYAD BANK RIYADH",
+      "bankCode": "RIBLSARI"
+    },
+    {
+      "bankName": "NATIONAL COMMERCIAL BANK JEDDAH",
+      "bankCode": "NCBKSAJE"
+    },
+    {
+      "bankName": "ARAB NATIONAL BANK RIYADH",
+      "bankCode": "ARNBSARI"
+    },
+    {
+      "bankName": "BANK ALBILAD RIYADH",
+      "bankCode": "ALBISARI"
+    },
+    {
+      "bankName": "BNP PARIBAS SAUDI ARABIA,RIYADH",
+      "bankCode": "BNPASARI"
+    },
+    {
+      "bankName": "DEUTSCHE BANK, RIYADH",
+      "bankCode": "DEUTSARI"
+    },
+    {
+      "bankName": "EMIRATES NBD PJSC - Riyadh",
+      "bankCode": "EBILSARI"
+    },
+    {
+      "bankName": "AlRajhi Bank",
+      "bankCode": "RJHISARI"
+    },
+    {
+      "bankName": "GULF INTERNATIONAL  BANK, RIYADH",
+      "bankCode": "GULFSARI"
+    },
+    {
+      "bankName": "NATIONAL BK OF BAHRAIN,SAUDI ARABIA",
+      "bankCode": "NBOBSARI"
+    },
+    {
+      "bankName": "NATIONAL BANK OF KUWAIT, JEDDAH",
+      "bankCode": "NBOKSAJE"
+    },
+    {
+      "bankName": "BANK MUSCAT SAUDI ARABIA RIYADH",
+      "bankCode": "BMUSSARI"
+    },
+    {
+      "bankName": "SAMBA FINANCIAL GRUOP RIYADH",
+      "bankCode": "SAMBSARI"
+    },
+    {
+      "bankName": "NCB Riyad",
+      "bankCode": "NCBKSARI"
+    }
+  ]
+}
