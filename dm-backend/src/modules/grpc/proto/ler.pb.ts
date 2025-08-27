@@ -1,0 +1,207 @@
+/* eslint-disable */
+import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { Observable } from "rxjs";
+
+export const protobufPackage = "ler";
+
+export interface GetCityTiersRequest {
+  name: string;
+}
+
+export interface GetCityTiersResponse {
+  name: string;
+  sellerTier: number;
+  buyerTier: number;
+}
+
+export interface MapLogisticsServicesRequest {
+  sellerCityTier: number;
+  buyerCityTier: number;
+  isKeySeller: boolean;
+}
+
+export interface MapLogisticsServicesResponse {
+  logisticServices: string;
+  vendorId: string;
+  isAvailableToPickup: boolean;
+  serviceId: string;
+  isAvailableToOneService: boolean;
+}
+
+export interface GetLogisticServicesRequest {
+}
+
+export interface GetLogisticServicesResponse {
+  services: GetLogisticServicesResponse_LogisticService[];
+  vendors: GetLogisticServicesResponse_LogisticVendor[];
+}
+
+export interface GetLogisticServicesResponse_LogisticService {
+  serviceId: string;
+  serviceName: string;
+}
+
+export interface GetLogisticServicesResponse_LogisticVendor {
+  vendorId: string;
+  vendorName: string;
+  services: string;
+}
+
+export interface CreatePickupRequest {
+  referenceNo: string;
+  originCity: string;
+  destinationCity: string;
+  senderName: string;
+  senderPhone: string;
+  senderAddress: string;
+  receiverName: string;
+  receiverPhone: string;
+  receiverAddress: string;
+  trackingNumber: string;
+  description: string;
+}
+
+export interface CreateShipmentReq {
+  sender: User | undefined;
+  receiver: User | undefined;
+  trackingNumber: string;
+  description: string;
+  grandTotal: number;
+  shipmentType: string;
+  serviceName: string;
+}
+
+export interface User {
+  name: string;
+  mobileNumber: string;
+  address: string;
+  email: string;
+  userType: string;
+  city: string;
+}
+
+export interface CreatePickupForAccessoriesRequest {
+  referenceNo: string;
+  originCity: string;
+  destinationCity: string;
+  senderName: string;
+  senderPhone: string;
+  senderAddress: string;
+  receiverName: string;
+  receiverPhone: string;
+  receiverAddress: string;
+  trackingNumber: string;
+  description: string;
+  skudetails: SkuDetails[];
+}
+
+export interface CreatePickupResponse {
+  awbNo: string;
+}
+
+export interface CreateShipmentResponse {
+  trackingNumber: string;
+}
+
+export interface GetPickupStatusRequest {
+  awbNo: string[];
+  isDelivered: boolean;
+}
+
+export interface SkuDetails {
+  sku: string;
+  description: string;
+  cod: string;
+  piece: string;
+  weight: string;
+}
+
+export interface CancelShipmentRequest {
+  /** Field for order or tracking ID */
+  trackingOrOrderId: string;
+}
+
+export interface CancelShipmentResponse {
+  success: boolean;
+  message: string;
+}
+
+export const LER_PACKAGE_NAME = "ler";
+
+export interface LerServiceClient {
+  getCityTiers(request: GetCityTiersRequest): Observable<GetCityTiersResponse>;
+
+  mapLogisticsServices(request: MapLogisticsServicesRequest): Observable<MapLogisticsServicesResponse>;
+
+  getLogisticServices(request: GetLogisticServicesRequest): Observable<GetLogisticServicesResponse>;
+
+  createPickup(request: CreatePickupRequest): Observable<CreatePickupResponse>;
+
+  createShipment(request: CreateShipmentReq): Observable<CreateShipmentResponse>;
+
+  getPickupStatus(request: GetPickupStatusRequest): Observable<GetPickupStatusRequest>;
+
+  createPickUpForAccessories(request: CreatePickupForAccessoriesRequest): Observable<CreatePickupResponse>;
+
+  cancelShipment(request: CancelShipmentRequest): Observable<CancelShipmentResponse>;
+}
+
+export interface LerServiceController {
+  getCityTiers(
+    request: GetCityTiersRequest,
+  ): Promise<GetCityTiersResponse> | Observable<GetCityTiersResponse> | GetCityTiersResponse;
+
+  mapLogisticsServices(
+    request: MapLogisticsServicesRequest,
+  ): Promise<MapLogisticsServicesResponse> | Observable<MapLogisticsServicesResponse> | MapLogisticsServicesResponse;
+
+  getLogisticServices(
+    request: GetLogisticServicesRequest,
+  ): Promise<GetLogisticServicesResponse> | Observable<GetLogisticServicesResponse> | GetLogisticServicesResponse;
+
+  createPickup(
+    request: CreatePickupRequest,
+  ): Promise<CreatePickupResponse> | Observable<CreatePickupResponse> | CreatePickupResponse;
+
+  createShipment(
+    request: CreateShipmentReq,
+  ): Promise<CreateShipmentResponse> | Observable<CreateShipmentResponse> | CreateShipmentResponse;
+
+  getPickupStatus(
+    request: GetPickupStatusRequest,
+  ): Promise<GetPickupStatusRequest> | Observable<GetPickupStatusRequest> | GetPickupStatusRequest;
+
+  createPickUpForAccessories(
+    request: CreatePickupForAccessoriesRequest,
+  ): Promise<CreatePickupResponse> | Observable<CreatePickupResponse> | CreatePickupResponse;
+
+  cancelShipment(
+    request: CancelShipmentRequest,
+  ): Promise<CancelShipmentResponse> | Observable<CancelShipmentResponse> | CancelShipmentResponse;
+}
+
+export function LerServiceControllerMethods() {
+  return function (constructor: Function) {
+    const grpcMethods: string[] = [
+      "getCityTiers",
+      "mapLogisticsServices",
+      "getLogisticServices",
+      "createPickup",
+      "createShipment",
+      "getPickupStatus",
+      "createPickUpForAccessories",
+      "cancelShipment",
+    ];
+    for (const method of grpcMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("LerService", method)(constructor.prototype[method], method, descriptor);
+    }
+    const grpcStreamMethods: string[] = [];
+    for (const method of grpcStreamMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("LerService", method)(constructor.prototype[method], method, descriptor);
+    }
+  };
+}
+
+export const LER_SERVICE_NAME = "LerService";

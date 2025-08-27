@@ -1,0 +1,216 @@
+/* eslint-disable */
+import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { Observable } from "rxjs";
+
+export const protobufPackage = "product";
+
+export interface UpdateProductResponse {
+  status: string;
+}
+
+export interface UpdateProductRequest {
+  productAction: string;
+  productId: string;
+  order?: OrderUpdateProductRequest | undefined;
+  status?: string | undefined;
+}
+
+export interface OrderUpdateProductRequest {
+  soumNumber: string;
+}
+
+export interface URLData {
+  relativePath: string;
+}
+
+export interface ProductImgSections {
+  sectionId: string;
+  urls: URLData[];
+}
+
+export interface MigrateImagesRequest {
+  productId: string;
+  imagesUrl: string[];
+  categoryId: string;
+  productImgSections: ProductImgSections[];
+}
+
+export interface MigrateImagesResponse {
+}
+
+export interface getProductDataForFeedsReq {
+  products: Product[];
+  promoCode: PromoCode | undefined;
+}
+
+export interface getProductDataForFeedsRes {
+  products: ProductDeepLoad[];
+}
+
+/** helper message/classes */
+export interface Product {
+  id: string;
+  description: string;
+  categories: Category[];
+  imagesUrl: string[];
+  score: number;
+  sellPrice: number;
+  status: string;
+  sellType: string;
+  userId: string;
+  groupListingId: string;
+  statusSummary: StatusSummary | undefined;
+}
+
+export interface ProductDeepLoad {
+  id: string;
+  commissionSummary: BreakDownResponse | undefined;
+  condition: Condition | undefined;
+}
+
+export interface BreakDownResponse {
+  withPromo: CommissionSummaryResponse | undefined;
+  withoutPromo: CommissionSummaryResponse | undefined;
+}
+
+export interface CommissionSummaryResponse {
+  id: string;
+  commission: number;
+  commissionVat: number;
+  deliveryFee: number;
+  deliveryFeeVat: number;
+  totalVat: number;
+  discount: number;
+  grandTotal: number;
+  commissionDiscount: number;
+  sellPrice: number;
+  /** CommissionAnalysis commissionAnalysis = 11; */
+  paymentId: string;
+  /** Reservation reservation = 13; */
+  addOnsTotal: number;
+  addOnsVat: number;
+  addOnsGrandTotal: number;
+  /** FinancingRequest financingRequest = 18; */
+  realEstateVat: number;
+}
+
+export interface Category {
+  id: string;
+  type: string;
+}
+
+export interface Condition {
+  id: string;
+  name: string;
+  nameAr: string;
+  labelColor: string;
+  textColor: string;
+  banners: Banner[];
+}
+
+export interface PromoCode {
+  promoLimit: number;
+  type: string;
+  generator: string;
+  discount: number;
+  percentage: number;
+}
+
+export interface StatusSummary {
+  isApproved: boolean;
+  isExpired: boolean;
+  isDeleted: boolean;
+  isReported: boolean;
+  isVerifiedByAdmin: boolean;
+  isFraudDetected: boolean;
+  isSearchSync: boolean;
+}
+
+export interface Banner {
+  lang: string;
+  url: string;
+  source: string;
+}
+
+export interface GetPreSignURLProductImgsRequest {
+  categoryId: string;
+  productImages: ProductImgSections[];
+}
+
+export interface GetPreSignURLProductImgsResponse {
+  imgURLs: string[];
+}
+
+export interface UpdateConsignmentStatusRequest {
+  status: string;
+  id?: string | undefined;
+  orderNumber?: string | undefined;
+}
+
+export interface UpdateConsignmentStatusResponse {
+}
+
+export const PRODUCT_PACKAGE_NAME = "product";
+
+export interface ProductServiceClient {
+  migrateImages(request: MigrateImagesRequest): Observable<MigrateImagesResponse>;
+
+  getProductDataForFeeds(request: getProductDataForFeedsReq): Observable<getProductDataForFeedsRes>;
+
+  getPreSignUrlProductImgs(request: GetPreSignURLProductImgsRequest): Observable<GetPreSignURLProductImgsResponse>;
+
+  updateConsignmentStatus(request: UpdateConsignmentStatusRequest): Observable<UpdateConsignmentStatusResponse>;
+
+  updateProduct(request: UpdateProductRequest): Observable<UpdateProductResponse>;
+}
+
+export interface ProductServiceController {
+  migrateImages(
+    request: MigrateImagesRequest,
+  ): Promise<MigrateImagesResponse> | Observable<MigrateImagesResponse> | MigrateImagesResponse;
+
+  getProductDataForFeeds(
+    request: getProductDataForFeedsReq,
+  ): Promise<getProductDataForFeedsRes> | Observable<getProductDataForFeedsRes> | getProductDataForFeedsRes;
+
+  getPreSignUrlProductImgs(
+    request: GetPreSignURLProductImgsRequest,
+  ):
+    | Promise<GetPreSignURLProductImgsResponse>
+    | Observable<GetPreSignURLProductImgsResponse>
+    | GetPreSignURLProductImgsResponse;
+
+  updateConsignmentStatus(
+    request: UpdateConsignmentStatusRequest,
+  ):
+    | Promise<UpdateConsignmentStatusResponse>
+    | Observable<UpdateConsignmentStatusResponse>
+    | UpdateConsignmentStatusResponse;
+
+  updateProduct(
+    request: UpdateProductRequest,
+  ): Promise<UpdateProductResponse> | Observable<UpdateProductResponse> | UpdateProductResponse;
+}
+
+export function ProductServiceControllerMethods() {
+  return function (constructor: Function) {
+    const grpcMethods: string[] = [
+      "migrateImages",
+      "getProductDataForFeeds",
+      "getPreSignUrlProductImgs",
+      "updateConsignmentStatus",
+      "updateProduct",
+    ];
+    for (const method of grpcMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+    }
+    const grpcStreamMethods: string[] = [];
+    for (const method of grpcStreamMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+    }
+  };
+}
+
+export const PRODUCT_SERVICE_NAME = "ProductService";
