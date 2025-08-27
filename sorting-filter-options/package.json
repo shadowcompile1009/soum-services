@@ -1,0 +1,25 @@
+{
+  "name": "typesense-sort-facet-options",
+  "version": "1.0.1",
+  "description": "sorts facet options based on different sort criterias",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "typesense",
+    "facets",
+    "ecommerce",
+    "variants",
+    "attributes"
+  ],
+  "author": "Mkhululi Ncube",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
+  }
+}
