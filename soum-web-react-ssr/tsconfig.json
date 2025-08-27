@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@components/*": ["./src/client/components/*"],
+      "@hooks/*": ["./src/client/hooks/*"],
+      "@i18n": ["./src/client/i18n/index"],
+      "@declarations/*": ["./src/declarations/*"],
+      "@utils/*": ["./src/utils/*"]
+    },
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["./src/**/*"]
+}

@@ -1,0 +1,31 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ include "chart.kedaScaledObject.name" . }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.general.labels }}
+  labels:
+    {{- toYaml .Values.general.labels | nindent 4 }}
+  {{- end }}
+spec:
+  scaleTargetRef:
+    name: {{ include "chart.deployment.name" . }}
+  pollingInterval: {{ .Values.kedaScaledObject.pollingInterval }}
+  cooldownPeriod:  {{ .Values.kedaScaledObject.cooldownPeriod }}
+  minReplicaCount: {{ .Values.kedaScaledObject.minReplicas }}
+  maxReplicaCount: {{ .Values.kedaScaledObject.maxReplicas }}
+  triggers:
+    - type: cpu
+      metricType: Utilization
+      metadata:
+        value: "60"
+    - type: memory
+      metricType: Utilization
+      metadata:
+        value: "80"
+    - type: prometheus
+      metricType: Value
+      metadata:
+        serverAddress: http://prometheus-server.monitoring.svc.cluster.local:80
+        query: sum(rate(nginx_ingress_controller_requests{host="{{ include "chart.ingress.host" . }}"}[1m]))*60
+        threshold: "2200"

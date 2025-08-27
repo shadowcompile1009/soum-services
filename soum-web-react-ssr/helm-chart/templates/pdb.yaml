@@ -1,0 +1,14 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "chart.podDisruptionBudget.name" . }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.general.labels }}
+  labels:
+    {{- toYaml .Values.general.labels | nindent 4 }}
+  {{- end }}
+spec:
+  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
+  selector:
+    matchLabels:
+      deployment: {{ include "chart.deployment.name" . }}

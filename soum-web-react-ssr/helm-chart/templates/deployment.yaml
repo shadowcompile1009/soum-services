@@ -1,0 +1,61 @@
+{{- $deploymentName := include "chart.deployment.name" . -}}
+{{- $deploymentImage := .Values.images.deployment -}}
+{{- $awsRegion := printf "%s" .Values.general.awsRegion -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $deploymentName }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.general.labels }}
+  labels:
+    {{- toYaml .Values.general.labels | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  strategy:
+    {{- toYaml .Values.deployment.strategy | nindent 4 }}
+  selector:
+    matchLabels:
+      deployment: {{ $deploymentName }}
+  template:
+    metadata:
+      labels:
+        deployment: {{ $deploymentName }}
+      annotations:
+        karpenter.sh/do-not-disrupt: "true"
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "topology.kubernetes.io/zone"
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              deployment: {{ $deploymentName }}
+      nodeSelector:
+        eks.amazonaws.com/capacityType: SPOT
+        soum.reserved.for: spot
+      serviceAccountName: {{ include "chart.serviceAccount.name" . }}
+      containers:
+         {{- range .Values.deployment.containers }}
+        - name: {{ .name }}
+          image: {{ $deploymentImage }}
+          ports:
+            {{- toYaml .ports | nindent 12 }}
+          {{- if .readinessProbe }}
+          readinessProbe:
+            {{- toYaml .readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .livenessProbe }}
+          livenessProbe:
+            {{- toYaml .livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .resources }}
+          resources:
+            {{- toYaml .resources | nindent 12 }}
+          {{- end }}
+          env:
+            - name: AWS_REGION
+              value: "{{ $awsRegion }}"
+            - name: NODE_ENV
+              value: "production"
+        {{- end }}

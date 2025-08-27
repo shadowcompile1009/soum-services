@@ -1,0 +1,74 @@
+general:
+  name: soum-web-react-ssr
+  awsRegion: ap-southeast-1
+  labels:
+
+images:
+  deployment: soum-web-react-ssr
+
+ingress:
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+
+  certificate: soum-web-ssr-tls
+  subDomain: "soum-web-ssr"
+  domain: "administration.soum.sa"
+  path: "/?(.*)"
+  servicePort: 3000
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::775501740343:role/soum-web-react-ssr-role
+
+kedaScaledObject:
+  pollingInterval: 15
+  cooldownPeriod: 60
+  minReplicas: 3
+  maxReplicas: 6
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: http
+
+podDisruptionBudget:
+  maxUnavailable: "10%"
+
+deployment:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  containers:
+    - name: soum-web-react-ssr
+      imagePullPolicy: IfNotPresent
+      readinessProbe:
+        tcpSocket:
+          port: 3000
+        initialDelaySeconds: 15
+        periodSeconds: 30
+      livenessProbe:
+        tcpSocket:
+          port: 3000
+        initialDelaySeconds: 15
+        periodSeconds: 30
+        failureThreshold: 3
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 1000Mi
+        requests:
+          cpu: 500m
+          memory: 500Mi
+      ports:
+        - containerPort: 3000

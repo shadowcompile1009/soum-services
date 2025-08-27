@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "chart.ingress.name" . }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    {{- toYaml .Values.ingress.annotations | nindent 4 }}
+  {{- if .Values.general.labels }}
+  labels:
+    {{- toYaml .Values.general.labels | nindent 4 }}
+  {{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  tls:
+    - hosts:
+        - {{ include "chart.ingress.host" . }}
+      secretName: {{ .Values.ingress.certificate }}
+  rules:
+    - host: {{ include "chart.ingress.host" . }}
+      http:
+        paths:
+          - path: {{ printf "%s" .Values.ingress.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "chart.service.name" . }}
+                port:
+                  number: {{ .Values.ingress.servicePort }}             
