@@ -1,0 +1,221 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between master-questions-box">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">
+                {{'masterQuestions.title' | translate}}
+              </li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <div class="select_box">
+              {{'masterQuestions.selectCategories' | translate}}
+              <select class="ml-2 custom-select custom-select-sm form-control form-control-sm" name="selectcategories"
+                [(ngModel)]="selectedCategory" (change)="getMasterQuestions()" id="selectcategories">
+                <option *ngFor="let category of categoryList" [value]="category?._id">
+                  {{category?.category_name}}
+                </option>
+              </select>
+            </div>
+            <div class="button-add-q">
+              <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light ml-1"
+                data-toggle="modal" (click)="generateAddQuestionForm()" data-target=".add_detail">Add</button>
+
+              <!-- Add Question Modal -->
+              <div class="modal fade add_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+                aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0"> {{'masterQuestions.addQuestion' | translate}}</h5>
+                      <button type="button" class="close" (click)="addQuestionForm?.reset()" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="addQuestionForm">
+                        <div class="form-group">
+                          <label class="control-label">{{'masterQuestions.question' | translate}}
+                            <input type="text" (keypress)="numberOnly($event)" formControlName="weightage"
+                              placeholder="Enter Weightage" maxlength="3"
+                              class="Weightage form-control form-control-sm"></label>
+                          <input type="text" formControlName="question" placeholder="Enter English"
+                            class="form-control form-control-sm b-radius-0">
+                        </div>
+                        <div class="form-group">
+                          <!-- <label class="control-label">{{'masterQuestions.arabicQuestion' | translate}} </label> -->
+                          <input type="text" formControlName="question_ar" placeholder="Enter Arabic"
+                            class="form-control form-control-sm b-radius-0">
+                        </div>
+                        <hr>
+                        <div id="answer" formArrayName="options" class="form-group">
+
+                          <div *ngFor="let option of addQuestionForm?.controls['options']['controls']; let i = index"
+                            [formGroupName]="i" class="form-group add-answer">
+                            <label class="control-label">{{i+1+'.\t'}}{{'masterQuestions.answer' | translate}}
+                              <input type="text" formControlName="score" maxlength="3" (keypress)="numberOnly($event)"
+                                placeholder="Enter Score" class="Weightage form-control form-control-sm"></label>
+                            <input type="text" formControlName="answer" placeholder="Enter English"
+                              class="form-control form-control-sm b-radius-0 mb-2">
+                            <!-- <label class="control-label">{{'masterQuestions.arabicAnswer' | translate}}</label> -->
+                            <input type="text" formControlName="answer_ar" placeholder="Enter Arabic"
+                              class="form-control form-control-sm b-radius-0">
+                            <button *ngIf="i > 1" (click)="removeAnswerFields(i)"
+                              class="btn btn-danger remove-me ml-1">{{'masterQuestions.remove' | translate}}</button>
+                            <button *ngIf="i == addQuestionForm?.controls['options']['controls']?.length - 1"
+                              (click)="addMoreAnswerFields()" name="add-more"
+                              class="btn btn-warning align-items-center">{{'masterQuestions.addMore' | translate}}</button>
+                          </div>
+                        </div>
+                        <button class="btn btn-warning" data-dismiss="modal" [disabled]="addQuestionForm?.invalid"
+                          (click)="addQuestion()" type="submit">Save</button>
+                      </form>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+              <!-- END: Add Question Modal -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="question-row">
+
+          <!-- MASTER QUESTIONS -->
+          <div class="card" *ngFor="let masterQuestion of masterQuestions; let i = index;">
+
+            <!-- MCQ -->
+            <div class="card-body">
+
+              <!-- QUESTION -->
+              <div class="title-box" [ngClass]="{'m-0': masterQuestion?.questionType == 'sellerInput'}">
+                <h5 class="question-title card-title"
+                  [ngClass]="{'m-0': masterQuestion?.questionType == 'sellerInput'}">
+                  <span class="question-no card-title mr-2">
+                    {{'masterQuestions.questionNumber' | translate: getQuestionNumber(i)}}
+                  </span>
+                  <div class="question-t" *ngIf="!masterQuestion?.edit">
+                    {{masterQuestion?.question}}
+                    <span class="text-arabic">{{'('+masterQuestion?.question_ar+')'}}</span>
+                  </div>
+                  <div class="action_btn ml-2">
+                    <!-- <label class="question-type-label" [ngClass]="{'mr-2':masterQuestion?.questionType == 'mcq' }">
+                      {{masterQuestion?.questionType == 'sellerInput' ? ('masterQuestions.sellerInput' | translate) : ('masterQuestions.mcq' | translate)}}
+                    </label> -->
+                    <div class="choose_question">
+                      <span class="marks">
+                        <label>
+                          {{'categories.weightage' | translate}}:
+                          <span *ngIf="!masterQuestion?.edit">{{'\t\t' + masterQuestion?.weightage}}</span>
+                          <input type="text" *ngIf="masterQuestion?.edit" [(ngModel)]="questionToUpdate.weightage"
+                            (keypress)="numberOnly($event)" maxlength="3" class="form-control form-control-sm">
+                        </label>
+                      </span>
+                    </div>
+                    <span class="action_span">
+                      {{'administrators.action' | translate}}
+                      <a class="mr-2 text-primary" *ngIf="!masterQuestion?.edit" (click)="editQuestion(masterQuestion)">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </a>
+                      <a class="btn_success" *ngIf="masterQuestion?.edit" (click)="updateQuestion(masterQuestion)">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </a>
+                      <a class="text-danger" (click)="deleteQuestionaction(masterQuestion?._id)"><i class="mdi mdi-trash-can font-size-18"></i></a>
+                    </span>
+
+                  </div>
+                  <div class="input_edit" *ngIf="masterQuestion?.edit">
+                    <input type="text" [placeholder]="'masterQuestions.editQuestion' | translate"
+                      [(ngModel)]="questionToUpdate.question" class="form-control form-control-sm b-radius-0"
+                      style="max-width: 50%">
+                    <input type="text" [placeholder]="'masterQuestions.editQuestion' | translate"
+                      [(ngModel)]="questionToUpdate.question_ar" class="form-control form-control-sm b-radius-0 mt-1"
+                      style="max-width: 50%">
+                  </div>
+                </h5>
+              </div>
+              <!-- END: QUESTIONS -->
+
+              <!-- OPTIONS (ONLY FOR MCQ TYPE QUESTIONS) -->
+              <div class="question-box table-responsive" *ngIf="masterQuestion?.questionType == 'mcq'">
+                <table class="table mb-0">
+                  <thead class="thead-light">
+                    <tr>
+                      <th style="width:30px;">{{'administrators.no' | translate}}</th>
+                      <th>{{'masterQuestions.answer' | translate}}</th>
+                      <th style="width:140px;">Score</th>
+                      <th style="width:60px;">
+                        {{'administrators.action' | translate}}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let option of masterQuestion?.options; let j = index;">
+                      <td data-title="{{'administrators.no' | translate}}">{{j+1}}.</td>
+                      <td class="answer" data-title="{{'masterQuestions.answer' | translate}}">
+                        {{!option?.edit ? option?.answer : ''}}<br>
+                        <span class="text-arabic" *ngIf="!option?.edit">{{'('+(option?.answer_ar || '')+')'}}</span>
+                        <div class="input_edit" *ngIf="option?.edit">
+                          <input type="text" class="form-control form-control-sm b-radius-0"
+                            [placeholder]="'Enter English'" [(ngModel)]="optionToUpdate.answer"
+                            style="max-width: 250px;">
+                          <input type="text" class="form-control form-control-sm b-radius-0 mt-1"
+                            [placeholder]="'Enter Arabic'" [(ngModel)]="optionToUpdate.answer_ar"
+                            style="max-width: 250px;">
+                        </div>
+
+                      </td>
+                      <td class="answer" data-title="Score">{{option?.score}}
+                        <input type="text" class="form-control form-control-sm b-radius-0"
+                          (keypress)="numberOnly($event)" maxlength="3" [(ngModel)]="optionToUpdate.score" placeholder="Edit Score" *ngIf="option?.edit"
+                          style="max-width: 250px;">
+                      </td>
+                      <td data-title="{{'administrators.action' | translate}}">
+                        <span class="action-checkbox">
+                          <button type="button" *ngIf="!option?.edit" (click)="editOption(option)"
+                            class="mr-2 text-primary btn_style">
+                            <i class="mdi mdi-pencil font-size-18"></i>
+                          </button>
+                          <button type="button" *ngIf="option?.edit" (click)="updateAnswer(option, masterQuestion?._id)"
+                            class="mr-2 btn_success btn_style">
+                            <i class="mdi mdi-check-bold font-size-18"></i>
+                          </button>
+                          <a class="text-danger" (click)="deleteAnsweraction(masterQuestion?._id, option?.option_id)"><i class="mdi mdi-trash-can font-size-18"></i></a>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+          </div>
+          <!-- END: MASTER QUESTION -->
+
+          <div class="card" *ngIf="!masterQuestions?.length">
+            <div class="card-body">
+              <div class="title-box">
+                <h5 class="question-title card-title">
+                  <div class="question-t">{{'masterQuestions.noMasterQuestions' | translate}}</div>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

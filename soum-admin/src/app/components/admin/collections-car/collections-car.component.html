@@ -1,0 +1,214 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">{{'admin.collectionsCar' | translate}}</li>
+            </ol>
+            <div class="mt-2">
+
+              <button type="button" (click)="getData('homepage')" [ngClass]="{'btn-primary': HomepageActive}"
+                      class="btn btn-rounded btn-light btn-w waves-effect waves-light ml-1">
+                {{'collections.Homepage' | translate}}
+              </button>&nbsp;
+              <button type="button" (click)="getData('banner')" [ngClass]="{'btn-primary': BannersActive}"
+                      class="btn btn-rounded btn-light btn-w waves-effect waves-light ml-1">
+                {{'collections.Banners' | translate}}
+              </button>
+
+            </div>
+          </div>
+          <div class="page-title-left mt-2">
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+              (click)="getcollectionsToBeReOrdered()" data-toggle="modal" data-target=".changeOrder_detail">
+              {{'labels.changeOrder' | translate}}</button>
+            <button type="button" (click)="addCollection()"
+              class="btn btn-rounded btn-warning btn-w waves-effect waves-light ml-1" [disabled]="activeCollectionsList >= 16">
+              {{'collections.add' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width:20px;">{{'collections.no' | translate}}</th>
+                    <th>{{'collections.enName' | translate}}</th>
+                    <th>{{'collections.arName' | translate}}</th>
+                    <th *ngIf="OffersActive">{{'collections.discount' | translate}}</th>
+                    <th *ngIf="BudgetsActive">{{'collections.budgetAmount' | translate}}</th>
+                    <th>{{'collections.allProducts' | translate}}</th>
+                    <th *ngIf="!BudgetsActive">{{'collections.activeProducts' | translate}}</th>
+                    <th *ngIf="BudgetsActive">{{'collections.budgetImage' | translate}}</th>
+                    <th *ngIf="OffersActive">{{'collections.expDate' | translate}}</th>
+                    <th>{{'collections.activeInactive' | translate}}</th>
+                    <th style="width: 120px;">{{'collections.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let collection of collectionList; let i = index;">
+                    <td data-title="{{'collection.no' | translate}}">
+                      {{collection?.Position}}
+                    </td>
+                    <td data-title="{{'collection.EnName' | translate}}">
+                      {{collection?.enName}}
+                    </td>
+                    <td data-title="{{'collection.ArName' | translate}}">
+                      {{collection?.arName}}
+                    </td>
+                    <td *ngIf="OffersActive" data-title="{{'collection.discount' | translate}}">
+                      {{collection?.discount}}
+                    </td>
+                    <td *ngIf="BudgetsActive" data-title="{{'collection.maxBudget' | translate}}">
+                      {{collection?.maxBudget}} SAR
+                    </td>
+                    <td data-title="{{'collection.TotalProducts' | translate}}">
+                      {{collection?.totalProducts}}
+                      <!-- {{ collection?.countryCode + '-' + collection?.mobileNumber}} -->
+                    </td>
+                    <td *ngIf="BudgetsActive" data-title="{{'collection.imgURL' | translate}}">
+                      <img [src]="collection?.imgURL" alt="" class="img image">
+                    </td>
+                    <td *ngIf="!BudgetsActive" data-title="{{'collection.TotalActiveProducts' | translate}}">
+                      {{collection?.totalActiveProducts}}
+                      <!-- {{collection?.lastLoginDate | date: 'MMM d, y, h:mm:ssa'}} -->
+                    </td>
+                    <td *ngIf="OffersActive" data-title="{{'collection.expDate' | translate}}">
+                      {{collection?.expiryDate | date: 'MMM d, y, h:mm:ss a'}}
+                    </td>
+                    <td data-title="{{'collection.activeInactive' | translate}}">
+                      <label class="switch">
+                        <input type="checkbox" id="verify" (change)="changeCollectionStatus(collection)"
+                          [(ngModel)]="collection.collectionStatus">
+                        <span class="slider round"></span>
+                      </label>
+                    </td>
+                    <td data-title="{{'collection.action' | translate}}">
+                      <a (click)="getCollectionDetails(collection?.id)" class="mr-2 text-solitud">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                      <a class="text-danger" (click)="action(collection?.id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <div class="row" *ngIf="notMatchSearch">
+                <div class="col-12 notMatchSearch">
+                  <h5>No Found Data Match Your Search!</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <!-- <pagination-controls [autoHide]="true" [nextLabel]="paginationNextLabel"
+                        [previousLabel]="paginationPreviousLabel" id="usersList" (pageChange)="selectPage($event)">
+                      </pagination-controls> -->
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade edit_detail" id="edit-user" tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">Edit Users</h5>
+                      <button type="button" class="close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div [formGroup]="updateUserForm">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">Name</label>
+                              <input type="text" minlength="3" formControlName="name" class="form-control">
+                            </div>
+                          </div>
+                          <!-- <div class="col-lg-12">
+                              <div class="form-group">
+                                <label for="validationCustom01">Email</label>
+                                <input type="email" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="form-group">
+                                <label for="validationCustom01">Phone No. </label>
+                                <input type="tel" class="form-control">
+                              </div>
+                            </div> -->
+                        </div>
+                        <button class="btn btn-warning" [disabled]="updateUserForm?.invalid" type="submit">Submit
+                          form</button>
+                      </div>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+<!-- Change Order list -->
+<div class="modal fade changeOrder_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Change Collections Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modal-orderList">
+        <div #scrollEl cdk-scrollable style="height:400px; overflow-y:auto;">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                <th>{{'administrators.name' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="box-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
+              <tr class="drag-box" *ngFor="let collection of collectionsToBeReOrdered; let i = index" cdkDrag>
+                <td data-title="{{'administrators.no' | translate}}">{{i+1}}</td>
+
+                <td data-title="{{'administrators.name' | translate}}">
+                  {{collection?.enName}}<br>
+                  {{'('+collection?.arName+')'}}
+                </td>
+              </tr>
+            </tbody>
+            <!-- <pre>{{newArr | json}}</pre> -->
+          </table>
+
+        </div>
+        <button type="submit" class="btn btn-warning" data-dismiss="modal"
+          (click)="changeOrderForCollection()">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

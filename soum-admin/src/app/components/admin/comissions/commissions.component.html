@@ -1,0 +1,394 @@
+<div class="page-content">
+    <div class="container-fluid" *ngIf="showActivity">
+      <button type="button" style="float: right;"(click)="showActivity = !showActivity"
+      class="btn btn-rounded btn-warning btn-w waves-effect waves-light ml-1">
+      Back
+    </button>
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item active">Commissions</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row" >
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pt-3">
+              <div class="table-responsive table-style">
+                <div class="row">
+      
+                </div>
+                <table class="table mb-0" >
+                  <thead class="thead-light">
+                    <tr>
+                      <th style="width: 20px;">Time</th>
+                      <th style="width: 140px;">User Name</th>
+                      <th style="width: 140px;">Operation</th>
+                  
+                    
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <tr *ngFor="let order of commissionList; let i = index;">
+     
+                      <td data-title="Time">{{order?.actionDate  | date:'medium'}}</td>
+                      <td data-title="User name">{{order?.userName}}</td>
+                      <td data-title="Operation">
+                       {{order?.commissionModuleType}} {{order?.actionType || '--'}} Commission {{i+1}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <div class="container-fluid" *ngIf="!showActivity">
+    
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item active">{{'commissions.firstTitle' | translate}}</li>
+              </ol>
+              <div class="mt-2">
+                <button type="button" (click)="getData('seller')" [ngClass]="{'btn-primary': MPPActive }"
+                class="btn btn-rounded btn-light btn-w waves-effect waves-light ml-1">
+                {{'commissions.seller' | translate}}
+              </button>
+                <button type="button" (click)="getData('buyer')" [ngClass]="{'btn-primary': HomepageActive}"
+                  class="btn btn-rounded btn-light btn-w waves-effect waves-light ml-1">
+                  {{'commissions.buyer' | translate}}
+                </button>&nbsp;
+              
+              </div>
+            </div>
+            <div class="page-title-left mt-2">
+  
+              <button type="button" (click)="showActivity = !showActivity"
+                class="btn btn-rounded btn-warning btn-w waves-effect waves-light ml-1">
+                {{'commissions.activityLog' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+  
+          <div> {{'commissions.sellerList' | translate}}</div>
+  
+          <select [(ngModel)]="userType" (change)="selectchange(userType)" style="width: 200px;"
+            (onchange)="selectchange(userType)" class="form-control custom-select promoType">
+  
+            <option [value]="item.key" *ngFor="let item of sellerTypes ">
+              {{item.name}}
+          </select>
+        </div>
+        <br>
+      </div>
+      <br>
+  
+      <div class="row">
+        <div class="col-lg-12">
+       
+          <div class="card">
+            <div class="card-body pt-3">
+              <div class="table-responsive">
+                <div>
+                  <form [formGroup]="CommissionForm">
+  
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <br />
+                          <div formArrayName="options" style="max-height: 224px; overflow-y: auto;">
+                            <div>Add Commissions</div>
+                            <div *ngFor="let opt of options.controls; let i=index" class="bg-light p-2 rounded">
+                              <label class="control-label">commission ({{i+1}})</label>
+                              <div class="row col-12">
+                                <div [formGroupName]="i">
+                                  <div class="form-group col-3">
+                                    <label class="switch control-label">
+  
+  
+                                      <input type="checkbox" formControlName="status"
+                                        class="form-control form-control-sm">
+                                      <span class="slider round"></span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div [formGroupName]="i">
+                                  <div class="form-group  col-3">
+                                    <select style="width: 200px;" class="form-control form-control-sm custom-select"
+                                      formControlName="type" [(ngModel)]="opt.type">
+  
+                                      <option value="Fixed">
+                                        {{ "promo.fixed" | translate }}
+                                      </option>
+                                      <option value="Percentage">
+                                        {{ "promo.percentage" | translate }}
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div *ngIf="opt.type == 'Fixed'" [formGroupName]="i" class="col-12 row">
+                                  <div class="form-group  col-3">
+                                    <label class="control-label">Input</label>
+                                    <input type="number" class="form-control form-control-sm"
+                                      placeholder="Enter Fixed value" formControlName="maximum">
+                                  </div>
+                                  <div class="col-12">
+  
+                                    <button class="btn btn-warning btn-sm" (click)="removeOption(i)">Remove</button>
+                                  </div>
+                                </div>
+                                <div *ngIf="opt.type == 'Percentage'" [formGroupName]="i" class="row col-12">
+                                  <div class="form-group  col-3">
+                                    <label class="control-label">Input</label>
+                                    <input type="number" class="form-control form-control-sm"
+                                      placeholder="Enter Fixed value" formControlName="percentage">
+                                  </div>
+                                  <div class="form-group  col-3">
+                                    <label>Mininum</label>
+                                    <input type="text"  formControlName="minimum"
+                                      class="form-control form-control-sm">
+                                  </div>
+                                  <div class="form-group  col-3">
+                                    <label>Maximum</label>
+                                    <input type="text" formControlName="maximum"
+                                      class="form-control form-control-sm">
+                                  </div>
+  
+                                  <div class="col-12">
+  
+                                    <button class="btn btn-warning btn-sm" (click)="removeOption(i)">Remove</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </form>
+                  <form [formGroup]="CommissionFormBuyer" *ngIf="showBuyerCommission && !buyerCommissionRanges">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        Commission on Price Quality
+    
+                        <div class="form-group">
+                          <label class="control-label">Excellent Price Quality</label>
+                          <input type="text" class="form-control" 
+                            formControlName="excellentPercentage">
+                        </div>
+                        <div class="form-group">
+                          <label>Fair Price Quality</label>
+                          <input type="text" minlength="3"  formControlName="fairPercentage"
+                            class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label>Expensive Price Quality}</label>
+                          <input type="text" minlength="3" formControlName="expensivePercentage"
+                            class="form-control">
+                        </div>
+                      </div>
+                    </div>
+    
+    
+                  </form>
+                </div>
+             
+  
+  
+  
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div style="max-height: 224px; overflow-y: auto;">
+            <div *ngIf="items.length">Saved Commissions</div>
+            <div *ngFor="let item of items; let i=index" class="bg-light p-2 rounded">
+  
+              <div class="row col-12">
+                <div *ngIf="item.type !== 'PriceQuality'">
+                  <div class="form-group col-3">
+                    <label class="switch control-label">
+  
+                      <input type="checkbox" [(ngModel)]="item.check"
+                        class="form-control form-control-sm">
+  
+                     
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <div class="form-group  col-3" *ngIf="item.type !== 'PriceQuality'">
+                    <select style="width: 200px;" class="form-control form-control-sm custom-select"
+                      [(ngModel)]="item.type">
+  
+                      <option value="Fixed">
+                        {{ "promo.fixed" | translate }}
+                      </option>
+                      <option value="Percentage">
+                        {{ "promo.percentage" | translate }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div *ngIf="item.type == 'Fixed'" class="col-12 row">
+                  <div class="form-group  col-3">
+                    <label class="control-label">Input</label>
+                    <input type="number" class="form-control form-control-sm" placeholder="Enter Fixed value"
+                      [(ngModel)]="item.maximum">
+                  </div>
+                  <div class="col-12">
+  
+                    <button class="btn btn-warning btn-sm" (click)="delete(item.id)">Delete</button>
+                    <button class="btn btn-warning btn-sm" (click)="save(item)">Save</button>
+  
+                  </div>
+                </div>
+                <div *ngIf="item.type == 'Percentage'" class="row col-12">
+                  <div class="form-group  col-3">
+                    <label class="control-label">Input</label>
+                    <input type="number" class="form-control form-control-sm" placeholder="Enter Fixed value"
+                      [(ngModel)]="item.percentage">
+                  </div>
+                  <div class="form-group  col-3">
+                    <label>Mininum</label>
+                    <input type="text"  [(ngModel)]="item.minimum"
+                      class="form-control form-control-sm">
+                  </div>
+                  <div class="form-group  col-3">
+                    <label>Maximum</label>
+                    <input type="text"  [(ngModel)]="item.maximum"
+                      class="form-control form-control-sm">
+                  </div>
+  
+                  <div class="col-12">
+  
+                    <button class="btn btn-warning btn-sm" (click)="delete(item.id)">Delete</button>
+                    <button class="btn btn-warning btn-sm" (click)="save(item)">Save</button>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div  *ngIf="showBuyerCommission && buyerCommissionRanges">
+                <div class="row">
+                  <div class="col-lg-12">
+                    Commission on Price Quality
+  
+                    <div class="form-group">
+                      <label class="control-label">Excellent Price Quality</label>
+                      <input type="text" class="form-control" placeholder="Enter English"
+                      [(ngModel)]="buyerCommission.ranges.excellentPercentage">
+                    </div>
+                    <div class="form-group">
+                      <label>Fair Price Quality</label>
+                      <input type="text" minlength="3"[(ngModel)]="buyerCommission.ranges.fairPercentage"
+                        class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label>Expensive Price Quality</label>
+                      <input type="text" minlength="3"  [(ngModel)]="buyerCommission.ranges.expensivePercentage"
+                        class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-12">
+  
+                    <button class="btn btn-warning btn-sm" (click)="delete(buyerCommission.id)">Delete</button>
+                    <button class="btn btn-warning btn-sm" (click)="save(buyerCommission)">Save</button>
+  
+                  </div>
+                </div>
+  
+  
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="col-lg-12">
+          <div class="page-title-left" style="float: right;">
+  
+            <button type="button" (click)="addOption()"
+              class="btn btn-rounded btn-warning btn-w waves-effect waves-light ml-1">
+              {{'commissions.addCommission' | translate}}
+            </button>
+  
+          </div>
+        </div>
+        <div class="page-title-left">
+  
+          <button type="button" (click)="addCommissionFinal()"
+            class="btn btn-rounded btn-warning btn-w waves-effect waves-light ml-1">
+            {{'commissions.save' | translate}}
+          </button>
+  
+        </div>
+      </div>
+  
+  
+    </div>
+
+  
+  <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+<!-- Change Order list -->
+<div class="modal fade changeOrder_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Change Collections Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modal-orderList">
+        <div #scrollEl cdk-scrollable style="height:400px; overflow-y:auto;">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                <th>{{'administrators.name' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="box-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
+              <tr class="drag-box" *ngFor="let collection of collectionsToBeReOrdered; let i = index" cdkDrag>
+                <td data-title="{{'administrators.no' | translate}}">{{i+1}}</td>
+
+                <td data-title="{{'administrators.name' | translate}}">
+                  {{collection?.enName}}<br>
+                  {{'('+collection?.arName+')'}}
+                </td>
+              </tr>
+            </tbody>
+            <!-- <pre>{{newArr | json}}</pre> -->
+          </table>
+
+        </div>
+        <button type="submit" class="btn btn-warning" data-dismiss="modal"
+          (click)="changeOrderForCollection()">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

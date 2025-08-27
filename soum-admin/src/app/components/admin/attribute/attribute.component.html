@@ -1,0 +1,140 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a (click)="goBack()">
+              <img src="assets/images/backBTN.png" class="back-button">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item"><a [routerLink]="['/admin/attributes']">{{'attributes.breadcrumb' |
+                  translate}}</a></li>
+              <li class="breadcrumb-item active">{{attributeName}}</li>
+            </ol>
+          </div>
+          <div>
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light" data-toggle="modal"
+              (click)="openModal('Add')">{{'categories.add' | translate}}</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 formSearch">
+        <form class="dataTables_filter" [formGroup]="searchForm" (ngSubmit)="filterBy()">
+          <label>{{'search' | translate}}
+            <input type="search" class="form-control form-control-sm searchInput no-shadow-input" formControlName="word"
+              placeholder="Search ..... ">
+            <button type="submit" class="btn btn-danger btn-sm searchBtn">Search</button>
+          </label>
+        </form>
+      </div>
+    </div>
+    <!-- end page title -->
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 80px;">{{'administrators.no' | translate}}</th>
+                    <th>Name ( EN )</th>
+                    <th>Name ( AR )</th>
+                    <th style="width: 120px;">{{'administrators.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of attributesList | paginate: {
+                    id: 'attributesList',
+                    itemsPerPage: limit,
+                    currentPage: currentPage,
+                    totalItems: totalResult
+                  }; let i=index">
+                    <td data-title="{{'administrators.no' | translate}}">{{ limit * (currentPage - 1) + i + 1 }}</td>
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{data?.nameEn}}<br>
+                    </td>
+                    <td class="arAttribute" data-title="{{'administrators.maxPercentage' | translate}}">{{data?.nameAr}}
+                    </td>
+                    <td data-title="{{'administrators.action' | translate}}">
+                      <button type="button" class="mr-2 text-primary btn_style" (click)="openModal('Edit', data)">
+                        <img src="assets/images/peen.png" class="pen" />
+                      </button>
+
+                      <a class="text-danger" (click)="deleteAttribute(data?.id)">
+                        <img src="assets/images/deleteIcon.png" class="deleteIcon" />
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!attributesList?.length">
+                    <td colspan="4" class="noAttribute">No Attribute Options found!</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div *ngIf="attributesList?.length>0" class="dataTables_info">{{'attributes.showMinMaxNumberofListOptions' | translate: entries}}</div>
+                </div>
+                <div class="col-sm-12 col-md-7" *ngIf="attributesList?.length>0">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls [autoHide]="true" [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel" id="attributesList" (pageChange)="selectPage($event)">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD Attribute MODAL -->
+    <div class="modal fade add_detail" id="attribute-modal" tabindex="-1" role="dialog"
+      aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title mt-0">{{modelType}}</h5>
+            <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="attributeForm">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="control-label">{{'attributes.name' | translate}}</label>
+                    <input type="text" minlength="2" class="form-control" placeholder="Enter English"
+                      formControlName="name_en">
+                  </div>
+                  <div class="form-group">
+                    <label>{{'labels.arabicName' | translate}}</label>
+                    <input type="text" minlength="2" placeholder="Enter Arabic" formControlName="name_ar"
+                      class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-warning" [disabled]="!attributeForm.valid" type="submit" (click)="saveAttribute()">
+                {{'attributes.save' | translate}}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

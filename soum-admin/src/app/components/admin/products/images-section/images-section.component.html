@@ -1,0 +1,104 @@
+<div class="row" *ngIf="sectionsList.length" #scrollTarget>
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body pt-3">
+        <div class="table-responsive table-style">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">No</th>
+                <th style="width: 200px;">Major Section</th>
+                <th style="width: 200px;">Header (EN)</th>
+                <th class="headerAr">Header (AR)</th>
+                <th>Min-Max</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let section of sectionsList; let i = index;">
+                <td data-title="{{'categories.no' | translate}}">{{i + 1}}</td>
+                <td class="td1">{{section.sectionType || "Photos"}} <br /> {{section.sectionTypeAr || 'الصور'}}</td>
+                <td class="td1">{{section.header}} </td>
+                <td class="headerAr td">{{section.headerAr}} </td>
+                <td class="td1">{{section.minImageCount || ""}} - {{section.maxImageCount || ""}} </td>
+                <td class="container_actions">
+                  <a class="mr-2 text-primary" (click)="editSectionAction(section, i)">
+                    <i class="mdi mdi-pencil font-size-18"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="section-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Images</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeModalSection()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal_body">
+        <div class="header-section">
+          <div class="row-section">
+            <img class="icon" src="../../../../../assets/images/singleIcon.png" />
+            <h3 class="title">{{activeSection?.header}}{{activeSection?.headerAr}}</h3>
+          </div>
+          <div class="row-section row2">
+            <img class="iconCheck" src="../../../../../assets/images/checkMark.png" />
+            <h5 class="description">The first image a buyer/renters sees of your property must be high quality &
+              aesthetically pleasing</h5>
+          </div>
+        </div>
+
+        <div>
+          <input type="file" class="form-control" [multiple]="activeSection?.maxImageCount > 1" id="recipient-name"
+            accept="image/png,image/jpeg,image/jpg" (change)="selectImage($event)" #uploadFile maxsize="5MB"
+            maxlength="activeSection?.maxImageCount - imageUrls.lenght">
+        </div>
+
+
+        <div class="container_images">
+          <div *ngIf="activeSectionIndex === 0">
+            <img *ngIf="!imageUrls?.length" class="uploadSingleImage"
+              src="../../../../../assets/images/uploadSingleImage.png" (click)="uploadFile.click()" />
+            <div *ngFor="let image of imageUrls; let i = index">
+              <div *ngIf="image" class="image_container">
+                <img *ngIf="image" class="closeBtn2" src="../../../../../assets/images/closeBtn.png"
+                  (click)="deleteImage(i)" />
+                <img class="uploadSingleImage img-responsive" [src]="image?.fullURL || image" />
+              </div>
+            </div>
+          </div>
+
+
+          <div *ngIf="activeSectionIndex !== 0" class="row">
+            <div *ngFor="let image of imageUrls; let i = index" class="col-xs-4 sectionImage">
+              <div *ngIf="image" class="image_container2">
+                <img class="closeBtn2" src="../../../../../assets/images/closeBtn.png" (click)="deleteImage(i)" />
+                <img class="uploadMultileImage img-responsive" [src]="image?.fullURL || image" />
+              </div>
+            </div>
+            <div class="image_container2">
+              <img *ngIf="imageUrls?.length !== activeSection?.maxImageCount" class="uploadMultileImage"
+                src="../../../../../assets/images/addMoreDiv.png" (click)="uploadFile.click()" />
+            </div>
+          </div>
+          <h5 class="errorMessage" *ngIf="imageUrls.length < activeSection?.minImageCount">Complete the minimum number
+            of photos for the {{activeSection?.header}}({{activeSection.minImageCount}})</h5>
+        </div>
+        <button
+          [ngClass]="((imageUrls.length >= activeSection?.minImageCount) && loading === false)  ? 'activeSaveBtn' : 'disableSaveBtn'"
+          (click)="EditSectionImages()"
+          [disabled]="imageUrls.length < activeSection?.minImageCount || loading">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

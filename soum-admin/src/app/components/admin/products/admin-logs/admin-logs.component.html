@@ -1,0 +1,30 @@
+<div class="page-content">
+    <div class="container-fluid breadcrumb-style">
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+              <a class="back-button" (click)="goBack()">
+                <img src="assets/images/icons/back-icon.svg" alt="back">
+              </a>
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a (click)="back('/admin/products')">products </a></li>
+                <li class="breadcrumb-item"><a [routerLink]="['/admin/products/products-details', productId]" >Details</a></li>
+                <li class="breadcrumb-item active">Admin Logs</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="display-logs">
+      <div class="log" *ngFor="let log of logsAdmin; let i = index">
+        <div class="divLog">{{i}} - <span>{{log.adminName}}</span> has changed <span>{{log.type == 'Buy'? 'Buy Now Price' : 'Bid Price'}}</span> from <span>{{log.from}}</span> {{currency}} to <span>{{log.to}}</span> {{currency}} at <span>{{log.date}}</span></div>
+      </div>
+
+      <div class="no-logs" *ngIf="logsAdmin==null">
+        <h2>No Logs For This Product</h2>
+      </div>
+    </div>
+</div>

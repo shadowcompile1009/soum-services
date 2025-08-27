@@ -1,0 +1,142 @@
+.span_space{
+  padding: 0px 10px;
+}
+.question-t .text-arabic {
+  display: block;
+  margin-top: 3px;
+}
+.input_edit {
+  display: inline-block;
+  width: calc(100% - 260px);
+}
+.question-box .table td {
+  vertical-align: top !important;
+}
+
+.question-row .question-title .choose_question {
+  width: auto !important;
+  position: inherit !important;
+  background: no-repeat;
+  padding: 0px !important;
+  display: inherit;
+  height: auto;
+  margin-right: 10px;
+}
+
+.question-row .title-box .question-title .action_btn {
+  display: flex;
+  align-items: center;
+}
+
+.question-row .question-title .choose_question label {
+  font-weight: 500;
+  font-size: 0.9rem !important;
+}
+.modal-body .form-group .control-label {
+  width: 100%;
+}
+
+.modal-body .form-group .control-label .Weightage {
+  float: right !important;
+  width: 115px;
+}
+
+.option__container {
+  display: flex;
+  display: -ms-flexbox;
+  align-items: center;
+  .Weightage {
+    flex: 0.2;
+  }
+  .options__value {
+    flex: 0.8;
+  }
+  .file__container {
+    flex: 0.3;
+    height: 61px;
+    display: flex;
+    flex-direction: column;
+    .choose_file,
+    .choose_file_name {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      justify-content: center;
+      height: 100%;
+      border: 1px solid #d2d7dd;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 93px;
+      white-space: nowrap;
+    }
+    .choose_file {
+      background-color: #bfbfbf;
+    }
+  }
+}
+.dropdown_container {
+  display: flex;
+  display: -ms-flexbox;
+  align-items: center;
+  .Weightage {
+    flex: 0.2;
+    height: 62px;
+    text-align: center;
+    &::placeholder {
+      // vertical-align: middle;
+    }
+  }
+  .dropdown_options {
+    flex: 0.8;
+  }
+}
+.score_container {
+  display: flex;
+  display: -ms-flexbox;
+  justify-content: space-around;
+  .score_inner_container {
+    display: flex;
+    display: -ms-flexbox;
+    align-items: center;
+    .Weightage {
+      flex: 0.3;
+    }
+    .score_text {
+      flex: 0.6;
+      display: flex;
+      display: -ms-flexbox;
+      flex-direction: column;
+      span {
+        text-align: center;
+        border: 1px solid #d2d7dd;
+      }
+    }
+  }
+}
+.add_list {
+  color: #fff;
+  font-size: unset !important;
+  width: 100%;
+}
+.file__container {
+  flex: 0.3;
+  height: 61px;
+  display: flex;
+  flex-direction: column;
+  .choose_file,
+  .choose_file_name {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    justify-content: center;
+    height: 100%;
+    border: 1px solid #d2d7dd;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 93px;
+    white-space: nowrap;
+  }
+  .choose_file {
+    background-color: #bfbfbf;
+  }
+}

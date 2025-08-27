@@ -1,0 +1,904 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">
+                <a [routerLink]="['/admin/orders']">
+                  {{'ordersDetails.orders' | translate}}
+                </a>
+              </li>
+              <li class="breadcrumb-item active">{{'ordersDetails.details' | translate}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Original Order Details -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <h5>{{'ordersPage.orderDescription' | translate}}
+
+            </h5>
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">{{'ordersPage.no' | translate}}</th>
+                    <th style="width: 140px;">{{'ordersPage.orderID' | translate}}</th>
+                    <th style="width: 140px;">{{'ordersPage.productId' | translate}}</th>
+                    <th>{{'ordersPage.productName' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.device' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.brand' | translate}}</th>
+                    <th style="width: 80px;">{{'ordersPage.model' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.variant' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.sellPrice' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.buy_type' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.status' | translate}}</th>
+                    <th style="width: 110px;">{{'ordersPage.trackingStatus' | translate}}</th>
+                    <th style="width: 110px;">{{'ordersPage.date' | translate}}</th>
+                    <th style="width:60px;">{{'ordersPage.dispute' | translate}}</th>
+                    <th style="width:60px;">{{'ordersPage.paymentReceivedFromBuyer' | translate}}</th>
+                    <th style="width:60px;">{{'ordersPage.paymentMadeToSeller' | translate}}</th>
+                    <th style="width:60px;">{{'ordersPage.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-title="{{'ordersPage.no' | translate}}">1</td>
+                    <td data-title="{{'ordersPage.orderID' | translate}}">{{orderDetails?.order_number}}</td>
+                    <td data-title="{{'ordersPage.productId' | translate}}">{{orderDetails?.product?._id}}</td>
+                    <td data-title="{{'ordersPage.productName' | translate}}">{{orderDetails?.product?.model_id?.model_name}}</td>
+                    <td data-title="{{'ordersPage.device' | translate}}">{{orderDetails?.product?.category_id?.category_name}}</td>
+                    <td data-title="{{'ordersPage.brand' | translate}}">{{orderDetails?.product?.brand_id?.brand_name}}</td>
+                    <td data-title="{{'ordersPage.model' | translate}}">{{orderDetails?.product?.model_id?.model_name}}</td>
+                    <td data-title="{{'ordersPage.variant' | translate}}">{{orderDetails?.product?.varient}}</td>
+                    <td data-title="{{'ordersPage.sellPrice' | translate}}">{{convertStringToNumber(orderDetailsSeller?.sell_price)}} {{currency}}</td>
+                    <td data-title="{{'ordersPage.buy_type' | translate}}">{{orderDetails?.buy_type}} </td>
+                    <td data-title="{{'ordersPage.status' | translate}}">{{orderDetails?.transaction_status}}</td>
+                    <td data-title="{{'ordersPage.trackingStatus' | translate}}">{{orderDetails?.status}}</td>
+                    <td data-title="{{'ordersPage.date' | translate}}">{{orderDetails?.created_at | date: 'dd MMM, yyyy'}}</td>
+                    <td data-title="{{'ordersPage.dispute' | translate}}">
+                      <span class="badge" [class]="orderDetails?.dispute == 'Yes' ? 'badge-danger' : 'badge-success'">
+                        {{orderDetails?.dispute == 'Yes' ? 'Yes' : 'No'}}
+                      </span>
+                    </td>
+                    <td data-title="{{'ordersPage.paymentReceivedFromBuyer' | translate}}">{{orderDetails?.paymentReceivedFromBuyer || '--'}}</td>
+                    <td data-title="{{'ordersPage.paymentMadeToSeller' | translate}}">{{orderDetails?.paymentMadeToSeller || '--'}}</td>
+                    <td data-title="{{'ordersPage.action' | translate}}">
+                      <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top"
+                        title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row order-detail-page product-detail-page">
+      <div class="col-md-12" *ngIf="productListQuestions?.length ">
+           <div class="card" style="height: 100%;">
+             <div class="card-body pt-3 show_detail">
+               <h4 class="card-title mb-4">{{'productsDetails.sellerQuestionsListName' | translate}}
+                <span class="plus-text">
+                  <span class="good">
+                    {{orderDetails?.product?.grade}}
+                  </span>
+              </span>
+              </h4>
+               <div id="question-accordions" class="custom-accordion-arrow seller_questions_list">
+                 <div class="card" *ngFor="let ques of productListQuestions; let i = index;">
+                   <a [href]="'#question-collapse'+i" class="collapsed" data-toggle="collapse" aria-expanded="false"
+                     aria-controls="question-collapseOne">
+                     <div class="card-header" id="question-headingOne">
+                       <h5 class="font-size-14 m-0">
+                         <i class="accor-arrow-icon">{{'productsDetails.sellerQuestions' | translate}}
+                           {{i+1}}.</i>
+                           {{translate?.getDefaultLang() == 'ar' ? ques?.question_ar : ques?.question_en}}
+                       </h5>
+                     </div>
+                   </a>
+                   <div [id]="'question-collapse' + i" class="collapse" aria-labelledby="question-headingOne"
+                     data-parent="#question-accordion">
+                     <div class="card-body">
+                       <div class="question-box table-responsive">
+                         <table class="table mb-0">
+                           <!-- <thead class="thead-light">
+                             <tr>
+                               <th>{{'productsDetails.sellerAnswer' | translate}}</th>
+                             </tr>
+                           </thead> -->
+                           <tbody>
+                             <tr>
+                               <td style="width: 65px;" class="answer-bg">{{'productsDetails.sellerAnswer' | translate}}
+                               </td>
+                               <td class="answer" data-title="{{'productsDetails.sellerAnswer' | translate}}">
+                                <div *ngIf="ques?.question_type != 'dropdown'">
+                                  <div *ngFor="let choice of  ques?.answers">
+                                    {{translate?.getDefaultLang() == 'ar' ? choice.answer_ar : choice.answer_en}}
+                                   </div>
+                                </div>
+                                 <div *ngIf="ques?.question_type == 'yes-no-with-options' && ques?.answers[0].sub_choices.length > 0 ">
+                                   <div *ngFor="let choice of ques?.answers[0].sub_choices">
+                                    {{translate?.getDefaultLang() == 'ar' ? choice.option_ar : choice.option_en}}
+                                   </div>
+
+                                 </div>
+                                 <div *ngIf="ques?.question_type == 'dropdown'">
+                                  <div *ngFor="let choice of  ques?.choices">
+                                    {{translate?.getDefaultLang() == 'ar' ? choice.option_ar : choice.option_en}}
+                                   </div>
+
+                                 </div>
+                               </td>
+
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+     </div>
+    <!-- End Original Order Details -->
+
+
+    <!-- end page title -->
+    <div class="row order-detail-page">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body pt-3">
+            <h4 class="card-title mb-3">{{'ordersDetails.sellerDetails' | translate}}</h4>
+            <ul class="user-info">
+              <li><strong>{{'ordersDetails.name' | translate}}</strong>{{orderDetails?.seller?.name}}</li>
+              <!-- <li><strong>{{'ordersDetails.email' | translate}}</strong>frank.dean@gmail.com </li> -->
+              <li>
+                <strong>{{'ordersDetails.phoneNo' | translate}}</strong>
+                {{orderDetails?.seller?.countryCode +'-' + orderDetails?.seller?.mobileNumber}}
+              </li>
+            </ul>
+
+            <h4 class="card-title mb-3 mt-3">Address Detail:-</h4>
+            <div class="user-address">
+              <p class="username">
+                <strong>Street : </strong>{{sellerAddress?.street || '---'}}
+              </p>
+              <p class="username">
+                <strong>District : </strong>{{sellerAddress?.district || '---'}}
+              </p>
+              <p class="username">
+                <strong>City : </strong>{{sellerAddress?.city || '---'}}
+              </p>
+              <p class="username">
+                <strong>Postal Code : </strong>{{sellerAddress?.postal_code || '---'}}
+              </p>
+              <!-- <p class="username">
+                <strong>Product Description : </strong>{{orderDetails?.product?.description || '--'}}
+              </p> -->
+
+
+
+            </div>
+
+            <h4 class="card-title mb-3 mt-3">Bank Detail:-</h4>
+            <div class="user-address">
+              <p class="username">
+                <strong>Name : </strong>{{orderDetails?.seller?.bankDetail?.accountHolderName || '--'}}
+              </p>
+              <p class="username">
+                <strong>Bank Name :
+                </strong>{{orderDetails?.seller?.bankDetail?.bankName || '--'}}
+              </p>
+              <p class="username">
+                <strong>IBAN :
+               </strong>{{orderDetails?.seller?.bankDetail?.accountId ||'--'}}
+              </p>
+              <p class="username">
+                <strong>Bank BIC :
+                </strong>{{orderDetails?.seller?.bankDetail?.bankBIC || '--'}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- details for seller details order price -->
+        <div class="card">
+          <div class="card-body pt-3">
+            <h4 class="card-title mb-3">{{'ordersDetails.billingDetails' | translate}}</h4>
+            <ul class="user-info user-info-table">
+              <li>
+                <strong>{{'ordersDetails.sellPrice' | translate}}</strong>
+                  {{convertStringToNumber(orderDetailsSeller?.sell_price)}} {{currency}}
+              </li>
+              <li><strong>{{'ordersDetails.shippingCharges' | translate}}</strong> {{convertStringToNumber(orderDetailsSeller?.shipping_charge)}} {{currency}}
+              </li>
+              <li>
+                <strong>{{'ordersDetails.sellerCommission' | translate}}</strong>
+
+                  <span class="discount" *ngIf="orderDetailsSeller?.commission_discount>0">
+                      <img class="img_discount" src="../../../../../assets/images/discount.svg" />
+                      {{convertStringToNumber(orderDetailsSeller?.commission_discount)}}{{currency}}
+                  </span>
+                  {{convertStringToNumber(orderDetailsSeller?.commission)}} {{currency}}
+              </li>
+              <li><strong>{{'ordersDetails.vat' | translate}}</strong>{{convertStringToNumber(orderDetailsSeller?.vat)}} {{currency}}</li>
+              <li class="grand_total">
+                <strong>{{'ordersDetails.grandTotal_seller' | translate}}</strong>{{convertStringToNumber(orderDetailsSeller?.grand_total)}} {{currency}}
+              </li>
+              <li *ngIf="orderDetailsSeller?.promo_code"><strong>{{'ordersDetails.seller_promo' | translate}}</strong>{{orderDetailsSeller?.promo_code}}</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- <h4 class="card-title mb-3">{{'ordersDetails.buyerDetails' | translate}}</h4> -->
+
+            <h4 class="card-title mb-3 mt-3">Product Description:-</h4>
+            <div class="user-address">
+              <p class="username"><strong>Description : </strong>{{orderDetails?.product?.description || '--'}}
+              </p>
+              <!-- <p class="username"><strong>IBAN : </strong>{{orderDetails?.buyer?.bankDetail?.accountId | mask: ['accountID', orderDetails?.secretKey]}}</p>
+                      <p class="username"><strong>Bank BIC : </strong>{{orderDetails?.buyer?.bankDetail?.bankBIC | mask: ['bic' ,orderDetails?.secretKey]}}</p> -->
+            </div>
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body pt-3">
+            <h4 class="card-title mb-3">{{'ordersDetails.buyerDetails' | translate}}</h4>
+            <ul class="user-info">
+              <li><strong>{{'ordersDetails.name' | translate}}</strong>{{orderDetails?.buyer?.name}}</li>
+              <!-- <li><strong>{{'ordersDetails.email' | translate}}</strong>jbutt@gmail.com </li> -->
+              <li><strong>{{'ordersDetails.phoneNo' | translate}}</strong>
+                {{orderDetails?.buyer?.countryCode +'-' + orderDetails?.buyer?.mobileNumber}}</li>
+              <li class="product_pictures"><strong>{{'ordersDetails.productPictures' | translate}}</strong><img
+                  [src]="orderDetails?.product?.product_images[0]" height="50"></li>
+            </ul>
+
+            <h4 class="card-title mb-3 mt-3">Address Detail:-</h4>
+            <div class="user-address">
+              <p class="username"><strong>Street : </strong>{{buyerAdderss?.street || '---'}}</p>
+              <p class="username"><strong>District : </strong>{{buyerAdderss?.district || '---'}}</p>
+              <p class="username"><strong>City : </strong>{{buyerAdderss?.city || '---'}}</p>
+              <p class="username"><strong>Postal Code : </strong>{{buyerAdderss?.postal_code || '---'}}
+              </p>
+            </div>
+
+            <h4 class="card-title mb-3 mt-3">Bank Detail:-</h4>
+            <div class="user-address">
+              <p class="username"><strong>Name : </strong>{{orderDetails?.buyer?.bankDetail?.accountHolderName || '---'}}
+              </p>
+              <p class="username">
+                <strong>Bank Name :
+                </strong>{{orderDetails?.buyer?.bankDetail?.bankName || '--'}}
+              </p>
+              <p class="username"><strong>IBAN :
+                </strong>{{orderDetails?.buyer?.bankDetail?.accountId || '--'}}
+              </p>
+              <p class="username"><strong>Bank BIC :
+              </strong>{{orderDetails?.buyer?.bankDetail?.bankBIC || '--'}}
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Payout Details -->
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="refund_wrapper">
+              <h4 class="card-title">{{'ordersDetails.billingDetails' | translate}}</h4>
+              <button class="refund_btn" (click)="openRefundForm()" disabled>{{'ordersPage.refund' | translate}}</button>
+            </div>
+            <ul class="user-info user-info-table">
+              <li>
+                <strong>{{'ordersDetails.sellPrice' | translate}}</strong>
+
+                <span class="discount" *ngIf="orderDetails?.sell_discount>0">
+
+                  <img class="img_discount" src="../../../../../assets/images/discount.svg" />
+                  {{convertStringToNumber(orderDetails?.sell_discount)}} {{currency}}
+                </span>
+                {{convertStringToNumber(orderDetailsBuyer?.sell_price)}} {{currency}}
+              </li>
+              <li><strong>{{'ordersDetails.shippingCharges' | translate}}</strong>{{convertStringToNumber(orderDetailsBuyer?.delivery_fee)}} {{currency}}
+              </li>
+              <li>
+                <strong>{{'ordersDetails.buyerCommission' | translate}}</strong>
+
+                  <span class="discount" *ngIf="orderDetails?.commission_discount>0">
+
+                      <img class="img_discount" src="../../../../../assets/images/discount.svg" />
+                      {{convertStringToNumber(orderDetailsBuyer?.commission_discount)}}
+                  </span>
+                  {{convertStringToNumber(orderDetailsBuyer?.commission)}} {{currency}}
+              </li>
+              <li>
+                <strong>{{'ordersDetails.price_quality_extra_commission' | translate}}</strong>
+                  {{orderDetailsBuyer?.price_quality_extra_commission || 'N/A'}}
+              </li>
+              <li><strong>{{'ordersDetails.vat' | translate}}</strong>{{convertStringToNumber(orderDetailsBuyer?.vat)}} {{currency}}</li>
+              <li class="grand_total">
+                <strong>{{'ordersDetails.grandTotal_buyer' | translate}}</strong>{{convertStringToNumber(orderDetailsBuyer?.grand_total)}} {{currency}}
+              </li>
+              <li><strong>Buyer Cancellation Fee</strong>{{orderDetailsBuyer?.cancellationFee}} {{currency}}</li>
+              <li><strong>Refund Amount to Pay for Buyer</strong>{{orderDetailsBuyer?.refundAmountWithFeeToPay}} {{currency}}</li>
+              <li *ngIf="orderDetailsBuyer?.promo_code"><strong>{{'ordersDetails.buyer_promo' | translate}}</strong>{{orderDetailsBuyer?.promo_code}}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body pt-3">
+            <ul class="user-info user-info-table">
+              <li style="margin-bottom: 25px;">
+                <strong style="font-weight: bold;">{{'ordersDetails.payoutDetails' | translate}}</strong>
+                <a  (click)="openPayoutModal()" class="text-primary" data-toggle="tooltip" data-placement="top"
+                          title="" data-original-title="Delete"><i class="mdi mdi-pencil font-size-18"></i></a>
+              </li>
+              <li>
+                <strong>{{'ordersDetails.sellPrice' | translate}}</strong> {{convertStringToNumber(orderDetailsSeller?.sell_price)}} {{currency}}
+              </li>
+              <li><strong>{{'ordersDetails.shippingCharges' | translate}}</strong> {{convertStringToNumber(orderDetailsSeller?.shipping_charge)}} {{currency}}
+              </li>
+              <li>
+                <strong>{{'ordersDetails.sellerCommission' | translate}}</strong>
+                  <span class="discount" *ngIf="orderDetailsSeller?.commission_discount>0">
+                      <img class="img_discount" src="../../../../../assets/images/discount.svg" />
+                      {{convertStringToNumber(orderDetailsSeller?.commission_discount)}} {{currency}}
+                  </span>
+                  {{convertStringToNumber(orderDetailsSeller?.commission)}} {{currency}}
+              </li>
+              <li><strong>{{'ordersDetails.vat' | translate}}</strong>{{convertStringToNumber(orderDetailsSeller?.vat)}} {{currency}}</li>
+              <li class="grand_total">
+                <strong>{{'ordersDetails.grandTotal_seller_payout' | translate}}</strong>{{convertStringToNumber(orderDetailsSeller?.grand_total)}} {{currency}}
+              </li>
+              <li *ngIf="orderDetailsSeller?.promo_code"><strong>{{'ordersDetails.seller_promo' | translate}}</strong>{{orderDetailsSeller?.promo_code}}</li>
+            </ul>
+            <div class="btn-paySeller">
+              <button disabled class="btn btn-sm" (click)="payConfirmation()">Pay Seller</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card" *ngIf="showStatus">
+
+          <div class="card-body pt-3 show_detail">
+            <h4 class="card-title mb-4" (click)="showQuestions()">{{'ordersDetails.sellerQuestionsList' | translate}}
+            </h4>
+            <div id="question-accordions" *ngIf="showFile" class="custom-accordion-arrow seller_questions_list">
+              <div class="card" *ngFor="let questionAnswer of showStatus; let i = index;">
+                <a [href]="'#question-collapse'+i" class="collapsed" data-toggle="collapse" aria-expanded="false"
+                  aria-controls="question-collapseOne">
+                  <div class="card-header" id="question-headingOne">
+                    <h5 class="font-size-14 m-0">
+                      <i class="accor-arrow-icon">{{'ordersDetails.sellerQuestions' | translate}}
+                        {{i+1}}.</i>{{questionAnswer?.question }}
+                    </h5>
+                  </div>
+                </a>
+                <div [id]="'question-collapse' + i" class="collapse" aria-labelledby="question-headingOne"
+                  data-parent="#question-accordion">
+                  <div class="card-body" style="height: 36px;">
+                    <div class="question-box table-responsive">
+                      <table class="table mb-0">
+                        <tbody>
+                          <tr>
+                            <td style="width: 65px;" class="answer-bg">{{'ordersDetails.sellerAnswer' | translate}}
+                            </td>
+                            <td class="answer" data-title="{{'productsDetails.sellerAnswer' | translate}}">
+                              {{questionAnswer?.answer}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" *ngIf="QuestionsBuyer">
+          <div class="card-body pt-3 show_detail" *ngIf="QuestionsBuyer&&QuestionsBuyer.length>0">
+            <h4 class="card-title mb-4" (click)="showQuestionsBuyer()">{{'ordersDetails.buyerQuestionsList' |
+              translate}}
+            </h4>
+            <div id="question-accordions" class="custom-accordion-arrow seller_questions_list">
+              <div class="card" *ngFor="let questionAnswerbuyer of QuestionsBuyer; let i = index;">
+                <a [href]="'#question-collapse'+i" class="collapsed" data-toggle="collapse" aria-expanded="false"
+                  aria-controls="question-collapseOne">
+                  <div class="card-header" id="question-headingOne">
+                    <h5 class="font-size-14 m-0">
+                      <i class="accor-arrow-icon">{{'ordersDetails.sellerQuestions' | translate}}
+                        {{i+1}}.</i>{{questionAnswerbuyer?.question }}<i style="float:right"
+                        (click)="action(questionAnswerbuyer)" class="fa fa-trash"></i>
+                    </h5>
+                  </div>
+                </a>
+                <div [id]="'question-collapse' + i" class="collapse" aria-labelledby="question-headingOne"
+                  data-parent="#question-accordion">
+                  <div class="card-body" style="height: 36px;">
+                    <div class="question-box table-responsive">
+                      <table class="table mb-0">
+                        <tbody>
+                          <tr>
+                            <td style="width: 65px;" class="answer-bg">{{'ordersDetails.sellerAnswer' | translate}}
+                            </td>
+                            <td class="answer" data-title="{{'productsDetails.sellerAnswer' | translate}}">
+                              {{questionAnswerbuyer?.answer}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-md-4"
+        *ngIf="orderDetails?.pickup_detail?.PickUpResponse?.DispatchConfirmationNumber && orderDetails?.shipment_detail?.ShipmentResponse?.ShipmentIdentificationNumber">
+        <div class="card">
+          <div class="card-body pt-3">
+            <h4 class="card-title mb-4">{{'ordersDetails.shippingStatus' | translate}}</h4>
+            <div class="processing-order">
+              <!-- <ul class="processing-list">
+                <li class="complete">{{'ordersDetails.ordered' | translate}}</li>
+                <li class="complete">{{'ordersDetails.shipped' | translate}}</li>
+                <li>{{'ordersDetails.out_for_delivery' | translate}}</li>
+                <li>{{'ordersDetails.arriving_tomorrow' | translate}}</li>
+                <li>{{'ordersDetails.delivered' | translate}}</li>
+              </ul> -->
+              <ul class="user-info mb-3">
+                <li>
+                  <strong>CBJ Id</strong> {{orderDetails?.pickup_detail?.PickUpResponse?.DispatchConfirmationNumber}}
+                </li>
+                <li>
+                  <strong>Tracking Id</strong>
+                  {{orderDetails?.shipment_detail?.ShipmentResponse?.ShipmentIdentificationNumber}}
+                </li>
+                <!-- <li>
+                  <strong>CVG Id</strong>
+                </li> -->
+              </ul>
+              <button type="submit" class="btn btn-warning ng-star-inserted mr-3 mb-2"
+                (click)="trackShipping(orderDetails?.shipment_detail?.ShipmentResponse?.ShipmentIdentificationNumber)">Track
+                Shipping</button>
+              <button type="submit" *ngIf="file" class="btn btn-warning ng-star-inserted mb-2" type="button" fileSaver
+                [method]="'GET'" [fileName]="fileName" [url]="file" (click)="showPDF()">Print
+                Label</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="orderDetails?.dispute == 'Yes'">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="buyer_comments">
+              <h4 class="card-title mb-4">{{'ordersDetails.disputeStatus' | translate}}</h4>
+              <div class="form-group">
+                <label>{{'ordersDetails.disputeComments' | translate}}</label>
+                <p>{{orderDetails?.return_reason || '--'}}</p>
+              </div>
+              <div class="form-group">
+                <label>{{'ordersDetails.disputeValidity' | translate}}</label>
+                <select class="form-control" [(ngModel)]="disputeStaus" name="dispute-validity" id="dispute-validity">
+                  <option value="">{{'ordersDetails.selectDisputeValidity' | translate}}</option>
+                  <option value="Valid ">{{'ordersDetails.disputeValid' | translate}}</option>
+                  <option value="Invalid">{{'ordersDetails.disputeInvalid' | translate}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>{{'ordersDetails.disputeCommentsReply' | translate}}</label>
+                <div>
+                  <textarea [(ngModel)]="disputeComment" class="form-control" rows="5"></textarea>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="orderDetails?.dispute_date">
+                <label>{{'ordersDetails.disputeDate' | translate}}</label>
+                <p>{{orderDetails?.dispute_date | date:'fullDate'}}</p>
+              </div>
+              <button [disabled]="(!disputeComment)" *ngIf="!disputeStaus" type="submit" (click)="disputeClosure()"
+                class="btn btn-warning">{{'ordersDetails.save' | translate}}</button>
+              <button *ngIf="disputeStaus" (click)="disputeClosure()" class="btn btn-warning ml-2">Dispute
+                Closure</button>
+            </div>
+          </div>
+        </div>
+        <!-- <div
+        class="modal fade add_edit_promo"
+        id="add-promo23"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mySmallModalLabel"
+        aria-hidden="true"
+      >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">
+                        {{
+                          promoAddOrEdit === "add"
+                            ? ("promo.addPromo" | translate)
+                            : ("promo.editPromo" | translate)
+                        }}
+                      </h5>
+                      <button type="button" class="close" (click)="closeModal()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="promotionForm" (ngSubmit)="addNewPromo()">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.code_name" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group">
+                                  <input
+                                    minlength="4"
+                                    maxlength="4"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="{{
+                                      'promo.enter_your_code' | translate
+                                    }}"
+                                    formControlName="code"
+                                  />
+
+                                  <div
+                                    *ngIf="
+                                      (code.touched && code.invalid) || code.dirty
+                                    "
+                                  >
+                                    <div *ngIf="code.errors?.required">
+                                      <span class="errMsg">
+                                        {{
+                                          "promo.code_name_Is_required" | translate
+                                        }}
+                                      </span>
+                                    </div>
+
+                                    <div *ngIf="code.errors?.pattern">
+                                      <span class="errMsg">
+                                        {{
+                                          "promo.code_name_is_contains" | translate
+                                        }}
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <div *ngIf="codeExistBefore">
+                                    <span class="errMsg">
+                                      {{ "promo.promocode_exist" | translate }}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.user_type" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group">
+                                  <select
+                                    class="form-control custom-select userType"
+                                    formControlName="userType"
+                                  >
+                                    <option value="" disabled selected hidden>
+                                      {{ "promo.seller_buyer" | translate }}
+                                    </option>
+                                    <option value="Seller">
+                                      {{ "promo.seller" | translate }}
+                                    </option>
+                                    <option value="Buyer">
+                                      {{ "promo.buyer" | translate }}
+                                    </option>
+                                  </select>
+
+                                  <div
+                                    *ngIf="
+                                      (userType.touched && userType.invalid) ||
+                                      userType.dirty
+                                    "
+                                  >
+                                    <div *ngIf="userType.errors?.required">
+                                      <span class="errMsg">
+                                        {{ "promo.user_type_is_equired" | translate }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.discount_type" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group">
+                                  <select
+                                    class="form-control custom-select promoType"
+                                    formControlName="promoType"
+                                  >
+                                    <option value="" disabled selected hidden>
+                                      {{ "promo.fixed_percentage" | translate }}
+                                    </option>
+                                    <option value="Fixed">
+                                      {{ "promo.fixed" | translate }}
+                                    </option>
+                                    <option value="Percentage">
+                                      {{ "promo.percentage" | translate }}
+                                    </option>
+                                  </select>
+
+                                  <div
+                                    *ngIf="
+                                      (promoType.touched && promoType.invalid) ||
+                                      promoType.dirty
+                                    "
+                                  >
+                                    <div *ngIf="promoType.errors?.required">
+                                      <span class="errMsg">
+                                        {{
+                                          "promo.promo_type_is_required" | translate
+                                        }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.fixed_amount" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group">
+                                  <input
+                                    oninput="if(!this.value.match('^[1-9][0-9]*$'))this.value='';"
+                                    type="text"
+                                    minlength="1"
+                                    maxlength="3"
+                                    class="form-control"
+                                    (keypress)="numberOnly($event)"
+                                    placeholder="{{
+                                      'promo.enter_max_discount' | translate
+                                    }}"
+                                    formControlName="discount"
+                                  />
+
+                                  <div
+                                    *ngIf="
+                                      (discount.touched && discount.invalid) ||
+                                      discount.dirty
+                                    "
+                                  >
+                                    <div *ngIf="discount.errors?.required">
+                                      <span class="errMsg">
+                                        {{ "promo.discount_is_required" | translate }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.promoLimit" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group">
+                                  <input
+                                    type="text"
+                                    minlength="0"
+                                    maxlength="4"
+                                    class="form-control"
+                                    (keypress)="numberOnly($event)"
+                                    placeholder="{{
+                                      'promo.promoLimit' | translate
+                                    }}"
+                                    formControlName="promoLimit"
+                                  />
+
+                                  <div
+                                    *ngIf="
+                                      (promoLimit.touched && promoLimit.invalid) ||
+                                      promoLimit.dirty
+                                    "
+                                  >
+                                    <div *ngIf="promoLimit.errors?.required">
+                                      <span class="errMsg">
+                                        {{ "promo.promoLimit_is_required" | translate }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row" *ngIf="!showHidePercentage">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.percentage" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group percentage">
+                                  <input
+                                    type="text"
+                                    oninput="if(!this.value.match('^[1-9][0-9]*$'))this.value='';"
+                                    minlength="1"
+                                    maxlength="3"
+                                    class="form-control"
+                                    (keypress)="numberOnly($event)"
+                                    placeholder="{{
+                                      'promo.enter_your_percentage' | translate
+                                    }}"
+                                    formControlName="percentage"
+                                  />
+                                  <div
+                                    *ngIf="
+                                      (percentage.touched && percentage.invalid) ||
+                                      percentage.dirty
+                                    "
+                                  >
+                                    <div *ngIf="percentage.errors?.required">
+                                      <span class="errMsg">
+                                        {{
+                                          "promo.percentage_Is_required" | translate
+                                        }}
+                                      </span>
+                                    </div>
+
+                                    <div *ngIf="percentage.errors?.max">
+                                      <span class="errMsg">
+                                        {{ "promo.max_value_100" | translate }}
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <span class="percentageSpan">%</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.start_date" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group">
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    name="someDate"
+                                    placeholder="Enter Your Start Date"
+                                    formControlName="fromDate"
+                                  />
+
+                                  <div
+                                    *ngIf="
+                                      (fromDate.touched && fromDate.invalid) ||
+                                      fromDate.dirty
+                                    "
+                                  >
+                                    <div *ngIf="fromDate.errors?.required">
+                                      <span class="errMsg">
+                                        {{
+                                          "promo.start_date_is_required" | translate
+                                        }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-4">
+                                <label class="control-label">{{
+                                  "promo.end_date" | translate
+                                }}</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="form-group">
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    name="someDate"
+                                    placeholder="Enter Your End Date"
+                                    formControlName="toDate"
+                                  />
+
+                                  <div
+                                    *ngIf="
+                                      (toDate.touched && toDate.invalid) ||
+                                      toDate.dirty
+                                    "
+                                  >
+                                    <div *ngIf="toDate.errors?.required">
+                                      <span class="errMsg">
+                                        {{ "promo.end_date_is_required" | translate }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-warning"
+                          type="submit"
+                          [disabled]="!promotionForm.valid || disableBtn"
+                        >
+                          {{
+                            promoAddOrEdit === "add"
+                              ? ("promo.addCode" | translate)
+                              : ("promo.editCode" | translate)
+                          }}
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+
+<!-- <div class="pdf_label">
+  <pdf-viewer id="shipment_label" [src]="file" [render-text]="true"></pdf-viewer>
+</div> -->

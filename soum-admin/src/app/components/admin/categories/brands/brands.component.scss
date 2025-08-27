@@ -1,0 +1,159 @@
+.table-responsive td .img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.table-responsive td[data-title="Picture"] {
+  text-align: center;
+}
+
+.page-title-right {
+  display: inherit;
+}
+
+.back_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.back-button {
+  text-decoration: none;
+}
+
+.divColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  margin-right: 10px;
+}
+
+.divRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.inputAcc {
+  width: 100% !important;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+::ng-deep .modal-dialog {
+  width: 450px !important;
+}
+
+.col1 {
+  height: 50px;
+}
+
+.col2 {
+  height: 50px;
+}
+
+.deleteAccessories {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.hideFileInput{
+  opacity: 0;
+  z-index: 99999;
+  position: absolute;
+  width: 60px !important
+};
+
+.headAccess {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#accessories {
+  max-height: 600px;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 0 !important;
+  margin: 0;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.titleAcc {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+.addAnotherAcc {
+  font-size: 14px;
+  font-weight: 500;
+  color: #02b9ff;
+  cursor: pointer;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.showAccessories {
+  padding-top: 20px;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.contentTabs {
+  display: flex;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+.activeTabTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #02b9ff;
+  cursor: pointer;
+}
+
+.inActiveTabTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+}
+
+.activeTabContent {
+  margin-right: 15px;
+  border-bottom: 2px solid #02b9ff;
+}
+
+.inActiveTabContent {
+  margin-right: 15px;
+  border-bottom: 2px solid #FFF;
+}
+
+.errorMessage {
+  font-size: 13;
+  color: #d82f53;
+};
+
+.formAccessories {
+  margin-bottom: 50px
+};
+
+::ng-deep body[dir="ltr"] .back-button img {
+  margin-right: 15px;
+}
+
+::ng-deep body[dir="rtl"] .back-button img {
+  margin-left: 15px;
+  transform: rotateY(180deg);
+}

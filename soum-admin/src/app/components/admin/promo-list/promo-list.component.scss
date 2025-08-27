@@ -1,0 +1,66 @@
+.add_promoCode {
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.add_promoCode .add {
+  background: #6fef7a;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+  width: 50% !important;
+}
+
+.percentage {
+  position: relative;
+}
+
+.row {
+  align-items: center;
+}
+
+label {
+  color: grey;
+}
+
+.top-border {
+  border-top: 1px solid rgb(130, 130, 130,0.20);
+}
+
+.payment-method_checkbox {
+  margin-right: 0.5em;
+}
+
+.errMsg {
+  color: grey;
+  font-size: 15px;
+  font-weight: 500;
+}
+.dataTables_filter label .form-control {
+  width: 100%;
+}
+
+.dataTables_filter label .form-control:focus {
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  border: 1px solid #aeb5bb
+}
+
+.dataTables_filter label .btn
+{
+  margin-bottom: 3px;
+}

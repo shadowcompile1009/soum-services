@@ -1,0 +1,51 @@
+
+.page-title-right {
+    display: inherit;
+  }
+  
+
+  .breadcrumb-style{ 
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 20px;
+  }
+
+  .back_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .back-button {
+    text-decoration: none;
+  }
+  
+  
+  ::ng-deep body[dir="ltr"] .back-button img {
+    margin-right: 15px;
+  }
+  
+  ::ng-deep body[dir="rtl"] .back-button img {
+    margin-left: 15px;
+    transform: rotateY(180deg);
+  }
+  
+
+  .divLog{
+    font-size: 18px;
+    padding: 15px;
+    background-color: lightgrey;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    span{
+      font-weight: bold;
+    }
+  }
+
+  .no-logs {
+    font-size: 20px !important;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    background: #e9efdb;
+    padding: 15px;
+  }

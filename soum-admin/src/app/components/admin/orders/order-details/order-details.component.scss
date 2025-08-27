@@ -1,0 +1,145 @@
+@mixin btn_style($color,$bgcolor) {
+  color: $color;
+  background-color: $bgcolor;
+  border-color: $bgcolor;
+  border-radius: 10px;
+
+  font-size: 12px;
+  padding: 3px;
+
+}
+
+.pdf_label {
+
+  position: absolute;
+  top: -500px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.user-address p {
+  margin-bottom: 0px;
+}
+
+
+.page-title-right {
+  display: inherit;
+}
+
+.back_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.back-button {
+  text-decoration: none;
+}
+
+
+::ng-deep body[dir="ltr"] .back-button img {
+  margin-right: 15px;
+}
+
+::ng-deep body[dir="rtl"] .back-button img {
+  margin-left: 15px;
+  transform: rotateY(180deg);
+}
+
+
+.table .thead-light th,
+.table-responsive tr td {
+  font-size: 12px;
+}
+.plus-text{
+  span{
+      width:80px;
+      &.extensive{
+          @include btn_style(#F25C5C, #E8D3D3);
+      }
+      &.usable{
+          @include btn_style(#F25C5C, #E8D3D3);
+      }
+      &.excellent{
+          @include btn_style(#24C081, #C9E1D7);
+      }
+      &.good{
+          @include btn_style(#F79E1B, #E9D9C2);
+      }
+      &.great{
+          @include btn_style(#31CDCD, #C6E2E2);
+      }
+  }
+}
+
+
+
+.discount {
+  color: red;
+  text-decoration: line-through;
+}
+
+.img_discount {
+  width: 20px;
+}
+
+.btn-paySeller {
+  text-align: center;
+  button {
+    font-weight: bold;
+    background-color: #19cd19;
+    padding: 1px 15px;
+  }
+}
+
+.refund_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .refund_btn {
+    color: #fff;
+    background-color: red;
+  }
+}
+
+.add_promoCode {
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.add_promoCode .add {
+  background: #6fef7a;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+  width: 50% !important;
+}
+
+.percentage {
+  position: relative;
+}
+
+.row {
+  align-items: center;
+}
+
+label {
+  color: grey;
+}
+
+.errMsg {
+  color: grey;
+  font-size: 15px;
+  font-weight: 500;
+}

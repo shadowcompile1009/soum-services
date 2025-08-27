@@ -1,0 +1,184 @@
+@import url(https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap);
+@import "~owl.carousel/dist/assets/owl.carousel.css";
+@import "~owl.carousel/dist/assets/owl.theme.default.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~open-iconic/font/css/open-iconic-bootstrap.css";
+
+ .modal-dialog {
+   .btn-success {
+     background-color: #01B9FF !important;
+     border-color: #01B9FF !important;
+   }
+
+   width: 360px !important;
+   margin-top: 120px;
+   margin: 30px auto;
+
+   .modal-content {
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+   }
+
+   .confirm {
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+     border-radius: 5px;
+     min-height: 180px;
+
+     .content {
+       padding: 20px;
+       border-radius: 10px;
+       background-color: #fff !important;
+       font-weight: 700;
+     }
+
+     .buttons {
+       padding: 10px 15px;
+       float: right;
+
+       button {
+         margin-right: 10px;
+       }
+     }
+   }
+ }
+
+ @font-face {
+   font-family: Inter;
+   font-style: normal;
+   font-weight: 300;
+   font-display: swap;
+   src: url(assets/fonts/inter-light.woff2) format("woff2"), url(assets/fonts/inter-light.woff) format("woff")
+ }
+
+ ;
+
+ @font-face {
+   font-family: Inter;
+   font-style: normal;
+   font-weight: 400;
+   font-display: swap;
+   src: url(assets/fonts/inter-regular.woff2) format("woff2"), url(assets/fonts/inter-regular.woff) format("woff")
+ }
+
+ ;
+
+ @font-face {
+   font-family: Inter;
+   font-style: normal;
+   font-weight: 500;
+   font-display: swap;
+   src: url(assets/fonts/inter-medium.woff2) format("woff2"), url(assets/fonts/inter-medium.woff) format("woff")
+ }
+
+ ;
+
+ @font-face {
+   font-family: Inter;
+   font-style: normal;
+   font-weight: 700;
+   font-display: swap;
+   src: url(assets/fonts/inter-bold.woff2) format("woff2"), url(assets/fonts/inter-bold.woff2) format("woff")
+ }
+
+ ;
+
+ body {
+   overflow-x: hidden;
+ }
+
+ .authentication-bg {
+   background-image: url(assets/images/authentication-bg.jpg);
+ }
+
+ // .comingsoon-bg {background-image: url(assets/images/comingsoon-bg.jpg);}
+
+ a:not([href]) {
+   cursor: pointer;
+ }
+
+ // .apexcharts-canvas {
+ //   width: 100% !important;
+ // }
+ .cdk-drop-list .drag-box {
+   cursor: move;
+ }
+
+ .modal-orderList th,
+ .modal-orderList td {
+   font-size: 12px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 6px;
+   padding-right: 6px;
+ }
+
+ .cdk-drag-placeholder {
+   box-sizing: border-box;
+   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+     0 3px 14px 2px rgba(0, 0, 0, 0.12);
+   padding: 4px;
+ }
+
+
+ .en {
+   @import "assets/css/app.min";
+   @import "assets/css/en";
+ }
+
+ .ar {
+   @import "assets/css/app-rtl.min";
+   @import "assets/css/ar";
+ }
+
+ @media (max-width: 992px) {
+   body .vertical-collpsed .navbar-brand-box {
+     width: 65px !important;
+   }
+
+   body .navbar-brand-box .logo-light {
+     display: block !important;
+   }
+ }
+
+
+
+ // carousal in display product details page
+
+ .owl-carousel .owl-nav button.owl-prev,
+ .owl-carousel .owl-nav button.owl-next,
+ .owl-carousel button.owl-dot {
+   background: none;
+   color: inherit;
+   border: none;
+   padding: 0 !important;
+   font: inherit;
+ }
+
+ .owl-dots .owl-dot {
+   width: 8px;
+   height: 8px;
+   background-color: #d5d5d5 !important;
+   display: inline-block;
+   margin: 0 3px;
+   border-radius: 60px !important;
+   outline: none !important;
+ }
+
+ .products-slider .owl-dots {
+   text-align: center;
+ }
+
+ .products-slider .owl-dots .owl-dot.active {
+   background-color: #01b9ff !important;
+ }
+
+ .owl-carousel {
+   display: none;
+   width: 100%;
+   -webkit-tap-highlight-color: transparent;
+   position: relative;
+   z-index: 1;
+   direction: ltr !important;
+ }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

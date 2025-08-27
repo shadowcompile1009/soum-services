@@ -1,0 +1,64 @@
+.lock-user {
+    .header {
+        display: flex;
+        justify-content: space-between;
+
+        .block-title {
+            color: #0e0f11;
+            font-size: 18px;
+            font-weight: 500;
+            font-family: "Inter";
+        }
+
+        img {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+    }
+
+    .body {
+        .content {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 28px;
+            letter-spacing: -0.011em;
+            color: #636b75;
+        }
+    }
+
+    .footer {
+        margin-top: 30px;
+
+        button {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: -0.006em;
+            border: 1px solid #d0d4d9;
+            border-radius: 6px;
+            width: 80px;
+            height: 35px;
+        }
+
+        .btnNo {
+            color: #0e0f11;
+            background: #ffffff;
+        }
+
+        .btnYes {
+            color: #ffffff;
+            background: #2f54eb;
+            margin-right: 10px;
+        }
+    }
+}
+
+::ng-deep .mat-dialog-container {
+  width: 37vw !important;;
+  padding: 20px !important;
+}

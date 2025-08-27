@@ -1,0 +1,69 @@
+.page-title-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-button {
+  margin-right: 12px;
+  height: 30px;
+  width: 30px;
+}
+
+.breadcrumb-item + .breadcrumb-item:before {
+  content: "";
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: 4px;
+  height: 16px;
+  width: 16px;
+  background: url("./../attribute/../../admin/../../../assets/images/smallArrow.png")
+    no-repeat center center;
+}
+
+.pen {
+  width: 35px;
+  height: 35px;
+}
+
+.deleteIcon {
+  width: 35px;
+  height: 35px;
+}
+
+.arAttribute {
+  direction: rtl;
+}
+
+.formSearch {
+  display: flex;
+}
+
+.searchInput {
+  width: 300px !important;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.searchBtn {
+  margin-top: -2px;
+  border-radius: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.no-shadow-input {
+  border: 1px solid #ccc;
+  box-shadow: none;
+  transition: border-color 0.3s;
+}
+
+.no-shadow-input:focus {
+  border-color: #ccc;
+}
+
+.noAttribute {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}

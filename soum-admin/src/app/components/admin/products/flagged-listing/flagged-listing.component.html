@@ -1,0 +1,279 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div
+          class="page-title-box d-flex align-items-center justify-content-between"
+        >
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item sortPart" (mouseover)="showSortList()">
+                {{ "admin.flaggedListings" | translate }}
+                <div id="sortFlaggedListing" (mouseleave)="hideSortList()">
+                  <p
+                    [ngClass]="
+                      sortByParam === 'listing_date' ? 'activeSort' : ''
+                    "
+                    (click)="sortBy('listing_date')"
+                  >
+                    <i
+                      *ngIf="sortByParam === 'listing_date'"
+                      class="mdi mdi-check font-size-18"
+                    ></i>
+                    Most Recent
+                  </p>
+                  <p
+                    [ngClass]="
+                      sortByParam === 'positive_flag' ? 'activeSort' : ''
+                    "
+                    (click)="sortBy('positive_flag')"
+                  >
+                    <i
+                      *ngIf="sortByParam === 'positive_flag'"
+                      class="mdi mdi-check font-size-18"
+                    ></i>
+                    Positive Flag (AI)
+                  </p>
+                  <p
+                    [ngClass]="sortByParam === 'discount' ? 'activeSort' : ''"
+                    (click)="sortBy('discount')"
+                  >
+                    <i
+                      *ngIf="sortByParam === 'discount'"
+                      class="mdi mdi-check font-size-18"
+                    ></i>
+                    Highest Discount%
+                  </p>
+                  <p
+                    [ngClass]="sortByParam === 'uncheck' ? 'activeSort' : ''"
+                    (click)="sortBy('uncheck')"
+                  >
+                    <i
+                      *ngIf="sortByParam === 'uncheck'"
+                      class="mdi mdi-check font-size-18"
+                    ></i>
+                    Unchecked
+                  </p>
+                  <p
+                  [ngClass]="sortByParam === 'Pending' ? 'Pending' : ''"
+                  (click)="sortBy('Pending')"
+                >
+                  <i
+                    *ngIf="sortByParam === 'Pending'"
+                    class="mdi mdi-check font-size-18"
+                  ></i>
+                  Pending
+                </p>
+                </div>
+              </li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/admin/products/deleting-listings']">{{
+                  "admin.deletedListings" | translate
+                }}</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{ "fraudListing.no" | translate }}</th>
+                    <th>{{ "fraudListing.actions" | translate }}</th>
+                    <th>{{ "fraudListing.original" | translate }}</th>
+                    <th>{{ "fraudListing.listed" | translate }}</th>
+                    <th>{{ "fraudListing.listingDate" | translate }}</th>
+                    <th>{{ "fraudListing.productId" | translate }}</th>
+                    <th>{{ "fraudListing.phoneNumber" | translate }}</th>
+                    <th>{{ "fraudListing.model" | translate }}</th>
+                    <th>{{ "fraudListing.price" | translate }}</th>
+                    <th>{{ "fraudListing.discount" | translate }}%</th>
+                    <th>{{ "fraudListing.paused" | translate }}</th>
+                    <th>{{ "fraudListing.aiStatus" | translate }}</th>
+                    <th>{{ "fraudListing.pCondition" | translate }}</th>
+                    <th>{{ "fraudListing.pDescritpion" | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let product of productList
+                        | paginate
+                          : {
+                              id: 'productList',
+                              itemsPerPage: limit,
+                              currentPage: currentPage,
+                              totalItems: totalResult
+                            };
+                      let i = index
+                    "
+                    [ngClass]="
+                      product.is_verified_by_admin === true
+                        ? 'approvedByAdmin'
+                        : 'noActive'
+                    "
+                  >
+                    <td class="centerRow noActive">{{ i + 1 }}</td>
+                    <td class="centerRow noActive">
+
+                      <div class="actions">
+                        <div>
+                          <a
+                            [routerLink]="[
+                              '/admin/products/products-details',
+                              product.product_id
+                            ]"
+                            class="mr-2 text-solitud"
+                          >
+                            <i class="fas fa-eye font-size-18 iconStyle"></i>
+                          </a>
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            id="betaUser"
+                            [checked]="product.is_verified_by_admin"
+                            (click)="updateFraudProductStatus(product, i)"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="actions">
+                        <div>
+                          <label class="switch">
+                            <input
+                              type="checkbox"
+                              (change)="approveProduct(product, i)"
+                              [(ngModel)]="product.isApproved"
+                              id="verify"
+                            />
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                        <div>
+                          <div (click)="lockUnLockUser(product?.user_id)">
+                            <img title="Lock This User" class="lock_user" src="../../../../../assets/images/lock_user.png" />
+                          </div>
+                        </div>
+                        <div>
+                          <a class="text-danger" (click)="OpenDeleteListingModel(product?.product_id)">
+                            <i class="mdi mdi-trash-can font-size-18 iconStyle"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="actions">
+                        <div class="reject_listing" (click)="rejectListing(product?.product_id)">
+                          Reject
+                        </div>
+                      </div>
+
+                    </td>
+                    <td>
+                      <img
+                        [src]="product.actual_product_picture"
+                        alt="product"
+                        width="150px"
+                        height="150px"
+                      />
+                    </td>
+                    <td style="max-width: 200px">
+                      <div class="products-slider">
+                        <div class="container">
+                          <owl-carousel
+                            [options]="customOptions"
+                            class="image-slider"
+                          >
+                            <div
+                              class="item"
+                              *ngFor="let image of product?.pictures"
+                            >
+                              <span
+                                class="photo-slider-img"
+                                [ngStyle]="{
+                                  'background-image': 'url(' + image + ')'
+                                }"
+                              ></span>
+                            </div>
+                          </owl-carousel>
+                          <i
+                            class="fas fa-compress"
+                            (click)="open(product?.pictures)"
+                          ></i>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="centerRow">
+                      {{
+                        product?.listing_date | date: "dd/MM/yyyy hh:mm:ss a"
+                      }}
+                    </td>
+                    <td class="centerRow">
+                      {{ product?.product_id || "-----" }}
+                    </td>
+                    <td class="centerRow">
+                      {{ product?.phone_number || "-----" }}
+                    </td>
+                    <td class="centerRow">
+                      {{ product?.model_name || "-----" }}
+                    </td>
+                    <td class="centerRow">
+                      {{ product?.buy_now_price || "-----" }}
+                    </td>
+                    <td class="centerRow">{{ product?.discount || 0 }} %</td>
+                    <td class="centerRow">
+                      {{ product?.pause_status?.toString() || "-----" }}
+                    </td>
+                    <td class="centerRow">
+                      {{ product?.is_fraud_detected ? "Positive" : "Negative" }}
+                    </td>
+                    <td class="centerRow">
+                      {{ product?.product_condition || "-----" }}
+                    </td>
+                    <td class="centerRow">
+                      <div class="description">
+                        {{ product?.product_description || "-----" }}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!productList?.length">
+                    <td colspan="4">No Fraud Listing Products found!</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info">
+          {{ "product.showMinMaxNumberofList" | translate: entries }}
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers">
+          <pagination-controls
+            [autoHide]="true"
+            [nextLabel]="paginationNextLabel"
+            [previousLabel]="paginationPreviousLabel"
+            id="productList"
+            (pageChange)="selectPage($event)"
+          >
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

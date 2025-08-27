@@ -1,0 +1,135 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">{{'admin.mismatchedListings' | translate}}</li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/admin/products/reported-listings']">{{'admin.reportedListings' | translate}}</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/admin/products/deleting-listings']">{{'admin.deletedListings' | translate}}</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/admin/products/onhold-listings']">{{ "admin.onHoldListings" | translate }}</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/admin/products/fraud-listings']">{{'admin.fraudListings' | translate}}</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="filterExportContainer">
+            <div class="filters_btn">
+              <p class="counter" (click)="filterProductByMostRecent()"
+                [ngClass]="{'filter_active': sortByMostRecent === true}">
+                <i class="mdi mdi-check font-size-18"></i>
+                {{'product.SortByMostRecent' | translate}} ({{totalResult}})
+              </p>
+            </div>
+
+            <div class="col-md-3 col-sm-12">
+              <div *ngIf="productList?.length != 0" class="d-flex justify-content-end" (click)="downloadOrderXlxs()">
+                <img title="{{'ordersPage.exportAsXlxs' | translate}}" class="xlxs_download"
+                  src="../../../../assets/images/xlsx.png" />
+              </div>
+            </div>
+
+          </div>
+
+          <div calss="row">
+            <div class="col-md-6 col-sm-12 search_part">
+              <form class="dataTables_filter" [formGroup]="searchForm" (ngSubmit)="filterBy()">
+                <label>{{'search' | translate}}
+                  <input type="search" class="form-control form-control-md searchField" formControlName="word"
+                    placeholder="Search ..... ">
+                  <button type="submit" class="btn btn-danger btn-md searchBtn">Search</button>
+                </label>
+              </form>
+            </div>
+          </div>
+
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{'attributes.no' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.productId' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.phoneNo' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.model' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.buyNowPrice' | translate}}</th>
+                    <th style="min-width: 200px;">{{'product.newDevicePrice' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.discount' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.listingDate' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.daysUntilExpire' | translate}}</th>
+                    <th style="min-width: 150px;">{{'product.expiryDate' | translate}}</th>
+                    <th style="min-width: 100px;">{{'product.actions' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of productList| paginate: {
+                        id: 'productList',
+                        itemsPerPage: limit,
+                        currentPage: currentPage,
+                        totalItems: totalResult
+                      }; let i = index;">
+                    <td>{{i+1}}</td>
+                    <td>{{product.product_id || '---'}}</td>
+                    <td>{{product.phone_number || '---'}}</td>
+                    <td>{{translate?.getDefaultLang() === 'ar' ? product?.model?.model_name_ar :
+                      product.model.model_name}}</td>
+                    <td>{{product.buy_now_price || '---'}} {{currency}}</td>
+                    <td>{{product.new_device_price || '---'}} {{currency}}</td>
+                    <td>{{product.discount || '---'}}</td>
+                    <td>{{product.listing_date | date: 'YYYY-MM-dd'}}</td>
+                    <td>{{product.days_until_expiry || '---'}}</td>
+                    <td>{{(product.expiry_date | date: 'YYYY-MM-dd') || '---'}}</td>
+                    <td data-title="{{('administrators.action' | translate) || '---'}}">
+                      <a [routerLink]="['/admin/products/products-details', product.product_id]"
+                        class="mr-2 text-solitud">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                      <a class="text-danger" (click)="OpenDeleteListingModel(product?.product_id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="notMatchProducts" *ngIf="!productList?.length"> No MisMatched Listing Products found! </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info">
+          {{'product.showMinMaxNumberofList' | translate: entries}}
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers">
+          <pagination-controls [autoHide]="true" [nextLabel]="paginationNextLabel"
+            [previousLabel]="paginationPreviousLabel" id="productList" (pageChange)="selectPage($event)">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

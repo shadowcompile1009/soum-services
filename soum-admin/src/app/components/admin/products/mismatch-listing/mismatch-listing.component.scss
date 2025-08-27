@@ -1,0 +1,66 @@
+.table-responsive td .img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.table-responsive td[data-title="Picture"] {
+  text-align: center;
+}
+
+tr td,
+tr th {
+  text-align: center;
+}
+
+.filter_active {
+  color: rgb(250, 248, 248);
+  font-weight: 500;
+  background-color: #1411c1;
+}
+
+.counter {
+  border-radius: 10px 10px 10px 10px;
+  border: 2px solid #b7bdc2;
+  font-size: medium;
+  text-align: center;
+  padding: 5px 20px;
+  margin: 20px;
+
+  &:hover {
+    color: #000;
+    cursor: pointer;
+  }
+}
+
+.search_part {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.searchField {
+  width: 100% !important;
+}
+
+.searchBtn {
+  margin-top: -5px;
+}
+
+.notMatchProducts{
+  text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.filterExportContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.xlxs_download {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin: 0 20px;
+}

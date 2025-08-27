@@ -1,0 +1,24 @@
+.betaUserContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .betaUserLabel, .betAdminLabel {
+    cursor: pointer;
+  }
+
+
+#isBetaAdmin {
+    width: 20px;
+    height: 20px;
+    accent-color: #39b9ff;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+.betaUser {
+    font-size: 10px;
+    font-weight: 500;
+    color: #02b9ff;
+}

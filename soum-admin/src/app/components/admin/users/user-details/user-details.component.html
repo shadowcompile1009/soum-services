@@ -1,0 +1,329 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item"><a [routerLink]="['/admin/users']">{{'users.breadcrumb' | translate}}</a>
+              </li>
+              <li class="breadcrumb-item active">{{'usersDetails.breadcrumb' | translate}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+
+    <div class="row">
+      <div class="col-xl-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="profile-content">
+              <div class="profile-details">
+                <!-- <div class="user-img"><img
+                                        src="assets/images/users/user-1.jpg" width="128px"
+                                        height="128px" class="img-circle" alt=""></div> -->
+                <h4>{{user?.name}}</h4>
+                <!-- <p class="text-muted">Email Id: frank.dean@gmail.com</p> -->
+                <p class="text-muted">{{'usersDetails.phoneNo' | translate}}
+                  {{ user?.countryCode + '-' + user?.mobileNumber}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-2">Address Detail</h4>
+            <div class="user-address">
+              <p class="username"><strong>Street : </strong> {{userAddress?.street || '---'}}</p>
+              <p class="username"><strong>District : </strong> {{userAddress?.district || '---'}}</p>
+              <p class="username"><strong>City : </strong> {{userAddress?.city || '---'}}</p>
+              <p class="username"><strong>Postal Code : </strong> {{userAddress?.postal_code || '---'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-2">Bank Detail</h4>
+            <div class="user-address">
+              <p class="username"><strong>Name : </strong>{{user?.bankDetail?.accountHolderName || '--'}}</p>
+              <p class="username"><strong>Bank Name : </strong>{{user?.bankDetail?.bankName || '--'}}</p>
+              <p class="username"><strong>IBAN :
+                </strong>{{user?.bankDetail?.accountId || '--'}}
+              </p>
+              <p class="username"><strong>Bank BIC :
+                </strong>{{user?.bankDetail?.bankBIC || '--'}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card table_page">
+          <div class="card-body">
+            <div class="table-responsive">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <h4 class="card-title mb-4">{{'usersDetails.bidDevice' | translate}}</h4>
+                </div>
+                <!-- <div class="col-sm-12 col-md-6">
+                  <div class="dataTables_filter"><label>{{'search' | translate}}<input type="search"
+                        class="form-control form-control-sm" placeholder=""></label></div>
+                </div> -->
+              </div>
+              <table class="table mb-0">
+
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{'usersDetails.no' | translate}}</th>
+                    <th>{{'usersDetails.name' | translate}}</th>
+                    <!-- <th>{{'usersDetails.bid' | translate}}</th> -->
+                    <th>{{'usersDetails.buyNowPrice' | translate}}</th>
+                    <th>{{'usersDetails.currentBidPrice' | translate}}</th>
+                    <th>{{'usersDetails.yourBidPrice' | translate}}</th>
+                    <th>{{'usersDetails.date' | translate}}</th>
+                    <th>{{'usersDetails.time' | translate}}</th>
+                    <th>{{'usersDetails.status' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of user?.bidProductList| paginate: {
+                    id: 'bidsList',
+                    itemsPerPage: bidPageLimit,
+                    currentPage: bidCurrentPage,
+                    totalItems: user?.bidProductList?.length
+                  }; let i = index;">
+                    <td scope="row" data-title="{{'usersDetails.no' | translate}}">
+                      {{ bidPageLimit * (bidCurrentPage - 1) + i + 1 }}
+                    </td>
+                    <td class="product_name" data-title="{{'usersDetails.name' | translate}}"
+                      [routerLink]="['/admin/products/products-details', product?._id]">
+                      {{product?.model_id?.model_name}}
+                    </td>
+                    <!-- <td data-title="{{'usersDetails.bid' | translate}}">Bid</td> -->
+                    <td data-title="{{'usersDetails.buyNowPrice' | translate}}">{{product?.sell_price}}</td>
+                    <td data-title="{{'usersDetails.currentBidPrice' | translate}}">{{product?.current_bid_price}}</td>
+                    <td data-title="{{'usersDetails.yourBidPrice' | translate}}">{{product?.my_bid}}</td>
+                    <td data-title="{{'usersDetails.date' | translate}}">
+                      {{product?.createdDate | date : 'dd MMM, yyyy'}}</td>
+                    <td data-title="{{'usersDetails.time' | translate}}">
+                      {{product?.createdDate | date : 'h:mm:ss a'}}</td>
+                    <td class="bid_user_text" data-title="{{'usersDetails.status' | translate}}">{{product?.bid_text}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="!user?.bidProductList?.length">
+                    <td>No bidding done yet!</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div *ngIf="user?.bidProductList?.length" class="dataTables_info">
+                    {{'usersDetails.showMinMaxNumberofListBid' | translate: bidEntries}}</div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls [autoHide]="true" [nextLabel]="''" [previousLabel]="''" id="bidsList"
+                      (pageChange)="selectPage('bid', $event)"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+
+              <div class="popup" data-popup="edit-form">
+                <div class="popup-inner">
+                  <div class="card-body">
+                    <h4 class="card-title">Edit</h4>
+                    <form>
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="control-label">Course Select</label>
+                            <select class="form-control">
+                              <option>Select</option>
+                              <option>Course Select 1</option>
+                              <option>Course Select 2</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="control-label">Course Expiry Date </label>
+                            <div class="input-group">
+                              <input type="text" class="form-control" data-provide="datepicker"
+                                data-date-format="dd M, yyyy" data-date-autoclose="true">
+                              <div class="input-group-append">
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                              </div>
+                            </div><!-- input-group -->
+                          </div>
+                        </div>
+
+                      </div>
+                      <button class="btn btn-warning" type="submit">Submit form</button>
+                    </form>
+                  </div>
+                  <a class="popup-close" data-popup-close="edit-form" href="#"><i class="mdi mdi-close"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card table_page">
+          <div class="card-body">
+            <div class="table-responsive">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <h4 class="card-title mb-4">{{'usersDetails.sellDevice' | translate}}</h4>
+                </div>
+                <!-- <div class="col-sm-12 col-md-6">
+                  <div class="dataTables_filter"><label>{{'search' | translate}}<input type="search"
+                        class="form-control form-control-sm"></label></div>
+                </div> -->
+              </div>
+              <table class="table mb-0">
+
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{'usersDetails.no' | translate}}</th>
+                    <th>{{'usersDetails.name' | translate}}</th>
+                    <!-- <th>{{'usersDetails.sell' | translate}}</th> -->
+                    <th>{{'usersDetails.yourSell' | translate}}</th>
+                    <th>{{'usersDetails.maximumBid' | translate}}</th>
+                    <th>{{'usersDetails.date' | translate}}</th>
+                    <th>{{'usersDetails.time' | translate}}</th>
+                    <th>{{'usersDetails.bidCount' | translate}}</th>
+                    <th style="width:50px;">{{'usersDetails.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of user?.sellProductList| paginate: {
+                    id: 'sellList',
+                    itemsPerPage: sellPageLimit,
+                    currentPage: sellCurrentPage,
+                    totalItems: user?.sellProductList?.length
+                  }; let i = index;">
+                    <td scope="row" data-title="{{'usersDetails.no' | translate}}">
+                      {{ sellPageLimit * (sellCurrentPage - 1) + i + 1 }}
+                    </td>
+                    <td class="product_name" data-title="{{'usersDetails.name' | translate}}"
+                      [routerLink]="['/admin/products/products-details', product?._id]">
+                      {{product?.model_id?.model_name}}</td>
+                    <!-- <td data-title="{{'usersDetails.sell' | translate}}">Sell</td> -->
+                    <td data-title="{{'usersDetails.yourSell' | translate}}">{{product?.sell_price}}</td>
+                    <td data-title="{{'usersDetails.maximumBid' | translate}}">{{product?.current_bid_price}}</td>
+                    <td data-title="{{'usersDetails.date' | translate}}">{{product?.createdDate | date: 'dd MMM, yyyy'}}
+                    </td>
+                    <td data-title="{{'usersDetails.time' | translate}}">
+                      {{product?.createdDate | date : 'h:mm:ss a'}}</td>
+
+                    <td data-title="{{'usersDetails.bidCount' | translate}}">{{product?.bidding?.length}}</td>
+
+                    <td data-title="{{'usersDetails.action' | translate}}">
+                      <button [disabled]="product?.bidding?.length === 0" type="button"
+                        class="mr-2 text-solitud btn_style" data-toggle="modal" data-target=".show_details"
+                        (click)="showAllBids(product?.bidding)"><i class="fas fa-eye font-size-18"></i></button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!user?.sellProductList?.length">
+                    <td>No product added yet!</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div *ngIf="user?.sellProductList?.length" class="dataTables_info">
+                    {{'usersDetails.showMinMaxNumberofListSell' | translate: sellEntries}}</div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls [autoHide]="true" [nextLabel]="''" [previousLabel]="''" id="sellList"
+                      (pageChange)="selectPage('sell', $event)"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade show_details" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+                aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">{{'usersDetails.allBids' | translate}}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="table-responsive table-style">
+                        <table class="table mb-0">
+                          <thead class="thead-light">
+                            <tr>
+                              <th style="width: 20px;">{{'usersDetails.no' | translate}}</th>
+                              <th>{{'usersDetails.bidPrice' | translate}}</th>
+                              <th>{{'usersDetails.bidUser' | translate}}</th>
+                              <!-- <th>{{'usersDetails.email' | translate}}</th> -->
+                              <th>{{'usersDetails.mobile' | translate}}</th>
+                              <th>{{'usersDetails.status' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let bidding of biddingList; let i = index">
+                              <td data-title="{{'usersDetails.no' | translate}}">{{i+1}}</td>
+                              <td data-title="{{'usersDetails.bidPrice' | translate}}">{{bidding?.pay_bid_amount}}</td>
+                              <td data-title="{{'usersDetails.bidUser' | translate}}">{{bidding?.name}}</td>
+                              <!-- <td data-title="{{'usersDetails.email' | translate}}">frank.dean@gmail.com </td> -->
+                              <td data-title="{{'usersDetails.Mobile' | translate}}">{{bidding?.mobileNumber}}</td>
+                              <td data-title="{{'usersDetails.status' | translate}}">{{bidding?.bid_status}}</td>
+                            </tr>
+                            <tr *ngIf="!biddingList?.length">
+                              <td colspan="4">No Bidding found!</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="row">
+                          <div class="col-sm-12 col-md-5">
+                            <div class="dataTables_info">
+                              <!-- {{'usersDetails.showMinMaxNumberofListBid' | translate: entries}}</div> -->
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                              <div class="dataTables_paginate paging_simple_numbers">
+                                <!-- <ul class="pagination pagination-rounded">
+                                <li class="paginate_button page-item previous disabled">
+                                  <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a></li>
+                                <li class="paginate_button page-item active"><a href="#" class="page-link">1</a></li>
+                                <li class="paginate_button page-item "><a href="#" class="page-link">2</a></li>
+                                <li class="paginate_button page-item next"><a href="#" class="page-link"><i
+                                      class="mdi mdi-chevron-right"></i></a></li>
+                              </ul> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div> <!-- container-fluid -->
+  </div>

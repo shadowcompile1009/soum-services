@@ -1,0 +1,423 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">{{'systemSettings.breadcrumb' | translate}}</li>
+            </ol>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <table class="table mb-0 system_settings">
+              <tbody>
+                <!-- <tr>
+                  <td>
+                    <h6>Select language</h6>
+                  </td>
+                  <td style="text-align: end;">
+                      <select class="custom-select custom-select-sm form-control form-control-sm select-language" name="selectlanguage"
+                        id="selectlanguage">
+                        <option value="English" selected>English</option>
+                        <option value="Arabic">Arabic</option>
+                      </select>
+                  </td>
+                </tr> -->
+                <tr>
+                  <td>
+                    <h6>{{'systemSettings.defect_photos' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <label class="switch" data-toggle="tooltip" data-placement="top" title=""
+                      data-original-title="On/Off">
+                      <input type="checkbox" (change)="updateSystemSetting()"
+                        [(ngModel)]="systemSetting.skip_defect_photos">
+                      <span class="slider round"></span>
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'systemSettings.productApproval' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <label class="switch" data-toggle="tooltip" data-placement="top" title=""
+                      data-original-title="On/Off">
+                      <input type="checkbox" (change)="updateSystemSetting()"
+                        [(ngModel)]="systemSetting.product_approval">
+                      <span class="slider round"></span>
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'systemSettings.themeColors' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <div class="theme_colors">
+                      <label class="color-box">
+                        <input type="radio" name="appColor" (change)="updateSystemSetting()"
+                          [(ngModel)]="systemSetting.theme_color" value="5C88FF" class="dark_blue">
+                        <span>color</span>
+                      </label>
+                      <label class="color-box">
+                        <input type="radio" name="appColor" (change)="updateSystemSetting()"
+                          [(ngModel)]="systemSetting.theme_color" value="06DBF2" class="sky_blue">
+                        <span>color</span>
+                      </label>
+                      <label class="color-box">
+                        <input type="radio" name="appColor" (change)="updateSystemSetting()"
+                          [(ngModel)]="systemSetting.theme_color" value="01B9FF" class="blue">
+                        <span>color</span>
+                      </label>
+                      <label class="color-box">
+                        <input type="radio" name="appColor" (change)="updateSystemSetting()"
+                          [(ngModel)]="systemSetting.theme_color" value="0E58FF" class="dark_blue2">
+                        <span>color</span>
+                      </label>
+                      <label class="color-box">
+                        <input type="radio" name="appColor" (change)="updateSystemSetting()"
+                          [(ngModel)]="systemSetting.theme_color" value="41C25F" class="green">
+                        <span>color</span>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'systemSettings.buyer' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2" *ngIf="!buyCommissionEdit">
+                        {{systemSetting?.buyer_commission_percentage || 0}}%
+                      </label>
+                      <input type="tel" (keypress)="numberOnly($event)"
+                        [(ngModel)]="systemSetting.buyer_commission_percentage" *ngIf="buyCommissionEdit"
+                        class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+                      <button type="button" *ngIf="!buyCommissionEdit"
+                        (click)="editAppSettings('buyerCommission', true, false)" class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('buyerCommission', false, false)"
+                        *ngIf="buyCommissionEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="buyCommissionEdit"
+                        (click)="editAppSettings('buyerCommission', false, true)" class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'systemSettings.seller' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2"
+                        *ngIf="!sellerCommissionEdit">{{systemSetting?.seller_commission_percentage || 0}}%</label>
+                      <input type="tel" (keypress)="numberOnly($event)"
+                        [(ngModel)]="systemSetting.seller_commission_percentage" *ngIf="sellerCommissionEdit"
+                        class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+                      <button type="button" *ngIf="!sellerCommissionEdit"
+                        (click)="editAppSettings('sellerCommission', true, false)" class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('sellerCommission', false, false)"
+                        *ngIf="sellerCommissionEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="sellerCommissionEdit"
+                        (click)="editAppSettings('sellerCommission', false, true)" class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'systemSettings.shipping' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2"
+                        *ngIf="!shippingChargesEdit">{{systemSetting?.shipping_charge_percentage || 0}}%</label>
+                      <input type="tel" (keypress)="numberOnly($event)"
+                        [(ngModel)]="systemSetting.shipping_charge_percentage" *ngIf="shippingChargesEdit"
+                        class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+                      <button type="button" *ngIf="!shippingChargesEdit"
+                        (click)="editAppSettings('shippingCharges', true, false)" class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('shippingCharges', false, false)"
+                        *ngIf="shippingChargesEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="shippingChargesEdit"
+                        (click)="editAppSettings('shippingCharges', false, true)" class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'systemSettings.vat' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2" *ngIf="!vatEdit">{{systemSetting?.vat_percentage || 0}}%</label>
+                      <input type="tel" (keypress)="numberOnly($event)" [(ngModel)]="systemSetting.vat_percentage"
+                        *ngIf="vatEdit" class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+                      <button type="button" *ngIf="!vatEdit" (click)="editAppSettings('VAT', true, false)"
+                        class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('VAT', false, false)" *ngIf="vatEdit"
+                        class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="vatEdit" (click)="editAppSettings('VAT', false, true)"
+                        class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>Bidding Amount</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2" *ngIf="!bidding_amountEdit">{{systemSetting?.bidding_amount ||
+                        0}}</label>
+                      <input type="tel" (keypress)="numberOnly($event)" [(ngModel)]="systemSetting.bidding_amount"
+                        *ngIf="bidding_amountEdit" class="form-control form-control-sm b-radius-0"
+                        style="max-width: 80px;">
+                      <button type="button" *ngIf="!bidding_amountEdit"
+                        (click)="editAppSettings('bidding_amount', true, false)" class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('bidding_amount', false, false)"
+                        *ngIf="bidding_amountEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="bidding_amountEdit"
+                        (click)="editAppSettings('bidding_amount', false, true)" class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    {{bidding_amountEdit}}
+                    <h6>Bidding Percentage</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      {{bidding_amountEdit}}
+                      <label class="percent mr-2" *ngIf="!bidding_percentEdit">{{systemSetting?.start_bid_percentage ||
+                        0}}%</label>
+                      <input id="input-h" size="4" maxlength="3" type="tel" (keypress)="numberOnlyForPer($event)"
+                        [(ngModel)]="systemSetting.start_bid_percentage" *ngIf="bidding_percentEdit"
+                        class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+
+                      <button type="button" *ngIf="!bidding_percentEdit"
+                        (click)="editAppSettings('bidding_percentage', true, false)"
+                        class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('bidding_percentage', false, false)"
+                        *ngIf="bidding_percentEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="bidding_percentEdit"
+                        (click)="editAppSettings('bidding_percentage', false, true)" class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <table class="table mb-0 system_settings">
+              <tbody>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.referralProgram' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.discount' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.userType' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <select style="width: 110px; margin-top: 6px; font-size: small;" class="form-select form-control"
+                      aria-label="Default select example">
+                      <option> Buyer Only</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.discountType' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <select style="width: 110px; margin-top: 6px; font-size: small;" class="form-select form-control"
+                      aria-label="Default select example" (change)="ChangeReferralDiscountType($event.target.value)">
+                      <option [selected]="systemSetting.referral_discount_type == 'Fixed'" value="Fixed">{{ "referralSettings.FixedValue" | translate }}</option>
+                      <option  [selected]="systemSetting.referral_discount_type == 'Percentage'" value="Percentage">{{ "referralSettings.percentage" | translate }}</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.fixedAmount' | translate}}</h6>
+                    <span class="wrong-value" *ngIf="invalideSettings?.referral_fixed_amount">
+                      Invalid fixed amount value
+                    </span>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2"
+                        *ngIf="!referralFixedAmountEdit">{{systemSetting?.referral_fixed_amount || 0}}</label>
+                      <input type="number" (keyup)="checkSettings()" (keypress)="numberOnly($event)" min="0" max="999"
+                        [(ngModel)]="systemSetting.referral_fixed_amount" *ngIf="referralFixedAmountEdit"
+                        class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+                      <button type="button" *ngIf="!referralFixedAmountEdit"
+                        (click)="editAppSettings('referralFixedAmount', true, false)"
+                        class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('referralFixedAmount', false, false)"
+                        *ngIf="referralFixedAmountEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="referralFixedAmountEdit && !invalideSettings?.referral_fixed_amount"
+                        (click)="editAppSettings('referralFixedAmount', false, true)"
+                        class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                    
+                  </td>
+                </tr>
+                <tr *ngIf="systemSetting?.referral_discount_type == 'Percentage'">
+                  <td>
+                    <h6>{{'referralSettings.percentage' | translate}}</h6>
+                    <span class="wrong-value" *ngIf="invalideSettings?.referral_percentage">
+                      Invalid percentage value
+                    </span>
+                  </td>
+                  <td *ngIf="systemSetting?.referral_discount_type == 'Percentage'" style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2"
+                        *ngIf="!referralPercentageEdit">{{systemSetting?.referral_percentage || 0}}%</label>
+                      <input type="number" (keyup)="checkSettings()" (keypress)="numberOnly($event)" min="0" max="99"
+                        [(ngModel)]="systemSetting.referral_percentage" *ngIf="referralPercentageEdit"
+                        class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+                      <button type="button" *ngIf="!referralPercentageEdit"
+                        (click)="editAppSettings('referralPercentage', true, false)"
+                        class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('referralPercentage', false, false)"
+                        *ngIf="referralPercentageEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="referralPercentageEdit && !invalideSettings?.referral_percentage"
+                        (click)="editAppSettings('referralPercentage', false, true)" class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.credit' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.creditType' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <select style="width: 110px; margin-top: 6px; font-size: small;" class="form-select form-control"
+                      aria-label="Default select example">
+                      <option> Buyer Only</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6>{{'referralSettings.creditAmount' | translate}}</h6>
+                  </td>
+                  <td style="text-align: end;">
+                    <span class="action-checkbox">
+                      <label class="percent mr-2" *ngIf="!referralCreditAmountEdit">{{systemSetting?.referral_credit_amount || 0}}</label>
+                      <input id="input-h" min="0" max="999" type="number"
+                        [(ngModel)]="systemSetting.referral_credit_amount" *ngIf="referralCreditAmountEdit"
+                        class="form-control form-control-sm b-radius-0" style="max-width: 80px;">
+
+                      <button type="button" *ngIf="!referralCreditAmountEdit"
+                        (click)="editAppSettings('referralCreditAmount', true, false)"
+                        class="ml-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <button type="button" (click)="editAppSettings('referralCreditAmount', false, false)"
+                        *ngIf="referralCreditAmountEdit" class="ml-2 btn_success btn_style">
+                        <i class="ri-close-line font-size-18"></i>
+                      </button>
+                      <button type="button" *ngIf="referralCreditAmountEdit"
+                        (click)="editAppSettings('referralCreditAmount', false, true)" class="ml-2 btn_success btn_style">
+                        <i class="mdi mdi-check-bold font-size-18"></i>
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

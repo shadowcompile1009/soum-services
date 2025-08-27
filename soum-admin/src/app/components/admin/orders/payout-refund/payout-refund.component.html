@@ -1,0 +1,42 @@
+<div class="payout-for modal">
+  <div class="body_modal">
+    <div class="payout-header">
+      <h5 class="payout-title mt-0">{{"ordersPage.editRefund" | translate}}</h5>
+      <button type="button" class="close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <form class="payout-form" [formGroup]="refundForm" (ngSubmit)="handleRefundOrder()">
+
+      <div class="form-group">
+        <label for="validationCustom1">Buyer's Payment Methods</label>
+        <select id="validationCustom1" (change)="onOptionsSelected(paymentOption.value)" #paymentOption
+         class="custom-select custom-select-sm form-control form-control-sm" formControlName="paymentOption">
+          <option *ngFor="let paymentOption of paymentMethods" [selected]="paymentOption === defaultPayment" [value]="paymentOption">{{paymentOption}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="validationCustom2">Refund Method</label>
+        <select id="validationCustom3" class="custom-select custom-select-sm form-control form-control-sm" formControlName="RefundOption">
+          <option *ngFor="let refundOption of refundMethods" [selected]="refundOption === defaultRefund" [value]="refundOption">{{refundOption}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="validationCustom3">Transferred Amount</label>
+        <input id="validationCustom3" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="transferAmount">
+      </div>
+
+      <div class="form-group">
+        <label for="validationCustom4">Full Amount Paid:</label>
+        <input id="validationCustom4" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="fullAmount">
+      </div>
+
+        <div class="form-group">
+            <button [disabled]="!refundForm.valid || disableSubmitBtn" class="btn btn-lg btn" type="submit">{{'ordersPage.submitForm' | translate}}</button>
+        </div>
+    </form>
+  </div>
+</div>

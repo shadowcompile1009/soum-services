@@ -1,0 +1,180 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg" alt="back">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item"><a [routerLink]="['/admin/products']">{{'productsDetails.products' |
+                                    translate}}</a>
+              </li>
+              <li class="breadcrumb-item active">{{'productsDetails.details' | translate}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end page title -->
+    <div class="row product-all-bid">
+
+      <!-- Display Product Details -->
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="products__details__header">
+              <h2 class="card-title">{{'productsDetails.productDescription' | translate}}</h2>
+              <div class="">
+
+                <a title="Admin Logs" [routerLink]="['/admin/products/admin-logs', productId]">
+                  <img class="rounded-circle adminLogs" src="assets/images/users/admin.jpg" alt="Admin Logs">
+                </a>
+                <button class="btn btn-primary edit-price-btn" (click)="handleTradeinStatusSubmit('Accepted')">
+                  <i class="fa fa-edit">Accept</i>
+                </button>
+
+                <button class="btn btn-danger edit-price-btn" (click)="handleTradeinStatusSubmit('Rejected')">
+                  <i class="mdi mdi-trash-can font-size-18">Reject</i>
+                </button>
+
+                <a class="mr-2 text-solitud" (click)="openProductPage()">
+                  <i class="fas fa-eye font-size-18"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="products-slider">
+                  <div class="container">
+                    <owl-carousel [options]="customOptions" [items]="product?.product_images" class="image-slider">
+                      <div class="item" *ngFor="let image of product?.product_images">
+                        <span class="photo-slider-img"
+                          [ngStyle]="{'background-image':'url(' + (image | image) + ')'}"></span>
+                        <!-- <img [src]="image" alt="Product Photos"> -->
+                      </div>
+                    </owl-carousel>
+                    <i class="fas fa-compress" (click)="open()"></i>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="table-responsive table-style">
+                  <table class="table mb-0 display-info-product">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>{{'product.name' | translate}}</th>
+                        <th>{{'product.device' | translate}}</th>
+                        <th>{{'product.brand' | translate}}</th>
+                        <th>{{'product.model' | translate}}</th>
+                        <th>{{'product.tradeinPrice' | translate}}</th>
+                        <th>{{'product.variant' | translate}}</th>
+                        <th>{{'product.status' | translate}}</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td data-title="{{'product.name' | translate}}">
+                          {{product?.modelData?.model_name}}</td>
+                        <td data-title="{{'product.device' | translate}}">
+                          {{product?.categoryData?.category_name}}</td>
+                        <td data-title="{{'product.brand' | translate}}">
+                          {{product?.brandData?.brand_name}}</td>
+                        <td data-title="{{'product.model' | translate}}">
+                          {{product?.modelData?.model_name}}</td>
+                        <td *ngIf="!showInputsToUpdatePrice" data-title="{{'product.buyNowPrice' | translate}}">
+                          {{product?.sell_price}}</td>
+                        <td *ngIf="showInputsToUpdatePrice" data-title="{{'product.buyNowPrice' | translate}}">
+                          <input min="1" class="form-control updatePrice" [(ngModel)]="product.sell_price"
+                            (keypress)="numberOnly($event)" type="text" />
+                        </td>
+                        <td data-title="{{'product.variant' | translate}}">{{product?.varient}}
+                        </td>
+
+                        <td data-title="{{'product.status' | translate}}">
+                          {{product?.trade_in_status}}</td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="product_description">
+                  <span style="min-width: '100px';">* {{"productsDetails.Description" | translate}} :
+                  </span>
+                  <span style="margin: '0 15px';">{{product?.description}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="card-title mb-3">{{'productsDetails.newSellerQuestions' | translate}}</h4>
+              <button class="btn btn-primary edit-price-btn">
+                <i class="fa fa-edit">Edit</i>
+              </button>
+            </div>
+            <div class="table-responsive table-style question-box">
+              <div class="question_wrapper mt-2 mb-3" *ngFor="let question of productListQuestions">
+                <span class="question_title" >
+                  {{question?.question}}
+                </span>
+                <div class="question_answer">
+                  <span class="title">Answer</span>
+                  <span class="content">{{question?.answer || '---'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body pt-3">
+            <h4 class="card-title mb-3">{{'productsDetails.SellerQuestions' | translate}}</h4>
+            <div class="table-responsive table-style question-box">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end row -->
+
+    </div>
+    <!-- container-fluid -->
+
+    <div class="modal fade change_price show" id="change-price" tabindex="-1" role="dialog"
+      aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title mt-0">{{'productsDetails.editProduct' | translate}}</h5>
+            <button type="button" class="close" (click)="closeModal('change-price')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5 *ngIf="showMsgActiveBid" class="msg_alert_editPrice">{{'productsDetails.rejectSoumFirst' | translate}}
+            </h5>
+            <h5 *ngIf="showMsgExpiredProduct" class="msg_alert_editPrice">This product has expired, please renew the
+              product to be able to edit</h5>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+  </div>

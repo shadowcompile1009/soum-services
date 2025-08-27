@@ -1,0 +1,223 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">{{'users.breadcrumb' | translate}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive">
+              <div class="row">
+                <div class="col-md-9 col-sm-12 search_part">
+                  <form class="dataTables_filter" [formGroup]="searchForm" (ngSubmit)="filterBy()">
+                    <label>{{'search' | translate}}
+                      <input type="search" class="form-control form-control-sm" formControlName="word"
+                        placeholder="Search ..... ">
+                      <button type="submit" class="btn btn-danger btn-sm">Search</button>
+                    </label>
+                  </form>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <div class="d-flex justify-content-end">
+                    <!-- <div class="filterActiveUsers" title="Clicl to filter inActive users">
+                      <button [ngClass]="isGetInactiveUser? 'inActiveUsers' : 'activeUsers'" (click)="filterByInActiveUsers()">InActiveUsers</button>
+                    </div> -->
+                    <select class="custom-select filterUsers" (change)="filterByInActiveUsers($event)">
+                      <option value="" selected>All Users</option>
+                      <option value="isGetInactiveUser">InactiveUsers</option>
+                      <option value="isGetKeySeller">KeySellers</option>
+                      <option value="isGetBetaUser">BetaUsers</option>
+                    </select>
+
+                    <img *ngIf="userList?.length != 0" title="{{'ordersPage.exportAsXlxs' | translate}}" class="xlxs_download" (click)="downloadOrderXlxs()"
+                      src="../../../../assets/images/xlsx.png" />
+                  </div>
+                </div>
+              </div>
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width:20px;">{{'users.no' | translate}}</th>
+                    <!-- <th>Picture</th> -->
+                    <th>{{'users.name' | translate}}</th>
+                    <th>{{'users.status' | translate}}</th>
+                    <!-- <th>Email ID</th> -->
+                    <th>{{'users.phone' | translate}}</th>
+                    <th>{{'users.lastLogin' | translate}}</th>
+                    <th>{{'users.updatedDate' | translate}}</th>
+                    <th>{{'users.activeInactive' | translate}}</th>
+                    <th style="width: 120px;">{{'users.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                     *ngFor="let user of userList| paginate: {
+                      id: 'usersList',
+                      itemsPerPage: limit,
+                      currentPage: currentPage,
+                      totalItems: totalResult
+                    }; let i = index;" [ngClass]="{'row__deleted-user': isDeletedUser(user) === true}">
+                    <td data-title="{{'users.no' | translate}}">
+                      {{ limit * (currentPage - 1) + i + 1 }}
+                    </td>
+
+                    <td data-title="{{'users.name' | translate}}">
+                      {{user?.name}}
+                    </td>
+
+                    <td data-title="{{'users.status' | translate}}">
+                      {{ user?.status }}
+                    </td>
+
+                    <td data-title="{{'users.phone' | translate}}">
+                      {{ user?.countryCode + '-' + user?.mobileNumber}}
+                    </td>
+                    <td data-title="{{'users.lastLogin' | translate}}">{{user?.lastLoginDate | date: 'MMM d, y, h:mm:ss
+                      a'}}</td>
+                    <td data-title="{{'users.updatedDate' | translate}}">{{user?.updatedDate | date: 'MMM d, y, h:mm:ss
+                      a'}}</td>
+                    <td data-title="{{'users.activeInactive' | translate}}">
+                      <label class="switch" *ngIf="isDeletedUser(user) === false">
+                        <input type="checkbox" id="verify" (change)="changeUserStatus(user)"
+                          [(ngModel)]="user.checkStatus" checked="">
+                        <span class="slider round"></span>
+                      </label>
+                    </td>
+                    <td data-title="{{'users.action' | translate}}">
+                      <span *ngIf="isDeletedUser(user) === false">
+                        <a (click)="getUserDetails(user?._id)" class="mr-2 text-solitud">
+                        <i class="fas fa-eye font-size-18"></i>
+                        </a>
+                        <button type="button" class="mr-2 text-primary btn_style" (click)="editUser(user)">
+                          <i class="mdi mdi-pencil font-size-18"></i>
+                        </button>
+                        <a class="text-danger" (click)="action(user)">
+                          <i class="mdi mdi-trash-can font-size-18"></i>
+                        </a>
+                      </span>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <div class="row" *ngIf="notMatchSearch || userList.length == 0">
+                <div class="col-12 notMatchSearch">
+                  <h5>No Found Data Match Your Search!</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div *ngIf="userList?.length > 0" class="col-sm-12 col-md-5">
+                  <div class="dataTables_info">
+                    {{'users.showMinMaxNumberofList' | translate: entries}}
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <!-- <ul class="pagination pagination-rounded">
+                      <li class="paginate_button page-item previous disabled"><a href="#" class="page-link"><i
+                            class="mdi mdi-chevron-left"></i></a></li>
+                      <li class="paginate_button page-item active"><a href="#" class="page-link">1</a></li>
+                      <li class="paginate_button page-item "><a href="#" class="page-link">2</a></li>
+                      <li class="paginate_button page-item next"><a href="#" class="page-link"><i
+                            class="mdi mdi-chevron-right"></i></a></li>
+                    </ul> -->
+                    <pagination-controls *ngIf="userList.length>0" [autoHide]="true" [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel" id="usersList" (pageChange)="selectPage($event)">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade edit_detail" id="edit-user" tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">Edit Users</h5>
+                      <button type="button" class="close" (click)="closeModal('edit-user')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div [formGroup]="updateUserForm">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">Name</label>
+                              <input type="text" minlength="3" formControlName="name" class="form-control">
+                            </div>
+                            <div class="col-lg-12 betaUserContainer">
+                              <div>
+                                <input type="checkbox" formControlName="isBetaUser" id="betaUser">
+                              </div>
+                              <div><label class="betaUserLabel" for="betaUser"> Enable Beta User </label></div>
+                            </div>
+                            <div class="col-lg-12 betaUserContainer">
+                              <div>
+                                <input type="checkbox" formControlName="isCompliant" id="isCompliant">
+                              </div>
+                                <div><label class="isCompliantLabel" for="isCompliant"> Mark as Compliant </label></div>
+                            </div>
+                            <div class="col-lg-12 betaUserContainer">
+                              <div>
+                                <input type="checkbox" formControlName="isKeySeller" id="isKeySeller">
+                              </div>
+                              <div><label class="keySellerLabel" for="isKeySeller"> Mark as Key Seller </label></div>
+                            </div>
+                            <div class="col-lg-12 betaUserContainer">
+                              <div>
+                                <input type="checkbox" formControlName="isMerchant" id="isMerchant">
+                              </div>
+                              <div><label class="merchantLabel" for="isMerchant"> Mark as merchant </label></div>
+                            </div>
+                            <div class="col-lg-12 betaUserContainer">
+                              <div>
+                                <input type="checkbox" formControlName="isUAE" id="isUAE">
+                              </div>
+                              <div><label class="UAELabel" for="isUAE"> Mark as UAE </label></div>
+                            </div>
+                          </div>
+                          <!-- <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">Email</label>
+                              <input type="email" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">Phone No. </label>
+                              <input type="tel" class="form-control">
+                            </div>
+                          </div> -->
+                        </div>
+                        <button class="btn btn-warning" [disabled]="updateUserForm?.invalid" (click)="updateUser()"
+                          type="submit">Submit form</button>
+                      </div>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

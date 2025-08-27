@@ -1,0 +1,73 @@
+.payout-for {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(1,1,1,0.5);
+
+    .payout-header{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 2px solid darkgray;
+        margin-bottom: 10px;
+    }
+
+    .payout-form {
+        width: 300px;
+        padding: 0 10px;
+
+        .form-group {
+            width: 100%;
+            margin: 0 0 10px 0;
+
+            label {
+              font-size: 14px;
+              font-weight: 600;
+            }
+
+            button {
+                background-color: dodgerblue;
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+
+.erros {
+    display: flex;
+    .errMessage{
+        font-size: 14px;
+        color: red;
+    }
+}
+
+.body_modal{
+    background-color: white;
+    height: 90%;
+    overflow: scroll;
+    margin-top: 6%;
+}
+
+::ng-deep body[dir='rtl'] .payout-form .form-group label {
+    float: right;
+}
+
+::ng-deep .cdk-overlay-pane {
+    height: 85% !important;
+    margin-top: 50px;;
+}
+
+::ng-deep .mat-dialog-container {
+    padding: 0 !important;
+}
+
+::ng-deep .cdk-global-overlay-wrapper {
+    top: 5px !important;
+}
+

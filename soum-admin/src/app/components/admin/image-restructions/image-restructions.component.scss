@@ -1,0 +1,265 @@
+.selectCategory {
+  font-size: 16px;
+  font-weight: 500;
+  color: #231f20;
+}
+
+.input_category {
+  width: 270px;
+  height: 45px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #757575;
+  background: #ffffff;
+  border: 1px solid #eee;
+  cursor: pointer !important;
+}
+
+.menu_container {
+  position: relative;
+  height: 45px;
+  width: 270px;
+}
+
+.disableBtn {
+  background: #828282 !important;
+}
+
+.image_arrow {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  right: 10px;
+  top: 18px;
+}
+
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #eee;
+}
+
+.categories_check {
+  width: 24px;
+  height: 24px;
+}
+
+.categories_list {
+  width: 270px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  max-height: 600px;
+  overflow: scroll;
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  z-index: 2147483647;
+  background: white;
+  opacity: 1;
+  display: block;
+}
+
+.category_check {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+  cursor: pointer;
+  height: 50px;
+}
+
+.category_label {
+  font-size: 16;
+  font-weight: 400;
+  color: black;
+  margin-top: 6px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.btnAddSection {
+  background: #177ae2;
+  margin-right: 12px;
+  color: #ffffff;
+}
+
+.containerEmptySection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 225px;
+}
+
+.emptySections {
+  width: 140px;
+  height: 140px;
+}
+
+.noSections {
+  color: #434343;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+th,
+tr,
+td {
+  text-align: center;
+}
+
+#exampleModal {
+  margin-top: 100px;
+}
+
+.range {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-content {
+  min-width: 600px !important;
+  padding: 15px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.max-number {
+  margin-left: 50px;
+}
+
+.btn-saveSection {
+  background: #177ae2 !important;
+  color: #ffffff;
+  width: 250px;
+}
+
+.disableSaveBtn {
+  border: 0;
+  height: 40px;
+  border-radius: 5px;
+  width: 250px;
+  background: #828282;
+  color: #FFFFFF;
+}
+
+.activeSaveBtn {
+  border: 0;
+  height: 40px;
+  border-radius: 5px;
+  width: 250px;
+  background: #177AE2;
+  color: #FFFFFF;
+}
+
+
+.btn-cancel {
+  border: 1px solid #177ae2;
+  width: 250px;
+  background: transparent;
+  color: #177ae2 !important;
+}
+
+input:focus {
+  border: 1px solid #cfd4d9 !important;
+}
+
+.container-upload {
+  padding: 0;
+}
+
+.input-image {
+  background-color: #ffffff;
+  padding-left: 125px;
+  cursor: pointer;
+}
+
+.title-filed {
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  border-right: 1px solid #b4c8da;
+  height: 35px;
+  padding: 5px 8px 5px 4px;
+  cursor: pointer;
+}
+
+#recipient-name {
+  display: none;
+}
+
+.modal-title {
+  font-size: 14px;
+  color: #231f20;
+  font-weight: 500;
+}
+
+.title {
+  font-size: 14px;
+  color: #231f20;
+  font-weight: 500;
+}
+
+.disabledBtn {
+  background: #828282 !important;
+}
+
+.errorContainer {
+  margin-top: 8px;
+}
+
+.errorLabel {
+  color: red;
+}
+
+.container_actions {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Hide spinners in Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spinners in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.icon-section {
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+}
+
+
+.boxShadow {
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0px 10px 30px 0px rgba(5, 16, 55, 0.10);
+  font-family: "DIN Next LT Arabic";
+  margin-right: 12px;
+  color: #313437;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.container_filter {
+  margin-bottom: 25px;
+}

@@ -1,0 +1,617 @@
+<div class="page-content table_page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>{{ "promo.Promos_list_view" | translate }}</h2>
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <div class="row">
+                <div class=" search_part">
+                  <form class="dataTables_filter" [formGroup]="searchForm" (ngSubmit)="filterBy()">
+                    <label>{{'search' | translate}}
+                      <input type="search" class="form-control form-control-sm" formControlName="word"
+                        placeholder="Search ..... ">
+                      <button type="submit" class="btn btn-danger btn-sm">Search</button>
+                    </label>
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-11"></div>
+                <div class="col-1 add_promoCode" (click)="openModal()">
+                  <span class="add">+</span>
+                </div>
+              
+              </div>
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px">
+                      {{ "product.serialNumber" | translate }}
+                    </th>
+                    <th>{{ "promo.code" | translate }}</th>
+                    <th>{{ "promo.user" | translate }}</th>
+                    <th>{{ "promo.type" | translate }}</th>
+                    <th>{{ "promo.amount" | translate }}</th>
+                    <th>{{ "promo.percentage" | translate }}</th>
+                    <th>{{ "promo.promoLimit" | translate }}</th>
+                    <th>{{ "promo.start_date" | translate }}</th>
+                    <th>{{ "promo.end_date" | translate }}</th>
+                    <th>{{ "promo.Seller_Usage_Count" | translate }}</th>
+                    <th>{{ "promo.Buyer_Usage_Count" | translate }}</th>
+                    <th>{{ "promo.active" | translate }}</th>
+                    <th>{{ "promo.actions" | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let promo of promoCodeList
+                        | paginate
+                          : {
+                              id: 'promoCodeList',
+                              itemsPerPage: limit,
+                              currentPage: currentPage,
+                              totalItems: totalResult
+                            };
+                      let i = index
+                    "
+                  >
+                    <td data-title="{{ 'promo.serialNumber' | translate }}">
+                      {{ limit * (currentPage - 1) + i + 1 }}
+                    </td>
+                    <td data-title="{{ 'promo.code' | translate }}">
+                      {{ promo.code }}
+                    </td>
+                    <td data-title="{{ 'promo.user' | translate }}">
+                      {{ promo.userType }}
+                    </td>
+                    <td data-title="{{ 'promo.type' | translate }}">
+                      {{ promo.promoType ? promo.promoType : "------" }}
+                    </td>
+                    <td data-title="{{ 'promo.amount' | translate }}">
+                      {{ promo.discount }}
+                    </td>
+                    <td data-title="{{ 'promo.percentage' | translate }}">
+                      {{ (promo.percentage >=0 && promo.percentage != null) ? promo.percentage + "%" : "-----" }}
+                    </td>
+                    <td data-title="{{ 'promo.promoLimit' | translate }}">
+                      {{ promo.promoLimit ? promo.promoLimit : 0 }}
+                    </td>
+                    <td data-title="{{ 'promo.start_date' | translate }}">
+                      {{
+                        promo.fromDate ? formatDate(promo.fromDate) : "-----"
+                      }}
+                    </td>
+                    <td data-title="{{ 'promo.end_date' | translate }}">
+                      {{ promo.toDate ? formatDate(promo.toDate) : "-----" }}
+                    </td>
+                    <td data-title="{{ 'promo.Seller_Usage_Count' | translate }}">
+                      {{ promo.promoSellerUsageCount }}
+                    </td>
+                    <td data-title="{{ 'promo.Buyer_Usage_Count' | translate }}">
+                      {{ promo.promoBuyerUsageCount }}
+                    </td>
+                    <td>
+                      <label class="switch">
+                        <input
+                          type="checkbox"
+                          id="verify"
+                          (change)="changePromoStatus(promo._id)"
+                          [(ngModel)]="promo.checkStatus"
+                          checked=""
+                        />
+                        <span class="slider round"></span>
+                      </label>
+                    </td>
+                    <td data-title="{{ 'promo.actions' | translate }}">
+                      <span class="action_span">
+                        <a
+                          class="mr-2 text-primary"
+                          (click)="editPromoCode(promo)"
+                        >
+                          <i class="mdi mdi-pencil font-size-18"></i>
+                        </a>
+
+                        <a
+                          class="text-danger"
+                          (click)="deletePromoCode(promo?._id)"
+                          ><i class="mdi mdi-trash-can font-size-18"></i
+                        ></a>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row pagination_">
+                <div class="col-sm-12 col-md-5">
+                  <div class="dataTables_info">
+                    {{ "product.showMinMaxNumberofList" | translate: entries }}
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls
+                      [autoHide]="true"
+                      [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel"
+                      id="promoCodeList"
+                      (pageChange)="selectPage($event)"
+                    >
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD EDIT PROMO CODE MODAL -->
+        <div
+          class="modal fade add_edit_promo"
+          id="add-promo"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="mySmallModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title mt-0">
+                  {{
+                    promoAddOrEdit === "add"
+                      ? ("promo.addPromo" | translate)
+                      : ("promo.editPromo" | translate)
+                  }}
+                </h5>
+                <button type="button" class="close" (click)="closeModal()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="promotionForm" (ngSubmit)="addNewPromo()">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.code_name" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <input
+                              minlength="4"
+                              maxlength="4"
+                              type="text"
+                              class="form-control"
+                              placeholder="{{
+                                'promo.enter_your_code' | translate
+                              }}"
+                              formControlName="code"
+                            />
+
+                            <div
+                              *ngIf="
+                                (code.touched && code.invalid) || code.dirty
+                              "
+                            >
+                              <div *ngIf="code.errors?.required">
+                                <span class="errMsg">
+                                  {{
+                                    "promo.code_name_Is_required" | translate
+                                  }}
+                                </span>
+                              </div>
+
+                              <div *ngIf="code.errors?.pattern">
+                                <span class="errMsg">
+                                  {{
+                                    "promo.code_name_is_contains" | translate
+                                  }}
+                                </span>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.user_type" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <select
+                              class="form-control custom-select userType"
+                              formControlName="userType"
+                            >
+                              <option value="" disabled selected hidden>
+                                {{ "promo.seller_buyer" | translate }}
+                              </option>
+                              <option value="Seller">
+                                {{ "promo.seller" | translate }}
+                              </option>
+                              <option value="Buyer">
+                                {{ "promo.buyer" | translate }}
+                              </option>
+                            </select>
+
+                            <div
+                              *ngIf="
+                                (userType.touched && userType.invalid) ||
+                                userType.dirty
+                              "
+                            >
+                              <div *ngIf="userType.errors?.required">
+                                <span class="errMsg">
+                                  {{ "promo.user_type_is_equired" | translate }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.discount_type" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <select
+                              class="form-control custom-select promoType"
+                              formControlName="promoType"
+                            >
+                              <option value="" disabled selected hidden>
+                                {{ "promo.fixed_percentage" | translate }}
+                              </option>
+                              <option value="Fixed">
+                                {{ "promo.fixed" | translate }}
+                              </option>
+                              <option value="Percentage">
+                                {{ "promo.percentage" | translate }}
+                              </option>
+                            </select>
+
+                            <div
+                              *ngIf="
+                                (promoType.touched && promoType.invalid) ||
+                                promoType.dirty
+                              "
+                            >
+                              <div *ngIf="promoType.errors?.required">
+                                <span class="errMsg">
+                                  {{
+                                    "promo.promo_type_is_required" | translate
+                                  }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.fixed_amount" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <input
+                              oninput="if(!this.value.match('^[0-9][0-9]*$'))this.value='';"
+                              type="text"
+                              minlength="1"
+                              maxlength="4"
+                              class="form-control"
+                              (keypress)="numberOnly($event)"
+                              placeholder="{{
+                                'promo.enter_max_discount' | translate
+                              }}"
+                              formControlName="discount"
+                            />
+
+                            <div
+                              *ngIf="
+                                (discount.touched && discount.invalid) ||
+                                discount.dirty
+                              "
+                            >
+                              <div *ngIf="discount.errors?.required">
+                                <span class="errMsg">
+                                  {{ "promo.discount_is_required" | translate }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.promoLimit" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              minlength="0"
+                              maxlength="4"
+                              class="form-control"
+                              (keypress)="numberOnly($event)"
+                              placeholder="{{
+                                'promo.promoLimit' | translate
+                              }}"
+                              formControlName="promoLimit"
+                            />
+
+                            <div
+                              *ngIf="
+                                (promoLimit.touched && promoLimit.invalid) ||
+                                promoLimit.dirty
+                              "
+                            >
+                              <div *ngIf="promoLimit.errors?.required">
+                                <span class="errMsg">
+                                  {{ "promo.promoLimit_is_required" | translate }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row" *ngIf="!showHidePercentage">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.percentage" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group percentage">
+                            <input
+                              type="text"
+                              oninput="if(!this.value.match('^[0-9][0-9]*$'))this.value='';"
+                              minlength="1"
+                              maxlength="3"
+                              class="form-control"
+                              (keypress)="numberOnly($event)"
+                              placeholder="{{
+                                'promo.enter_your_percentage' | translate
+                              }}"
+                              formControlName="percentage"
+                            />
+                            <div
+                              *ngIf="
+                                (percentage.touched && percentage.invalid) ||
+                                percentage.dirty
+                              "
+                            >
+                              <div *ngIf="percentage.errors?.required">
+                                <span class="errMsg">
+                                  {{
+                                    "promo.percentage_Is_required" | translate
+                                  }}
+                                </span>
+                              </div>
+
+                              <div *ngIf="percentage.errors?.max">
+                                <span class="errMsg">
+                                  {{ "promo.max_value_100" | translate }}
+                                </span>
+                              </div>
+                            </div>
+
+                            <span class="percentageSpan">%</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.start_date" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <input
+                              type="date"
+                              class="form-control"
+                              name="someDate"
+                              placeholder="Enter Your Start Date"
+                              formControlName="fromDate"
+                            />
+
+                            <div
+                              *ngIf="
+                                (fromDate.touched && fromDate.invalid) ||
+                                fromDate.dirty
+                              "
+                            >
+                              <div *ngIf="fromDate.errors?.required">
+                                <span class="errMsg">
+                                  {{
+                                    "promo.start_date_is_required" | translate
+                                  }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.end_date" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <input
+                              type="date"
+                              class="form-control"
+                              name="someDate"
+                              placeholder="Enter Your End Date"
+                              formControlName="toDate"
+                            />
+
+                            <div
+                              *ngIf="
+                                (toDate.touched && toDate.invalid) ||
+                                toDate.dirty
+                              "
+                            >
+                              <div *ngIf="toDate.errors?.required">
+                                <span class="errMsg">
+                                  {{ "promo.end_date_is_required" | translate }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.limit_collection" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <select
+                              class="form-control custom-select promoType"
+                              formControlName="limitCollection"
+                              (change)="onLimitCollectionChange($event.target.value)"
+                            >
+                              <option value="sellers">
+                                {{ "promo.seller" | translate }}
+                              </option>
+                              <option value="feeds">
+                                {{ "promo.collection_id" | translate }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="showCollectionIds">
+                        <div class="col-4">
+                          <label class="control-label">{{
+                            "promo.enter_id" | translate
+                          }}</label>
+                        </div>
+                        <div class="col-8">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="{{
+                                'promo.enter_collection_id' | translate
+                              }}"
+                              formControlName="collectionIds"
+                            />
+                            <!-- <div
+                              *ngIf="
+                                (code.touched && code.invalid) || code.dirty
+                              "
+                            >
+                              <div *ngIf="code.errors?.required">
+                                <span class="errMsg">
+                                  {{
+                                    "promo.code_name_Is_required" | translate
+                                  }}
+                                </span>
+                              </div>
+
+                              <div *ngIf="code.errors?.pattern">
+                                <span class="errMsg">
+                                  {{
+                                    "promo.code_name_is_contains" | translate
+                                  }}
+                                </span>
+                              </div>
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="userType.value == 'Buyer'" class="row pt-3 top-border">
+                        <div class="col-12">
+                          <label class="control-label">{{
+                            "promo.paymentMethods" | translate
+                          }}</label>
+
+                          <div class="row">
+                            <div class="col-4" *ngFor="let method of availablePayment.controls; let i = index">
+                                <input type="checkbox" class="payment-method_checkbox" [formControl]="method">
+                                <label>
+                                  {{availablePaymentProviders[i].displayName}}
+                                </label>
+                            </div>
+
+                          </div>
+                          <div *ngIf="(availablePayment.invalid)">
+                            <span class="errMsg">
+                              Payment method is required
+                            </span>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+
+                      <div class="row align-items-start pt-3 top-border">
+                        <div class="col-1">
+                          <input name="isDefault" type="checkbox" formControlName="isDefault" >
+                        </div>
+                        <div class="col-11 pl-0">
+                          <label class="control-label" html-for="isDefault">
+                            Applied by default
+                          </label>
+                          <p>Will be applied automatically once the user will be in the checkout</p>
+                        </div>
+                      </div> 
+
+                    </div>
+                  </div>
+
+                  <!-- data-dismiss="modal" -->
+                  <button
+                    class="btn btn-warning"
+                    type="submit"
+                    [disabled]="!promotionForm.valid || disableBtn"
+                  >
+                    {{
+                      promoAddOrEdit === "add"
+                        ? ("promo.addCode" | translate)
+                        : ("promo.editCode" | translate)
+                    }}
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

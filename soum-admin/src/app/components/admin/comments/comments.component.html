@@ -1,0 +1,203 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-5">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">{{'comments.breadcrumb' | translate}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col-7 filterBy">
+        <div class="dropdownContainer">
+          <div>
+            <input [value]="sellerTypeSelected" type="text" placeholder="Seller Type" class="btn inputSellerType"
+              readonly (click)="openCloseSellerTypeOptions()" />
+            <img src="../../../../assets/images/blackArrowDown.png" class="arrowOption"
+              (click)="openCloseSellerTypeOptions()" />
+          </div>
+          <div>
+            <ul class="dropdownSellerType list-unstyled" *ngIf="sellerTypeOpened">
+              <li class="option" *ngFor="let sellerType of sellerTypes; let i=index"
+                (click)="selectSellerType(sellerType)">
+                <img src="../../../../assets/images/activeRadioBtn.png" [ngClass]="{
+                      'radioActiveCheck': sellerType === sellerTypeSelected,
+                      'radioCheck': sellerType !== sellerTypeSelected
+                    }" *ngIf="sellerType === sellerTypeSelected" />
+                <img src="../../../../assets/images/inactiveRadioBtn.png" [ngClass]="{
+                      'radioActiveCheck': sellerType === sellerTypeSelected,
+                      'radioCheck': sellerType !== sellerTypeSelected
+                    }" *ngIf="sellerType !== sellerTypeSelected" />
+                <h5 class="optionName">{{sellerType}}</h5>
+                <div *ngIf="i !== sellerTypes.length - 1" class="divider"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="dropdownContainer">
+          <div>
+            <input [value]="questionTypeSelected" type="text" placeholder="Filter By" class="btn inputSellerType"
+              readonly (click)="openQuestionTypeOptions()" />
+            <img src="../../../../assets/images/blackArrowDown.png" class="arrowOption"
+              (click)="openQuestionTypeOptions()" />
+          </div>
+          <div>
+            <ul class="dropdownSellerType list-unstyled" *ngIf="questionTypeOpened">
+              <li class="option" *ngFor="let questionType of questionTypes; let i=index"
+                (click)="selectQuestionType(questionType)">
+                <img src="../../../../assets/images/activeRadioBtn.png" [ngClass]="{
+                      'radioActiveCheck': questionType === questionTypeSelected,
+                      'radioCheck': questionType !== questionTypeSelected
+                    }" *ngIf="questionType === questionTypeSelected" />
+                <img src="../../../../assets/images/inactiveRadioBtn.png" [ngClass]="{
+                      'radioActiveCheck': questionType === questionTypeSelected,
+                      'radioCheck': questionType !== questionTypeSelected
+                    }" *ngIf="questionType !== questionTypeSelected" />
+                <h5 class="optionName">{{questionType}}</h5>
+                <div *ngIf="i !== questionTypes.length - 1" class="divider"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive">
+              <div class="row">
+                <div class="col-sm-12 col-md-6"></div>
+                <div class="col-sm-12 col-md-3">
+                </div>
+
+              </div>
+
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{'comments.productLink' | translate}}</th>
+                    <th>{{'comments.buyer_phone' | translate}}</th>
+                    <th>{{'comments.seller_phone' | translate}}</th>
+                    <th>{{'comments.question' | translate}}</th>
+                    <th>{{'comments.answer' | translate}}</th>
+                    <th>{{'comments.createdAt' | translate}}</th>
+                    <th>{{'comments.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let comment of commentList| paginate: {
+                      id: 'commentsList',
+                      itemsPerPage: limit,
+                      currentPage: currentPage,
+                      totalItems: totalResult
+                    }; let i = index;">
+                    <td data-title="{{'comments.productLink' | translate}}" class="link-padding">
+                      <a class="mr-2 text-solitud"
+                        [routerLink]="['/admin/products/products-details', comment?.product_id]">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                    </td>
+                    <td data-title="{{'comments.buyer_phone' | translate}}">
+                      {{ comment?.buyer.mobileNumber }}
+
+                    </td>
+
+                    <td data-title="{{'comments.seller_phone' | translate}}">
+                      {{ comment?.seller.mobileNumber }}
+                    </td>
+
+                    <td data-title="{{'comments.question' | translate}}">
+                      {{ comment?.question }}
+                    </td>
+
+                    <td data-title="{{'comments.answer' | translate}}">
+                      {{ comment?.answer }}
+                    </td>
+
+                    <td data-title="{{'comments.createdAt' | translate}}">
+                      {{ comment?.created_date| date: 'dd MMM , y h:mm:ss a'}}</td>
+
+                    <td data-title="{{'comments.action' | translate}}" class="actions">
+                      <img src="../../../../assets/images/editIcon.png" class="editIcon" data-toggle="modal" (click)="openModalComment(comment)" data-target=".add_comment"/>
+                      <a *ngIf="comment?.status=='Active' else deleted" class="text-danger"
+                        (click)="action(comment?._id)">
+                        <i class="mdi mdi-trash-can font-size-24"></i>
+                      </a>
+
+                      <ng-template #deleted>
+                        <a>
+                          <i class="mdi mdi-trash-can font-size-18"></i>
+                        </a>
+                      </ng-template>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div class="dataTables_info">
+                    {{'comments.showMinMaxNumberofList' | translate: entries}}
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls [autoHide]="true" [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel" id="commentsList" (pageChange)="selectPage($event)">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade add_comment" tabindex="-1" role="dialog" aria-labelledby="addUpdateSettingModal"
+                aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">Edit Question</h5>
+                      <button type="button" class="close" (click)="clearAnswerForm()" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form [formGroup]="questionForm">
+                        <div class="form-group">
+                          <label class="control-label">Question</label>
+                          <textarea type="text" placeholder="Question" formControlName="question" readonly
+                            class="form-control editCommentInput1 btn" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Answer</label>
+                          <textarea type="text" placeholder="Answer"
+                            formControlName="answer"
+                            maxlength="100"
+                            class="form-control editCommentInput2 btn" rows="3"></textarea>
+                            <span class="hintCharacter">The reply should not exceed 100 character</span>
+                        </div>
+                        <button class="editCommentBtn" data-dismiss="modal" [disabled]="questionForm.invalid"
+                          (click)="updateComment()" type="submit">Save</button>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

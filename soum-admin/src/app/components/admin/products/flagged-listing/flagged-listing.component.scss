@@ -1,0 +1,152 @@
+tr td.centerRow,
+tr th {
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+tr td {
+  text-align: center;
+}
+
+tr td img {
+  border-radius: 10px;
+}
+
+li {
+  cursor: pointer;
+}
+
+.iconStyle {
+  font-size: 25px !important;
+}
+
+// slider css
+
+.container {
+  position: relative;
+  .fa-compress {
+    position: absolute;
+    z-index: 999;
+    background: #02b9ff;
+    padding: 7px;
+    border-radius: 10px;
+    right: 22px;
+    bottom: -8px;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.products-slider .item .photo-slider-img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+::ng-deep .owl-stage-outer {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.products-slider {
+  padding-bottom: 15px;
+}
+
+#betaUser {
+  width: 20px;
+  height: 20px;
+  accent-color: #1f03db;
+  cursor: pointer;
+}
+
+.reject_listing {
+  font-size: 15px;
+    color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.lock_user {
+  width: 25px;
+  height: 25px;
+  margin: 10px 10px 15px 10px;
+  cursor: pointer;
+}
+
+.approvedByAdmin {
+  background-color: #f5f5f5;
+}
+
+.noActive {
+  background-color: white;
+}
+
+.sortPart {
+  position: relative;
+}
+
+#sortFlaggedListing {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 99999;
+  width: 200px;
+  display: none;
+  box-shadow: 0px 10px 30px 3px rgba(5, 16, 55, 0.15);
+
+  p {
+    margin: 0;
+    padding: 8px;
+    color: black;
+    font-size: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .activeSort {
+    color: #ffffff;
+    background-color: #1847ed;
+  }
+}
+
+#sortFlaggedListing p:hover {
+  color: #ffffff;
+  background-color: #1847ed;
+}
+
+.description {
+  height: 150px;
+  min-width: 300px;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}

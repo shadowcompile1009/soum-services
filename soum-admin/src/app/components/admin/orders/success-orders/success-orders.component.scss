@@ -1,0 +1,46 @@
+.xlxs_download,
+.download_xlxs_container {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.download_xlxs_container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table-style {
+  padding-top: 15px;
+}
+
+.search_part,
+.dataTables_filter {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dataTables_filter label .form-control {
+  width: 100%;
+}
+
+
+.notMatchSearch {
+  display: flex;
+  justify-content: center;
+}
+
+.notMatchSearch h5 {
+  font-size: 18px;
+  color: #767e86;
+  font-weight: bold;
+}
+
+
+.success-orders{
+  margin: 0 20px;
+}
+
+table td {
+  max-width: 170px !important;
+}

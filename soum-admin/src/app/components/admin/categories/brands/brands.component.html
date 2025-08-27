@@ -1,0 +1,335 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">
+                <a [routerLink]="['/admin/categories']">
+                  {{'categories.categories' | translate}}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                {{'categories.brands' | translate}}
+              </li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+              (click)="getBrandsToBeReordered()" data-toggle="modal" data-target=".changeOrder_detail">
+              {{'labels.changeOrder' | translate}}</button>
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light" data-toggle="modal"
+              data-target="#add-detail">
+              {{'categories.add' | translate}}
+            </button>
+
+            <div class="modal fade" id="add-detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mt-0">{{'categories.addBrand' | translate}}</h5>
+                    <button type="button" class="close" (click)="closeModal('add-detail')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="addBrandForm">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="control-label">{{'categories.uploadPicture' | translate}}</label>
+                            <div class="custom_file">
+                              <input type="file" accept="image/*" class="custom_file_input"
+                                (change)="onSelectFile($event)" formControlName="image">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="control-label">{{'categories.name' | translate}}</label>
+                            <input type="text" class="form-control" placeholder="Enter English" name="course-name"
+                              formControlName="name">
+                          </div>
+                          <div class="form-group">
+                            <!-- <label for="validationCustom01">{{'labels.arabicName' | translate}}</label> -->
+                            <input type="text" minlength="3" placeholder="Enter Arabic" formControlName="name_ar"
+                              class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn btn-warning" type="submit" data-dismiss="modal"
+                        [disabled]="!addBrandForm.valid"
+                        (click)="saveBrand()">{{'categories.save' | translate}}</button>
+                    </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <!-- <div class="row">
+                    <div class="col-sm-12 col-md-6"></div>
+                    <div class="col-sm-12 col-md-6 ">
+                      <div class="dataTables_filter">
+                        <label>{{'search' | translate}}
+                          <input type="search" class="form-control form-control-sm" placeholder="">
+                        </label>
+                      </div>
+                    </div>
+                  </div> -->
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                    <th style="width: 80px;">{{'administrators.picture' | translate}} </th>
+                    <th>{{'administrators.name' | translate}}</th>
+                    <th style="width: 120px;">{{'administrators.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of brandList; let i=index">
+                    <td data-title="{{'administrators.no' | translate}}">{{i+1}}</td>
+                    <td data-title="{{'administrators.picture' | translate}}"><img [src]="data?.brand_icon" alt=""
+                        height="30" class="img">
+                    </td>
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{data?.brand_name}}<br>
+                      {{'('+data?.brand_name_ar+')'}}
+                    </td>
+
+                    <td data-title="{{'administrators.action' | translate}}">
+                      <a [routerLink]="['/admin/categories/brands/models', category_id, data?.brand_id]"
+                        class="mr-2 text-solitud" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="View" aria-describedby="tooltip11135">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                      <button type="button" class="mr-2 text-primary btn_style" (click)="updateBrand(data)">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <a class="text-danger" (click)="action(data?.brand_id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="brandList?.length==0">
+                    <td colspan="4">
+                      {{'categories.noBrand' | translate}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div class="notFound" *ngIf="brandList?.length==0">{{'categories.noBrand' | translate}}</div> -->
+
+              <!-- PAGINATION -->
+              <!-- <div class="row">
+                    <div class="col-sm-12 col-md-5">
+                      <div class="dataTables_info">Showing 1 to 50 of 51 entries</div>
+                    </div>
+                    <div class="col-sm-12 col-md-7">
+                      <div class="dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination pagination-rounded">
+                          <li class="paginate_button page-item previous disabled"><a href="#" class="page-link"><i
+                                class="mdi mdi-chevron-left"></i></a></li>
+                          <li class="paginate_button page-item active"><a href="#" class="page-link">1</a></li>
+                          <li class="paginate_button page-item "><a href="#" class="page-link">2</a></li>
+                          <li class="paginate_button page-item next"><a href="#" class="page-link"><i
+                                class="mdi mdi-chevron-right"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div> -->
+              <!-- END: PAGINATION -->
+
+              <div class="modal fade edit_detail" id="edit-brand" tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">{{activeTab === "brands" ? 'Brand' : 'Accessorie'}}</h5>
+                      <button type="button" class="close" (click)="closeModal('edit-brand')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="contentTabs">
+                      <div [ngClass]="activeTab === 'brands' ? 'activeTabContent' : 'inActiveTabContent'" (click)="activeTab='brands'">
+                        <h5 [ngClass]="activeTab === 'brands' ? 'activeTabTitle' : 'inActiveTabTitle'">Edit Brand</h5>
+                      </div>
+                      <!-- <div [ngClass]="activeTab !== 'brands' ? 'activeTabContent' : 'inActiveTabContent'" (click)="activeTab='accessories'">
+                        <h5 [ngClass]="activeTab !== 'brands' ? 'activeTabTitle' : 'inActiveTabTitle'">Edit Accessories</h5>
+                      </div> -->
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="updatedBrandForm" *ngIf="activeTab === 'brands'">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <div class="headAccess">
+                                <label class="control-label">{{'categories.uploadPicture' | translate}}</label>
+                              </div>
+                              <div class="custom_file">
+                                <input type="file" accept="image/*" formControlName="brand_icon"
+                                  (change)="onSelectFile($event)" class="custom_file_input">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label class="control-label">{{'categories.name' | translate}}</label>
+                              <input type="text" formControlName="brand_name" placeholder="Enter English"
+                                class="form-control" name="course-name">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" minlength="3" placeholder="Enter Arabic" formControlName="brand_name_ar"
+                                class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="actions">
+                          <button class="btn btn-warning" [disabled]="updatedBrandForm?.invalid" (click)="editBrand()"
+                            type="submit">{{'categories.update' | translate}}</button>
+                        </div>
+                      </form>
+
+                      <!-- <form [formGroup]="addAccessoriesForm" class="formAccessories" *ngIf="activeTab !== 'brands'">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <div class="headAccess">
+                                <div class="custom-control custom-switch">
+                                  <input type="checkbox" class="custom-control-input" id="customSwitch1"
+                                    [checked]="showAccessories" (change)="toggleAccessories($event)">
+                                  <label class="custom-control-label" for="customSwitch1">Accessories</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="showAccessories" id="accessories" formArrayName="accessories" class="form-group">
+                          <h3 *ngIf="addAccessoriesForm?.controls['accessories']['controls'].length" class="titleAcc">Accessories</h3>
+                          <div *ngFor="let accessorie of addAccessoriesForm?.controls['accessories']['controls']; let i = index"
+                            [formGroupName]="i" class="form-group">
+
+                            <div class="divRow">
+                              <div class="inputAcc">
+                                <input type="text" formControlName="addOnName" placeholder="Accessory Name" class="form-control form-control-md">
+                                <div *ngIf="addAccessoriesForm.get('accessories.' + i + '.addOnName').hasError('required') && addAccessoriesForm.get('accessories.' + i + '.addOnName').touched">
+                                  <span class="errorMessage">*Filed required.</span>
+                                </div>
+                              </div>
+                              <div class="inputAcc">
+                                <input type="text" formControlName="addOnNameAr" placeholder="Accessory Name Arabic"
+                                  class="form-control form-control-md">
+                                  <div *ngIf="addAccessoriesForm.get('accessories.' + i + '.addOnNameAr').hasError('required') && addAccessoriesForm.get('accessories.' + i + '.addOnNameAr').touched">
+                                    <span class="errorMessage">*Filed required.</span>
+                                  </div>
+                              </div>
+                              <img class="deleteAccessories" src="assets/images/deleteAccessories.png" alt="Delete Accessorie"
+                                (click)="deleteBrandAccessories(i)">
+                            </div>
+
+                            <div class="divRow">
+                              <div class="inputAcc">
+                                <input type="text" (keypress)="numbersOnly($event)" formControlName="addOnPrice" placeholder="Price"
+                                  class="form-control form-control-md col1">
+                                  <div *ngIf="addAccessoriesForm.get('accessories.' + i + '.addOnPrice').hasError('required') && addAccessoriesForm.get('accessories.' + i + '.addOnPrice').touched&& addAccessoriesForm.get('accessories.' + i + '.addOnPrice').invalid">
+                                    <span class="errorMessage">*Filed required.</span>
+                                  </div>
+                              </div>
+
+                              <div class="inputAcc inputAcc">
+                                <label [for]="'selectImage_' + i" class="inputAcc">
+                                  <input [id]="'selectImage_' + i" formControlName="addOnIcon" type="file" accept=".png, .jpg, .jpeg"
+                                    (change)="onSelectAccessoriesFile($event, i)" class="hideFileInput inputAcc"/>
+                                  <img src="assets/images/chooseIcon.png" alt="Choose Image" class="inputAcc" />
+                                </label>
+                                <div *ngIf="addAccessoriesForm.get('accessories.' + i + '.addOnIcon').hasError('required') && addAccessoriesForm.get('accessories.' + i + '.addOnIcon').touched">
+                                  <span class="errorMessage">*Filed required.</span>
+                                </div>
+                              </div>
+
+                              <img class="deleteAccessories" src="assets/images/saceIcon.svg" alt="Save Accessorie"
+                                (click)="saveUpdateAccessories(i)">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="actions">
+                          <h4 *ngIf="showAccessories" (click)="addNewAccessories()"
+                            name="add-more" class="addAnotherAcc">+ Add another Accessory</h4>
+                        </div>
+                      </form> -->
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+
+
+
+<!-- Change Order list -->
+<div class="modal fade changeOrder_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Change Brands Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modal-orderList">
+        <div #scrollEl cdk-scrollable style="height:400px; overflow-y:auto;">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                <th style="width: 80px;">{{'administrators.picture' | translate}}</th>
+                <th>{{'administrators.name' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="box-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
+              <tr class="drag-box" *ngFor="let brand of brandsToBeReOrdered; let i = index" cdkDrag>
+                <td data-title="{{'administrators.no' | translate}}">{{i+1}}</td>
+                <td data-title="{{'administrators.picture' | translate}}"><img [src]="brand?.brand_icon" alt=""
+                    height="30" class="img">
+                </td>
+                <td data-title="{{'administrators.name' | translate}}">
+                  {{brand?.brand_name}}<br>
+                  {{'('+brand?.brand_name_ar+')'}}
+                </td>
+              </tr>
+            </tbody>
+            <!-- <pre>{{newArr | json}}</pre> -->
+          </table>
+
+        </div>
+        <button type="submit" class="btn btn-warning" data-dismiss="modal" (click)="changeOrderForBrand()">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

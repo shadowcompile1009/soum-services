@@ -1,0 +1,21 @@
+.data {
+    width: 50%;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.data_wrapper {
+    position: relative;
+    display: flex;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .tabs {
+        position: absolute;
+        bottom: -25%;
+    }
+}

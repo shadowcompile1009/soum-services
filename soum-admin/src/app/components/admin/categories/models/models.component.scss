@@ -1,0 +1,123 @@
+.table-responsive td .img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.table-responsive td[data-title="Picture"] {
+  text-align: center;
+}
+
+.page-title-right {
+  display: inherit;
+}
+
+.back_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.back-button {
+  text-decoration: none;
+}
+
+.field_wrapper {
+  margin: 0px 15px;
+}
+
+.sellerCommission_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.contentTabs {
+  display: flex;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+.activeTabTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #02b9ff;
+  cursor: pointer;
+}
+
+.inActiveTabTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+}
+
+.activeTabContent {
+  margin-right: 15px;
+  border-bottom: 2px solid #02b9ff;
+}
+
+.inActiveTabContent {
+  margin-right: 15px;
+  border-bottom: 2px solid #fff;
+}
+
+.divRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-top: 15px;
+}
+
+.normalInput {
+  width: 230px;
+  height: 29px;
+  font-size: 14px;
+  padding: 3px 8px;
+  margin-right: 20px;
+}
+
+.selectInput {
+  width: 175px;
+  height: 29px;
+  font-size: 14px;
+  padding: 3px 8px;
+}
+
+.textArea {
+  width: 230px;
+  height: 100px;
+  font-size: 14px;
+  padding: 3px 8px;
+  margin-right: 20px;
+}
+
+::ng-deep .modal-dialog {
+  width: auto !important;
+}
+::ng-deep body[dir="ltr"] .back-button img {
+  margin-right: 15px;
+}
+
+::ng-deep body[dir="rtl"] .back-button img {
+  margin-left: 15px;
+  transform: rotateY(180deg);
+}
+
+.modal-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 550px !important;
+    margin: 1.75rem auto;
+  }
+}
+
+.ActionsBtns {
+  width: 130px;
+}

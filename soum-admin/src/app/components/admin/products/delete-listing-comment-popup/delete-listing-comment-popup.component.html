@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">
+    {{productData.actionType === "delete" ? "Delete listing" : "Reject Listing"}} <br />
+    <span>{{productData.actionType === "delete" ? "Are you sure you want to delete this listing?" : "Are you sure you want to reject this listing?"}}</span>
+  </h5>
+</div>
+<div class="modal-body">
+  <div class="container-input-reason">
+    <h3 class="title-reason">{{productData.actionType === "delete" ? 'Reason for deletion' : 'Reason for rejection'}}</h3>
+    <div class="input-reason">
+      <div (click)="showReasonDropDown()">
+        <input type="text" [value]="selectedReason" readonly [placeholder]="productData.actionType === 'delete' ? 'Select Reason for deletion' : 'Select Reason for rejection'" />
+        <img class="dropdown" src="./../../../../../assets/images/arrowDown.png" />
+      </div>
+      <div class="select-reason" id="dropdownReason">
+        <div class="option-select" [ngClass]="{'option-select-active': selectedReason === 'Scam'}" (click)="setSelectedReason('Scam')">
+          <span>Scam</span>
+          <img *ngIf="selectedReason === 'Scam'" class="icon-mark" src="./../../../../../assets/images/check.png" />
+        </div>
+        <div class="option-select" [ngClass]="{'option-select-active': selectedReason === 'Mismatch'}" (click)="setSelectedReason('Mismatch')">
+          <span>Mismatch</span>
+          <img *ngIf="selectedReason === 'Mismatch'" class="icon-mark" src="./../../../../../assets/images/check.png" />
+        </div>
+        <div class="option-select" [ngClass]="{'option-select-active': selectedReason === 'Mis-graded'}" (click)="setSelectedReason('Mis-graded')">
+          <span>Mis-graded</span>
+          <img *ngIf="selectedReason === 'Mis-graded'" class="icon-mark"
+            src="./../../../../../assets/images/check.png" />
+        </div>
+        <div class="option-select" [ngClass]="{'option-select-active': selectedReason === 'Invalid'}" (click)="setSelectedReason('Invalid')">
+          <span>Invalid</span>
+          <img *ngIf="selectedReason === 'Invalid'" class="icon-mark"
+            src="./../../../../../assets/images/check.png" />
+        </div>
+        <div class="option-select" [ngClass]="{'option-select-active': selectedReason === 'Broken'}" (click)="setSelectedReason('Broken')">
+          <span>Broken</span>
+          <img *ngIf="selectedReason === 'Broken'" class="icon-mark" src="./../../../../../assets/images/check.png" />
+        </div>
+        <div class="option-select" [ngClass]="{'option-select-active': selectedReason === 'Fake'}" (click)="setSelectedReason('Fake')">
+          <span>Fake</span>
+          <img *ngIf="selectedReason === 'Fake'" class="icon-mark" src="./../../../../../assets/images/check.png" />
+        </div>
+        <div class="option-select" [ngClass]="{'option-select-active': selectedReason === 'Other'}" (click)="setSelectedReason('Other')">
+          <span>Other</span>
+          <img *ngIf="selectedReason === 'Others'" class="icon-mark" src="./../../../../../assets/images/check.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-reason" *ngIf="selectedReason === 'Other'" [ngStyle]="{'color': 'red'}">
+    <h5 class="title-reason2">Please describe briefly (max: 20 characters)</h5>
+    <textarea (input)="deleteListingComment = $event.target.value" class="form-control" maxlength="20" rows="1"
+      [placeholder]="productData.actionType === 'delete' ? 'Please Write the reason for deleting' : 'Please Write the reason for rejecting'"></textarea>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn" [ngClass]="productData.actionType == 'delete' ? 'btn-delete' : 'btn_reject'" (click)="deleteListingAndSendFeedback()"
+      [disabled]="deleteListingComment.trim().length === 0">
+      {{productData.actionType === 'delete' ? 'Yes, Delete now' : 'Yes, Reject now'}}
+    </button>
+
+    <button type="button" class="btn-cancel" (click)="closeModal()">
+      Cancel
+    </button>
+  </div>
+</div>

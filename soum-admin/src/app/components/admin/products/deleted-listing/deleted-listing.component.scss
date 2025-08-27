@@ -1,0 +1,60 @@
+tr td.centerRow,
+tr th {
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle !important;
+  min-width: 100px;
+}
+
+tr td {
+  text-align: center;
+}
+
+tr td img {
+  border-radius: 10px;
+}
+
+li {
+  cursor: pointer;
+}
+
+.iconStyle {
+  font-size: 25px !important;
+}
+
+// slider css
+
+.container {
+  position: relative;
+
+  .fa-compress {
+    position: absolute;
+    z-index: 999;
+    background: #02b9ff;
+    padding: 7px;
+    border-radius: 10px;
+    right: 15px;
+    bottom: -8px;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.products-slider .item .photo-slider-img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+::ng-deep .owl-stage-outer {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.products-slider {
+  padding-bottom: 15px;
+}

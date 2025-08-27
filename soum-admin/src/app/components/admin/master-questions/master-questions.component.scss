@@ -1,0 +1,38 @@
+.question-t .text-arabic {
+    display: block;
+    margin-top: 3px;
+}
+.input_edit {
+    display: inline-block;
+    width: calc(100% - 260px);
+}
+.question-box .table td {
+    vertical-align: top !important;
+}
+
+.question-row   .question-title .choose_question {
+    width: auto !important;
+    position: inherit !important;
+    background: no-repeat;
+    padding: 0px !important;
+    display: inherit;
+    height: auto;    margin-right: 10px;
+}
+
+.question-row .title-box .question-title .action_btn {
+    display: flex;
+    align-items: center;
+}
+
+.question-row .question-title .choose_question label {
+    font-weight: 500;
+    font-size: 0.9rem !important;
+}
+.modal-body .form-group .control-label {
+    width: 100%;
+}
+
+.modal-body .form-group .control-label .Weightage {
+    float: right !important;
+    width: 115px;
+}

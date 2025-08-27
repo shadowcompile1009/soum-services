@@ -1,0 +1,231 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active"><a [routerLink]="['/admin/categories']">{{'categories.categories' |
+                  translate}}</a></li>
+              <li class="breadcrumb-item active"><a
+                  [routerLink]="['/admin/categories/brands', category_id]">{{'categories.brands' | translate}}</a>
+              </li>
+              <li class="breadcrumb-item active"><a
+                  [routerLink]="['/admin/categories/brands/models', category_id, brand_id]">{{'categories.model' |
+                  translate}}</a>
+              </li>
+              <li class="breadcrumb-item">{{'categories.variants' | translate}}</li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light" (click)="openModal()">{{'categories.add' | translate}}</button>
+            <div class="modal fade add_detail" id="add-varient" tabindex="-1" role="dialog"
+              aria-labelledby="mySmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mt-0">{{'categories.addVariant' | translate}}</h5>
+                    <button type="button" class="close" (click)="closeModal('add-varient')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="addVarientForm">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <!-- <div class="form-group">
+                            <label class="control-label">Varient</label>
+                            <input type="text" formControlName="varientEn" placeholder="Enter English"
+                              class="form-control" name="course-name">
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">{{'labels.arabicLevel' | translate}}</label>
+                            <input type="text" formControlName="varientAr" placeholder="Enter Arabic"
+                              class="form-control" name="course-name">
+                          </div> -->
+                          <div class="form-group">
+                            <label class="control-label">{{'categories.currentMarketPrice' | translate}}</label>
+                            <input type="number" formControlName="currentPrice" class="form-control" name="course-name">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="control-label">{{'attributes.options' | translate}}</label>
+                            <br />
+                            <button class="btn btn-warning btn-sm mb-2" (click)="addAttribute()">{{'attributes.addNewOption' | translate}}</button>
+                            <div formArrayName="attributes" style="max-height: 224px; overflow-y: auto;">
+                              <div *ngFor="let opt of attributes.controls; let i=index" class="bg-light p-2 rounded">
+                                <div [formGroupName]="i">
+                                  <div class="form-group">
+                                    <label class="control-label">{{'varients.attribute' | translate}}</label>
+                                    <select class="attribute-select form-control form-control-sm" placeholder="Select Ettribute"
+                                      formControlName="featureId" (change)="attributeChange($event, i)">
+                                      <option value="">Choose Attribute</option>
+                                      <option *ngFor="let attribute of attributesList" [disabled]="attribute.disabled" [ngValue]="attribute.id">
+                                        <span>{{ attribute.nameEn }}</span>&nbsp;
+                                        <small *ngIf="attribute.status === 'Delete'">({{ attribute.status }})</small>
+                                      </option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label>{{'varients.attributeVal' | translate}}</label>
+                                    <select placeholder="Select Value"
+                                      formControlName="attributeId" class="form-control form-control-sm">
+                                      <option value="">Choose Option</option>
+                                      <option *ngFor="let option of opt.controls.options.value" [ngValue]="option.id">
+                                        {{ option.nameEn }}
+                                      </option>
+                                    </select>
+                                  </div>
+                                  <button class="btn btn-warning btn-sm" (click)="removeAttribute(i)">Remove</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn btn-warning" [disabled]="addVarientForm.invalid || !addVarientForm?.controls?.attributes?.controls?.length || duplicatedAttributes" (click)="addVarient('add')"
+                        type="submit">{{'categories.save' | translate}}</button>
+                    </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <!-- <div class="row">
+                <div class="col-sm-12 col-md-6"></div>
+                <div class="col-sm-12 col-md-6 ">
+                  <div class="dataTables_filter"><label>{{'search' | translate}}<input type="search"
+                        class="form-control form-control-sm" placeholder=""></label>
+                  </div>
+                </div>
+              </div> -->
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">{{'categories.no' | translate}}</th>
+                    <th>{{'categories.name' | translate}}</th>
+                    <th style="width: 120px;">{{'categories.currentMarketPrice' | translate}}</th>
+                    <th style="width: 120px;">{{'categories.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let varient of varients| paginate: {
+                    id: 'variantsList',
+                    itemsPerPage: limit,
+                    currentPage: currentPage,
+                    totalItems: totalResult
+                  }; let i = index;">
+                    <td data-title="{{'categories.no' | translate}}">{{(i+1) + (limit * offset)}}</td>
+                    <td data-title="{{'categories.name' | translate}}">
+                      {{varient?.varientEn}}<br>
+                      {{'('+varient?.varientAr+')'}}
+                    </td>
+                    <td data-title="{{'categories.currentMarketPrice' | translate}}">
+                      {{varient?.currentPrice}} {{currency}}
+                    </td>
+
+                    <td data-title="{{'categories.action' | translate}}">
+                      <a [routerLink]="['/admin/categories/brands/models/variant/conditions', category_id, brand_id,model_id, varient?.id]"
+                        class="mr-2 text-solitud">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                      <button type="button" (click)="updateVarient(varient)" class="mr-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <a class="text-danger" (click)="action(varient?.id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!varients?.length">
+                    <td colspan="3">
+                      {{'categories.noVariant' | translate}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div *ngIf="this.varients?.length > 0" class="paginationRow">
+                <div>
+                  <div class="dataTables_info">
+                    {{'product.showMinMaxNumberofListVariants' | translate: entries}}
+                  </div>
+                </div>
+                <div>
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls  [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel" id="variantsList" (pageChange)="selectPage($event)">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+
+
+<!-- Change Order list -->
+<div class="modal fade changeOrder_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Change Variants Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modal-orderList">
+        <div #scrollEl cdk-scrollable style="height:400px; overflow-y:auto;">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                <!-- <th style="width: 80px;">{{'administrators.picture' | translate}}</th> -->
+                <th>{{'administrators.name' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="box-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
+              <tr class="drag-box" *ngFor="let variant of variantToBeReordered; let i = index;" cdkDrag>
+                <td data-title="{{'categories.no' | translate}}">{{i+1}}</td>
+                <td data-title="{{'categories.name' | translate}}">
+                  {{variant?.varientEn}}<br>
+                  {{'('+variant?.varientAr+')'}}
+                </td>
+              </tr>
+            </tbody>
+            <!-- <pre>{{newArr | json}}</pre> -->
+          </table>
+
+        </div>
+        <button type="submit" data-dismiss="modal" (click)="changeOrderForVariant()"
+          class="btn btn-warning">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

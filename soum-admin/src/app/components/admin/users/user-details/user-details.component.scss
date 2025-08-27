@@ -1,0 +1,39 @@
+.user-address p {
+  margin-bottom: 0px;
+}
+
+.page-title-right {
+  display: inherit;
+}
+
+.back_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.back-button {
+  text-decoration: none;
+}
+
+
+::ng-deep body[dir="ltr"] .back-button img {
+  margin-right: 15px;
+}
+
+::ng-deep body[dir="rtl"] .back-button img {
+  margin-left: 15px;
+  transform: rotateY(180deg);
+}
+
+.card {
+  min-height: 150px;
+}
+
+.bid_user_text {
+  max-width: 150px;
+}
+
+.product_name {
+  cursor: pointer;
+}

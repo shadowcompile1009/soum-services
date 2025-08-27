@@ -1,0 +1,260 @@
+<div class="page-content" style="overflow-y: scroll">
+  <div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div
+          class="page-title-box d-flex align-items-start justify-content-between"
+        >
+          <div class="page-title-right2">
+            <form [formGroup]="addCollectionForm">
+              <div class="row">
+                <div [ngClass]="isOffer || isBudget ? 'col-lg-5' : 'col-lg-12'">
+                  <div
+                    class="form-group"
+                    class="icon_wrapper"
+                    style="display: flex; align-items: start; flex-direction: column;"
+                  >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Collection English"
+                      formControlName="name_en"
+                    />
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('name_en')?.hasError('required')">Required.</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('name_en')?.hasError('pattern')">No special characters allowed</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="addCollectionForm.get('name_en')?.hasError('maxlength')">Name must not exceed 25 characters.</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="addCollectionForm.get('name_en')?.hasError('minlength')">Name must be at least 3 characters.</span>
+                  </div>
+                  <div class="form-group" class="icon_wrapper" style="display: flex; align-items: start; flex-direction: column;">
+                    <input
+                      type="text"
+                      minlength="3"
+                      placeholder="Collection Arabic"
+                      formControlName="name_ar"
+                      class="form-control"
+                    />
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('name_ar')?.hasError('required')">Required.</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('name_ar')?.hasError('pattern')">No special characters allowed</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="addCollectionForm.get('name_ar')?.hasError('maxlength')">Name must not exceed 25 characters.</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="addCollectionForm.get('name_ar')?.hasError('minlength')">Name must be at least 3 characters.</span>
+                  </div>
+                </div>
+                <div *ngIf="isOffer" class="col-lg-5">
+                  <div
+                    class="form-group"
+                    class="icon_wrapper"
+                    style="display: flex; align-items: center"
+                  >
+                    <input
+                      type="text"
+                      class="form-control"
+                      maxlength="12"
+                      placeholder="Title English"
+                      formControlName="title_en"
+                    />
+                  </div>
+                  <div class="form-group" class="icon_wrapper">
+                    <input
+                      type="text"
+                      minlength="3"
+                      maxlength="12"
+                      placeholder="Title Arabic"
+                      formControlName="title_ar"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div *ngIf="isBudget" class="col-lg-5">
+                  <div
+                    class="form-group"
+                    class="icon_wrapper"
+                    style="display: flex; align-items: start; flex-direction: column;"
+                  >
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Budget Amount"
+                      formControlName="max_budget"
+                      oninput="if (this.value < 0) this.value = 0;"
+                    />
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('max_budget')?.hasError('max')">Budget amount must be less than 9999.</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('max_budget')?.hasError('min')">Budget amount must be greater than 0.</span>
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('max_budget')?.hasError('required')">Required.</span>
+                  </div>
+                  <div class="form-group" class="icon_wrapper" style="display: flex; align-items: start; flex-direction: column;">
+                    <input
+                      type="file"
+                      accept="image/png,image/x-png,image/gif,image/jpeg,image/jpg"
+                      class="form-control"
+                      (change)="selectImage($event.target.files, 'img_url')"
+                    />
+                    <span style="color: #ff0000; font-size: 11px" *ngIf="isBudget && addCollectionForm.get('img_url')?.hasError('required')">Required.</span>
+                    <div *ngIf="uploadedImageUrl" class="image-preview">
+                      <img [src]="uploadedImageUrl" alt="Uploaded file preview" class="uploaded-image" />
+                      <button class="remove-button text-danger" type="button" (click)="removeUploadedImage()">
+                        <i class="mdi mdi-trash-can font-size-24"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isOffer" class="col-lg-4">
+                  <div class="form-group icon_wrapper" style="display: block;align-items: center;">
+                    <input
+                      type="text"
+                      [formControl]="addCollectionForm.get('expiry_date')"
+                      (click)="toggleCalendar()"
+                      class="form-control"
+                      readonly
+                      placeholder="Expiration Date"
+                      [value]="selectedDate | date:'dd/MM/yyyy, HH:mm'"
+                    />
+                    <div class="border" *ngIf="showCalendar">
+                      <dl-date-time-picker
+                        startView="day"
+                        maxView="year"
+                        minView="minute"
+                        minuteStep="15"
+                        [selectFilter]="dateFilter"
+                        [formControl]="addCollectionForm.get('expiry_date')"
+                        (change)="onCustomDateChange($event)"
+                        style="width: 100%; height: 100%;min-height:300px"
+                      >
+                      </dl-date-time-picker>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div>
+            <form [formGroup]="addProductForm">
+              <div
+                class="row"
+                style="width: 328px;"
+              >
+                <div class="form-group icon_wrapper justify-content-around">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="product id"
+                    name="product_name"
+                    formControlName="product_name"
+                  />
+                  <button
+                    class="btn btn-warning"
+                    type="button"
+                    [disabled]="!addProductForm.valid"
+                    (click)="saveProduct()"
+                  >
+                    {{ "categories.add" | translate }}
+                  </button>
+                </div>
+              </div>
+              <span style="color: #ff0000; font-size: 11px"
+                >*You can add more than one product by <br />
+                separating them by a Comma</span
+              >
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px">Order</th>
+                    <th style="width: 20px">Number</th>
+                    <th style="width: 120px">ProductID</th>
+                    <th>Model</th>
+                    <th style="width: 130px">Buy now price</th>
+                    <th>Sell Status</th>
+                    <th>Expiry date</th>
+                    <th>{{ "collections.activeInactive" | translate }}</th>
+                    <th>{{ "collections.action" | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+                  <tr
+                    *ngFor="let product of productList; let i = index"
+                    cdkDrag
+                  >
+                    <td>
+                      <img
+                        src="assets/images/move-icon.png"
+                        alt="move"
+                        height="22"
+                        style="cursor: grab"
+                      />
+                    </td>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ product.productId }}</td>
+                    <td>{{ product.modelName }}</td>
+                    <td>{{ product.sellPrice }} {{ currency }}</td>
+                    <td>{{ product.sellStatus }}</td>
+                    <td>{{ product.expiryDate | date : "shortDate" }}</td>
+
+                    <td data-title="{{ 'product.activeInactive' | translate }}">
+                      <label class="switch">
+                        <input
+                          type="checkbox"
+                          id="verify"
+                          [checked]="product.active"
+                          (click)="activate(product)"
+                        />
+                        <span class="slider round"></span>
+                      </label>
+                    </td>
+                    <td data-title="{{ 'collection.action' | translate }}">
+                      <a class="mr-2 text-solitud">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+
+                      <a
+                        class="text-danger"
+                        (click)="action(product.productId)"
+                      >
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="false">
+                    <td colspan="4">
+                      {{ "categories.noBrand" | translate }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+    <button
+      class="btn btn-warning"
+      type="button"
+      style="float: right; width: 100px"
+      [disabled]="!addCollectionForm.valid || !productList.length"
+      (click)="saveCollection()"
+    >
+      {{ "categories.save" | translate }}
+    </button>
+    <button
+      class="btn"
+      type="button"
+      style="float: right; width: 100px; margin-right: 20px; background-color:#ff0000; color: #fff"
+      (click)="cancelCollection()"
+    >
+      {{ "categories.cancel" | translate }}
+    </button>
+  </div>
+  <!-- container-fluid -->
+</div>

@@ -1,0 +1,155 @@
+.xlxs_download {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.link-padding {
+  padding: 10px 45px;
+}
+
+tr td,
+tr th {
+  text-align: center;
+}
+
+.dropdownContainer {
+  width: 310px;
+  position: relative;
+  margin-left: 16px
+}
+
+;
+
+.inputSellerType {
+  border-radius: 8px 8px 0px 0px;
+  text-align: left;
+  width: 310px;
+  height: 45px;
+  outline: none;
+  border: 1.5px solid #B5BBBC;
+  background: #FFF;
+}
+
+.editCommentInput1 {
+  outline: none;
+  text-align: left;
+  border: 1.5px solid #B5BBBC;
+  background: #F6F8F8;
+  text-wrap: inherit;
+}
+
+.editCommentInput2 {
+  outline: none;
+  text-align: left;
+  cursor: text !important;
+  border: 1.25px solid #313437;
+  background: #FFF;
+  text-wrap: inherit;
+}
+
+
+.dropdownSellerType {
+  width: 310px;
+  margin: 0px;
+  padding: 13px 10px;
+  border-radius: 0px 0px 8px 8px;
+  border: 1.5px solid #B5BBBC;
+  background: #FFF;
+  position: absolute;
+  top: 44px;
+  z-index: 9999;
+}
+
+.radioCheck {
+  width: 20px;
+  height: 20px;
+}
+
+.radioActiveCheck {
+  width: 24px;
+  height: 24px;
+}
+
+.option {
+  cursor: pointer;
+}
+
+.divider {
+  border-bottom: 1px solid #B5BBBC;
+  margin: 10px 0;
+}
+
+.arrowOption {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  cursor: pointer;
+  right: 7px;
+  top: 12px;
+}
+
+.optionName {
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  display: inline;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.filterBy {
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 120px;
+}
+
+.editIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.actions {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.editCommentBtn {
+  width: 100%;
+  border-radius: 5px;
+  background: #0071F2;
+  color: white;
+  border-width: 0;
+  height: 40px;
+}
+
+::ng-deep .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+  width: 500px !important;
+  padding: 15px !important;
+}
+
+/* Prevent border change on focus for the dropdown button */
+.btn:focus {
+  box-shadow: none !important;
+  border-color: #B5BBBC !important;
+}
+
+/* Prevent border change on focus for radio inputs */
+.form-check-input:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #B5BBBC !important;
+}
+
+
+.hintCharacter{
+  font-size: 12px;
+    color: #B5BBBC;
+}

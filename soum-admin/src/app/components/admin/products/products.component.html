@@ -1,0 +1,213 @@
+<div class="page-content table_page">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">
+                {{'product.title' | translate}}
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <div class="row">
+                <div class="col-md-9 col-sm-12 search_part">
+                  <form class="dataTables_filter" [formGroup]="searchForm" (ngSubmit)="filterBy()">
+                    <label>{{'search' | translate}}
+                      <input type="search" class="form-control form-control-sm" formControlName="word"
+                        placeholder="Search ..... ">
+                      <button type="submit" class="btn btn-danger btn-sm">Search</button>
+                    </label>
+                  </form>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <div *ngIf="productList?.length != 0" class="d-flex justify-content-end"
+                    (click)="downloadOrderXlxs()">
+                    <img title="{{'ordersPage.exportAsXlxs' | translate}}" class="xlxs_download"
+                      src="../../../../assets/images/xlsx.png" />
+                  </div>
+                </div>
+              </div>
+                <!-- <div class="no_focus">
+                  {{'product.Total-products' | translate}}: ({{TotalCounter}})
+                </div> -->
+              <!-- <table>
+                <tbody class = "filters">
+                  <tr>
+                    <td class="counter" (click)="filterTypeProduct('Available')" [ngClass]="{'filter_active': this.productType.includes('Available')}">
+                      {{'product.Available-products' | translate}}: ({{AvailableAndNotExpiredCounter}})
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="counter" (click)="filterTypeProduct('Sold')" [ngClass]="{'filter_active': this.productType.includes('Sold')}">
+                      {{'product.Sold-products' | translate}}: ({{SoldCounter}})
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="counter" (click)="filterTypeProduct('Locked')" [ngClass]="{'filter_active': this.productType.includes('Locked')}">
+                      {{'product.Locked-products' | translate}}: ({{LockedCounter}})
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="counter"  (click)="filterTypeProduct('Expired')" [ngClass]="{'filter_active': this.productType.includes('Expired')}">
+                      {{'product.Expired-products' | translate}}: ({{AvailableAndExpiredCounter}})
+                    </td>
+                  </tr>
+                </tbody>
+              </table> -->
+                <div style="display: flex;">
+                  <p style="padding: 10px;">
+                    {{'product.Renew-all-expired-products' | translate}}
+                  </p>
+                  <select style="width: 110px; margin-top: 6px;" class="form-select form-control" 
+                    aria-label="Default select example"
+                    (change)="ChangingValue($event.target.value)" [value]='15'>
+                    <option value="0" selected disabled>
+                      {{ "product.Please_Select_Date" | translate }}
+                    </option>
+                    <option value="15">{{ "product.15day" | translate }}</option>
+                    <option value="30">{{ "product.30days" | translate }}</option>
+                  </select>
+                  <a class="renew" style = "padding: 10px;" (click)="renewAll()">
+                    <i class="mdi mdi-calendar-clock font-size-20"> </i>
+                  </a>
+                </div>
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 15px;">{{'product.serialNumber' | translate}}</th>
+                    <th>{{'bids.productId' | translate}}</th>
+                    <th>Listing Type</th>
+
+                    <th>{{'product.sellerPhone' | translate}}</th>
+                    <!-- <th style="width: 10px;">{{'product.listing_elsewhere' | translate}}</th>
+                    <th>{{'product.code' | translate}}</th> -->
+                    <!-- <th>{{'product.brand' | translate}}</th> -->
+                    <th style="width:90px;">{{'product.model' | translate}}</th>
+                    <th>{{'product.variant' | translate}}</th>
+                    <!-- <th style="width:100px;" [innerHTML]="'product.currentMarketPrice' | translate"></th> -->
+                    <th style="width:80px;" [innerHTML]="'product.buyNowPrice' | translate"></th>
+                    <!-- <th>Seller<br> Name</th>
+                    <th>Email</th> -->
+                    <th style="width:70px;">{{'product.sell-status' | translate}}</th>
+                    <th style="width:50px;">{{'product.createdDate' | translate}}</th>
+                    <th style="width:50px;">{{'product.listingDuration' | translate}}</th>
+                    <th style="width:50px;">{{'product.daysUntilExpiration' | translate}}</th>
+                    <th style="width:50px;">{{'product.expiryDate' | translate}}</th>
+                    <th style="width:70px;">{{'product.approval' | translate}}</th>
+                    <th style="width:60px;">{{'product.product_link' | translate}}</th>
+                    <th style="width:110px;">{{'product.renew_product' | translate}}</th>
+                    <th style="width:30px;">{{'product.delete_product' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of productList| paginate: {
+                    id: 'productList',
+                    itemsPerPage: limit,
+                    currentPage: currentPage,
+                    totalItems: totalResult
+                  }; let i = index;">
+                    <td data-title="{{'product.serialNumber' | translate}}">
+                      {{ limit * (currentPage - 1) + i + 1 }}
+                    </td>
+                    <td data-title="{{'product.name' | translate}}">{{product?._id}}</td>
+                    <td data-title="{{'product.name' | translate}}">{{product?.listingType}}</td>
+                    <td data-title="{{'product.sellerPhone' | translate}}">{{product?.sellerData?.mobileNumber}}</td>
+                    <!-- <td data-title="{{'product.listing_elsewhere' | translate}}">{{product?.isListedBefore?
+                      product?.isListedBefore : '-----'}}</td>
+                    <td data-title="{{'product.code' | translate}}">{{product?.code? product?.code : '-----'}}</td> -->
+                    <!-- <td data-title="{{'product.brand' | translate}}">{{product?.brandData?.brand_name}}</td> -->
+                    <td data-title="{{'product.model' | translate}}">{{product?.modelData?.model_name}}</td>
+                    <td data-title="{{'product.variant' | translate}}">{{product?.varient}}</td>
+                    <!-- <td data-title="{{'product.currentMarketPrice' | translate}}">{{product?.modelData?.current_price}}</td> -->
+                    <td data-title="{{'product.buyNowPrice' | translate}}">{{product?.sell_price}} {{currency}}</td>
+                    <!-- <td data-title="Seller Name">Simona Morasca</td>
+                    <td data-title="Email">simona@morasca.com</td> -->
+                    <td data-title="{{'product.sell-status' | translate}}">{{product?.sell_status}} </td>
+                    <td data-title="{{'product.createdDate' | translate}}">{{product?.createdDate | date: 'dd MMM,
+                      yyyy'}}</td>
+                    <td data-title="{{'product.listingDuration' | translate}}">
+                      {{getDurationDate(product?.createdDate, product?.expiryDate)}} {{'product.days' | translate}}
+                    </td>
+                    <td data-title="{{'product.daysUntilExpiration' | translate}}">
+                      {{getExpirationDate(product?.expiryDate)}} {{'product.days' | translate}}
+                    </td>
+                    <td data-title="{{'product.expiryDate' | translate}}">
+                      {{product?.expiryDate | date: 'dd MMM, yyyy hh:mm:ss'}}
+                    </td>
+                    <td data-title="{{'product.approval' | translate}}"><label class="switch">
+                        <input type="checkbox" (change)="approveProduct(product)" [(ngModel)]="product.isApproved"
+                          id="verify">
+                        <span class="slider round"></span>
+                      </label></td>
+                    <td data-title="{{'product.product_link' | translate}}">
+                      <a class="mr-2 text-solitud" [routerLink]="['/admin/products/products-details', product?._id]">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                    </td>
+                    <td data-title="{{'product.renew_product' | translate}}">
+                      <select class="form-select form-control " aria-label="Default select example"
+                        (change)="ChangingValue($event.target.value)" [value]='15'>
+                        <option value="0" selected disabled>
+                          {{ "product.Please_Select_Date" | translate }}
+                        </option>
+                        <option value="15">{{ "product.15day" | translate }}</option>
+                        <option value="30">{{ "product.30days" | translate }}</option>
+                      </select>
+                      <a *ngIf="validRenew(product?.sell_status , product?.expiryDate) else inValidRenew"
+                        class="renew" (click)="renew(product?._id)">
+                        <i class="mdi mdi-calendar-clock font-size-20"></i>
+                      </a>
+                      <ng-template #inValidRenew>
+                        <i class="mdi mdi-calendar-clock font-size-20"></i>
+                      </ng-template>
+                    </td>
+                    <td data-title="{{'product.delete_product' | translate}}">
+                      <a class="text-danger" (click)="action(product?._id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row" *ngIf="notMatchSearch">
+                <div class="col-12 notMatchSearch">
+                  <h5>No Found Data Match Your Search!</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div class="dataTables_info">
+                    {{'product.showMinMaxNumberofList' | translate: entries}}
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls  [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel" id="productList" (pageChange)="selectPage($event)">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

@@ -1,0 +1,236 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <div class="addCategory">
+              <h1 class="selectCategory">Select Categories</h1>
+              <div class="menu_container" (click)="handleShowHideCategoriesMenu()">
+                <input type="text" placeholder="Select" readonly class="form-control input_category"
+                  [value]="selectedCategory" />
+                <img class="image_arrow" src="../../../../assets/images/arrow-up-down.png" />
+              </div>
+
+              <div [@divState]="isVisible ? 'visible' : 'hidden'" class="categories_list">
+                <div *ngFor="let cat of categoryList; let i = index;" class="category_check"
+                  (click)="setSelectedCategory(cat)">
+                  <img class="categories_check"
+                    src="{{selectedCategory === (defaultLanguage === 'ar' ? cat.category_name_ar : cat.category_name) ?  '../../../../assets/images/CheckboxActive.png' : '../../../../assets/images/CheckboxNoActive.png'}}" />
+                  <label class="category_label">
+                    {{defaultLanguage === 'ar' ? cat.category_name_ar : cat.category_name}}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="page-title-right2">
+            <button type="button" [ngClass]="{'disableBtn': !selectedCategory}" [disabled]="!selectedCategory"
+              class="btn btn-rounded btn-w waves-effect waves-light btnAddSection" (click)="openModalSection()">Add
+              Section</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container_filter" *ngIf="selectedCategory === 'Real Estate'">
+      <button type="button" class="btn" [ngClass]="tabSelected === 'Photos' ? 'btnAddSection' : 'boxShadow'"
+        (click)="getSectionByType('Photos')">Photos الصور
+      </button>
+      <button type="button" class="btn" [ngClass]="tabSelected === 'Floor Plan' ? 'btnAddSection' : 'boxShadow'"
+        (click)="getSectionByType('Floor Plan')">Floor Plan - مخطط
+        العقار</button>
+    </div>
+
+    <div class="row" *ngIf="sectionsList.length">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">No</th>
+                    <th style="width: 120px;">Header (EN)</th>
+                    <th style="width: 120px;">Header (AR)</th>
+                    <th style="width: 120px;">Description<br />(EN)</th>
+                    <th style="width: 120px;">Description<br />(AR)</th>
+                    <th style="width: 120px;">Icon<br />Images</th>
+                    <th style="width: 120px;">Min-Max</th>
+                    <th style="width: 120px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let section of sectionsList | paginate: {
+                    id: 'orderList',
+                    itemsPerPage: limit,
+                    currentPage: currentPage,
+                    totalItems: totalResult
+                  }; let i = index;">
+                    <td data-title="{{'categories.no' | translate}}">{{i + 1}}</td>
+                    <td class="td1">{{section.header}} </td>
+                    <td class="td1">{{section.headerAr}} </td>
+                    <td class="td1">{{section.description}} </td>
+                    <td class="td1">{{section.descriptionAr}} </td>
+
+                    <td class="td1" style="width: 120px;">
+                      <img *ngIf="section.iconURL" [src]="section.fullURL" alt="" class="img icon-section">
+                    </td>
+
+                    <td class="td1">{{section.minImageCount}} - {{section.maxImageCount}} </td>
+
+                    <td class="container_actions">
+                      <a class="mr-2 text-primary" (click)="editSectionAction(section)">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </a>
+
+                      <div data-title="{{'users.activeInactive' | translate}}">
+                        <label class="switch">
+                          <input type="checkbox" id="verify" [(ngModel)]="section.isActive"
+                            (change)="changeActiveSection(section)">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div class="dataTables_info">{{'ordersPage.showMinMaxNumberofSections' | translate: entries}}</div>
+                </div>
+                <div class="col-sm-12 col-md-7" *ngIf="sectionsList.length>0">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls [autoHide]="true" [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel" id="orderList" (pageChange)="selectPage($event)">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="section-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{actionType === "Add" ? "Add Section" : "Edit Section"}}</h5>
+            <button type="button" class="close" aria-label="Close" (click)="closeModalSection()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container_filter" *ngIf="selectedCategory === 'Real Estate'">
+              <button type="button" [disabled]="disableChangeTab && tabSelectedModal !== 'Photos'" class="btn"
+                [ngClass]="tabSelectedModal === 'Photos' ? 'btnAddSection' : 'boxShadow'"
+                (click)="setActiveSectionTab('Photos')">Photos الصور
+              </button>
+              <button type="button" [disabled]="disableChangeTab && tabSelectedModal !== 'Floor Plan'" class="btn"
+                [ngClass]="tabSelectedModal === 'Floor Plan' ? 'btnAddSection' : 'boxShadow'"
+                (click)="setActiveSectionTab('Floor Plan')">Floor Plan - مخطط
+                العقار</button>
+            </div>
+            <form [formGroup]="formSection" (ngSubmit)="addEditCategorySection()" enctype="multipart/form-data">
+              <div>
+                <label class="col-form-label title">Select Type</label>
+                 <div class="form-group">
+                   <button type="button" name="Photo" class="btn btn-default">Photos الصور</button>
+                   <button type="button" name="Photo" class="btn btn-primary">Floor Plan - مخطط العقار</button>
+                   <button type="button" name="Photo" class="btn btn-default">3D - فيديو</button>
+                 </div>
+              </div>
+              <div>
+                <label class="col-form-label title">Header*</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Enter English" formControlName="header">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Enter Arabic" formControlName="headerAr">
+                </div>
+              </div>
+
+              <div>
+                <label class="col-form-label title">Description* </label>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Enter English" formControlName="description">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Enter Arabic" formControlName="descriptionAr">
+                </div>
+              </div>
+
+              <div>
+                <label class="col-form-label title">Upload Icon*</label>
+                <input type="file" class="form-control" id="recipient-name" accept="image/png,image/jpeg,image/jpg"
+                  (change)="selectImage($event.target.files)" #uploadFile>
+              </div>
+
+              <div class="col-12 container-upload">
+                <div class="form-group" (click)="uploadFile.click()">
+                  <input type="text" readonly class="form-control input-image" formControlName="iconURLName">
+                  <span class="title-filed">Upload Image</span>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div>
+                  <label class="col-form-label title">Number of pictures*</label>
+                  <div class="range">
+                    <div>
+                      <label for="minimum-value" class="title">Minimum</label>
+                      <input type="number" class="form-control" id="minimum-value" placeholder="Enter Min"
+                        formControlName="minImageCount">
+                    </div>
+                    <div class="max-number">
+                      <label for="maximum-value" class="title">Maximum</label>
+                      <input type="number" class="form-control" id="maximum-value" placeholder="Enter Max"
+                        formControlName="maxImageCount">
+                    </div>
+                  </div>
+                  <div class="errorContainer">
+                    <small class="errorLabel"
+                      *ngIf="formSection.get('maxImageCount').errors && formSection.get('maxImageCount').errors.compareValues">Maximum
+                      number should be larger than or Equal minimum number.</small>
+
+                    <small class="errorLabel"
+                      *ngIf="formSection.get('maxImageCount').errors && formSection.get('maxImageCount').errors.shouldbelargerthanzero">Maximum
+                      and minimum Number should be larger than 0.</small>
+
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" [disabled]="loading" class="btn btn-cancel"
+                  (click)="closeModalSection()">Cancel</button>
+                <button type="submit" [ngClass]="(formSection.valid && !loading) ? 'activeSaveBtn' : 'disableSaveBtn'"
+                  [disabled]="formSection.invalid || loading">{{actionType ===
+                  "Add" ? "Save" : "Edit"}}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!sectionsList.length && selectedCategory">
+      <div class="col-12 containerEmptySection">
+        <img src="../../../../assets/images/emptySections.png" class="emptySections" />
+        <h5 class="noSections">No sections have been added for this category </h5>
+        <button *ngIf="selectedCategory" type="button" data-toggle="modal" data-target="#section-modal"
+          class="btn btn-rounded btn-w waves-effect waves-light btnAddSection" (click)="openModalSection()">Add
+          Section</button>
+      </div>
+    </div>
+
+  </div>
+</div>

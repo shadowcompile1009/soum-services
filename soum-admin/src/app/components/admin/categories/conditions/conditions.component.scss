@@ -1,0 +1,46 @@
+.page-title-right {
+    display: inherit;
+  }
+
+  .formBody {
+    height: 700px;
+    overflow: scroll;
+  }
+
+  .back_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .back-button {
+    text-decoration: none;
+  }
+
+
+  ::ng-deep body[dir="ltr"] .back-button img {
+    margin-right: 15px;
+  }
+
+  ::ng-deep body[dir="rtl"] .back-button img {
+    margin-left: 15px;
+    transform: rotateY(180deg);
+  }
+
+  .btn-form {
+    background-color: #2f54eb;
+    color: white;
+    padding: 5px 15px;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

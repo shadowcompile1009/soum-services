@@ -1,0 +1,17 @@
+<div class="lock-user">
+    <div class="header">
+        <p class="block-title">Block User</p>
+        <img (click)="closeLockedUserDialoge()" src="../../../../../assets/images/close.png" />
+    </div>
+
+    <div class="body">
+        <p class="content">
+            Are you sure you want to block this user? This will block and delete all this user's existing active
+            listings.
+        </p>
+    </div>
+    <div class="footer">
+        <button (click)="blockUserByID()" class="btnYes">yes</button>
+        <button (click)="closeLockedUserDialoge()" class="btnNo">No</button>
+    </div>
+</div>

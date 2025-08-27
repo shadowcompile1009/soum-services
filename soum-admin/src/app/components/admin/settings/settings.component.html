@@ -1,0 +1,178 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between settings-box">
+          <div class="page-title-left">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">
+                {{'settings.title' | translate}}
+              </li>
+            </ol>
+          </div>
+          <div class="page-title-right">
+            <div class="button-add-q">
+              <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light ml-1"
+                data-toggle="modal" (click)="generateSettingForm()" data-target=".add_setting">Create</button>
+              <!-- Add/ Update Setting Modal -->
+              <div class="modal fade add_setting" tabindex="-1" role="dialog" aria-labelledby="addUpdateSettingModal"
+                aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0"> {{ (selectedSetting ? 'settings.updateSetting' :
+                        'settings.addSetting') | translate }}</h5>
+                      <button type="button" class="close" (click)="resetForm()" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form [formGroup]="addUpdateSettingForm">
+                        <div class="form-group">
+                          <label class="control-label">{{ 'settings.name' | translate }}</label>
+                          <input type="text" formControlName="name" placeholder="Enter Name"
+                            class="form-control form-control-sm" />
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">{{ 'settings.description' | translate }}</label>
+                          <input type="text" formControlName="description" placeholder="Enter Description"
+                            class="form-control form-control-sm" />
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">{{ 'settings.categories' | translate }}</label>
+                          <select class="custom-select custom-select-sm form-control form-control-sm"
+                            formControlName="category" id="setting-cat">
+                            <option value="Global">{{'settings.global' | translate}}</option>
+                            <option value="Public Mobile App Android">{{'settings.public_mobile_android' | translate}}
+                            </option>
+                            <option value="Public Mobile App iOS">{{'settings.public_mobile_ios' | translate}}</option>
+                            <option value="Public Web">{{'settings.public_web' | translate}}</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">{{ 'settings.type' | translate }}</label>
+                          <select class="custom-select custom-select-sm form-control form-control-sm" name="type"
+                            id="setting-type" formControlName="type">
+                            <option value="string">{{'settings.string' | translate}}</option>
+                            <option value="number">{{'settings.number' | translate}}</option>
+                            <option value="boolean">{{'settings.boolean' | translate}}</option>
+                            <option value="option">{{'settings.option' | translate}}</option>
+                            <option value="json">{{'settings.json' | translate}}</option>
+                          </select>
+                        </div>
+                        <div formArrayName="possible_values" class="form-group"
+                          *ngIf="addUpdateSettingForm.controls.type.value === 'option'">
+                          <label class="control-label">{{ 'settings.options' | translate }}</label>
+                          <button (click)="addPossibleValue()" type="button"
+                            class="btn btn-warning align-items-center mx-2">+ Add</button>
+                          <div *ngFor="let pValue of settingPossibleValues?.controls; let i = index" [formGroupName]="i"
+                            class="form-group option-group">
+                            <!-- The repeated alias template -->
+                            <label for="pValue-{{ i }}" class="control-label">Option:</label>
+                            <input id="pValue-{{ i }}" type="text" formControlName="option"
+                              class="form-control form-control-sm b-radius-0">
+                            <div class="mx-3 mt-3">
+                              <input id="pValueCheck-{{ i }}" type="checkbox" class="form-check-input"
+                                formControlName="isSelected">
+                              <label for="pValueCheck-{{ i }}" class="form-check-label">
+                                Selected
+                              </label>
+                              <button (click)="removeOption(i)"
+                                class="btn btn-danger remove-me ml-1">{{'settings.remove'
+                                | translate}}</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group" *ngIf="addUpdateSettingForm.controls.type.value === 'boolean'">
+                          <label class="switch" data-toggle="tooltip" data-placement="top">
+                            <input id="setting-{{ i }}" type="checkbox" formControlName="value">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                        <div *ngIf="['string', 'json'].includes(addUpdateSettingForm.controls.type.value)" class="
+                          form-group">
+                          <label class="control-label">{{ 'settings.value' | translate }}</label>
+                          <input type="text" formControlName="value" placeholder="Enter Value"
+                            class="form-control form-control-sm" />
+                        </div>
+                        <div *ngIf="addUpdateSettingForm.controls.type.value === 'number'" class="
+                          form-group">
+                          <label class="control-label">{{ 'settings.value' | translate }}</label>
+                          <input type="number" formControlName="value" placeholder="Enter Value"
+                            class="form-control form-control-sm" />
+                        </div>
+                        <button class="btn btn-warning" data-dismiss="modal" [disabled]="addUpdateSettingForm?.invalid"
+                          (click)="saveSetting()" type="submit">Save</button>
+                      </form>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+              <!-- END: Add Setting Modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="setting-row">
+
+          <!-- Setting Gridview -->
+          <div class="card">
+            <div class="card-body">
+              <div class="question-box table-responsive" *ngIf="settingsArray?.length >= 0">
+                <table class="table mb-0">
+                  <thead class="thead-light">
+                    <tr>
+                      <th style="width:30px;">{{'administrators.no' | translate}}</th>
+                      <th>{{'settings.name' | translate}}</th>
+                      <th>{{'settings.description' | translate}}</th>
+                      <th style="width:140px;">{{'settings.categories' | translate}}</th>
+                      <th style="width:140px;">{{'settings.value' | translate}}</th>
+                      <th style="width:60px;">
+                        {{'administrators.action' | translate}}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let setting of settingsArray; let i = index;">
+                    <tr>
+                      <td data-title="{{'administrators.no' | translate}}">{{ i + 1 }}</td>
+                      <td class="name" data-title="{{'settings.name' | translate}}">{{ setting.name }}</td>
+                      <td data-title="{{'settings.description' | translate}}">{{ setting.description }}</td>
+                      <td data-title="{{'settings.categories' | translate}}">{{ setting.setting_category }}</td>
+                      <td data-title="{{'settings.value' | translate}}">
+                        <label *ngIf="setting.type === 'boolean'" class="switch" data-toggle="tooltip"
+                          data-placement="top">
+                          <input id="setting-{{ i }}" type="checkbox" [checked]="setting.value === true" disabled>
+                          <span class="slider round"></span>
+                        </label>
+                        <span *ngIf="['string', 'option', 'number'].includes(setting.type)">{{ setting.type === "string" ? (setting.value | truncate) : setting.value }}</span>
+                      </td>
+                      <td data-title="{{'administrators.action' | translate}}">
+                        <span class="action-checkbox">
+                          <button type="button" *ngIf="!setting?.edit" (click)="generateSettingForm(setting)"
+                            class="mr-2 text-primary btn_style" data-toggle="modal" data-target=".add_setting">
+                            <i class="mdi mdi-pencil font-size-18"></i>
+                          </button>
+                          <a class="text-danger" (click)="deleteSetting(setting?._id)"><i
+                              class="mdi mdi-trash-can font-size-18"></i></a>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

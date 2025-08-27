@@ -1,0 +1,52 @@
+<h3 class="title mb-4">Log Details :</h3>
+<div class="data_wrapper mb-2">
+  <span class="data">
+    &#8226; Product ID: <span class="bold"> {{ logDetails?.productId || "--" }} </span>
+  </span>
+  <span class="data">
+    &#8226; Bid amount: <span class="bold"> {{ logDetails?.amount || "--" }} </span>
+  </span>
+  <span class="data">
+    &#8226; Seller number:
+    <span class="bold"> {{ logDetails?.sellerName || "--" }} </span>
+  </span>
+  <span class="data">
+    &#8226; Buyer number:
+    <span class="bold"> {{ logDetails?.buyerName || "--" }} </span>
+  </span>
+  <span class="data">
+    &#8226; Bid status: <span class="bold"> {{ logDetails?.status }} </span>
+  </span>
+  <span class="data">
+    &#8226; Bid transactional status:
+    <span class="bold"> {{ logDetails?.transaction || "--" }} </span>
+  </span>
+  <span class="data">
+    &#8226; bid update timestamp:
+    <span class="bold"> {{ logDetails?.updatedAt | date:'M/d/yy, h:mm a' }} </span>
+  </span>
+  <span class="data">
+    &#8226; bid create timestamp:
+    <span class="bold"> {{ logDetails?.createdAt | date:'M/d/yy, h:mm a' }} </span>
+  </span>
+  <span class="data">
+    &#8226; starting bid:
+    <span class="bold"> {{ logDetails?.startBid || "--" }} </span>
+  </span>
+  <span class="data">
+    &#8226; Buyer name:
+    <span class="bold"> {{ logDetails?.buyerName || "--" }} </span>
+  </span>
+  <span class="data">
+    &#8226; Seller name:
+    <span class="bold"> {{ logDetails?.sellerName || "--" }} </span>
+  </span>
+  <button
+    type="button"
+    class="tabs btn btn-rounded btn-primary btn-w waves-effect waves-light setting_btn"
+    (click)="close()"
+  >
+    Close
+  </button>
+</div>
+

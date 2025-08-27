@@ -1,0 +1,271 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div
+          class="page-title-box d-flex align-items-center justify-content-between"
+        >
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">Bid setting</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+    <div>
+      <button
+        type="button"
+        class="tabs btn btn-rounded btn-primary btn-w waves-effect waves-light setting_btn"
+        (click)="choosepage('bid_settings')"
+        [ngClass]="{ deActiveButton: tabName !== 'bid_settings' }"
+      >
+        Main Bid Settings
+      </button>
+      <!-- <button
+        type="button"
+        class="tabs btn btn-rounded btn-primary btn-w waves-effect waves-light intervals_btn"
+        (click)="choosepage('bid_intervals')"
+        [ngClass]="{ deActiveButton: tabName !== 'bid_intervals' }"
+      >
+        Bid Intervals
+      </button> -->
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3" *ngIf="tabName == 'bid_settings'">
+            <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+              <span class="card_title">Bidding Main Settings</span>
+              <div class="active_bidding">
+                <span class="active_bidding_txt"> Activate Bidding </span>
+                <div class="d-flex align-items-center">
+                  <label
+                    class="switch mt-2"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title=""
+                    data-original-title="On/Off"
+                  >
+                    <!-- (change)="updateSystemSetting()"
+                  [(ngModel)]="systemSetting.product_approval" -->
+                    <input
+                      type="checkbox"
+                      name="activeBiddingToggle"
+                      formControlName="activeBiddingToggle"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                  <span
+                    *ngIf="!settingsForm.get('activeBiddingToggle').value"
+                    class="toggle_label"
+                    >Off</span
+                  >
+                  <span
+                    *ngIf="settingsForm.get('activeBiddingToggle').value"
+                    class="toggle_label"
+                    >On</span
+                  >
+                </div>
+              </div>
+              <div class="payment_methods">
+                <span class="payment_methods_txt">
+                  Available payment methods for the bidding
+                </span>
+                <div class="d-flex mt-2">
+                  <div
+                    class="payment_methods_checks d-flex flex-column align-items-start justify-content-between"
+                  >
+                    <div class="d-flex align-items-center">
+                      <span class="action_btn mr-2 mt-2">
+                        <label class="checkbox-box checkbox-true ml-2">
+                          <input
+                            type="checkbox"
+                            name="applePay"
+                            formControlName="applePay"
+                          />
+                          <span>true</span>
+                        </label>
+                      </span>
+                      <span class="check_title">Apple Pay</span>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                      <span class="action_btn mr-2 mt-2">
+                        <label class="checkbox-box checkbox-true ml-2">
+                          <input
+                            type="checkbox"
+                            name="stcPay"
+                            formControlName="stcPay"
+                          />
+                          <span>true</span>
+                        </label>
+                      </span>
+                      <span class="check_title">STC Pay</span>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                      <span class="action_btn mr-2 mt-2">
+                        <label class="checkbox-box checkbox-true ml-2">
+                          <input
+                            type="checkbox"
+                            name="tabby"
+                            formControlName="tabby"
+                          />
+                          <span>true</span>
+                        </label>
+                      </span>
+                      <span class="check_title">Tabby</span>
+                    </div>
+                  </div>
+                  <div
+                    class="payment_methods_checks d-flex flex-column align-items-start justify-content-between"
+                  >
+                    <div class="d-flex align-items-center">
+                      <span class="action_btn mr-2 mt-2">
+                        <label class="checkbox-box checkbox-true ml-2">
+                          <input
+                            type="checkbox"
+                            name="tamara"
+                            formControlName="tamara"
+                          />
+                          <span>true</span>
+                        </label>
+                      </span>
+                      <span class="check_title">Tamara</span>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                      <span class="action_btn mr-2 mt-2">
+                        <label class="checkbox-box checkbox-true ml-2">
+                          <input
+                            type="checkbox"
+                            name="visaMaster"
+                            formControlName="visaMaster"
+                          />
+                          <span>true</span>
+                        </label>
+                      </span>
+                      <span class="check_title">Visa/Mastercard</span>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                      <span class="action_btn mr-2 mt-2">
+                        <label class="checkbox-box checkbox-true ml-2">
+                          <input
+                            type="checkbox"
+                            name="mada"
+                            formControlName="mada"
+                          />
+                          <span>true</span>
+                        </label>
+                      </span>
+                      <span class="check_title">Mada</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="settings_options">
+                <span class="settings_options_field">
+                  <div class="txt" for="startBidding"
+                    >Starting Bidding Percentage</div
+                  >
+                  <input
+                    id="startBidding"
+                    (keypress)="numbersOnly($event)"
+                    type="text"
+                    placeholder="precentage"
+                    name="startBidding"
+                    formControlName="startBidding"
+                  />
+                  <span class="icon">%</span>
+                </span>
+                <span class="settings_options_field">
+                  <div class="txt" for="biddingBase"
+                    >Bidding Base Reference</div
+                  >
+                  <select
+                    id="biddingBase"
+                    class="custom-select custom-select-sm form-control form-control-sm"
+                    name="biddingBase"
+                    formControlName="biddingBase"
+                  >
+                    <option value=""></option>
+                    <option
+                      *ngFor="let option of referanceOptions"
+                      [ngValue]="option"
+                    >
+                      {{ option }}
+                    </option>
+                  </select>
+                </span>
+                <span class="settings_options_field">
+                  <div class="txt" for="biddingExperationTime"
+                    >Bidding Expiration Time</div
+                  >
+                  <input
+                    id="biddingExperationTime"
+                    (keypress)="numbersOnly($event)"
+                    type="text"
+                    placeholder="0"
+                    name="biddingExperationTime"
+                    formControlName="biddingExperationTime"
+                  />
+                  <span class="icon">hours</span>
+                </span>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-rounded btn-primary btn-w waves-effect waves-light setting_btn submit_btn"
+              >
+                Save
+              </button>
+            </form>
+          </div>
+          <div class="card-body pt-3" *ngIf="tabName == 'bid_intervals'">
+            <span class="card_title">Bid intervals</span>
+            <div class="table_wrapper">
+              <div class="data_row header">
+                <span>Range</span>
+                <span>Lower limit</span>
+                <span>Upper Limit</span>
+                <span>Interval</span>
+              </div>
+              <div class="data_row">
+                <span>1</span>
+                <div class="input_wrapper">
+                  <input type="text" name="" id="" />
+                </div>
+                <div class="input_wrapper">
+                  <input type="text" name="" id="" />
+                </div>
+                <div class="input_wrapper">
+                  <input type="text" name="" id="" />
+                </div>
+              </div>
+              <div class="data_row">
+                <span>2</span>
+                <div class="input_wrapper">
+                  <input type="text" name="" id="" />
+                </div>
+                <div class="input_wrapper">
+                  <input type="text" name="" id="" />
+                </div>
+                <div class="input_wrapper">
+                  <input type="text" name="" id="" />
+                </div>
+              </div>
+            </div>
+
+            <span class="add_new">+ Add a new range</span>
+
+            <button class="save">save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

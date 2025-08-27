@@ -1,0 +1,18 @@
+.table-responsive td .img {
+    width: auto;
+    height: auto;    max-width: 100%;
+}
+.table-responsive td[data-title="Picture"] {
+    text-align: center;
+}
+
+tr td, tr th{
+    text-align: center;
+}
+
+.noData {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: darkgrey;
+}

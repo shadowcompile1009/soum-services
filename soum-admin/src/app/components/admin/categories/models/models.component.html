@@ -1,0 +1,433 @@
+<div class="page-content" style="overflow-y: scroll;">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active"><a [routerLink]="['/admin/categories']">
+                  {{'categories.categories' | translate}}
+                </a></li>
+              <li class="breadcrumb-item active"><a [routerLink]="['/admin/categories/brands', category_id]">
+                  {{'categories.brands' | translate}}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                {{'categories.model' | translate}}
+              </li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+              (click)="getmodelToBeReordered()" data-toggle="modal" data-target=".changeOrder_detail">
+              {{'labels.changeOrder' | translate}}</button>
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light" data-toggle="modal"
+              data-target="#add-model">{{'categories.add' | translate}}</button>
+
+
+
+            <!-- ADD MODEL MODAL -->
+            <div class="modal fade add_detail" id="add-model" tabindex="-1" role="dialog"
+              aria-labelledby="mySmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mt-0">
+                      {{'categories.addModel' | translate}}
+                    </h5>
+                    <button type="button" class="close" (click)="closeModal('add-model')">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="modelForm">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="control-label">
+                              {{'categories.uploadPicture' | translate}}
+                            </label>
+                            <div class="custom_file">
+                              <input type="file" class="custom_file_input" accept="image/*"
+                                (change)="onSelectFile($event)" formControlName="image">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label class="control-label">
+                              {{'categories.name' | translate}}
+                            </label>
+                            <input type="text" class="form-control" name="course-name" placeholder="Enter English"
+                              formControlName="name">
+                          </div>
+                          <div class="form-group">
+                            <!-- <label for="validationCustom01">{{'labels.arabicName' | translate}}</label> -->
+                            <input type="text" minlength="3" placeholder="Enter Arabic" formControlName="name_ar"
+                              class="form-control">
+                          </div>
+                        </div>
+
+
+                      </div>
+                      <button class="btn btn-warning" type="submit" data-dismiss="modal" [disabled]="!modelForm.valid"
+                        (click)="saveModel()">
+                        {{'categories.save' | translate}}
+                      </button>
+                    </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!-- END: ADD MODEL MODAL -->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">{{'categories.no' | translate}}</th>
+                    <th style="width: 80px;">{{'categories.picture' | translate}} </th>
+                    <th>{{'categories.name' | translate}}</th>
+                    <th style="width: 120px;">{{'categories.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of modelList; let i=index">
+                    <td data-title="{{'categories.no' | translate}}">{{i+1}}</td>
+                    <td data-title="{{'categories.picture' | translate}}"><img [src]="data?.model_icon" alt=""
+                        height="30" class="img"></td>
+                    <td data-title="{{'categories.name' | translate}}">
+                      {{data?.model_name}}<br>
+                      {{'('+data?.model_name_ar+')'}}<br>
+                    </td>
+                    <td class="ActionsBtns" data-title="{{'categories.action' | translate}}">
+                      <a [routerLink]="['/admin/categories/brands/models/adons', category_id, brand_id, data?._id]"
+                        class="mr-2 text-solitud">
+                        <i class="fas fa-puzzle-piece font-size-18"></i>
+                      </a>
+                      <a [routerLink]="['/admin/categories/brands/models/variant', category_id, brand_id, data?._id]"
+                        class="mr-2 text-solitud">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                      <button type="button" class="mr-2 text-primary btn_style" (click)="updateModel(data)">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <a class="text-danger" (click)="action(data?._id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!modelList?.length">
+                    <td colspan="5">
+                      No Model Found!
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <!-- EDIT MODEL MODAL -->
+              <div class="modal fade" id="edit-model" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">Model</h5>
+                      <button type="button" class="close" (click)="closeModal('edit-model')">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="editModelForm">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+
+                              <div class="d-flex align-items-center justify-content-between">
+                                <label class="control-label">{{'categories.uploadPicture' | translate}}</label>
+
+                                <div class="d-flex flex-column align-items-center">
+                                  <span style="font-size: 9px;">Price Nudging v3</span>
+                                  <label class="switch mb-2" data-toggle="tooltip" data-placement="top"
+                                    title="priceNudgingSettings" data-original-title="On/Off">
+                                    <input type="checkbox" (change)="handlePriceNudgingSettingsAppearance()"
+                                      name="priceNudgingSettings" formControlName="priceNudgingSettings">
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-center">
+                                  <span style="font-size: 9px;">variable commission</span>
+                                  <label class="switch mb-2" data-toggle="tooltip" data-placement="top"
+                                    title="commissionToggle" data-original-title="On/Off">
+                                    <input type="checkbox" (change)="handleCommissionAppearance()"
+                                      name="commissionToggle" formControlName="commissionToggle">
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-center">
+                                  <span style="font-size: 9px;">Trade In</span>
+                                  <label class="switch mb-2" data-toggle="tooltip" data-placement="top"
+                                    title="tradeInSettings" data-original-title="On/Off">
+                                    <input type="checkbox"
+                                      name="tradeInSettings" formControlName="tradeInSettings">
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="custom_file">
+                                <input type="file" (change)="onSelectFile($event)" formControlName="model_icon"
+                                  accept="image/*" class="custom_file_input">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label class="control-label">{{'categories.name' | translate}}</label>
+                              <input type="text" formControlName="model_name" placeholder="Enter English"
+                                class="form-control" name="course-name">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" minlength="3" placeholder="Enter Arabic"
+                                formControlName="model_name_ar" class="form-control">
+                            </div>
+                          </div>
+
+                          <ng-container *ngIf="showCommissionArea">
+                            <div class="col-lg-12">
+                              <div class="form-group d-flex justify-content-between align-items-center">
+                                <label class="control-label"
+                                  style="flex:0.5">{{'categories.Excellent' | translate}}</label>
+                                <input type="number" style="flex:0.5" formControlName="excellentCommission"
+                                  class="form-control" name="excellentCommission">
+                              </div>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="form-group d-flex justify-content-between align-items-center">
+                                <label class="control-label" style="flex:0.5">{{'categories.Fair' | translate}}</label>
+                                <input type="number" style="flex:0.5" formControlName="fairCommission"
+                                  class="form-control" name="fairCommission">
+                              </div>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="form-group d-flex justify-content-between align-items-center">
+                                <label class="control-label"
+                                  style="flex:0.5">{{'categories.ExpensiveLB' | translate}}</label>
+                                <input type="number" style="flex:0.5" formControlName="expensiveLBCommission"
+                                  class="form-control" name="expensiveLBCommission">
+                              </div>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="form-group d-flex justify-content-between align-items-center">
+                                <label class="control-label"
+                                  style="flex:0.5">{{'categories.ExpensiveUB' | translate}}</label>
+                                <input type="number" style="flex:0.5" formControlName="expensiveUBCommission"
+                                  class="form-control" name="expensiveUBCommission">
+                              </div>
+                            </div>
+                            <div class="d-flex flex-column w-100 align-items-end justify-content-end">
+                              <div class="sellerCommission_wrapper">
+                                <span style="font-size: 9px;">Business Seller<br> Variable Commission</span>
+                                <label class="switch mb-2" data-toggle="tooltip" data-placement="top"
+                                  title="sellerCommissionToggle" data-original-title="On/Off">
+                                  <input type="checkbox" (change)="handleSellerCommissionAppearance()"
+                                    name="sellerCommissionToggle" formControlName="sellerCommissionToggle">
+                                  <span class="slider round"></span>
+                                </label>
+                              </div>
+                              <div class="d-flex flex-column" *ngIf="showSellerCommissionArea" style="width: inherit;">
+                                <div class="field_wrapper">
+                                  <div class="form-group d-flex justify-content-between align-items-center">
+                                    <label class="control-label"
+                                      style="flex:0.5">{{'categories.Excellent' | translate}}</label>
+                                    <input type="number" style="flex:0.5" formControlName="excellentSellerCommission"
+                                      class="form-control" name="excellentSellerCommission">
+                                  </div>
+                                </div>
+                                <div class="field_wrapper">
+                                  <div class="form-group d-flex justify-content-between align-items-center">
+                                    <label class="control-label"
+                                      style="flex:0.5">{{'categories.Fair' | translate}}</label>
+                                    <input type="number" style="flex:0.5" formControlName="fairSellerCommission"
+                                      class="form-control" name="fairSellerCommission">
+                                  </div>
+                                </div>
+                                <div class="field_wrapper">
+                                  <div class="form-group d-flex justify-content-between align-items-center">
+                                    <label class="control-label"
+                                      style="flex:0.5">{{'categories.ExpensiveLB' | translate}}</label>
+                                    <input type="number" style="flex:0.5" formControlName="expensiveLBSellerCommission"
+                                      class="form-control" name="expensiveLBSellerCommission">
+                                  </div>
+                                </div>
+                                <div class="field_wrapper">
+                                  <div class="form-group d-flex justify-content-between align-items-center">
+                                    <label class="control-label"
+                                      style="flex:0.5">{{'categories.ExpensiveUB' | translate}}</label>
+                                    <input type="number" style="flex:0.5" formControlName="expensiveUBSellerCommission"
+                                      class="form-control" name="expensiveUBSellerCommission">
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </ng-container>
+                        </div>
+                        <button class="btn btn-warning" [disabled]="editModelForm?.invalid" (click)="editModel()"
+                          type="submit">{{'categories.save' | translate}}</button>
+                      </form>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+              <!-- END: EDIT MODEL MODAL -->
+
+              <!-- LINK MODEL QUESTION MODAL -->
+              <div class="modal fade add_questions" id="link-question" tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">Select Questions</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div id="question-accordion" class="custom-accordion-arrow">
+                        <div class="card" *ngFor="let question of questions?.mcq; let i=index">
+                          <a [href]="'#question-collapse' + i" class="collapsed" data-toggle="collapse"
+                            aria-expanded="false" aria-controls="question-collapseOne">
+                            <div class="card-header" id="question-headingOne">
+                              <h5 class="font-size-14 m-0">
+                                <i class="accor-arrow-icon">{{'categories.questionNumber' | translate:
+                                  getQuestionNumber(i)}}</i>{{question?.question}}
+                              </h5>
+                            </div>
+                          </a>
+                          <div class="dataTables_length choose_question">
+                            <span class="action_btn mr-2">{{'categories.selectQuestion' | translate}}
+                              <label class="checkbox-box checkbox-true ml-2">
+                                <input type="checkbox" (change)="selectQuestion(question)"
+                                  [(ngModel)]="question.selected">
+                                <span>true</span>
+                              </label>
+                            </span>
+                            <span class="marks">
+                              <label>
+                                {{'categories.weightage' | translate}}
+                                <span>{{':\t\t' + (question?.weightage || 0)}}</span>
+                              </label>
+                            </span>
+                          </div>
+                          <div>
+                            <div [id]="'question-collapse' + i" class="collapse" aria-labelledby="question-headingOne"
+                              data-parent="#question-accordion">
+                              <div class="card-body">
+                                <div class="question-box table-responsive">
+                                  <table class="table mb-0">
+                                    <thead class="thead-light">
+                                      <tr>
+                                        <th style="width:30px;">{{'categories.no' | translate}}</th>
+                                        <th>{{'categories.answer' | translate}}</th>
+                                        <th style="width: 120px;">{{'categories.score' | translate}}</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let option of question?.options; let j = index;">
+                                        <td data-title="{{'categories.no' | translate}}">{{j+1}}</td>
+                                        <td class="answer" data-title="{{'categories.answer' | translate}}">
+                                          {{option?.answer}}</td>
+                                        <td data-title="Choose Option ">
+                                          {{option?.score || 0}}
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <button class="btn btn-warning" (click)="linkQuestion()" type="submit">
+                          {{'categories.update' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+              <!-- END: LINK MODEL QUESTION MODAL -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+
+<!-- Change Order list -->
+<div class="modal fade changeOrder_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Change Models Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modal-orderList">
+        <div #scrollEl cdk-scrollable style="height:400px; overflow-y:auto;">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                <th style="width: 80px;">{{'administrators.picture' | translate}}</th>
+                <th>{{'administrators.name' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="box-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
+              <tr class="drag-box" *ngFor="let model of modelToBeReordered; let i = index;" cdkDrag>
+                <td data-title="{{'categories.no' | translate}}">{{i+1}}</td>
+                <td data-title="{{'categories.picture' | translate}}">
+                  <img [src]="model?.model_icon" alt="" height="30" class="img">
+                </td>
+                <td data-title="{{'categories.name' | translate}}">
+                  {{model?.model_name}}<br>
+                  {{'('+model?.model_name_ar+')'}}<br>
+                </td>
+              </tr>
+            </tbody>
+            <!-- <pre>{{newArr | json}}</pre> -->
+          </table>
+
+        </div>
+        <button type="submit" data-dismiss="modal" (click)="changeOrderForModel()" class="btn btn-warning">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

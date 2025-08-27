@@ -1,0 +1,120 @@
+<div class="page-content">
+    <div class="container-fluid">
+  
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+              <a class="back-button" (click)="goBack()">
+                <img src="assets/images/icons/back-icon.svg">
+              </a>
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item active">
+                  <a [routerLink]="['/admin/orders']">
+                    {{'ordersDetails.orders' | translate}}
+                  </a>
+                </li>
+                <li class="breadcrumb-item active">{{'ordersDetails.payoutTitle' | translate}}</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    
+      <!-- Original Order Details -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pt-3">
+              <h5>{{'ordersDetails.payoutTitle' | translate}}</h5>
+              <div class="table-responsive table-style">
+                <table class="table mb-0 payoutDetails">
+                  <thead class="thead-light">
+                    <tr>
+                      <th style="min-width: 100px">{{'ordersPage.orderID' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.productId' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.productName' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.variant' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.sellerName' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.sellerPhone' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.orderDate' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.basePrice' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.sellerCommission' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.sellerCommissionAmount' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.vat' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.shippingCharges' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.netForseller' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.bankName' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.iban' | translate}}</th>
+                      <th style="width:60px;">{{'ordersPage.action' | translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td data-title="{{'ordersPage.orderID' | translate}}">{{orderDetails?.order_id || '---'}}</td>
+                      <td data-title="{{'ordersPage.productId' | translate}}">{{orderDetails?.product_id || '---'}}</td>
+                      <td data-title="{{'ordersPage.productName' | translate}}">{{orderDetails?.product_name || '---'}}</td>
+                      <td data-title="{{'ordersPage.variant' | translate}}">{{orderDetails?.variant || 0}}</td>
+                      <td data-title="{{'ordersPage.sellerName' | translate}}">{{orderDetails?.seller_name || '---'}}</td>
+                      <td data-title="{{'ordersPage.sellerPhone' | translate}}">{{orderDetails?.seller_phone || '---'}}</td>
+                      <td data-title="{{'ordersPage.orderDate' | translate}}">{{orderDetails?.duration_of_created_order || 0}}</td>
+                      <td data-title="{{'ordersPage.basePrice' | translate}}">{{orderDetails?.sell_price || 0}}</td>
+                      <td data-title="{{'ordersPage.sellerCommission' | translate}}">{{orderDetails?.commission || 0}}</td>
+                      <td data-title="{{'ordersPage.sellerCommissionAmount' | translate}}">{{orderDetails?.commission_amount || 0}}</td>
+                      <td data-title="{{'ordersPage.vat' | translate}}">{{orderDetails?.vat || 0}}</td>
+                      <td data-title="{{'ordersPage.shippingCharges' | translate}}">{{orderDetails?.shipping_charge || 0}}</td>
+                      <td data-title="{{'ordersPage.netForseller' | translate}}">{{orderDetails?.net_seller || 0}}</td>
+                      <td data-title="{{'ordersPage.bankName' | translate}}">{{orderDetails?.bank_name || '---'}}</td>
+                      <td data-title="{{'ordersPage.iban' | translate}}">{{orderDetails?.iban || '---'}}</td>
+                     
+                      <td data-title="{{'ordersPage.action' | translate}}">
+                        <a  (click)="editOrderPayout()" class="text-primary" data-toggle="tooltip" data-placement="top"
+                          title="" data-original-title="Delete"><i class="mdi mdi-pencil font-size-18"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pt-3">
+              <h5>{{'ordersPage.payoutHistory' | translate}}</h5>
+              <div class="table-responsive table-style">
+                <table class="table mb-0 payoutDetails">
+                  <thead class="thead-light">
+                    <tr>
+                      <th style="min-width: 100px">{{'ordersPage.hyperSplitID' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.transTime' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.payoutUser' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.sellerIban' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.sellerBankName' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.payoutAmount' | translate}}</th>
+                      <th style="min-width: 100px">{{'ordersPage.status' | translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let payout of historyPayouts">
+                      <td data-title="{{'ordersPage.hyperSplitID' | translate}}">{{payout?.hyper_splits_id || '---'}}</td>
+                      <td data-title="{{'ordersPage.transTime' | translate}}">{{payout?.created_at | date:'YYYY-MM-dd hh:mm:ss a'}}</td>
+                      <td data-title="{{'ordersPage.payoutUser' | translate}}">{{payout?.made_by || '---'}}</td>
+                      <td data-title="{{'ordersPage.sellerIban' | translate}}">{{payout?.iban || '---'}}</td>
+                      <td data-title="{{'ordersPage.sellerBankName' | translate}}">{{payout?.bank_name || '---'}}</td>
+                      <td data-title="{{'ordersPage.payoutAmount' | translate}}">{{payout?.pay_amount || '---'}}</td>
+                      <td data-title="{{'ordersPage.status' | translate}}">{{payout?.status || '---'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p *ngIf="historyPayouts?.length==0" class="noPayoutHistory">No payout history for this order !</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>

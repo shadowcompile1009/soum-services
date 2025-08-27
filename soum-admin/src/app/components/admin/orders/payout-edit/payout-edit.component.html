@@ -1,0 +1,85 @@
+<div class="payout-for modal">
+  <div class="body_modal">
+    <div class="payout-header">
+      <h5 class="payout-title mt-0">{{"ordersPage.editPayout" | translate}}</h5>
+      <button type="button" class="close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  
+    <form class="payout-form" [formGroup]="payoutForm" (ngSubmit)="editPayoutOrderDetails()">
+      <div class="form-group">
+          <label for="validationCustom1">{{'ordersPage.basePrice' | translate}} ({{currency}})</label>
+          <input id="validationCustom1" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="basePrice" readonly>
+        </div>
+        <div class="form-group">
+          <label for="validationCustom2">{{'ordersPage.sellerCommission' | translate}}</label>
+          <input id="validationCustom2" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="sellerCommission">
+          <div class="erros" *ngIf="sellerCommission.invalid && (sellerCommission.dirty || sellerCommission.touched)">
+            <div *ngIf="sellerCommission?.errors?.required">
+              <span class="errMessage">{{'ordersPage.sellerComissionReq' | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="validationCustom3">{{'ordersPage.sellerCommissionAmount' | translate}} ({{currency}})</label>
+          <input id="validationCustom3" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="sellerCommissionAmount">
+          <div class="erros" *ngIf="sellerCommissionAmount.invalid && (sellerCommissionAmount.dirty || sellerCommissionAmount.touched)">
+            <div *ngIf="sellerCommissionAmount?.errors?.required">
+              <span class="errMessage">{{'ordersPage.sellerComissionAmountReq' | translate}} ({{currency}})</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="validationCustom4">{{'ordersPage.vat' | translate}} ({{currency}})</label>
+          <input id="validationCustom4" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="vat" readonly>
+          <div class="erros" *ngIf="vat.invalid && (vat.dirty || vat.touched)">
+            <div *ngIf="vat?.errors?.required">
+              <span class="errMessage">{{'ordersPage.vatReq' | translate}} ({{currency}})</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="validationCustom5">{{'ordersPage.shippingCharges' | translate}} ({{currency}})</label>
+          <input id="validationCustom5" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="shippingCharge" readonly>
+          <div class="erros" *ngIf="shippingCharge.invalid && (shippingCharge.dirty || shippingCharge.touched)">
+            <div *ngIf="shippingCharge?.errors?.required">
+              <span class="errMessage">{{'ordersPage.shippingChargeReq' | translate}} ({{currency}})</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="validationCustom6">{{'ordersPage.netSeller' | translate}} ({{currency}})</label>
+          <input id="validationCustom6" (keypress)="numbersOnly($event)" type="text" class="form-control" formControlName="netForSeller" readonly>
+          <div class="erros" *ngIf="netForSeller.invalid && (netForSeller.dirty || netForSeller.touched)">
+            <div *ngIf="netForSeller?.errors?.required">
+              <span class="errMessage">{{'ordersPage.netSellerReq' | translate}} ({{currency}})</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="validationCustom7">{{'ordersPage.iban' | translate}}</label>
+          <input id="validationCustom7" type="text" minlength="24" maxlength="24" class="form-control" formControlName="iban">
+          <div class="erros" *ngIf="iban.invalid && (iban.dirty || iban.touched)">
+            <div *ngIf="iban?.errors?.required">
+              <span class="errMessage">{{'ordersPage.ibanReq' | translate}}</span>
+            </div>
+            <div *ngIf="iban?.errors?.pattern">
+              <span class="errMessage">{{'ordersPage.ibanRegx' | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="validationCustom8">{{'ordersPage.bankName' | translate}}</label>
+          <select id="validationCustom8" class="custom-select custom-select-sm form-control form-control-sm" formControlName="bankName">
+            <option value="">Select bank Name</option>
+            <option *ngFor="let bank of allBanks" [value]="language=='ar'? bank.bankName_ar:bank.bankName" [selected]="bankName.value==(bank.bankName_ar || bank.bankName)">{{language=='ar'? bank.bankName_ar:bank.bankName}}</option>
+          </select>
+        </div>
+       
+        <div class="form-group">
+            <button [disabled]="!payoutForm.valid" class="btn btn-lg btn" type="submit">{{'ordersPage.submitForm' | translate}}</button>
+        </div>
+    </form>
+  </div>
+</div> 

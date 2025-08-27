@@ -1,0 +1,251 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active"><a [routerLink]="['/admin/categories']">{{'categories.categories' |
+                  translate}}</a></li>
+              <li class="breadcrumb-item active"><a
+                  [routerLink]="['/admin/categories/brands', category_id]">{{'categories.brands' | translate}}</a>
+              </li>
+              <li class="breadcrumb-item active">
+                  <a [routerLink]="['/admin/categories/brands/models', category_id, brand_id]">{{'categories.model' |
+                  translate}}</a>
+              </li>
+              <li class="breadcrumb-item active">
+                  <a [routerLink]="['/admin/categories/brands/models/variant', category_id, brand_id, model_id]">{{'categories.variants' | translate}}</a>
+              </li>
+              <li class="breadcrumb-item">
+                 {{'categories.conditions' | translate}}
+              </li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <!-- <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+              (click)="getConditionsToBeReordered()" data-toggle="modal" data-target=".changeOrder_detail">
+              {{'labels.changeOrder' | translate}}</button>
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light" data-toggle="modal"
+              data-target="#add-condition">{{'categories.add' | translate}}</button> -->
+
+              <button *ngIf="!conditions" type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light" (click)="addNewCondition()">{{'categories.addNewCondition' | translate}}</button>
+
+            <!-- <div class="modal fade add_detail" id="add-condition" tabindex="-1" role="dialog"
+              aria-labelledby="mySmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mt-0">{{'categories.addCondition' | translate}}</h5>
+                    <button type="button" class="close" (click)="closeModal('add-condition')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="addConditionForm">
+                      <div class="row">
+                        <div class="col-lg-12">
+                           <div class="form-group">
+                            <label class="control-label">{{'categories.name' | translate}}</label>
+                            <input type="text" formControlName="condition" placeholder="Enter English"
+                              class="form-control" name="course-name">
+                          </div>
+                          <div class="form-group">
+                            <input type="text" formControlName="condition_ar" placeholder="Enter Arabic"
+                              class="form-control" name="course-name">
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">{{'categories.priceNudge' | translate}}</label>
+                            <input type="number" formControlName="current_price" class="form-control" name="course-name">
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn btn-warning" [disabled]="addConditionForm?.invalid" (click)="addCondition('add')"
+                        type="submit">{{'categories.save' | translate}}</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">{{'categories.no' | translate}}</th>
+                    <th>{{'categories.name' | translate}}</th>
+                    <th style="width: 220px;">{{'categories.priceNudge' | translate}}</th>
+                    <th style="width: 120px;">{{'categories.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr *ngFor="let data of conditions| paginate: {
+                    id: 'conditionsList',
+                    itemsPerPage: limit,
+                    currentPage: currentPage,
+                    totalItems: totalResult
+                    }; let i = index;">
+
+            
+                    <td data-title="{{'categories.no' | translate}}">{{(i + 1) + (currentPage - 1) * limit}}</td>
+                 
+                    <td class="td1">
+                      <span>{{data.condition.name}}</span><br />
+                      <small class="text-muted">{{data.condition.nameAr}}</small>
+                    </td>
+
+                    <td class="td1">
+                      <span>Max: {{data.priceNudge.max}}</span><br />
+                      <span>Min: {{data.priceNudge.min}}</span>
+                    </td>
+
+                    <td data-title="{{'categories.action' | translate}}">
+                      <button type="button" (click)="updateCondition(data.condition)" class="mr-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                    </td>
+                    
+            
+                  </tr>
+                    <tr *ngIf="!conditions">
+                      <td colspan="3">
+                        {{'categories.noConditions' | translate}}
+                      </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                    <div class="dataTables_info">
+                        {{'conditions.showMinMaxNumberofList' | translate: entries}} | Total conditions: {{totalResult}}
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <pagination-controls [nextLabel]="paginationNextLabel"
+                            [previousLabel]="paginationPreviousLabel" id="conditionsList"
+                            (pageChange)="selectPage($event)">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+              <div class="modal fade edit_detail" id="edit-condition" tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">{{'categories.editCondition' | translate}}</h5>
+                      <button type="button" class="close" (click)="closeModal('edit-condition')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="updateConditionForm">
+
+                        <div class="row">
+
+                          <div class="col-lg-12">
+                            <span>{{'categories.priceNudge' | translate}}</span>
+                            <div class="form-group">
+                              <label class="control-label">Max</label>
+                              <input type="number" step="0.01" min="1" formControlName="price_nudge_max" class="form-control" name="price_nudge_max" placeholder="Enter English" >
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">Min</label>
+                              <input type="number" step="0.01" min="1" formControlName="price_nudge_min" class="form-control" name="price_nudge_min" placeholder="Enter Arabic" >
+                            </div>                            
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div formArrayName="price_quality_list">
+                              <div *ngFor="let item of getPriceQualityList().controls; let i = index">
+                                <div class="form-group" [formGroup]="item">
+                                  <label class="control-label">{{item.value.name}}</label>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <label class="control-label text-muted small">Price</label>
+                                      <input type="number" step="0.01" min="1" formControlName="price" class="form-control" >
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label class="control-label text-muted small">TTS</label>
+                                      <input type="number" step="0.01" min="1" formControlName="TTS" class="form-control" >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <!-- First Form -->
+                          <!-- <div class="col-lg-12">
+                              <div class="form-group" formGroupName="price">
+                                <label class="control-label">Expensive Price</label>
+                                <input type="number" step="0.01" min="1" formControlName="price_expensive" class="form-control" name="course-name">
+                              </div>
+
+                              <div class="form-group" formGroupName="price">
+                                <label class="control-label">Fair Price</label>
+                                <input type="number" step="0.01" min="1" formControlName="price_fair" class="form-control" name="course-name">
+                              </div>
+
+                              <div class="form-group" formGroupName="price">
+                                <label class="control-label">Excellent Price</label>
+                                <input type="number" step="0.01" min="1" formControlName="price_excellent" class="form-control" name="course-name">
+                              </div>
+
+
+                              <div class="form-group" formGroupName="tts">
+                                <label class="control-label">TTS Expensive</label>
+                                <input type="number" step="0.01" min="1" formControlName="tts_expensive" class="form-control" name="course-name">
+                              </div>
+
+                              <div class="form-group" formGroupName="tts">
+                                <label class="control-label">TTS Fair</label>
+                                <input type="number" step="0.01" min="1" formControlName="tts_fair" class="form-control" name="course-name">
+                              </div>
+
+                              <div class="form-group" formGroupName="tts">
+                                <label class="control-label">TTS Excellent</label>
+                                <input type="number" step="0.01" min="1" formControlName="tts_excellent" class="form-control" name="course-name">
+                              </div>
+                          </div> -->
+
+                        </div>
+                        <button class="btn btn-form" [disabled]="updateConditionForm?.invalid"
+                          (click)="updateConditionValues()" type="submit">{{'categories.update' | translate}}
+                        </button>
+                      </form>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>

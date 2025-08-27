@@ -1,0 +1,486 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">{{'banners.title' | translate}}</li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+              (click)="openModal('banner-modal', '')">{{'banners.addBanner' | translate}}</button>
+              <div>
+                <select  [(ngModel)]="lang" name="bannerL" id="bannerL" (change)="getAllBanners('upper');this.getAllBanners('middle');this.getAllBanners('lower');">
+                  <option value="en">English</option>
+                  <option value="ar">Arabic</option>
+                </select>
+              </div>
+            <div class="modal fade add_detail" id="banner-modal" tabindex="-1" role="dialog"
+              aria-labelledby="mySmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title mt-0">{{ isEdit ? ('banners.editBanner' | translate) : ('banners.addBanner' | translate) }}</h5>
+                    <button type="button" class="close" (click)="closeModal('banner-modal')">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                        <div class="col-lg-12">
+                            <label class="labelFiled" for="validationCustom01">{{'banners.lang' | translate}}
+                            </label>
+                            <div>
+                            <select name="bannerPagelang" [(ngModel)]="addedLang" id="bannerPagelang">
+                              <option value="en" >English</option>
+                              <option value="ar" >Arabic</option>
+                            </select>
+                          </div>
+                          </div>
+
+                        <div class="col-lg-12">
+                            <label class="labelFiled" class="control-label">{{'administrators.uploadPicture' | translate}}</label>
+                            <div class="custom_file">
+                              <input type="file" [(ngModel)]="addedImg"
+                                accept="image/x-png,image/gif,image/jpeg,image/jpg"
+                                (change)="selectImage($event.target.files)"
+                                class="custom_file_input">
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label class="labelFiled" for="validationCustom01">{{'banners.bannerName' | translate}}</label>
+                            <input  [(ngModel)]="addedName" type="text"  class="form-control">
+
+                        </div>
+                        <div class="col-lg-12">
+                          <label class="labelFiled" for="validationCustom01">{{'banners.bannerValue' | translate}}(Collection ID, DeepLink, URL)</label>
+                          <input  [(ngModel)]="addedValue" type="text"  class="form-control">
+                          <div *ngIf="showErrorCollectiondId" class="errorMessage">
+                            <img src="../../../../assets/images/errorCollectionID.svg" />
+                            <span class="errorTitle">{{'banners.errorMsgCollection' | translate}}</span>
+                          </div>
+
+                      </div>
+                        <div class="col-lg-12">
+                            <label class="labelFiled" for="validationCustom01" >{{'banners.bannerType' | translate}}(Page to link to)</label>
+                            <div>
+                            <select name="bannerTypsppe" id="bannerTypsppe"  [(ngModel)]="addedType">
+                              <option value="" >No type</option>
+                              <option value="spp" >SPP</option>
+                              <option value="mpp" >MPP</option>
+                              <option value="deepLink" >Deep Link</option>
+                              <option value="externalLink" >External Link</option>
+                              <option value="collection" >Collection</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label class="labelFiled" for="validationCustom01">{{'banners.bannerPage' | translate}}(Page to display the banner)
+                            </label>
+                            <div>
+                            <select name="bannerPagehome" id="bannerPagehome"  [(ngModel)]="addedPage">
+                              <option value="home" >Home</option>
+                              <option value="spp" >SPP</option>
+                              <option value="mpp" >MPP</option>
+                              <option value="seo" >SEO</option>
+                            </select>
+                          </div>
+                        </div>
+
+                      <div class="col-lg-12">
+                          <label class="labelFiled" for="validationCustom01">Banner position
+                          </label>
+                          <div>
+                          <select name="bannerPositionhome" id="bannerPositionhome"  [(ngModel)]="addedPosition">
+                            <option value="upper" >Upper</option>
+                            <option value="middle" >Middle</option>
+                            <option value="lower" >Lower</option>
+                          </select>
+                        </div>
+                      </div>
+                      </div>
+                      <button class="btn btn-warning"
+
+                        (click)="isEdit ? editBanner() : addBanner()" type="submit">{{ isEdit ? ('banners.editBanner' | translate) : ('banners.addBanner' | translate) }}</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+    <div>
+    <button type="button" class="btn btn-rounded btn-primary btn-w waves-effect waves-light"
+    (click)="choosepage('home')" [ngClass]="pageName !== 'home' ? 'deActiveButton' : ''">Home Page</button>
+    <button type="button" class="btn btn-rounded btn-primary btn-w waves-effect waves-light"
+    (click)="choosepage('mpp')" [ngClass]="pageName !== 'mpp' ? 'deActiveButton' : ''">Mpp</button>
+    <button type="button" class="btn btn-rounded btn-primary btn-w waves-effect waves-light"
+    (click)="choosepage('spp')" [ngClass]="pageName !== 'spp' ? 'deActiveButton' : ''">Spp</button>
+    <button type="button" class="btn btn-rounded btn-primary btn-w waves-effect waves-light"
+    (click)="choosepage('seo')" [ngClass]="pageName !== 'seo' ? 'deActiveButton' : ''">Seo</button>
+      <button type="button" class="btn btn-rounded btn-primary btn-w waves-effect waves-light"
+              (click)="choosepage('cars')" [ngClass]="pageName !== 'cars' ? 'deActiveButton' : ''">Car</button>
+  </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+        <br>
+        <div class="d-flex flex-row justify-content-start">
+          <h5>Main Banners</h5>
+          <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+          (click)="getCollectionsToBeReOrdered('upper')" data-toggle="modal" data-target=".changeOrder_detail">
+          {{'labels.changeOrder' | translate}}</button>
+        </div>
+
+        <div class="card">
+
+          <div class="card-body pt-3">
+            <div class="table-responsive" *ngIf="upperBanners">
+
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{'banners.bannerImg' | translate}}</th>
+                    <th>{{'banners.bannerName' | translate}}</th>
+                    <th>{{'banners.bannerType' | translate}}(Page to link to)</th>
+                    <th>{{'banners.bannerPage' | translate}}(Page to display the banner)</th>
+                    <th style="width: 120px;">{{'administrators.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let banner of upperBanners ;let i = index;">
+                    <td data-title="{{'administrators.picture' | translate}}">
+                     <img [src]="banner?.banner_image|| 'assets/images/users/admin.jpg'" alt="" height="30"
+                        class="img img-circle">
+                    </td>
+
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{banner?.banner_name}}
+                    </td>
+
+                    <td data-title="{{'administrators.email' | translate}}">{{banner?.banner_type}}</td>
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{banner?.banner_page}}
+                    </td>
+                    <td data-title="{{'administrators.action' | translate}}">
+                      <button type="button" class="mr-2 text-primary btn_style" (click)="openModal('banner-modal', banner)"><i
+                          class="mdi mdi-pencil font-size-18"></i></button>
+                      <a class="text-danger" (click)="action(banner?._id)"><i
+                          class="mdi mdi-trash-can font-size-18"></i></a>
+
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+
+              <!-- <div class="modal fade add_detail" id="edit-banner" tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">{{'banners.edit' | translate}}</h5>
+                      <button type="button" class="close" (click)="closeModal('edit-banner')">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="editAdminForm">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label class="control-label">{{'administrators.uploadPicture' | translate}}</label>
+                              <div class="custom_file">
+                                <input type="file" formControlName="profilePic"
+                                  accept="image/x-png,image/gif,image/jpeg,image/jpg"
+                                  (change)="selectImage($event.target.files)" class="custom_file_input">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">{{'administrators.name' | translate}}</label>
+                              <input type="text" formControlName="name" class="form-control">
+                              <p
+                                *ngIf="editAdminForm?.controls['name']?.value && editAdminForm?.controls['name']?.invalid">
+                                {{'administrators.invalidName' | translate}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">{{'administrators.email' | translate}}</label>
+
+                              <input type="email" formControlName="email" class="form-control">
+                              <p
+                                *ngIf="editAdminForm?.controls['email']?.value && editAdminForm?.controls['email']?.invalid">
+                                {{'administrators.inValidEmail' | translate}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">{{'administrators.phoneNumber' | translate}}
+                              </label>
+                              <input type="tel" maxlength="10" (keypress)="numberOnly($event)"
+                                formControlName="phoneNumber" class="form-control">
+                              <p
+                                *ngIf="editAdminForm?.controls['phoneNumber']?.value && editAdminForm?.controls['phoneNumber']?.invalid">
+                                {{'administrators.inValidPh' | translate}}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-warning" [disabled]="editAdminForm?.invalid" (click)="editAdmin()"
+                          type="submit">{{'administrators.update' | translate}}</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <div *ngIf="!upperBanners.length">No banners found!</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-12">
+        <br>
+        <div class="d-flex flex-row justify-content-start">
+          <h5>Middle Banners</h5>
+          <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+          (click)="getCollectionsToBeReOrdered('middle')" data-toggle="modal" data-target=".changeOrder_detail">
+          {{'labels.changeOrder' | translate}}</button>
+        </div>
+
+        <div class="card">
+
+          <div class="card-body pt-3">
+            <div class="table-responsive" *ngIf="middleBanners">
+
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{'banners.bannerImg' | translate}}</th>
+                    <th>{{'banners.bannerName' | translate}}</th>
+                    <th>{{'banners.bannerType' | translate}}(Page to link to)</th>
+                    <th>{{'banners.bannerPage' | translate}}(Page to display the banner)</th>
+                    <th style="width: 120px;">{{'administrators.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let banner of middleBanners ;let i = index;">
+                    <td data-title="{{'administrators.picture' | translate}}">
+                     <img [src]="banner?.banner_image|| 'assets/images/users/admin.jpg'" alt="" height="30"
+                        class="img img-circle">
+                    </td>
+
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{banner?.banner_name}}
+                    </td>
+
+                    <td data-title="{{'administrators.email' | translate}}">{{banner?.banner_type}}</td>
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{banner?.banner_page}}
+                    </td>
+                    <td data-title="{{'administrators.action' | translate}}">
+                      <button type="button" class="mr-2 text-primary btn_style" (click)="openModal('banner-modal', banner)"><i
+                        class="mdi mdi-pencil font-size-18"></i></button>
+                      <a class="text-danger" (click)="action(banner?._id)"><i
+                          class="mdi mdi-trash-can font-size-18"></i></a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="!middleBanners.length">No banners found!</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <br>
+        <div class="d-flex flex-row justify-content-start">
+          <h5>Lower Banners</h5>
+          <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+          (click)="getCollectionsToBeReOrdered('lower')" data-toggle="modal" data-target=".changeOrder_detail">
+          {{'labels.changeOrder' | translate}}</button>
+        </div>
+
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive" *ngIf="lowerBanners">
+
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th>{{'banners.bannerImg' | translate}}</th>
+                    <th>{{'banners.bannerName' | translate}}</th>
+                    <th>{{'banners.bannerType' | translate}}(Page to link to)</th>
+                    <th>{{'banners.bannerPage' | translate}}(Page to display the banner)</th>
+                    <th style="width: 120px;">{{'administrators.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let banner of lowerBanners ;let i = index;">
+                    <td data-title="{{'administrators.picture' | translate}}">
+                     <img [src]="banner?.banner_image|| 'assets/images/users/admin.jpg'" alt="" height="30"
+                        class="img img-circle">
+                    </td>
+
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{banner?.banner_name}}
+                    </td>
+
+                    <td data-title="{{'administrators.email' | translate}}">{{banner?.banner_type}}</td>
+                    <td data-title="{{'administrators.name' | translate}}">
+                      {{banner?.banner_page}}
+                    </td>
+                    <td data-title="{{'administrators.action' | translate}}">
+                      <button type="button" class="mr-2 text-primary btn_style" (click)="openModal('banner-modal', banner)"><i
+                        class="mdi mdi-pencil font-size-18"></i></button>
+                      <a class="text-danger" (click)="action(banner?._id)"><i
+                          class="mdi mdi-trash-can font-size-18"></i></a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+
+              <!-- <div class="modal fade add_detail" id="edit-banner" tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title mt-0">{{'banners.edit' | translate}}</h5>
+                      <button type="button" class="close" (click)="closeModal('edit-banner')">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="editAdminForm">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label class="control-label">{{'administrators.uploadPicture' | translate}}</label>
+                              <div class="custom_file">
+                                <input type="file" formControlName="profilePic"
+                                  accept="image/x-png,image/gif,image/jpeg,image/jpg"
+                                  (change)="selectImage($event.target.files)" class="custom_file_input">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">{{'administrators.name' | translate}}</label>
+                              <input type="text" formControlName="name" class="form-control">
+                              <p
+                                *ngIf="editAdminForm?.controls['name']?.value && editAdminForm?.controls['name']?.invalid">
+                                {{'administrators.invalidName' | translate}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">{{'administrators.email' | translate}}</label>
+
+                              <input type="email" formControlName="email" class="form-control">
+                              <p
+                                *ngIf="editAdminForm?.controls['email']?.value && editAdminForm?.controls['email']?.invalid">
+                                {{'administrators.inValidEmail' | translate}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="validationCustom01">{{'administrators.phoneNumber' | translate}}
+                              </label>
+                              <input type="tel" maxlength="10" (keypress)="numberOnly($event)"
+                                formControlName="phoneNumber" class="form-control">
+                              <p
+                                *ngIf="editAdminForm?.controls['phoneNumber']?.value && editAdminForm?.controls['phoneNumber']?.invalid">
+                                {{'administrators.inValidPh' | translate}}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-warning" [disabled]="editAdminForm?.invalid" (click)="editAdmin()"
+                          type="submit">{{'administrators.update' | translate}}</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             -->
+
+
+            </div>
+            <div *ngIf="!lowerBanners.length">No banners found!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+
+<!-- End Page-content -->
+<!-- Change Order list -->
+<div class="modal fade changeOrder_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Change Collections Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modal-orderList">
+        <div #scrollEl cdk-scrollable style="height:400px; overflow-y:auto;">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                <th>{{'administrators.name' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="box-list" cdkDropList cdkDropListOrientation="vertical"(cdkDropListDropped)="drop($event)">
+              <tr class="drag-box" *ngFor="let collection of collectionsToBeReOrdered; let i = index" cdkDrag>
+                <td data-title="{{'administrators.no' | translate}}">{{i+1}}</td>
+
+                <td data-title="{{'administrators.name' | translate}}">
+                  {{collection?.banner_name}}
+                </td>
+              </tr>
+            </tbody>
+            <!-- <pre>{{newArr | json}}</pre> -->
+          </table>
+
+        </div>
+        <button type="submit" class="btn btn-warning" data-dismiss="modal"
+          (click)="changeOrderForCollection()">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,242 @@
+<div class="page-content table_page">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active">{{'ordersDetails.orders' | translate}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <div class="row">
+                <div class="col-md-3 col-sm-12">
+                  <div class="page-title-box d-flex align-items-center justify-content-between filte-order-page">
+                    <div class="page-title-right2">
+                      <div class="select_box select_box_text">{{'dashboard.filter' | translate}}</div>
+                      <div class="select_box ml-3">
+                        <select [(ngModel)]="dispute" (change)="getOrders($event)"
+                          class="custom-select custom-select-sm form-control form-control-sm" name="selectcategories"
+                          id="selectcategories">
+                          <option value="">{{'filter.selectDispute' | translate}}</option>
+                          <option value="Yes">{{'filter.disputeYes' | translate}}</option>
+                          <option value="No">{{'filter.disputeNo' | translate}}</option>
+                          <option value="Pending">{{'filter.Pending' | translate}}</option>
+                          <option value="Success">{{'filter.Success' | translate}}</option>
+                          <option value="Fail">{{'filter.Fail' | translate}}</option>
+                        </select>
+                      </div>
+                      <!-- <div class="select_box ml-2">
+                        <select class=" custom-select custom-select-sm form-control form-control-sm"
+                          name="selectcategories" id="selectcategories">
+                          <option selected>Select Payment Received From Buyer</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div class="select_box ml-2">
+                        <select class="custom-select custom-select-sm form-control form-control-sm"
+                          name="selectcategories" id="selectcategories">
+                          <option selected>Select Payment Made To Seller</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 search_part">
+                  <form class="dataTables_filter" [formGroup]="searchForm" (ngSubmit)="filterBy()">
+                    <label>{{'search' | translate}}
+                      <input type="search" class="form-control form-control-sm" formControlName="word"
+                        placeholder="Search ..... ">
+                      <button type="submit" class="btn btn-danger btn-sm">Search</button>
+                    </label>
+                  </form>
+                </div>
+
+                <div class="col-md-3 col-sm-12 download_xlxs_container">
+
+                  <div class="success-orders">
+                    <button routerLink="/admin/orders-success" class="btn btn-sm btn-danger">Success Orders</button>
+                  </div>
+
+                  <div *ngIf="orderList?.length != 0" class="d-flex justify-content-end" (click)="downloadOrderXlxs()">
+                    <img title="{{'ordersPage.exportAsXlxs' | translate}}" class="xlxs_download"
+                      src="../../../../assets/images/xlsx.png" />
+                  </div>
+                </div>
+
+              </div>
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">{{'ordersPage.no' | translate}}</th>
+                    <th style="width: 140px;">{{'ordersPage.orderID' | translate}}</th>
+                    <th style="width: 140px;">{{'ordersPage.productId' | translate}}</th>
+                    <th>{{'ordersPage.productName' | translate}}</th>
+                    <th>{{'ordersPage.orderType' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.device' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.brand' | translate}}</th>
+                    <th style="width: 80px;">{{'ordersPage.model' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.variant' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.sellPrice' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.status' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.refundStatus' | translate}}</th>
+                    <th style="width: 65px;">{{'ordersPage.refund' | translate}}</th>
+                    <th style="width: 110px;">{{'ordersPage.trackingStatus' | translate}}</th>
+                    <th style="width: 110px;">{{'ordersPage.date' | translate}}</th>
+                    <th style="min-width: 110px;">{{'ordersPage.TransactionTimeStamp' | translate}}</th>
+                    <th style="width: 110px;">{{'ordersPage.sourcePlatform' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.dispute' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.lastPayout' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.paymentReceivedFromBuyer' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.paymentMadeToSeller' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.paymentType' | translate}}</th>
+                    <!-- <th style="width: 60px;">{{'ordersPage.downPayment' | translate}}</th>
+                    <th style="width: 60px;">{{'ordersPage.codAmt' | translate}}</th> -->
+
+                    <th style="width: 60px;">{{'ordersPage.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of orderList| paginate: {
+                    id: 'orderList',
+                    itemsPerPage: limit,
+                    currentPage: currentPage,
+                    totalItems: totalResult
+                  }; let i = index;">
+                    <td data-title="{{'ordersPage.no' | translate}}">
+                      {{ limit * (currentPage - 1) + i + 1 }}
+                    </td>
+                    <td data-title="{{'ordersPage.orderID' | translate}}">{{order?.order_number}}</td>
+                    <td data-title="{{'ordersPage.productID' | translate}}">{{order?.product?._id}}</td>
+                    <td data-title="{{'ordersPage.productName' | translate}}">
+                      {{order?.product?.model_id?.model_name || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.productName' | translate}}">
+                      {{order?.payment_type || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.device' | translate}}">
+                      {{order?.product?.category_id?.category_name || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.brand' | translate}}">
+                      {{order?.product?.brand_id?.brand_name || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.model' | translate}}">
+                      {{order?.product?.model_id?.model_name || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.variant' | translate}}">
+                      {{order?.product?.varient || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.sellPrice' | translate}}">
+                      <!-- {{order?.grand_total}} -->
+                      {{order?.calculated_sell_price || '--'}} {{currency}}
+                    </td>
+                    <td data-title="{{'ordersPage.status' | translate}}">{{order?.transaction_status || '--'}}</td>
+                    <td data-title="{{'ordersPage.refundStatus' | translate}}">
+                      {{order?.order_refund_status?.refund_status ? order?.order_refund_status.refund_status == 'Completed' ? 'Pass' : 'Fail'  : '-----'}}
+                    </td>
+                    <td data-title="{{'ordersPage.refund' | translate}}">{{!order?.order_refund_status?.refund ? "No" : "Yes"}}</td>
+                    <td data-title="{{'ordersPage.trackingStatus' | translate}}">{{order?.status}}</td>
+                    <td data-title="{{'ordersPage.date' | translate}}">
+                      {{(order?.created_at | date: 'dd MMM, yyyy') || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage?.TransactionTimeStamp' | translate}}">
+                      {{(order?.transaction_detail?.timestamp | date: 'dd/MM/yyyy hh:mm:ss a') || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.sourcePlatform' | translate}}">
+                      {{order?.sourcePlatform || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.dispute' | translate}}">
+                      <span class="badge" [class]="order?.dispute == 'Yes' ? 'badge-danger' : 'badge-success'">
+                        {{order?.dispute == 'Yes' ? 'Yes' : 'No'}}
+                      </span>
+                    </td>
+                    <td data-title="{{'ordersPage.lastPayout' | translate}}">
+                      {{order?.last_payout || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.paymentReceivedFromBuyer' | translate}}">
+                      {{order?.paymentReceivedFromBuyer || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.paymentMadeToSeller' | translate}}">
+                      {{order?.paymentMadeToSeller || '--'}}
+                    </td>
+                    <td data-title="{{'ordersPage.paymentType' | translate}}">
+                      {{order?.buy_type || '--'}}
+                      <!-- {{order?.buy_type || --}} -->
+                      <!-- <span *ngIf="order?.down_payment_details && order?.down_payment_details !== null">
+                        {{'ordersPage.downPayment' | translate}}
+                      </span>
+                      <span *ngIf="order?.down_payment_details == null">
+                        {{'ordersPage.regularPayment' | translate}}
+                      </span> -->
+                    </td>
+                    <!-- <td data-title="{{'ordersPage.downPayment' | translate}}">
+                      <span *ngIf="order?.down_payment_details && order?.down_payment_details !== null">
+                        {{order?.down_payment_details?.payment_amount}} {{currency}}
+                      </span>
+                      <span *ngIf="order?.down_payment_details == null">
+                        {{order?.grand_total}}  {{currency}}                    </span>
+                    </td>
+                    <td data-title="{{'ordersPage.codAmt' | translate}}">
+                      <span *ngIf="order?.down_payment_details && order?.down_payment_details !== null">
+                        {{order?.down_payment_details?.remaining}} {{currency}}
+                      </span>
+                      <span *ngIf="order?.down_payment_details == null">
+                       0                    </span>
+                    </td> -->
+                    <td data-title="{{'ordersPage.action' | translate}}">
+                      <a (click)="viewOrderDetail(order)" class="mr-2 text-solitud"><i
+                          class="fas fa-eye font-size-18"></i></a>
+                      <a title="payout" (click)="viewOrderPayout(order)" class="mr-2 text-solitud"><i
+                          class="fas fa-dollar-sign font-size-18"></i></a>
+                      <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top"
+                        title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
+<!--                        <img   *ngIf="order?.transaction_status == 'Success'"  (click)="downloadBuyer(order)" width="30" height="30" src="../../../../assets/images/IMG_2723.jpg">-->
+<!--                        <img  *ngIf="order?.transaction_status == 'Success'"   (click)="downloadSeller(order)"  width="30" height="30" src="../../../../assets/images/IMG_2724.jpg">-->
+<!--                        <img  *ngIf="order?.transaction_status == 'Success'"  (click)="downloadSellerCredit(order)"  width="25" height="25" src="../../../../assets/images/ CreditPM.png">-->
+<!--                        <img  *ngIf="order?.transaction_status == 'Success'" (click)="downloadcreBuyer(order)"  width="25" height="25" src="../../../../assets/images/buyerCredit.png">-->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row" *ngIf="notMatchSearch">
+                <div class="col-12 notMatchSearch">
+                  <h5>No Found Data Match Your Search!</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-5">
+                  <div class="dataTables_info">{{'ordersPage.showMinMaxNumberofList' | translate: entries}}</div>
+                </div>
+                <div class="col-sm-12 col-md-7" *ngIf="orderList.length>0">
+                  <div class="dataTables_paginate paging_simple_numbers">
+                    <pagination-controls [autoHide]="true" [nextLabel]="paginationNextLabel"
+                      [previousLabel]="paginationPreviousLabel" id="orderList" (pageChange)="selectPage($event)">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

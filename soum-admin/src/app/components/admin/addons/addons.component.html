@@ -1,0 +1,249 @@
+<div class="page-content" style="overflow-y: scroll;">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active"><a [routerLink]="['/admin/categories']">
+                  {{'categories.categories' | translate}}
+                </a></li>
+              <li class="breadcrumb-item active"><a [routerLink]="['/admin/categories/brands', category_id]">
+                  {{'categories.brands' | translate}}
+                </a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a [routerLink]="['/admin/categories/brands/models', category_id, brand_id]">{{'categories.model' |
+                  translate}}</a>
+              </li>
+              <li class="breadcrumb-item active">
+                {{'categories.EditAdons' | translate}}
+              </li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+              (click)="openAddAddons()">{{'categories.add' | translate}}</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 120px;">Add-on No.</th>
+                    <th>Add-on type</th>
+                    <th>Image</th>
+                    <th style="width: 120px;">Name</th>
+                    <th style="width: 120px;">Price</th>
+                    <th style="width: 120px;">Taglines</th>
+                    <th>Period</th>
+                    <th>Description EN</th>
+                    <th>Description AR</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of addonsList; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{data?.type}}</td>
+                    <td><img [src]="data?.image" alt="Add-ons Image" class="imgAddons">
+                    </td>
+
+                    <td>
+                      <div>
+                        {{data?.nameEn}} <br /> {{data?.nameAr}}
+                      </div>
+                    </td>
+                    <td>{{data?.price}} {{data?.priceType === "fixed" ? ('labels.sar' | translate) : '%'}}</td>
+                    <td>{{data?.taglineEn?.toString() || '- - - - -'}}</td>
+                    <td>{{data?.validity || "0"}} {{data?.validityType}}</td>
+                    <td>{{data?.descriptionEn || '- - - - -'}}</td>
+                    <td>{{data?.descriptionAr || '- - - - -'}}</td>
+                    <td>
+                      <button type="button" class="mr-2 text-primary btn_style" (click)="updateModel(data)">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <a class="text-danger" (click)="action(data?.id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="noFoundAddons" *ngIf="!addonsList?.length">
+                No Addons Found!
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- EDIT MODEL MODAL -->
+  <div class="modal fade" id="edit-model" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mt-0">{{actionsType === "Add" ? "Add New Add-ons" : "Edit Add-ons"}}</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editAddAdonsForm" enctype='multipart/form-data'>
+            <div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <h5 class="control-label">Add-ons Type</h5>
+                    <select class="custom-select custom-select-sm normalInput" formControlName="type">
+                      <option value="warranty">Warranties</option>
+                      <option value="accessory">Accessories</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="control-label">Upload Image</label>
+                    <input type="file" class="form-control normalInput hideFileInput" formControlName="image"
+                      (change)="onSelectFile($event)" accept=".png">
+
+                    <div class="custom_input">
+                      <input readonly type="text" class="form-control normalInput" [value]="imageName">
+                      <img src="../../../../assets/images/uploadImage.png" class="uploadIcon" />
+                    </div>
+
+                    <div
+                      *ngIf="editAddAdonsForm.get('image').invalid && (editAddAdonsForm.get('image').dirty || editAddAdonsForm.get('image').touched)">
+                      <img src="../../../../assets/images/warningError.png" class="warningImg" />
+                      <small class="errorMessage" class="errorMessage"
+                        *ngIf="editAddAdonsForm.get('image').errors.required">Image is required.</small>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-12 divRow">
+                  <div class="form-group">
+                    <label class="control-label">Name AR</label>
+                    <input type="text" class="form-control normalInput" placeholder="Enter Arabic" formControlName="nameAr">
+                    <div
+                      *ngIf="editAddAdonsForm.get('nameAr').invalid && (editAddAdonsForm.get('nameAr').dirty || editAddAdonsForm.get('nameAr').touched)">
+                      <img src="../../../../assets/images/warningError.png" class="warningImg" />
+                      <small class="errorMessage" class="errorMessage"
+                        *ngIf="editAddAdonsForm.get('nameAr').errors.required">Name AR is required.</small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Name EN</label>
+                    <input type="text" class="form-control normalInput" placeholder="Enter English" formControlName="nameEn">
+                    <div
+                      *ngIf="editAddAdonsForm.get('nameEn').invalid && (editAddAdonsForm.get('nameEn').dirty || editAddAdonsForm.get('nameEn').touched)">
+                      <img src="../../../../assets/images/warningError.png" class="warningImg" />
+                      <small class="errorMessage" class="errorMessage"
+                        *ngIf="editAddAdonsForm.get('nameEn').errors.required">Name EN is required.</small>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-lg-12 divRow">
+                  <div class="form-group">
+                    <label class="control-label">Price</label>
+                    <div class="normalInputContainer">
+                      <input (keypress)="numbersOnly($event)" type="text" placeholder="Enter Number"
+                        class="form-control normalInput" formControlName="price">
+                      <img *ngIf="editAddAdonsForm?.get('priceType')?.value === 'percentage'"
+                        src="../../../../assets/images/percentage.png" class="percentageImg" />
+                    </div>
+                    <div
+                      *ngIf="editAddAdonsForm.get('price').invalid && (editAddAdonsForm.get('price').dirty || editAddAdonsForm.get('price').touched)">
+                      <img src="../../../../assets/images/warningError.png" class="warningImg" />
+                      <small class="errorMessage" *ngIf="editAddAdonsForm.get('price').errors.required">Please enter a
+                        number.</small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label hiddenLabel">hiddenLabel</label>
+                    <select class="custom-select custom-select-sm selectInput" formControlName="priceType">
+                      <option value="1" value="fixed">Fixed</option>
+                      <option value="2" value="percentage">Percentage</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 divRow">
+                  <div class="form-group">
+                    <label class="control-label">Choose Taglines AR</label>
+                    <input type="text" placeholder="Enter Arabic" class="form-control normalInput"
+                      formControlName="taglineAr">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Choose Taglines EN</label>
+                    <input type="text" placeholder="Enter English" class="form-control normalInput"
+                      formControlName="taglineEn">
+                  </div>
+                </div>
+
+
+                <div class="col-lg-12 divRow">
+                  <div class="form-group">
+                    <label class="control-label">Select Period</label>
+                    <input (keypress)="numbersOnly($event)" type="text" placeholder="Enter English"
+                      class="form-control normalInput" formControlName="validity">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label hiddenLabel">hiddenLabel</label>
+                    <select class="custom-select custom-select-sm selectInput" formControlName="validityType">
+                      <option value="month">Month</option>
+                      <option value="day">Day</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 divRow">
+                  <div class="form-group flex-row">
+                    <label class="control-label">Description AR</label>
+                    <textarea type="text" placeholder="Enter Arabic description" class="form-control textArea"
+                      formControlName="descriptionAr"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Description EN</label>
+                    <textarea type="text" placeholder="Enter English description" class="form-control textArea"
+                      formControlName="descriptionEn"></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="submit-btn">
+              <button type="button" [disabled]="editAddAdonsForm.invalid"
+                [ngClass]="editAddAdonsForm.invalid ? 'btn-submit-invalid' : 'btn-submit'"
+                (click)="addEditAddon()">{{actionsType === "Add" ? "Add" :
+                "Edit"}}</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

@@ -1,0 +1,140 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item"><a href="javascript: void(0);">{{'dashboard.sitetitle' | translate}}</a></li>
+              <li class="breadcrumb-item active">{{'dashboard.dashboard_breadcrumb' | translate}}</li>
+            </ol>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+ 
+    <!-- start chart Filter-->
+    <div class="row chart-filter">
+      <div class="col-md-6">
+        <!-- <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right2">
+            <div class="select_box select_box_text">{{'dashboard.filter' | translate}}</div>
+            <div class="select_box ml-3">
+              <select class=" custom-select custom-select-sm form-control form-control-sm" name="selectcategories"
+                id="selectcategories">
+                <option selected>{{'filter.selectCategories' | translate}}</option>
+                <option value="All Categorie">{{'filter.allCategorie' | translate}}</option>
+                <option value="Mobile Phone">Mobile Phone</option>
+                <option value="Smart Watch">Smart Watch</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Gaming Console">Gaming Console</option>
+                <option value="Desktop">Desktop</option>
+                <option value="Tablet">Tablet</option>
+              </select>
+            </div>
+            <div class="select_box ml-2"><select class="custom-select custom-select-sm form-control form-control-sm"
+                name="selectcategories" id="selectcategories">
+                <option selected>{{'filter.selectBrands' | translate}}</option>
+                <option value="All Brand">{{'filter.allBrands' | translate}}</option>
+                <option value="Apple">Apple</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Oneplus">Oneplus</option>
+                <option value="Vivo">Vivo</option>
+                <option value="Oppo">Oppo</option>
+                <option value="Lenovo">Lenovo</option>
+                <option value="Google">Google</option>
+                <option value="Sony">Sony</option>
+
+              </select>
+            </div>
+            <div class="select_box ml-2"><select class="custom-select custom-select-sm form-control form-control-sm"
+                name="selectcategories" id="selectcategories">
+                <option selected>{{'filter.selectModels' | translate}}</option>
+                <option value="All Model">{{'filter.allModels' | translate}}</option>
+                <option value="iPhone SE 2020">iPhone SE 2020</option>
+                <option value="iPhone 11 Pro Max">iPhone 11 Pro Max</option>
+                <option value="iPhone 11 Pro">iPhone 11 Pro</option>
+                <option value="iPhone 11">iPhone 11</option>
+                <option value="iPhone XR">iPhone XR</option>
+                <option value="iPhone XS">iPhone XS</option>
+                <option value="iPhone XS Max">iPhone XS Max</option>
+                <option value="iPhone X">iPhone X</option>
+                <option value="iPhone 8">iPhone 8</option>
+              </select>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-md-6">
+        <div class="page-title-box d-flex align-items-center justify-content-end">
+          <div class="page-title-right2">
+            <div class="select_box"><select class="custom-select custom-select-sm">
+                <option selected>{{'filter.selectYears' | translate}}</option>
+                <option value="All Month">{{'filter.allYears' | translate}}</option>
+                <option value="1">2020</option>
+                <option value="2">2019</option>
+                <option value="3">2018</option>
+                <option value="4">2017</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end row -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div>
+              <h4 class="card-title mb-4">{{'dashboard.lisitng' | translate}}</h4>
+              <div>
+                <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                  [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
+                  [responsive]="chartOptions1.responsive" [xaxis]="chartOptions1.xaxis" [legend]="chartOptions1.legend"
+                  [fill]="chartOptions1.fill"></apx-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div>
+              <h4 class="card-title mb-4">{{'dashboard.bids' | translate}}</h4>
+              <div>
+                <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                  [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
+                  [responsive]="chartOptions1.responsive" [xaxis]="chartOptions1.xaxis" [legend]="chartOptions1.legend"
+                  [fill]="chartOptions1.fill"></apx-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div>
+              <h4 class="card-title mb-4">{{'dashboard.soldUnits' | translate}}</h4>
+              <div>
+                <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                  [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
+                  [responsive]="chartOptions1.responsive" [xaxis]="chartOptions1.xaxis" [legend]="chartOptions1.legend"
+                  [fill]="chartOptions1.fill"></apx-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->

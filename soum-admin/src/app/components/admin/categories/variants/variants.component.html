@@ -1,0 +1,171 @@
+<div class="page-content">
+  <div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <div class="page-title-right">
+            <a class="back-button" (click)="goBack()">
+              <img src="assets/images/icons/back-icon.svg">
+            </a>
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item active"><a [routerLink]="['/admin/categories']">{{'categories.categories' |
+                  translate}}</a></li>
+              <li class="breadcrumb-item active"><a
+                  [routerLink]="['/admin/categories/brands', category_id]">{{'categories.brands' | translate}}</a>
+              </li>
+              <li class="breadcrumb-item active"><a
+                  [routerLink]="['/admin/categories/brands/models', category_id, brand_id]">{{'categories.model' |
+                  translate}}</a>
+              </li>
+              <li class="breadcrumb-item">{{'categories.variants' | translate}}</li>
+            </ol>
+          </div>
+          <div class="page-title-right2">
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light"
+              (click)="getVariantToBeReordered()" data-toggle="modal" data-target=".changeOrder_detail">
+              {{'labels.changeOrder' | translate}}</button>
+            <button type="button" class="btn btn-rounded btn-warning btn-w waves-effect waves-light" data-toggle="modal"
+              (click)="openAddModalVarien()">{{'categories.add' | translate}}</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <div class="table-responsive table-style">
+              <table class="table mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 20px;">{{'categories.no' | translate}}</th>
+                    <th>{{'categories.name' | translate}}</th>
+                    <th style="width: 120px;">{{'categories.currentMarketPrice' | translate}}</th>
+                    <th style="width: 120px;">{{'categories.action' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let varient of varients; let i = index;">
+                    <td data-title="{{'categories.no' | translate}}">{{i+1}}</td>
+                    <td data-title="{{'categories.name' | translate}}">
+                      {{varient?.varient}}<br>
+                      {{'('+varient?.varient_ar+')'}}
+                    </td>
+                    <td data-title="{{'categories.currentMarketPrice' | translate}}">
+                      {{varient?.current_price}} {{currency}}
+                    </td>
+
+                    <td data-title="{{'categories.action' | translate}}">
+                      <a [routerLink]="['/admin/categories/brands/models/variants/conditions', category_id, brand_id,model_id, varient?._id]"
+                        class="mr-2 text-solitud">
+                        <i class="fas fa-eye font-size-18"></i>
+                      </a>
+                      <button type="button" (click)="updateVarient(varient)" class="mr-2 text-primary btn_style">
+                        <i class="mdi mdi-pencil font-size-18"></i>
+                      </button>
+                      <a class="text-danger" (click)="action(varient?._id)">
+                        <i class="mdi mdi-trash-can font-size-18"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!varients?.length">
+                    <td colspan="3">
+                      {{'categories.noVariant' | translate}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+
+
+<!-- Change Order list -->
+<div class="modal fade changeOrder_detail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollables">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Change Variants Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body modal-orderList">
+        <div #scrollEl cdk-scrollable style="height:400px; overflow-y:auto;">
+          <table class="table mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 20px;">{{'administrators.no' | translate}}</th>
+                <th>{{'administrators.name' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody class="box-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
+              <tr class="drag-box" *ngFor="let variant of variantToBeReordered; let i = index;" cdkDrag>
+                <td data-title="{{'categories.no' | translate}}">{{i+1}}</td>
+                <td data-title="{{'categories.name' | translate}}">
+                  {{variant?.varient}}<br>
+                  {{'('+variant?.varient_ar+')'}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <button type="submit" data-dismiss="modal" (click)="changeOrderForVariant()"
+          class="btn btn-warning">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade add_detail" id="variantModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">{{actionVarient_type==='add-varient'? ('categories.addVariant' | translate) :
+          ('categories.editVariant' | translate)}}</h5>
+        <button type="button" class="close" (click)="closeModal(actionVarient_type)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addVarientForm">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="control-label">Capacity</label>
+                <input type="text" formControlName="varient" placeholder="Enter English" class="form-control"
+                  name="course-name">
+              </div>
+              <div class="form-group">
+                <input type="text" formControlName="varient_ar" placeholder="Enter Arabic" class="form-control"
+                  name="course-name">
+              </div>
+              <div class="form-group">
+                <label class="control-label">{{'categories.currentMarketPrice' | translate}}</label>
+                <input type="number" formControlName="current_price" class="form-control" name="course-name">
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-warning" [disabled]="addVarientForm?.invalid"
+            (click)="actionVarient_type==='add-varient'?addVarient('add'):addVarient('edit')"
+            type="submit">{{actionVarient_type==='add-varient'?('categories.save' | translate):('categories.update' | translate)}}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
