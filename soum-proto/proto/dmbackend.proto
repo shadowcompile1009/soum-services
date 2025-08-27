@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package dmbackend;
+
+service DmBackendService {
+  rpc GetHoldingPenaltyBalance (GetHoldingPenaltyBalanceRequest) returns (GetHoldingPenaltyBalanceResponse) {}
+  rpc GetStandingPenaltyToDmo (GetStandingPenaltyToDmoRequest) returns (GetStandingPenaltyToDmoResponse) {}
+  rpc UpdateHoldingPenalty (UpdateHoldingPenaltyRequest) returns (UpdateHoldingPenaltyResponse) {}
+  rpc GetCancellationFee (GetCancellationFeeRequest) returns (GetCancellationFeeResponse) {}
+  rpc GetPenalizedOrdersMerchant(GetPenalizedOrdersMerchantRequest) returns (GetPenalizedOrdersMerchantResponse) {}
+  rpc CreateInvoice (CreateInvoiceRequest) returns (CreateInvoiceResponse) {}
+}
+
+message GetHoldingPenaltyBalanceRequest {
+  string sellerId = 1;
+  string range = 2;
+}
+
+message GetHoldingPenaltyBalanceResponse {
+  float amount = 1;
+}
+
+message GetStandingPenaltyToDmoRequest {
+  string dmoId = 1;
+}
+
+message GetStandingPenaltyToDmoResponse {
+  string dmoId = 1;
+  string userId = 2;
+  float penalty = 3;
+}
+
+message UpdateHoldingPenaltyRequest {
+  string sellerId = 1;
+  string dmoId = 2;
+  bool isPayout = 3;
+}
+
+message UpdateHoldingPenaltyResponse {}
+
+message GetCancellationFeeRequest {}
+
+message GetCancellationFeeResponse {
+  float cancelFee = 1;
+}
+
+message GetPenalizedOrdersMerchantRequest {
+  string merchantId = 1;
+  int32 page = 2;
+  int32 size = 3;
+  string range = 4;
+}
+
+message GetPenalizedOrdersMerchantResponse {
+  message PenalizedOrders {
+    string productName = 1;
+    string orderNumber = 2;
+    float payoutAmount = 3;
+    float penalty = 4;
+    float finalPayout = 5;
+    string nctReason = 6;
+    string nctReasonAR = 7;
+  }
+  repeated PenalizedOrders orders = 1;
+  int32 totalItems = 2;
+  int32 totalPages = 3;
+  int32 currentPage = 4;
+  int32 pageSize = 5;
+}
+
+message CreateInvoiceRequest {
+  string orderId = 1;
+  string invoiceType = 2;
+  string userType = 3;
+  string eventName = 4;
+}
+
+message CreateInvoiceResponse {}

@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+package payment;
+
+service PaymentService {
+  rpc CreateTransaction (CreateTransactionRequest) returns (CreateTransactionResponse) {}
+  rpc GetTransactionById (GetTransactionRequest) returns (TransactionResponse) {}
+  rpc CaptureTransaction (CaptureTransactionRequest) returns (TransactionResponse) {}
+  rpc ReverseTransaction (ReverseTransactionRequest) returns (TransactionResponse) {}
+  rpc GetPaymentOptions (GetPaymentOptionsRequest) returns (GetPaymentOptionsResponse) {}
+  rpc GetPaymentOption (GetPaymentOptionRequest) returns (PaymentOption) {}
+  rpc GetTransactionBySoumTransactionNumber (GetTransactionBySoumTransactionNumberRequest) returns (TransactionResponse) {}
+  rpc ValidateBNPLForUser (ValidateBNPLForUserRequest) returns (ValidateBNPLForUserResponse){}
+  rpc CreatePayout (CreatePayoutRequest) returns (CreatePayoutResponse){}
+  rpc CheckPayoutStatus (CheckPayoutStatusRequest) returns (CheckPayoutStatusResponse){}
+}
+
+message GetPaymentOptionsRequest {
+  string moduleName = 1;
+  bool isEnabled =2;
+}
+
+message GetPaymentOptionRequest {
+  string id = 1;
+}
+
+message GetPaymentOptionsResponse {
+  repeated PaymentOption paymentOptions = 1;
+}
+
+message PaymentOption {
+  string id = 1;
+  string paymentProvider = 2;
+  string paymentCardType = 3;
+  string displayName = 4;
+}
+
+message ReturnUrl{
+  string url = 1;
+  string urlType = 2;
+}
+
+message CreateTransactionRequest {
+  message TransactionItem {
+    string title = 1;
+    string description = 2;
+    string unitPrice = 3;
+    string vat_amount = 4;
+    optional int32 quantity = 5;
+    optional string category = 6;
+    optional string productImage = 7;
+    optional string productId = 8;
+  }
+  string userId = 1;
+  string productId = 2;
+  double amount = 3;
+  string paymentOptionId = 4;
+  string soumTransactionNumber = 5;
+  string transactionType = 6;
+  repeated TransactionItem items = 7;
+  optional string nationalId = 8;
+  string orderId = 9;
+  repeated ReturnUrl returnUrls=10;
+  optional string transactionActionType=11;
+}
+
+message CreateTransactionResponse {
+  string transactionId = 1;
+  string checkoutId = 2;
+  string checkoutURL = 3;
+  string soumTransactionNumber = 4;
+  string transactionStatusId = 5;
+  string transactionType = 6;
+}
+
+message GetTransactionRequest {
+  string transactionId = 1;
+}
+
+message TransactionResponse {
+  string transactionId = 1;
+  string checkoutId = 2;
+  string checkoutURL = 3;
+  string soumTransactionNumber = 4;
+  string transactionStatusId = 5;
+  string transactionType = 6;
+  string paymentOptionId = 7;
+  optional string operationId = 8;
+  double totalAmount = 9;
+  PaymentOption paymentOption = 10;
+  optional string providerResponse = 30; // big number, will delete it soon
+}
+
+message CaptureTransactionRequest {
+  string transactionId = 1;
+}
+
+message ReverseTransactionRequest {
+  string transactionId = 1;
+}
+
+message GetTransactionBySoumTransactionNumberRequest {
+  string soumTransactionNumber = 1;
+}
+
+message ValidateBNPLForUserRequest {
+  message TransactionItem {
+    string title = 1;
+    string description = 2;
+    string unitPrice = 3;
+    string vatAmount = 4;
+  }
+  string userId = 1;
+  string productId = 2;
+  double amount = 3;
+  PaymentOption paymentOption = 4;
+  string soumTransactionNumber = 5;
+  string transactionType = 6;
+  repeated TransactionItem items = 7;
+  optional string nationalId = 8;
+}
+message ValidateBNPLForUserResponse {
+  bool isValid=1;
+  optional string reason=2;
+}
+
+message CreatePayoutRequest {
+  double amount = 1;
+  string recipientId = 2;
+  string agentId = 3;
+  string orderId = 4;
+}
+
+enum PayoutStatus {
+  COMPLETED = 0;
+  PROCESSING = 1;
+  FAILED = 2;
+  ERROR = 3;
+}
+
+message CreatePayoutResponse {
+  PayoutStatus status = 1;
+}
+
+message CheckPayoutStatusRequest {
+  string orderId = 1;
+}
+
+message CheckPayoutStatusResponse {
+  PayoutStatus status = 1;
+}

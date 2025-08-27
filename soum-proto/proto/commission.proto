@@ -1,0 +1,305 @@
+syntax = "proto3";
+
+package commission;
+
+service CommissionService {
+  rpc calculateProductCommissionSummary (CalculateCommissionSummaryRequest) returns (CalculateCommissionSummaryResponse) {}
+  rpc calculateProductCommissionSummaryForList (CalculateCommissionSummaryRequestForList) returns (CalculateCommissionSummaryResponseForList) {}
+  rpc createProductCommissionSummary (CreateCommissionSummaryRequest) returns (CommissionSummaryResponse) {}
+  rpc migrateProductCommissionSummary (MigrateCommissionSummaryRequest) returns (CommissionSummaryResponse) {}
+  rpc getProductCommissionSummary (ProductCommissionSummaryRequest) returns (ProductCommissionSummaryResponse) {}
+  rpc updateSellerCommission (UpdateSellerCommissionRequest) returns (ProductCommissionSummaryResponse) {}
+  rpc updateSellPrice (UpdateSellPriceRequest) returns (ProductCommissionSummaryResponse) {}
+  rpc addSellerCommissionPenalty (UpdateSellerCommissionRequest) returns (ProductCommissionSummaryResponse) {}
+  rpc calculateAddonSummary (CalculateAddonSummaryRequest) returns (CalculateAddonSummaryResponse) {}
+  rpc updateUsageCount (UpdateUsageCountRequest) returns (UpdateUsageCountResponse) {}
+  rpc getPromoDetails (GetPromoDetailsRequest) returns (DetailedPromoCode) {}
+  rpc getDefaultPromoCode (GetDefaultPromoCodeRequest) returns (DetailedPromoCode) {}
+  rpc getFeedPromos (GetFeedPromosRequest) returns (GetFeedPromosResponse) {}
+  rpc getFeedPromo (GetFeedPromoRequest) returns (DetailedPromoCode) {}
+  rpc GetPromosByIds (GetPromosByIdsRequest) returns (GetPromosByIdsResponse) {}
+  rpc forceUpdateCommission (ForceUpdateCommissionRequest) returns (ProductCommissionSummaryResponse) {}
+}
+
+message CommissionAnalysis {
+  double commissionTotalPercentage = 1;
+  double commissionTotalFixed = 2;
+  double paymentCommissionExtraFees = 3;
+  double paymentCommission = 4;
+  double paymentCommissionVat = 5;
+  double nonPaymentCommission = 6;
+  double nonPaymentCommissionVat = 7;
+  double paymentCommissionWithVat = 8;
+  double nonPaymentCommissionWithVat = 9;
+  double penaltyCommission = 10;
+  double penaltyCommissionVat = 11;
+  double realEstateVat = 12;
+}
+message CalculateCommissionSummaryResponse {
+  repeated BreakDownResponse commissionSummaries = 1;
+  string productId = 2;
+}
+
+message CalculateCommissionSummaryResponseForList {
+  repeated CalculateCommissionSummaryResponse calculateCommissionSummaryResponses = 1;
+}
+
+message BreakDownResponse {
+  CommissionSummaryResponse withPromo = 1;
+  CommissionSummaryResponse withoutPromo = 2;
+}
+
+message CalculateCommissionSummaryRequest {
+  CommissionFilters commission= 1;
+  Product product = 2 ; 
+  CalculationSettings calculationSettings = 3;
+  PromoCode promoCode = 4;
+  bool allPayments = 5;
+  string paymentModuleName = 6;
+  PaymentOption paymentOption = 7;
+  Reservation reservation = 8;
+  repeated string addonIds = 9;
+  FinancingRequest financingRequest = 10;
+}
+message CalculateCommissionSummaryRequestForList {
+  repeated CalculateCommissionSummaryRequest calculateCommissionSummaryRequests = 1;
+}
+
+message CreateCommissionSummaryRequest {
+  CommissionFilters commission= 1;
+  Product product = 2 ; 
+  CalculationSettings calculationSettings = 3;
+  PromoCode promoCode = 4;
+  Order order = 5;
+  string paymentModuleName = 6;
+  PaymentOption paymentOption = 7;
+  Reservation reservation = 8;
+  repeated AddOn addOns = 9;
+  FinancingRequest financingRequest = 10;
+}
+
+message UpdateSellerCommissionRequest {
+  Product product = 1 ; 
+  double sellerNewCommission = 2;  
+}
+
+message ForceUpdateCommissionRequest {
+  string productId = 1;
+  string orderId = 2;
+  double grandTotal = 3;
+  double payout = 4;
+  double discount = 5;
+  double buyerCommission = 6;
+  double sellPrice = 7;
+}
+
+message UpdateSellPriceRequest {
+  Product product = 1 ; 
+}
+
+message MigrateCommissionSummaryRequest {
+  CommissionFilters commission= 1;
+  Product product = 2 ; 
+  MigrationCalculationSettings calculationSettings = 3;
+  PromoCode promoCode = 4;
+  Order order = 5;
+  string paymentModuleName = 6;
+}
+
+message Order{
+  string id = 1;
+}
+
+message AddOn {
+  string id = 1;
+  double addOnPrice = 2;
+}
+
+message PaymentOption {
+  string id = 1;
+  string paymentProvider = 2;
+  string paymentCardType = 3;
+}
+
+message CommissionFilters{
+  string userType = 1;
+  bool isBuyer = 2;
+}
+
+message Product {
+  string id = 1;
+  int32 sellPrice = 2;
+  string priceRange = 3;
+  string source = 4;
+  string categoryId = 5;
+  string modelId = 6;
+  string varientId = 7;
+  string conditionId = 8;
+}
+
+message CalculationSettings {
+  int32 vatPercentage = 1 ;
+  bool applyDeliveryFeeSPPs = 2;
+  bool applyDeliveryFeeMPPs = 3;
+  bool applyDeliveryFee = 4;
+  int32 deliveryFeeThreshold = 5;
+  int32 deliveryFee = 6;
+  int32 referralFixedAmount = 7;
+  bool applyReservation = 8;
+  bool applyFinancing = 9;
+}
+
+message MigrationCalculationSettings {
+  int32 vatPercentage = 1 ;
+  bool applyDeliveryFeeSPPs = 2;
+  bool applyDeliveryFeeMPPs = 3;
+  bool applyDeliveryFee = 4;
+  int32 deliveryFeeThreshold = 5;
+  int32 deliveryFee = 6;
+  int32 referralFixedAmount = 7;
+  int32 buyerCommissionPercentage = 8;
+  int32 sellerCommissionPercentage = 9;
+  int32 priceQualityExtraCommission = 10;
+}
+
+message Reservation {
+  double reservationAmount = 1;
+  double reservationRemainingAmount = 12;
+}
+
+message FinancingRequest {
+  double amount = 1;
+}
+
+message PromoCode {
+  int32 promoLimit = 1;
+  string type = 2;
+  string generator = 3;
+  int32 discount = 4;
+  int32 percentage = 5;
+}
+
+message CommissionSummaryResponse  {
+  string id = 1;
+  double commission = 2;
+  double commissionVat = 3;
+  double deliveryFee = 4;
+  double deliveryFeeVat = 5;
+  double totalVat = 6;
+  double discount = 7;
+  double grandTotal = 8;
+  double commissionDiscount = 9;
+  double sellPrice = 10;
+  CommissionAnalysis commissionAnalysis = 11;
+  string paymentId = 12;
+  Reservation reservation = 13;
+  double addOnsTotal = 14;
+  double addOnsVat = 15;
+  double addOnsGrandTotal = 16;
+  double realEstateVat = 17;
+  FinancingRequest financingRequest = 18;
+  optional string paymentCardType = 19;
+}
+
+message ProductCommissionSummaryRequest {
+  string orderId = 1;
+  string productId = 2;
+  bool isBuyer = 3;
+  bool isOriginalBreakDown = 4;
+}
+
+message ProductCommissionSummaryResponse {
+  string id = 1;
+  double commission = 2;
+  double commissionVat = 3;
+  double deliveryFee = 4;
+  double deliveryFeeVat = 5;
+  double totalVat = 6;
+  double discount = 7;
+  double grandTotal = 8;
+  double commissionDiscount = 9;
+  string productId = 10;
+  string orderId = 11;
+  double sellPrice = 12;
+  CommissionAnalysis commissionAnalysis = 13;
+  Reservation reservation = 14;
+  FinancingRequest financingRequest = 15;
+}
+
+message CalculateAddonSummaryRequest {
+  double productPrice = 1;
+  repeated AddonSummaryCalculateData addonSummaryCalculateData = 2;
+}
+
+message AddonSummaryCalculateData {
+  string priceType = 1;
+  double addonPrice = 2;
+}
+
+message CalculateAddonSummaryResponse {
+  double addOnsTotal = 1;
+  double addOnsVat = 2;
+  double addOnsGrandTotal = 3;
+}
+
+message UpdateUsageCountRequest {
+  string promoCodeId = 1;
+  int32 count = 2;
+}
+
+message UpdateUsageCountResponse {
+  bool ok = 1;
+}
+
+message GetPromoDetailsRequest {
+  string filterField = 1;
+  string filterFieldValue = 2;
+}
+
+message PromoCodeScope {
+  string promoCodeScopeType = 1;
+  repeated string ids = 2;
+}
+
+message AvailablePayment {
+  string paymentProvider = 1;
+  string paymentProviderType = 2;
+}
+message DetailedPromoCode {
+  optional float promoLimit = 1;
+  string promoType = 2;
+  string promoGenerator = 3;
+  optional float discount = 4;
+  optional float percentage = 5;
+  string id = 6;
+  string userType = 7;
+  string status = 8;
+  string code = 9;
+  bool isDefault = 10;
+  repeated PromoCodeScope promoCodeScope = 11;
+  repeated AvailablePayment availablePayment = 12;
+}
+
+message GetDefaultPromoCodeRequest{
+
+}
+
+message GetFeedPromosRequest {
+  repeated string feedIds = 1;
+}
+
+message GetFeedPromosResponse {
+  repeated DetailedPromoCode DetailedPromoCode = 1;
+}
+
+message GetFeedPromoRequest {
+  string feedId = 1;
+}
+
+message GetPromosByIdsRequest {
+  repeated string ids = 1;
+}
+
+message GetPromosByIdsResponse {
+  repeated DetailedPromoCode promos = 1;
+}

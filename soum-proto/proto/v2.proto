@@ -1,0 +1,1088 @@
+syntax = "proto3";
+
+package v2;
+
+service V2Service {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+  rpc GetUsers (GetUsersRequest) returns (GetUsersResponse) {}
+  rpc GetPermissions (GetPermissionsRequest) returns (GetPermissionsResponse) {}
+  rpc GetOrderDetail(GetOrderDetailRequest) returns (GetOrderDetailResponse) {}
+  rpc GetDmUser (GetDmUserRequest) returns (GetDmUserResponse) {}
+  rpc GetDmUsers (GetDmUsersRequest) returns (GetDmUsersResponse) {}
+  rpc GetUsersByPhone (GetUsersByPhoneRequest) returns (GetUsersByPhoneResponse) {}
+  rpc UpdateHighestBid (UpdateHighestBidRequest) returns (UpdateHighestBidResponse) {}
+  rpc GetProducts (GetProductsRequest) returns (GetProductsResponse) {}
+  rpc GetProductForCommission (GetProductForCommissionRequest) returns (GetProductForCommissionResponse) {}
+  rpc GetMarketPriceByVariantId(GetMarketPriceByVariantIdRequest) returns (GetMarketPriceByVariantIdResponse) {}
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+  rpc GetProductStatuses(GetProductStatusesRequest) returns (GetProductStatusesResponse) {}
+  rpc UpdateLogisticService(UpdateLogisticServiceRequest) returns (UpdateLogisticServiceResponse) {}
+  rpc GetBidSummary(GetBidSummaryRequest) returns (GetBidSummaryResponse) {}
+  rpc GetViewedProducts (GetViewedProductsRequest) returns (GetViewedProductsResponse) {}
+  rpc GetLegacyUserViaLocalPhone (GetLegacyUserViaLocalPhoneRequest) returns (GetLegacyUserViaLocalPhoneResponse) {}
+  rpc CreateNewUser(CreateNewUserRequest) returns (CreateNewUserResponse) {}
+  rpc UpdateInactiveUser(UpdateInactiveUserRequest) returns (UpdateInactiveUserResponse) {}
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse) {}
+  rpc GetBanners(GetBannersRequest) returns (GetBannersResponse);
+  rpc GetFeeds (GetFeedRequest) returns (GetFeedsResponse);
+  rpc UpdatePenaltyFlag(UpdatePenaltyFlagRequest) returns (UpdatePenaltyFlagResponse) {}
+  rpc GetInvoiceGenerationFlag(GetInvoiceGenerationFlagRequest) returns (GetInvoiceGenerationFlagResponse) {}
+  rpc GetVariants(GetVariantsRequest) returns (GetVariantsResponse) {}
+  rpc GetCountdownValInHours(GetCountdownValInHoursRequest) returns (GetCountdownValInHoursResponse) {}
+  rpc ValidateSellerDetectionNudge(ValidateSellerDetectionNudgeRequest) returns (ValidateSellerDetectionNudgeResponse) {}
+  rpc GetProductsForProductService(GetProductsRequest) returns (GetProductsForProductServiceResponse) {}
+  rpc UpdatePaymentStatusOfOrder(UpdatePaymentStatusOfOrderRequest) returns (UpdatePaymentStatusOfOrderResponse){}
+  rpc GetRecentlySoldProducts (GetRecentlySoldProductsRequest) returns (GetViewedProductsResponse) {}
+  rpc GetSellerBadge(GetSellerBadgeRequest) returns (GetSellerBadgeResponse) {}
+  rpc GetPromoCode(GetPromoCodeRequest) returns (GetPromoCodeResponse){}
+  rpc FetchInvoiceGenerationData(FetchInvoiceGenerationDataRequest) returns (FetchInvoiceGenerationDataResponse) {}
+  rpc GetOrderSaleAnalytics(GetOrderSaleAnalyticsRequest) returns (GetOrderSaleAnalyticsResponse) {}
+  rpc GetPendingPayoutAnalytics(GetPendingPayoutAnalyticsRequest) returns (GetPendingPayoutAnalyticsResponse) {}
+  rpc GetPendingPayoutPagination(GetPendingPayoutPaginationRequest) returns (GetPendingPayoutPaginationResponse) {}
+  rpc GetPenalizedOrders(GetPenalizedOrdersRequest) returns (GetPenalizedOrdersResponse) {}
+  rpc GetCompletionRateUser(GetCompletionRateUserRequest) returns (GetCompletionRateUserResponse) {}
+  rpc GetTopSellingProductModels(GetTopSellingProductModelsRequest) returns (GetTopSellingProductModelsResponse) {}
+  rpc SetUserOTP(SetUserOTPRequest) returns (SetUserOTPResponse){}
+  rpc CheckUserOTP(CheckUserOTPRequest) returns (CheckUserOTPResponse){}
+  rpc CreateSmsaTracking (CreateSMSATracking) returns ( CreateSMSATracking ) {}
+  rpc UpdateOrderAttribute(UpdateOrderAttributeRequest) returns (UpdateOrderAttributeResponse) {}
+  rpc UpdateProduct (UpdateProductRequest) returns (UpdateProductResponse) {}
+  rpc GetListingFees (GetListingFeesRequest) returns (GetListingFeesResponse) {}
+  rpc UpdateSecurityFee (UpdateSecurityFeeRequest) returns (UpdateSecurityFeeResponse) {}
+  rpc ValidIdsForPromoCode (ValidIDsForPromoCodeRequest) returns  (ValidIDsForPromoCodeResponse) {}
+  rpc GetProductDetailsForPromoCodeValidation (GetProductDetailsForPromoCodeValidationRequest) returns (GetProductDetailsForPromoCodeValidationResponse){}
+  rpc ValidateUserUsageOfPromoCode (ValidateUserUsageOfPromoCodeRequest) returns (ValidateUserUsageOfPromoCodeResponse){}
+  rpc ProcessReserveFinancingPayment (ProcessReserveFinancingPaymentRequest) returns (ProcessReserveFinancingPaymentResponse) {}
+  rpc GenerateSmsaTracking (Request) returns ( GenerateSmsaTrackingResponse ) {}
+  rpc GetOrderDetailById(GetOrderDetailRequest) returns (GetOrderDetailByIdResponse) {}
+  rpc GetOrderDetailByUserType(GetOrderDetailByUserTypeRequest) returns (GetOrderDetailByIdResponse) {}
+  rpc CreateDmOrder(Request) returns (GetOrderDetailByIdResponse) {}
+  rpc UpdateDmOrder(Request) returns (GetOrderDetailByIdResponse) {}
+  rpc GetUserProfile(GetUserDataRequest) returns (GetOrderDetailByIdResponse) {}
+  rpc GetUserLastOrderData(GetUserDataRequest) returns (GetUserLastOrderDataResponse) {}
+  rpc SubmitRating(SubmitRatingRequest) returns (SubmitRatingResponse) {}
+  rpc GetCategoryModelsCount(GetVariantsRequest) returns (GetCategoryModelsCountResponse) {}
+}
+
+message UpdateProductRequest {
+  string productId = 1;
+  UpdateProduct updateProduct = 2;
+}
+
+message UpdateProduct {
+  string status = 1;
+  string sellStatus = 2;
+  bool isApproved = 3;
+  Consignment consignment = 4;
+  string conditionId = 5;
+  double sellPrice = 6;
+}
+
+message Consignment {
+  string orderNumber = 1;
+  double payoutAmount = 2;
+  string payoutStatus = 3;
+}
+
+message UpdateProductResponse {
+  bool status = 1;
+}
+
+message GetPromoCodeRequest {
+  string id = 1;
+}
+message GetPromoCodeResponse {
+  int32 promoLimit = 1;
+  string type = 2;
+  string generator = 3;
+  int32 discount = 4;
+  int32 percentage = 5;
+}
+message GetProductsForProductServiceResponse {
+  repeated ProductForProductService products = 1;
+}
+
+message ProductForProductService {
+  string id = 1;
+  string description = 2;
+  repeated Category categories = 3;
+  repeated string imagesUrl = 4;
+  double score = 5;
+  double sellPrice = 6;
+  string status = 7;
+  string sellType = 8;
+  string userId = 9;
+  string groupListingId = 10;
+  StatusSummary statusSummary = 11;
+}
+message Category {
+  string id = 1;
+  string type = 2;
+  optional string name = 3;
+  optional string nameAr = 4;
+}
+
+message StatusSummary {
+  bool isApproved=1;
+  bool  isExpired = 2;
+  bool isDeleted = 3;
+  bool isReported = 4;
+  bool isVerifiedByAdmin =  5;
+  bool isFraudDetected =  6;
+  bool isSearchSync =  7;
+}
+
+message GetCountdownValInHoursRequest {
+  string modelId = 1;
+}
+
+message GetCountdownValInHoursResponse {
+  int32 countdownValInHours = 1;
+}
+message ValidateSellerDetectionNudgeRequest {
+}
+
+message ValidateSellerDetectionNudgeResponse {
+  bool isActiveSellerDetectionNudge = 1;
+}
+message GetVariantsRequest {
+  string categoryId = 1;
+}
+
+message GetVariantsResponse {
+  repeated Variant variants = 1;
+}
+
+message Variant {
+  string id = 1;
+  string name = 2;
+  string nameAr = 3;
+}
+
+message MigrateCategoryCondition {
+  string id = 1;
+  string categoryId = 2;
+  int32 priceNudgeMin = 3;
+  int32 priceNudgeMax = 4;
+  int32 fairPrice = 5;
+  int32 fairTTL = 6;
+  int32 excellentPrice = 7;
+  int32 excellentTTL = 8;
+  int32 expensivePrice = 9;
+  int32 expensiveTTL = 10;
+}
+
+message GetOrderDetailResponse {
+  string buyerId = 1;
+  string sellerId = 2;
+  SellerOrderDetail sellerOrderDetail = 3;
+  BuyerOrderDetail buyerOrderDetail = 4;
+  string productName = 5;
+  string orderNumber = 6;
+  string orderId = 7;
+  string productId = 8;
+  string sellerPhoneNumber = 9;
+  string buyerPhoneNumber = 10;
+  bool isFinancingEmailSent = 11;
+}
+
+message GetOrderDetailRequest {
+  string orderId = 1;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetDmUserRequest {
+  string userId = 1;
+}
+
+message GetPermissionsRequest {
+  string serviceName = 1;
+}
+
+message GetUserResponse {
+  string id = 1;
+  string name = 2;
+  string phoneNumber = 3;
+  Bank bankDetail = 4;
+  Address address = 5;
+  string email = 6;
+  bool isKeySeller = 7;
+  bool isMerchant = 8;
+  double activeListings = 9;
+  double soldListings = 10;
+  string avatar = 11;
+  string activatedDate = 12;
+  string bio = 13;
+  bool isCompliant = 14;
+}
+
+message GetDmUserResponse {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string username = 4;
+  string status = 5;
+  string email = 6;
+  string phoneNumber = 7;
+}
+
+message SellerOrderDetail {
+  float payoutAmount = 1;
+  float sellPrice = 2;
+}
+
+message BuyerOrderDetail {
+  float grandTotal = 1;
+}
+
+message Bank {
+  string accountHolderName = 1;
+  string accountId = 2;
+  string bankBIC = 3;
+  string bankName = 4;
+  bool isNonSaudiBank = 5;
+}
+
+message Address {
+  string street = 1;
+  string district = 2;
+  string city = 3;
+  string postalCode = 4;
+  string latitude = 5;
+  string longitude = 6;
+}
+
+message Permission {
+  string key = 1;
+  string description = 2;
+}
+
+message GetUsersRequest {
+  repeated string userIds = 1;
+  bool limitUsersWithBank = 2;
+}
+
+message GetPermissionsResponse {
+  repeated Permission permissions = 1;
+}
+
+message GetUsersResponse {
+  message User {
+    string id = 1;
+    string name = 2;
+    string phoneNumber = 3;
+    Bank bankDetail = 4;
+    bool isKeySeller = 7;
+    bool isMerchant = 8;
+  }
+  repeated User users = 1;
+}
+
+message GetDmUsersRequest {
+  repeated string userIds = 1;
+}
+
+message GetDmUsersResponse {
+  message DmUser {
+    string id = 1;
+    string username = 2;
+    string phoneNumber = 3;
+  }
+  repeated DmUser users = 1;
+}
+
+message GetUsersByPhoneRequest {
+  string phoneNumber = 1;
+}
+
+message GetUsersByPhoneResponse {
+  message User {
+    string id = 1;
+    string name = 2;
+    string phoneNumber = 3;
+    Bank bankDetail = 4;
+  }
+  repeated User users = 1;
+}
+
+message UpdateHighestBidRequest {
+  string productId = 1;
+  double bid = 2;
+}
+
+message UpdateHighestBidResponse {}
+
+message GetProductsRequest {
+  repeated string productIds = 1;
+  optional bool getAttributes = 2;
+}
+
+message GetProductForCommissionRequest {
+  string productId = 1;
+  string promoCodeId = 2;
+}
+
+message PromoCode {
+  int32 promoLimit = 1;
+  string type = 2;
+  string generator = 3;
+  int32 discount = 4;
+  int32 percentage = 5;
+}
+message Product {
+  string id = 1;
+  int32 sellPrice = 2;
+  string priceQuality = 3;
+  string source = 4;
+}
+message GetProductForCommissionResponse {
+    Product product = 1;
+    string userType = 2;
+    string priceQuality = 3;
+    CalculationSettings calculationSettings = 4;
+    PromoCode promoCode = 5;
+}
+
+message GetProductsResponse {
+  message Product {
+    string productId = 1;
+    string sellerId = 2;
+    string productName = 3;
+    double startBid = 4;
+    string sellerName = 5;
+    string productNameAr = 6;
+    float commission = 7;
+    float shipping = 8;
+    string availablePayment = 9;
+    bool isExpired = 10;
+    float vat = 11;
+    string productImg = 12;
+    bool isDeleted = 13;
+    bool isSold = 14;
+    float sellPrice = 15;
+    string sellerCity = 16;
+    float vatPercentage = 17;
+    optional string sellDate = 18;
+    repeated Attribute attributes = 19;
+  }
+  repeated Product products = 1;
+}
+
+message CalculationSettings {
+  int32 vatPercentage = 1 ;
+  bool applyDeliveryFeeSPPs = 2;
+  bool applyDeliveryFeeMPPs = 3;
+  bool applyDeliveryFee = 4;
+  int32 deliveryFeeThreshold = 5;
+  int32 deliveryFee = 6;
+  int32 referralFixedAmount = 7;
+  int32 buyerCommissionPercentage = 8;
+  int32 sellerCommissionPercentage = 9;
+  int32 priceQualityExtraCommission = 10;
+}
+
+message GetMarketPriceByVariantIdRequest {
+  string variantId = 1;
+  string grade = 2;
+}
+
+message GetMarketPriceByVariantIdResponse {
+  double minPrice = 1;
+  double maxPrice = 2;
+}
+
+message CreateOrderRequest {
+  string productId = 1;
+  string paymentOptionId = 2;
+  string userId = 3;
+  float amount = 4;
+  string soumTransactionNumber = 5;
+  string clientType = 6;
+}
+
+message CreateOrderResponse {
+  string orderId = 1;
+  string dmOrderId = 2;
+}
+
+message GetProductStatusesRequest {
+  string productId = 1;
+}
+
+message GetProductStatusesResponse {
+  bool deleted = 1;
+  bool expired = 2;
+  bool sold = 3;
+}
+
+message UpdateLogisticServiceRequest {
+  string serviceId = 1;
+  string vendorId = 2;
+  string dmoId = 3;
+  string serviceName = 4;
+}
+
+message UpdateLogisticServiceResponse {}
+
+message GetBidSummaryRequest {
+  string productId = 1;
+  double bidPrice = 2;
+  string userId = 3;
+  bool allPayments = 4;
+  string paymentOptionId = 5;
+}
+
+message BidProduct {
+  string productId = 1;
+  string sellerId = 2;
+  string productName = 3;
+  double startBid = 4;
+  string sellerName = 5;
+  string productNameAr = 6;
+  bool isExpired = 7;
+  string productImg = 8;
+  bool isDeleted = 9;
+  bool isSold = 10;
+}
+
+message GetBidSummaryResponse {
+  BidProduct product = 1;
+  repeated BreakDownResponse commissionSummaries = 2;
+}
+
+message BreakDownResponse {
+  CommissionSummaryResponse withPromo = 1;
+  CommissionSummaryResponse withoutPromo = 2;
+}
+
+message CommissionAnalysis {
+  double commissionTotalPercentage = 1;
+  double commissionTotalFixed = 2;
+  double paymentCommissionExtraFees = 3;
+  double paymentCommission = 4;
+  double paymentCommissionVat = 5;
+  double nonPaymentCommission = 6;
+  double nonPaymentCommissionVat = 7;
+  double paymentCommissionWithVat = 8;
+  double nonPaymentCommissionWithVat = 9;
+}
+
+message CommissionSummaryResponse  {
+  string id = 1;
+  double commission = 2;
+  double commissionVat = 3;
+  double deliveryFee = 4;
+  double deliveryFeeVat = 5;
+  double totalVat = 6;
+  double discount = 7;
+  double grandTotal = 8;
+  double commissionDiscount = 9;
+  double sellPrice = 10;
+  CommissionAnalysis commissionAnalysis = 11;
+  string paymentId = 12;
+}
+
+message GetViewedProductsRequest {
+  repeated string productIds = 1;
+  optional bool shouldSkipExpire = 2;
+  optional string categoryId = 3;
+  optional bool getSpecificCategory = 4;
+}
+message GetLegacyUserViaLocalPhoneRequest {
+  string mobileNumber = 1;
+}
+
+message GetLegacyUserViaLocalPhoneResponse {
+  message Listings {
+    double activeListings = 1;
+    double completedSales = 2;
+    double purchasedProducts = 3;
+    double soldListings = 4;
+  }
+  bool isValid = 1;
+  string countryCode = 2;
+  string mobileNumber = 3;
+  string userType = 4;
+  string userId = 5;
+  string userStatus = 6;
+  bool otpVerification = 7;
+  bool isActive = 8;
+  bool isDeleted = 9;
+  bool isMerchant = 10;
+  string language = 11;
+  bool ratesScan = 12;
+  string profilePic = 13;
+  Listings listings = 14;
+  string name = 15;
+  repeated string cards = 16;
+  bool isAllowedMobileNumber = 17;
+  string region = 18;
+  optional bool isKeySeller = 19;
+}
+
+message CreateNewUserRequest {
+  string mobileNumber = 1;
+  string countryCode = 2;
+}
+
+message CreateNewUserResponse {
+  message Listings {
+    double activeListings = 1;
+    double completedSales = 2;
+    double purchasedProducts = 3;
+    double soldListings = 4;
+  }
+  string userId = 1;
+  string userStatus = 2;
+  string language = 3;
+  bool ratesScan = 4;
+  string profilePic = 5;
+  Listings listings = 6;
+}
+
+message UpdateInactiveUserRequest {
+  string userId = 1;
+  bool otpVerification = 2;
+}
+
+message UpdateInactiveUserResponse {}
+
+message CancelOrderRequest {
+  string userId = 1;
+  string orderId = 2;
+}
+
+message CancelOrderResponse {}
+
+message Banner {
+  int32 position = 1;
+  string id = 2;
+  string bannerName = 3;
+  string bannerImage = 4;
+  string bannerPage = 5;
+  string bannerPosition = 6;
+  string bannerType = 7;
+  string bannerValue = 8;
+  string lang = 9;
+  string createdAt = 10;
+  string updatedAt = 11;
+}
+
+message GetBannersResponse {
+  repeated Banner banners = 1;
+}
+
+message GetBannersRequest {
+  repeated string bannerPage = 1;
+  string bannerPosition = 2;
+  string region = 3;
+  string lang = 4;
+  optional string type = 5;
+}
+
+message GetFeedRequest {
+  int32 size = 1;
+  repeated string feedTypes = 2;
+  repeated string brands = 3;
+  repeated string models = 4;
+  repeated string categories = 5;
+  optional string category = 6;
+}
+
+message FeedProductAttribute {
+  Title title = 1;
+  Value value = 2;
+}
+
+message Title {
+  string arName = 1;
+  string enName = 2;
+}
+
+message Value {
+  string arName = 1;
+  string enName = 2;
+}
+
+message Attribute {
+  Title title = 1;
+  Value value = 2;
+}
+
+message GetViewedProductsResponse {
+  message Product {
+    string id = 1;
+    string grade = 2;
+    string gradeAr = 3;
+    DeviceModel deviceModel = 4;
+    Variant variant = 5;
+    repeated Attribute attributes = 6;
+    bool isGreatDeal = 7;
+    bool isMerchant = 8;
+    int32 originalPrice = 9;
+    string productImage = 10;
+    repeated string productImages = 11;
+    float sellPrice = 12;
+    string tags = 13;
+    string sellStatus = 14;
+    string sellDate = 15;
+    Condition condition = 16;
+    bool showSecurityBadge = 17;
+    Category brand = 18;
+    Category category = 19;
+    float grandTotal = 20;
+    float vat = 21;
+    float shippingCharge = 22;
+    float buyAmount = 23;
+  }
+  repeated Product products = 1;
+}
+
+message DeviceModel  {
+  string name = 1;
+  string nameAr = 2;
+}
+
+message FeedProduct {
+  int32 originalPrice = 1;
+  string modelName = 2;
+  string arModelName = 3;
+  string productId = 4;
+  int32 sellPrice = 5;
+  string grade = 6;
+  string arGrade = 7;
+  string productImage = 8;
+  string variantName = 9;
+  string arVariantName = 10;
+  float discount = 11;
+  repeated FeedProductAttribute attributes = 12;
+  repeated string productImages = 13;
+  Condition condition = 14;
+  bool showSecurityBadge = 15;
+}
+
+message FeedItem {
+  string id = 1;
+  string arName = 2;
+  string enName = 3;
+  repeated FeedProduct items = 4;
+  string arTitle = 5;
+  string enTitle = 6;
+  string expiryDate = 7;
+  string feedType = 8;
+  int32 maxBudget = 9;
+  string imgURL = 10;
+  int32 position = 11;
+  int32 totalActiveProducts = 12;
+  int32 totalProducts = 13;
+}
+
+message Model {
+  string id = 1;
+  string arName = 2;
+  string enName = 3;
+  string modelIcon = 4;
+}
+
+message GetFeedsResponse {
+  repeated FeedItem feeds = 1;
+  repeated Model mostSoldModels = 2;
+}
+
+message Condition {
+    string id = 1;
+    string name = 2;
+    string nameAr = 3;
+    string labelColor = 4;
+    string textColor = 5;
+}
+message UpdatePenaltyFlagRequest {
+  string sellerId = 1;
+}
+
+message UpdatePenaltyFlagResponse {}
+
+message GetInvoiceGenerationFlagRequest {
+  string dmoId = 1;
+}
+
+message GetInvoiceGenerationFlagResponse {
+  bool isGenerated = 1;
+}
+
+message PaymentOption {
+  string id = 1;
+  string paymentProvider = 2;
+  string paymentCardType = 3;
+  string displayName = 4;
+}
+
+message TransactionResponse {
+  string transactionId = 1;
+  string checkoutId = 2;
+  string checkoutURL = 3;
+  string soumTransactionNumber = 4;
+  string transactionStatusId = 5;
+  string transactionType = 6;
+  string paymentOptionId = 7;
+  optional string operationId = 8;
+  double totalAmount = 9;
+  PaymentOption paymentOption = 10;
+  optional string providerResponse = 30; // big number, will delete it soon
+}
+
+message UpdatePaymentStatusOfOrderRequest{
+  string paymentId=1;
+  string paymentNumber=2;
+  string paymentProvider=3;
+  TransactionResponse transaction = 4;
+}
+
+message UpdatePaymentStatusOfOrderResponse{
+  string orderTransactionStatus=1;
+}
+
+message GetRecentlySoldProductsRequest{
+  int32 hours = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+  optional string categoryId = 4;
+  optional bool getSpecificCategory = 5;
+}
+
+message GetSellerBadgeRequest {
+  string userId = 1;
+}
+message GetSellerBadgeResponse {
+  bool activateTenDaysGuarantee = 1;
+  bool isSFPaid = 2;
+  bool hasHighFRate = 3;
+}
+
+message FetchInvoiceGenerationDataRequest {
+  string orderId = 1;
+  string type = 2;
+}
+
+message FetchInvoiceGenerationDataResponse {
+  message User {
+    string id = 1;
+    string name = 2;
+    Address address = 3;
+  }
+  message OrderCalculationSumamry {
+    float commission = 1;
+    float vat = 2;
+    float deliveryFee = 3;
+    float deliveryFeeVAT = 4;
+    float penaltyFee = 5;
+    float discount = 6;
+    float grandTotal = 7;
+    string orderId = 8;
+    string orderNumber = 9;
+    float totalVAT = 10;
+    float totalTaxableAmount = 11;
+  }
+  message ItemCalculationSumamry {
+    float unitPrice = 1;
+    float commission = 2;
+    float vat = 3;
+    float discount = 4;
+    float grandTotal = 5;
+    int32 quantity = 6;
+  }
+  message Product {
+    string productId = 1;
+    string nameAR = 2;
+    string nameEN = 3;
+    ItemCalculationSumamry item = 4;
+  }
+  string billType = 1;
+  string issueDate = 2;
+  string billTo = 3;
+  string billedByCOR = 4;
+  string billedBySeller = 5;
+  string ZATCAInvoiceNo = 6;
+  string dateOfSupply = 7;
+  User seller = 8;
+  User buyer = 9;
+  OrderCalculationSumamry order = 10;
+  Product product = 11;
+}
+message GetOrderSaleAnalyticsRequest {
+  string merchantId = 1;
+  string range = 2;
+}
+
+message GetOrderSaleAnalyticsResponse {
+  message TotalsByStatusResponse {
+    string statusName = 1;
+    float totalAmount = 2;
+    float transaction = 3;
+  }
+  repeated TotalsByStatusResponse data = 1;
+  float totalTransactions = 2;
+  float totalAmountOverall = 3;
+}
+
+message GetPendingPayoutAnalyticsRequest {
+  string merchantId = 1;
+}
+
+message GetPendingPayoutAnalyticsResponse {
+  string merchantId = 1;
+  float totalAmount = 2;
+}
+
+message GetPendingPayoutPaginationRequest {
+  string merchantId = 1;
+  string search = 2;
+  int32 page = 3;
+  int32 size = 4;
+}
+
+message GetPendingPayoutPaginationResponse {
+  message PayoutDetails {
+    string productName = 1;
+    string productNameAR = 2;
+    string payoutAmount = 3;
+    string orderNumber = 4;
+  }
+  repeated PayoutDetails payouts = 1;
+  int32 totalItems = 2;
+  int32 totalPages = 3;
+  int32 currentPage = 4;
+}
+
+message GetPenalizedOrdersRequest {
+  repeated string dmoIds = 1;
+  int32 page = 2;
+  int32 size = 3;
+  string range = 4;
+}
+
+message GetPenalizedOrdersResponse {
+  message PenalizedOrders {
+    string productName = 1;
+    string orderNumber = 2;
+    float payoutAmount = 3;
+    float penalty = 4;
+    float finalPayout = 5;
+    string nctReason = 6;
+    string nctReasonAR = 7;
+    string dmoId = 8;
+  }
+  repeated PenalizedOrders orders = 1;
+  int32 totalItems = 2;
+  int32 totalPages = 3;
+  int32 currentPage = 4;
+  int32 pageSize = 5;
+}
+
+message GetCompletionRateUserRequest {
+  string userId = 1;
+  string range = 2;
+}
+
+message GetCompletionRateUserResponse {
+  float completionRate = 1;
+}
+
+message GetTopSellingProductModelsRequest {
+  string merchantId = 1;
+  string range = 2;
+  string sorting = 3;
+  int32 page = 4;
+  int32 size = 5;
+}
+
+message GetTopSellingProductModelsResponse {
+  message TopSellingProduct {
+    string modelName = 1;
+    string varient = 2;
+    int32 totalSales = 3;
+    string modelIcon = 4;
+    string modelNameAR = 5;
+    float totalAmount = 6;
+    string varientAR = 7;
+  }
+  repeated TopSellingProduct products = 1;
+  int32 totalItems = 2;
+  int32 totalPages = 3;
+  int32 currentPage = 4;
+  int32 pageSize = 5;
+}
+message SetUserOTPRequest {
+  string countryCode = 1;
+  string mobileNumber = 2;
+  string otp = 3;
+}
+
+message SetUserOTPResponse {
+  bool status = 1;
+}
+
+message CheckUserOTPRequest {
+  string userId = 1;
+  string otp = 2;
+}
+
+message CheckUserOTPResponse {
+  bool status = 1;
+}
+
+message SMSATracking {
+  string id = 1;
+  string inspectionStatus = 2;
+  string inspectionCenter = 3;
+  string trackingNumber = 4;
+}
+
+message CreateSMSATracking {
+  repeated SMSATracking trackingData = 1;
+}
+
+message UpdateOrderAttributeRequest {
+  string orderId = 1;
+}
+
+message UpdateOrderAttributeResponse {
+  string message = 1;
+}
+message GetOrderDetailByUserTypeRequest {
+  string orderId = 1;
+  string userType = 2;
+}
+
+message GetListingFeesRequest {}
+
+message GetListingFeesResponse {
+  float amount = 1;
+  bool isActive = 2;
+}
+
+message UpdateSecurityFeeRequest {
+  string userId = 1;
+  float amount = 2;
+  bool isOptIn = 3;
+}
+
+message UpdateSecurityFeeResponse {}
+message ValidIDsForPromoCodeRequest {
+  repeated string feeds = 1;
+  repeated string models = 2;
+  repeated string brands = 3;
+  repeated string categories = 4;
+  repeated string sellers = 5;
+}
+
+message ValidIDsForPromoCodeResponse {
+  repeated string feeds = 1;
+  repeated string models = 2;
+  repeated string brands = 3;
+  repeated string categories = 4;
+  repeated string sellers = 5;
+}
+
+message GetProductDetailsForPromoCodeValidationRequest {
+  string productId = 1;
+}
+
+message GetProductDetailsForPromoCodeValidationResponse {
+  float sellPrice = 1;
+  ValidIDsForPromoCodeResponse detailsForScopeValidation = 2;
+}
+
+message ValidateUserUsageOfPromoCodeRequest {
+  string userId=1;
+  string promoCodeId=2;
+}
+
+message ValidateUserUsageOfPromoCodeResponse {
+  bool isUsed=1;
+}
+
+
+message ProcessReserveFinancingPaymentRequest{
+  string orderNumber = 1;
+  string status = 2;
+}
+
+message ProcessReserveFinancingPaymentResponse{}
+
+message GenerateSmsaTrackingResponse {
+  string trackingNumber = 1;
+}
+
+message Request {
+  string request = 1;
+}
+
+message GetOrderDetailByIdResponse {
+  string response = 1;
+}
+
+message GetUserDataRequest {
+  string userId = 1;
+}
+
+message GetUserLastOrderDataResponse {
+  optional string buyerName = 1;
+  optional string productName = 2;
+  optional string orderId = 3;
+  optional string productId = 4;
+  optional string statusId = 5;
+  optional float sellPrice = 6;
+  optional string createdAt = 7;
+  optional string modelName = 8;
+  optional string arModelName = 9;
+  optional string variantName = 10;
+  optional string arVariantName = 11;
+  bool isDelivered = 12;
+  bool isRated = 13;
+  repeated Attribute attributes = 14;
+}
+
+message SubmitRatingRequest {
+  string userId = 1;
+  string notes = 2;
+  string rating = 3;
+}
+
+message SubmitRatingResponse {
+  bool isRated = 1;
+}
+
+message GetCategoryModelsCountResponse {
+  repeated Brand brands = 1;
+  bool showMileageFilter = 2;
+  bool showFinancingFilter = 3;
+  bool shopGreatDeals = 4;
+  bool carsPrice = 5;
+  bool showLT31 = 6;
+  bool showGT80 = 7;
+  bool showGT30AndLT60 = 8;
+  bool showGT60AndLT80 = 9;
+}
+
+message Brand {
+  string id = 1;
+  string categoryId = 2;
+  string brandNameAr = 3;
+  string brandName = 4;
+  string brandIcon = 5;
+  string status = 6;
+  int32 totalAvailableProducts = 7;
+  repeated Models models = 8;
+}
+
+message Models {
+  int32 totalAvailableProducts = 1;
+  string modelId = 2;
+  string modelName = 3;
+  string modelNameAr = 4;
+  string modelIcon = 5;
+}

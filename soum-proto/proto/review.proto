@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package review;
+
+service ReviewService {
+  rpc Dummy (DummyRequest) returns (DummyResponse) {}
+  rpc GetRatingSeller (GetRatingSellerRequest) returns (GetRatingSellerResponse) {}
+  rpc GetResponsesOfProduct (GetResponseOfProductRequest) returns (GetResponseOfProductResponse) {}
+}
+
+message DummyRequest {
+  string id = 1;
+}
+
+message GetRatingSellerRequest {
+  string sellerId = 1;
+}
+
+message DummyResponse {
+  string id = 1;
+}
+
+message GetRatingSellerResponse {
+  double stars = 1;
+}
+
+message GetResponseOfProductRequest {
+  string productId = 1;
+}
+
+message GetResponseOfProductResponse {
+  string id = 1;
+  string userId = 2;
+  string productId = 3;
+  int32 score = 4;
+  repeated Response responses = 5;
+}
+
+message Response {
+  string questionId =1;
+  string questionAr = 2;
+  string questionEn = 3;
+  repeated Answer answers = 4;
+}
+
+message Answer {
+  string optionEn = 1;
+  string optionAr = 2;
+  string attachmentUrl = 3;
+  string text = 4;
+}

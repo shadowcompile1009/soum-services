@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package apple;
+
+service AppleService {
+  rpc GetApples (GetApplesRequest) returns (GetApplesResponse) {}
+}
+
+message GetApplesRequest {}
+
+message GetApplesResponse {
+  message Apple {
+    string color = 1;
+    double price = 2;
+  }
+  repeated Apple apples = 1;
+}

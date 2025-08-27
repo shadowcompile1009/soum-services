@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package invoice;
+
+service InvoiceService {
+  rpc createInvoice (CreateInvoiceRequest) returns (CreateInvoiceResponse) {}
+}
+message CreateInvoiceRequest {
+  string orderId = 1;
+  string invoiceType = 2;
+  string userType = 3;
+  string eventName = 4;
+  string buyerBusinessModel = 5;
+  string sellerBusinessModel = 6;
+}
+
+message CreateInvoiceResponse {}

@@ -1,0 +1,136 @@
+syntax = "proto3";
+
+package ler;
+
+service LerService {
+  rpc GetCityTiers (GetCityTiersRequest) returns ( GetCityTiersResponse ) {}
+  rpc MapLogisticsServices (MapLogisticsServicesRequest) returns ( MapLogisticsServicesResponse ) {}
+  rpc GetLogisticServices(GetLogisticServicesRequest) returns (GetLogisticServicesResponse) {}
+  rpc CreatePickup (CreatePickupRequest) returns ( CreatePickupResponse ) {} // should be deprecated soon
+  rpc CreateShipment (CreateShipmentReq) returns ( CreateShipmentResponse ) {} // replacement for CreatePickup 
+
+  rpc GetPickupStatus (GetPickupStatusRequest) returns ( GetPickupStatusRequest ) {}
+  rpc CreatePickUpForAccessories (CreatePickupForAccessoriesRequest) returns ( CreatePickupResponse ) {}
+  rpc CancelShipment (CancelShipmentRequest) returns (CancelShipmentResponse);
+}
+
+message GetCityTiersRequest {
+  string name = 1;
+}
+
+message GetCityTiersResponse {
+  string name = 1;
+  int32 sellerTier = 2;
+  int32 buyerTier = 3;
+}
+
+message MapLogisticsServicesRequest {
+  int32 sellerCityTier = 1;
+  int32 buyerCityTier = 2;
+  bool isKeySeller = 3;
+}
+
+message MapLogisticsServicesResponse {
+  string logisticServices = 1;
+  string vendorId = 2;
+  bool isAvailableToPickup = 3;
+  string serviceId = 4;
+  bool isAvailableToOneService = 5;
+}
+
+message GetLogisticServicesRequest {}
+
+message GetLogisticServicesResponse {
+  message LogisticService {
+    string serviceId = 1;
+    string serviceName = 2;
+  }
+  repeated LogisticService services = 1;
+  message LogisticVendor {
+    string vendorId = 1;
+    string vendorName = 2;
+    string services = 3;
+  }
+  repeated LogisticVendor vendors = 2;
+}
+
+message CreatePickupRequest {
+  string referenceNo = 1;
+  string originCity = 2;
+  string destinationCity = 3;
+  string senderName = 4;
+  string senderPhone = 5;
+  string senderAddress = 6;
+  string receiverName = 7;
+  string receiverPhone = 8;
+  string receiverAddress = 9;
+  string trackingNumber = 10;
+  string description = 11;
+}
+
+message CreateShipmentReq {
+  User sender = 1;
+  User receiver = 2;
+  string trackingNumber = 3;
+  string description = 4;
+  int32 grandTotal = 5;
+  string shipmentType = 6;
+  string serviceName = 7;
+  optional bool isConsignment= 8;
+}
+
+message User {
+  string name = 1;
+  string mobileNumber = 2;
+  string address = 3;
+  string email = 4;
+  string userType = 5;
+  string city = 6;
+  optional string latitude = 7;
+  optional string longitude = 8;
+}
+
+message CreatePickupForAccessoriesRequest {
+  string referenceNo = 1;
+  string originCity = 2;
+  string destinationCity = 3;
+  string senderName = 4;
+  string senderPhone = 5;
+  string senderAddress = 6;
+  string receiverName = 7;
+  string receiverPhone = 8;
+  string receiverAddress = 9;
+  string trackingNumber = 10;
+  string description = 11;
+  repeated SkuDetails skudetails = 12;
+}
+
+message CreatePickupResponse {
+  string awbNo = 1;
+}
+
+message CreateShipmentResponse {
+  string trackingNumber = 1;
+}
+
+message GetPickupStatusRequest {
+  repeated string awbNo = 1;
+  bool isDelivered = 2;
+}
+
+message SkuDetails {
+  string sku = 1;
+  string description = 2;
+  string cod = 3;
+  string piece = 4;
+  string weight = 5;
+}
+
+message CancelShipmentRequest {
+  string trackingOrOrderId = 1; // Field for order or tracking ID
+}
+
+message CancelShipmentResponse {
+  bool success = 1;
+  string message = 2;
+}

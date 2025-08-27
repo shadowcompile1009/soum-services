@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package merchant;
+
+service MerchantService {
+  rpc GetMerchants (GetMerchantsRequest) returns (GetMerchantsResponse) {}
+}
+
+message GetMerchantsRequest {}
+
+message GetMerchantsResponse {
+  message Merchant {
+    string merchantId = 1;
+    double merchantName = 2;
+  }
+  repeated Merchant merchants = 1;
+}

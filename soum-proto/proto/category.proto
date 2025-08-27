@@ -1,0 +1,203 @@
+syntax = "proto3";
+
+package category;
+
+service CategoryService {
+    rpc GetCatConPriceRange (GetCatConPriceRangeRequest) returns ( GetCatConPriceRangeResponse ) {}
+    rpc GetProductCatCon (GetProductCatConRequest) returns ( GetProductCatConResponse ) {}
+    rpc GetConditions (GetConditionsRequest) returns ( GetConditionsResponse ) {}
+    rpc GetCategories(GetCategoriesRequest) returns (GetCategoriesResponse){}
+    rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse){}
+    rpc GetCategoryByName(GetCategoryByNameRequest) returns (Category){}
+    rpc GetAttributes(GetAttributesRequest) returns (GetAttributesResponse){}
+    rpc UpdateAttribute(UpdateAttributeRequest) returns (UpdateAttributeResponse){}
+    rpc DeleteAttribute(DeleteAttributeRequest) returns (DeleteAttributeResponse){}
+    rpc GetAttribute(GetAttributeRequest) returns (GetAttributeResponse){}
+    rpc CreateAttribute(CreateAttributeRequest) returns (CreateAttributeResponse){}
+    rpc GetMultipleAttribute(GetMultipleAttributeRequest) returns (GetMultipleAttributeResponse){}
+}
+
+message GetCatConPriceRangeRequest {
+    string variantId = 1;
+    string conditionId = 2;
+    string catConditionQuality = 3;
+}
+
+message GetCatConPriceRangeResponse {
+    PriceNudge priceRange = 1;
+}
+
+message PriceNudge  {
+    double min = 1;
+    double max = 2;
+}
+message GetProductCatConRequest {
+    string id = 1;
+    string variantId = 2;
+    int32 sellPrice = 3;
+}
+
+message GetProductCatConResponse {
+    Condition condition = 1;
+    PriceQuality priceQuality = 2;
+}
+
+message Banner  {
+    string lang = 1;
+    string url = 2;
+    string source = 3;
+}
+
+message PriceQuality  {
+    string name = 1;
+}
+
+message Condition {
+    string id = 1;
+    string name = 2;
+    string nameAr = 3;
+    string labelColor = 4;
+    string textColor = 5;
+    repeated Banner banners = 6;
+    int32 positionEn = 7;
+    int32 positionAr = 8;
+}
+
+message CategoryIds {
+    repeated string ids = 1;
+}
+
+message GetCategoriesRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+    string type = 3;
+    optional CategoryIds categories = 4;
+}
+
+message GetCategoryByNameRequest {
+    string name = 1;
+}
+
+message Category{
+    string id = 1;
+    string name = 2;
+    string nameAr = 3;
+    string status = 4;
+    string type = 5;
+    string parentId = 6;
+    Icon icon = 7;
+    int32 position = 8;
+}
+
+message GetCategoriesResponse{
+    repeated Category categories = 1;
+}
+
+message CreateCategoryRequest {
+    string name = 1;
+    string nameAr = 2;
+    int32 position = 3;
+    string status = 4;
+    string type = 5;
+    string parentId = 6;
+    repeated Icon icons = 7;
+    string id = 8;
+    optional int32 maxPercentage = 9;
+    optional int32 currentPrice = 10;
+}
+
+message Icon {
+    string type = 1;
+    string url = 2;
+    string source = 3;
+}
+
+message CreateCategoryResponse {}
+
+message GetAttributesRequest {
+    int32 size = 1;
+    int32 page = 2;
+    string search = 3;
+    optional bool optionsIncluded = 4;
+}
+message Option{
+    string id = 1;
+    string nameEn = 2;
+    string nameAr = 3;
+    string status = 4;
+    int32 positionAr = 5;
+    int32 positionEn = 6;
+}
+
+message Attribute{
+    string id = 1;
+    string nameEn = 2;
+    string nameAr = 3;
+    string status = 4;
+    repeated Option options = 5;
+    optional string iconURL = 6;
+}
+
+message UpdateAttributeRequest{
+    string id = 1;
+    string nameEn = 2;
+    string nameAr = 3;
+    string status = 4;
+    repeated Option options = 5;
+}
+
+message UpdateAttributeResponse{
+    string id = 1;
+    string name = 2;
+    string nameAr = 3;
+    string status = 4;
+    repeated Option options = 5;
+}
+message GetAttributesResponse {
+    repeated Attribute attributes = 1;
+    int32 total = 2;
+}
+
+message DeleteAttributeRequest{
+    string id = 1;
+}
+
+message DeleteAttributeResponse{}
+message GetAttributeRequest {
+    string id = 1;
+}
+
+message GetAttributeResponse {
+    Attribute attribute = 1;
+}
+
+message CreateAttributeRequest {
+    string name = 1;
+    string nameAr = 2;
+    string status = 3;
+    repeated Option options = 4;
+}
+
+message CreateAttributeResponse {
+    string id = 1;
+    string name = 2;
+    string nameAr = 3;
+    string status = 4;
+    repeated Option options = 5;
+}
+
+message GetConditionsRequest {
+    repeated string ids = 1;
+}
+
+message GetConditionsResponse {
+    repeated Condition conditions = 1;
+}
+
+message GetMultipleAttributeRequest {
+    repeated string ids = 1;
+}
+
+message GetMultipleAttributeResponse {
+    repeated Attribute attributes = 1;
+}

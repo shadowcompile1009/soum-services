@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package wallet;
+
+service WalletService {
+  rpc GetWallet (GetWalletRequest) returns (GetWalletResponse) {}
+  rpc CreateTransaction (CreateTransactionRequest) returns (TransactionResponse) {}
+  rpc GetTransactions (GetTransactionsRequest) returns (GetTransactionsResponse) {}
+  rpc GetCreditsByOrderIds (GetCreditsByOrderIdsRequest) returns (GetCreditsByOrderIdsResponse) {}
+  rpc GetPayoutSettings (GetPayoutSettingsRequest) returns (GetPayoutSettingsResponse) {}
+  rpc GetListingFee (GetListingFeeRequest) returns (GetListingFeeResponse) {}
+  rpc GetGlobalWalletToggle (GetGlobalWalletToggleRequest) returns (GetGlobalWalletToggleResponse) {}
+  rpc UpdateWallet(UpdateWalletRequest) returns (GetWalletResponse) {}
+  rpc UpdateTransaction(UpdateTransactionRequest) returns (TransactionResponse) {}
+  rpc GetTransactionById(GetTransactionRequest) returns (TransactionResponse) {}
+  rpc UpdatePendingAmountTransaction(UpdateAmountTransactionRequest) returns (TransactionResponse) {}
+  rpc GetPermissions (GetPermissionsRequest) returns (GetPermissionsResponse) {}
+}
+
+message GetWalletRequest {
+  string ownerId = 1;
+}
+
+message GetTransactionRequest {	
+  string id = 1;	
+}
+
+message UpdateAmountTransactionRequest {
+  string transactionId = 1;
+  double amount = 2;
+}
+
+message GetWalletResponse {
+  string id = 1;
+  string ownerId = 2;
+  string tag = 3;
+  double balance = 4;
+  string status = 5;
+  int64 createdAt = 6;
+  int64 updatedAt = 7;
+  double pendingTransactions = 8;
+  double onholdBalance = 9;
+  double availableBalance = 10;
+  double totalBalance = 11;
+}
+
+message UpdateWalletRequest {
+  string walletId = 1;
+  int64 amount = 2;
+  string transactionType = 3;
+}
+
+message UpdateTransactionRequest {
+  string transactionId = 1;
+  string status = 2;
+}
+
+message CreateTransactionRequest {
+  message Metadata {
+    string creditType = 1;
+  }
+  string ownerId = 1;
+  string type = 2;
+  double amount = 3;
+  string orderId = 4;
+  string description = 5;
+  optional string status = 6;
+  optional Metadata metadata = 7;
+}
+
+message TransactionResponse {
+  string id = 1;
+  string ownerId = 2;
+  string walletId = 3;
+  double amount = 4;
+  string status = 5;
+  string type = 6;
+  int64 createdAt = 7;
+  int64 updatedAt = 8;
+  string orderId = 9;
+}
+
+message GetTransactionsRequest {
+  string orderId = 1;
+}
+
+message GetTransactionsResponse {
+  repeated TransactionResponse data = 1;
+}
+
+message GetCreditsByOrderIdsRequest {
+  repeated string orderIds = 1;
+}
+
+message GetCreditsByOrderIdsResponse {
+  repeated TransactionResponse data = 1;
+}
+
+message GetPayoutSettingsRequest {
+}
+
+message GetGlobalWalletToggleRequest {
+}
+
+message GetGlobalWalletToggleResponse {
+  string id = 1;
+  string name = 2;
+  string display = 3;
+  string type = 4;
+  string configurable = 5;
+  bool value = 6;
+}
+
+message GetPayoutSettingsResponse {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string type = 4;
+  bool value = 5;
+}
+
+message GetListingFeeRequest {
+  string settingKey = 1;
+}
+
+message GetListingFeeResponse {
+  string id = 1;
+  string walletSettingsId = 2;
+  string listingFee = 3;
+}
+
+message Permission {
+  string key = 1;
+  string description = 2;
+}
+
+message GetPermissionsRequest {
+  string serviceName = 1;
+}
+
+message GetPermissionsResponse {
+  repeated Permission permissions = 1;
+}

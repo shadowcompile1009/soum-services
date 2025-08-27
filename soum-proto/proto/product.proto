@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package product;
+
+service ProductService {
+  rpc MigrateImages(MigrateImagesRequest) returns (MigrateImagesResponse){}
+  rpc GetProductDataForFeeds(getProductDataForFeedsReq) returns (getProductDataForFeedsRes){}
+  rpc GetPreSignURLProductImgs(GetPreSignURLProductImgsRequest) returns (GetPreSignURLProductImgsResponse) {}
+  rpc UpdateConsignmentStatus(UpdateConsignmentStatusRequest) returns (UpdateConsignmentStatusResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+}
+message UpdateProductResponse {
+  string status = 1;
+}
+message UpdateProductRequest {
+  string productAction = 1;
+  string productId = 2;
+  optional OrderUpdateProductRequest order = 3;
+  optional string status = 4;
+}
+
+message OrderUpdateProductRequest {
+  string soumNumber = 1;
+}
+
+message URLData {
+  string relativePath = 1;
+}
+message ProductImgSections {
+  string sectionId = 1;
+  repeated URLData urls = 2; 
+}
+
+message MigrateImagesRequest {
+  string productId = 1;
+  repeated string imagesUrl = 2;
+  string categoryId = 3;
+  repeated ProductImgSections productImgSections = 4;
+  
+
+}
+message MigrateImagesResponse {}
+
+
+message getProductDataForFeedsReq {
+  repeated Product products = 1;
+  PromoCode promoCode = 2;
+}
+message getProductDataForFeedsRes {
+  repeated ProductDeepLoad products = 1;
+}
+
+// helper message/classes
+message Product {
+  string id = 1;
+  string description = 2;
+  repeated Category categories = 3;
+  repeated string imagesUrl = 4;
+  double score = 5;
+  double sellPrice = 6;
+  string status = 7;
+  string sellType = 8;
+  string userId = 9;
+  string groupListingId = 10;
+  StatusSummary statusSummary = 11;
+}
+
+message ProductDeepLoad {
+  string id = 1;
+  BreakDownResponse commissionSummary = 2;
+  Condition condition = 3;
+}
+
+message BreakDownResponse {
+  CommissionSummaryResponse withPromo = 1;
+  CommissionSummaryResponse withoutPromo = 2;
+}
+
+message CommissionSummaryResponse  {
+  string id = 1;
+  double commission = 2;
+  double commissionVat = 3;
+  double deliveryFee = 4;
+  double deliveryFeeVat = 5;
+  double totalVat = 6;
+  double discount = 7;
+  double grandTotal = 8;
+  double commissionDiscount = 9;
+  double sellPrice = 10;
+  // CommissionAnalysis commissionAnalysis = 11;
+  string paymentId = 12;
+  // Reservation reservation = 13;
+  double addOnsTotal = 14;
+  double addOnsVat = 15;
+  double addOnsGrandTotal = 16;
+  double realEstateVat = 17;
+  // FinancingRequest financingRequest = 18;
+}
+
+message Category {
+  string id = 1;
+  string type = 2;
+}
+
+message Condition {
+  string id = 1;
+  string name = 2;
+  string nameAr = 3;
+  string labelColor = 4;
+  string textColor = 5;
+  repeated Banner banners = 6;
+}
+
+message PromoCode {
+  int32 promoLimit = 1;
+  string type = 2;
+  string generator = 3;
+  int32 discount = 4;
+  int32 percentage = 5;
+}
+
+message StatusSummary {
+  bool isApproved=1;
+  bool  isExpired = 2;
+  bool isDeleted = 3;
+  bool isReported = 4;
+  bool isVerifiedByAdmin =  5;
+  bool isFraudDetected =  6;
+  bool isSearchSync =  7;
+}
+
+message Banner  {
+  string lang = 1;
+  string url = 2;
+  string source = 3; 
+}
+
+message GetPreSignURLProductImgsRequest {
+  string categoryId = 1;
+  repeated ProductImgSections productImages = 2;
+}
+
+message GetPreSignURLProductImgsResponse {
+  repeated string imgURLs = 1;
+}
+
+message UpdateConsignmentStatusRequest{
+  string status = 1;
+  optional string id = 2;
+  optional string orderNumber = 3;
+}
+
+message UpdateConsignmentStatusResponse {}

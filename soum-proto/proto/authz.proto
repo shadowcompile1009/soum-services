@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package authz;
+
+service RoleService {
+  rpc GetRole (GetRoleRequest) returns ( GetRoleResponse ) {}
+  rpc GetGroupRoles (GetGroupRolesRequest) returns ( GetGroupRolesResponse ) {}
+  rpc GetUserRoles (GetUserRolesRequest) returns ( GetUserRolesResponse ) {}
+  rpc GetUserData (GetUserDataRequest) returns ( GetUserDataResponse ) {}
+}
+
+message Permission {
+  string id = 1;
+  string name = 2;
+  string displayName = 3;
+  string key = 4;
+  string serviceName = 5;
+}
+
+message Group {
+  string id = 1;
+  string name = 2;
+  string displayName = 3;
+}
+
+message GetRoleRequest {
+  string id = 1;
+}
+
+message GetRoleResponse {
+  string id = 1;
+  string name = 2;
+  string displayName = 3;
+  bool canAccessAll = 4;
+  Group group = 5;
+  repeated Permission permissions = 6;
+}
+
+message GetGroupRolesRequest {
+  string groupId = 1;
+}
+
+message GetGroupRolesResponse {
+  repeated GetRoleResponse roles = 1;
+}
+
+message GetUserDataRequest {
+  string userId = 1;
+}
+
+message GetUserDataResponse {
+  string storeCRN = 1;
+  string operatingModel = 2;
+  string businessModel = 3;
+  string sellerType = 4;
+  string sellerCategory = 5;
+}
+
+message GetUserRolesRequest {
+}
+
+message GetUserRolesResponse {
+  repeated GetRoleResponse roles = 1;
+}

@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package bid;
+
+service BidService {
+  rpc GetBidSettings (GetBidSettingsRequest) returns (GetBidSettingsResponse) {}
+  rpc ClearExpiredProductBids (ClearExpiredProductBidsRequest) returns (ClearExpiredProductBidsResponse) {}
+  rpc TransactionUpdate(TransactionUpdateRequest) returns (TransactionUpdateResponse) {}
+  rpc GetOfferForProduct(GetOfferForProductRequest) returns (OfferResponse) {}
+  rpc GetOfferCountOfUser(GetOfferCountOfUserRequest) returns (OfferCountResponse) {}
+
+}
+message GetOfferForProductRequest {
+  string productId = 1;
+  string userId = 2;
+}
+
+message OfferResponse {
+  string id = 1;
+  string status = 2;
+  int32 sellPrice = 3;
+  OfferSummary buyerOfferSummary = 4;
+}
+
+message OfferSummary {
+  double commission = 1;
+  double commissionVat = 2;
+  double grandTotal = 3;
+}
+
+message GetBidSettingsRequest {}
+
+message GetBidSettingsResponse {
+  bool value = 1;
+  string availablePayment = 2;
+  string config = 3;
+}
+
+message ClearExpiredProductBidsRequest {
+  repeated string productIds = 1;
+}
+
+message ClearExpiredProductBidsResponse {}
+
+message TransactionUpdateRequest {
+  string transactionId = 1;
+  string checkoutId = 2;
+  string checkoutURL = 3;
+  string soumTransactionNumber = 4;
+  string transactionStatusId = 5;
+  string transactionType = 6;
+  string paymentOptionId = 7;
+}
+
+message TransactionUpdateResponse {}
+
+message GetOfferCountOfUserRequest{
+  string userId = 1;
+}
+
+message OfferCountResponse{
+  int32 count=1;
+}

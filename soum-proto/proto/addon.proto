@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package addon;
+
+service AddonService {
+    rpc GetAddons(GetAddonsRequest) returns (GetAddonsResponse) {}
+}
+
+message GetAddonsRequest {
+    repeated string addonIds = 1;
+    string modelId = 2;
+    float price = 3;
+}
+
+message AddonItem {
+    string id = 1;
+    string status = 2;
+    string type = 3;
+    string image = 4;
+    string nameEn = 5;
+    string nameAr = 6;
+    repeated string taglineAr = 7;
+    repeated string taglineEn = 8;
+    string descriptionEn = 9;
+    string descriptionAr = 10;
+    string priceType = 11;
+    double price = 12;
+    string validityType = 13;
+    int32 validity = 14;
+    repeated string modelIds = 15;
+    repeated string sellerIds = 16;
+}
+
+message GetAddonsResponse {
+    repeated AddonItem addons = 1;
+}

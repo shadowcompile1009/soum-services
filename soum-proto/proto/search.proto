@@ -1,0 +1,161 @@
+syntax = "proto3";
+
+package search;
+
+service SearchService {
+  rpc GetProducts(SearchRequest) returns (SearchResultsResponse);
+  rpc SaveOrders(SaveOrderRequest) returns (SaveOrderResponse);
+}
+
+message Title {
+  string ar_name = 1;
+  string en_name = 2;
+}
+
+message Value {
+  string ar_name = 1;
+  string en_name = 2;
+}
+
+message Attribute {
+  Title title = 1;
+  Value value = 2;
+}
+
+message SearchResultsResponse {
+  message Product {
+    string ar_grade = 1;
+    string ar_model_name = 2;
+    string ar_variant_name = 3;
+    repeated Attribute attributes = 4;
+    string brand_id = 5;
+    int32 brand_position = 6;
+    string category_id = 7;
+    int32 category_position = 8;
+    float completion_rate = 9;
+    string created_date = 10;
+    string grade = 11;
+    string id = 12;
+    bool is_great_deal = 13;
+    bool is_merchant = 14;
+    string keywords_ar = 15;
+    string keywords_en = 16;
+    string model_id = 17;
+    string model_name = 18;
+    string model_image = 19;
+    int32 model_position = 20;
+    int32 original_price = 21;
+    string price_range = 22;
+    string product_id = 23;
+    string product_image = 24;
+    repeated string product_images = 25;
+    int32 sell_price = 26;
+    string seller_id = 27;
+    int32 sort_score = 28;
+    string tags = 29;
+    string variant_name = 30;
+  }
+  repeated Product hits = 1;
+  int32 found = 2;
+  int32 found_docs = 3;
+  int32 out_of = 4;
+  int32 page = 5;
+  repeated GroupedHits grouped_hits = 6;
+}
+
+message GroupedHits {
+  repeated string group_key = 1;
+  int32 found = 2;
+}
+
+enum OperationMode {
+  MODE_UNSPECIFIED = 0;
+  OPERATION_MODE_1 = 1;
+  OPERATION_MODE_2 = 2;
+}
+
+message SearchRequest{
+  SearchFiltersRequest filters = 1;
+}
+  
+message SearchFiltersRequest {
+  string q = 1;
+  repeated string query_by = 2;
+  repeated string query_by_weights = 3;
+  repeated string prefix = 4;
+  string filter_by = 5;
+  repeated string sort_by = 6;
+  repeated string facet_by = 7;
+  int32 max_facet_values = 8;
+  string facet_query = 9;
+  int32 facet_query_num_typos = 10;
+  int32 page = 11;
+  int32 per_page = 12;
+  repeated string group_by = 13;
+  int32 group_limit = 14;
+  repeated string include_fields = 15;
+  repeated string exclude_fields = 16;
+  repeated string highlight_fields = 17;
+  repeated string highlight_full_fields = 18;
+  int32 highlight_affix_num_tokens = 19;
+  string highlight_start_tag = 20;
+  string highlight_end_tag = 21;
+  int32 snippet_threshold = 22;
+  repeated int32 num_typos = 23;
+  int32 min_len_1typo = 24;
+  int32 min_len_2typo = 25;
+  repeated OperationMode split_join_tokens = 26;
+  bool exhaustive_search = 27;
+  int32 drop_tokens_threshold = 28;
+  int32 typo_tokens_threshold = 29;
+  repeated string pinned_hits = 30;
+  repeated string hidden_hits = 31;
+  int32 limit_hits = 32;
+  bool pre_segmented_query = 33;
+  bool enable_overrides = 34;
+  bool prioritize_exact_match = 35;
+  bool prioritize_token_position = 36;
+  int32 search_cutoff_ms = 37;
+  bool use_cache = 38;
+  int32 max_candidates = 39;
+  repeated OperationMode infix = 40;
+  string preset = 41;
+  string text_match_type = 42;
+  string vector_query = 43;
+  string x_typesense_api_key = 44;
+  string x_typesense_user_id = 45;
+  int32 offset = 46;
+  int32 limit = 47;
+}
+
+message SaveOrderRequest {
+  repeated Order orders = 1;
+}
+
+message Order {
+  string id = 1;
+  string merchantId = 2;
+  string orderId = 3;
+  string orderNumber = 4;
+  string dmOrderId = 5;
+  string dmOrderStatus = 6;
+  string paymentStatus = 7;
+  string productId = 8;
+  string productName = 9;
+  string orderStatus = 10;
+  string customerId = 11;
+  string paymentId = 12;
+  int32 salePrice = 13;
+  int32 grantTotal = 14;
+  int32 payoutAmount = 15;
+  string productNameAr = 16;
+  string customerName = 17;
+  string name = 18;
+  string trackingNumber = 19;
+  string variantId = 20;
+  int32 createdAt = 21;
+}
+
+message SaveOrderResponse {
+  string message = 1;
+}

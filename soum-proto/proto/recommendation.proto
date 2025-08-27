@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package recommendation;
+
+service RecommendationService {
+  rpc AddNewUser(AddNewUserRequest) returns (AddNewUserResponse) {}
+  rpc AddNewItem(AddNewItemRequest) returns (AddNewItemResponse) {}
+  rpc AddMultipleItems(AddMultipleItemsRequest) returns (AddMultipleItemsResponse) {}
+  rpc DeleteItems(DeleteItemsRequest) returns (DeleteItemsResponse) {}
+  rpc AddFeedback(AddFeedbackRequest) returns (AddFeedbackResponse) {}
+  rpc RemoveFeedback(RemoveFeedbackRequest) returns (RemoveFeedbackResponse) {}
+}
+
+message AddNewUserRequest {
+  string userId = 1;
+  string name = 2;
+}
+
+message AddNewUserResponse {
+  bool status = 1;
+}
+
+message AddNewItemRequest {
+  string itemId = 1;
+  bool isHidden = 2;
+  repeated string labels = 3;
+  repeated string categories = 4;
+  string timestamp = 5;
+}
+
+message AddNewItemResponse {
+  bool status = 1;
+}
+
+message AddMultipleItemsRequest {
+  repeated AddNewItemRequest items  = 1;
+}
+
+message AddMultipleItemsResponse {
+  bool status = 1;
+}
+
+message DeleteItemsRequest {
+  repeated string itemIds= 1;
+}
+
+message DeleteItemsResponse {
+  bool status = 1;
+}
+
+message AddFeedbackRequest {
+  string userId = 1;
+  string itemId = 2;
+  string type = 3;
+}
+
+message AddFeedbackResponse {
+  bool status = 1;
+}
+
+message RemoveFeedbackRequest {
+  string userId = 1;
+  string itemId = 2;
+  string type = 3;
+}
+
+message RemoveFeedbackResponse {
+  bool status = 1;
+}

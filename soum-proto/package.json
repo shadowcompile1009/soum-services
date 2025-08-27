@@ -1,0 +1,19 @@
+{
+  "name": "soum-proto",
+  "version": "1.0.0",
+  "description": "All proto files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soum-sa/soum-proto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soum-sa/soum-proto/issues"
+  },
+  "homepage": "https://github.com/soum-sa/soum-proto#readme"
+}
