@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package email;
+
+service EmailService {
+  rpc SendEmailFinance(SendEmailRequest) returns (SendEmailResponse) {}
+}
+
+message SendEmailRequest {
+  string user_id = 1;
+  string full_name = 2;
+  optional string order_id = 3;
+  optional string product_id = 4;
+  repeated string file_names = 5;
+  repeated bytes file_contents = 6;
+}
+
+message SendEmailResponse {
+  int32 code = 1;
+  string message = 2;
+}

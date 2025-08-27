@@ -1,0 +1,31 @@
+export const defaultRealEstateSpecificationIcon = {
+  room: 'https://cdn.soum.sa/icons/real-estate/Room.png',
+  payment: 'https://cdn.soum.sa/icons/real-estate/payment.png',
+  parking: 'https://cdn.soum.sa/icons/real-estate/Parking.png',
+  location: 'https://cdn.soum.sa/icons/real-estate/location.png',
+  kitchen: 'https://cdn.soum.sa/icons/real-estate/Kitchen.png',
+  furniture: 'https://cdn.soum.sa/icons/real-estate/Furniture.png',
+  faceAndAge: 'https://cdn.soum.sa/icons/real-estate/FaceAndAge.png',
+  area: 'https://cdn.soum.sa/icons/real-estate/area.png',
+  bathRoom: 'https://cdn.soum.sa/icons/real-estate/BathRoom.png',
+  bedRoom: 'https://cdn.soum.sa/icons/real-estate/BedRoom.png',
+  category: 'https://cdn.soum.sa/icons/real-estate/Category.png',
+  diningRoom: 'https://cdn.soum.sa/icons/real-estate/DiningRoom.png',
+  floor: 'https://cdn.soum.sa/icons/real-estate/Floor.png',
+  halls: 'https://cdn.soum.sa/icons/real-estate/Halls.png',
+  obligation: 'https://cdn.soum.sa/icons/real-estate/Obligation.png',
+};
+
+export const defaultCarSpecificationIcon = {
+  transmission: 'https://cdn.soum.sa/icons/cars/transmission.png',
+  seats: 'https://cdn.soum.sa/icons/cars/seats.png',
+  key: 'https://cdn.soum.sa/icons/cars/key.png',
+  faul: 'https://cdn.soum.sa/icons/cars/faul.png',
+  year: 'https://cdn.soum.sa/icons/cars/year.png',
+  odometer: 'https://cdn.soum.sa/icons/cars/odometer.png',
+  drivetrain: 'https://cdn.soum.sa/icons/cars/driveTrain.png',
+  cylinders: 'https://cdn.soum.sa/icons/cars/cylinders.png',
+  exteriorColor: 'https://cdn.soum.sa/icons/cars/exteriorColor.png',
+  engineSize: 'https://cdn.soum.sa/icons/cars/engineSize.png',
+  car: 'https://cdn.soum.sa/icons/cars/car.png',
+};

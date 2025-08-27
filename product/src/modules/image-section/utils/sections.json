@@ -1,0 +1,12 @@
+[
+    {
+        "id": "",
+        "categoryId": "",
+        "headerName": "",
+        "headerNameAr": "",
+        "description" : "",
+        "descriptionAr" : "",
+        "minImageCount": 1,
+        "maxImageCount" : 8
+    }
+]
