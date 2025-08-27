@@ -1,0 +1,43 @@
+export const dateFilterStyle = {
+  backgroundColor: 'static.white',
+  border: '1px solid',
+  borderRadius: 4,
+  borderColor: 'static.blue',
+  ':hover': {
+    border: '1px solid',
+    borderColor: 'hover.blue',
+    outline: 'none !important',
+  },
+  color: 'static.gray',
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+  height: 44,
+  fontSize: 3,
+  pt: 5,
+  pr: 8,
+  pb: 5,
+  pl: 8,
+  transition: 'all ease',
+  transitionDuration: '200ms',
+  appearance: 'none',
+  position: 'relative',
+  width: 'fit-content',
+};
+
+export const datePickerContainerStyle = {
+  border: '1px solid',
+  borderColor: 'static.blue',
+  ':hover': {
+    border: '1px solid',
+    borderColor: 'hover.blue',
+    outline: 'none !important',
+  },
+  position: 'absolute',
+  left: -0,
+  right: 0,
+  top: 46.4,
+  width: 'fit-content',
+  zIndex: 50,
+};

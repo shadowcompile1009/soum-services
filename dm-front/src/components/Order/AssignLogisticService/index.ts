@@ -1,0 +1,1 @@
+export { AssignLogisticService } from './AssignLogisticService';
