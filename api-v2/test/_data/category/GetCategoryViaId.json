@@ -1,0 +1,16 @@
+{
+  "listing_photo": "",
+  "browsing_photo": "",
+  "position": 1,
+  "max_percentage": 18,
+  "status": "Active",
+  "created_at": "2021-04-01T14:35:44.228Z",
+  "updated_at": "2021-04-01T14:35:44.228Z",
+  "_id": "60661c60fdc090d1ce2d4914",
+  "category_name_ar": "جوالات",
+  "category_name": "Mobiles",
+  "category_icon": "https://soum01.fra1.digitaloceanspaces.com/soum-prod/category/images-%282%29-1658744752944.jpeg",
+  "__v": 0,
+  "mini_category_icon": "https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/mobile-android.png",
+  "active": true
+}

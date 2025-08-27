@@ -1,0 +1,30 @@
+{
+  "_id": "6064066e929f922184347b15",
+  "bidding": [],
+  "sell_status": "Sold",
+  "category_id": {
+    "_id": "6063f95f929f926b67347b0d",
+    "category_name_ar": "جوال",
+    "category_name": "Mobile"
+  },
+  "brand_id": {
+    "_id": "60640602929f92968a347b12",
+    "brand_name_ar": "أبل",
+    "brand_name": "Apple"
+  },
+  "model_id": {
+    "_id": "6064064a929f92c76a347b13",
+    "model_name_ar": "ايفون 6",
+    "model_name": "iPhone 6"
+  },
+  "varient": "32GB",
+  "varient_ar": "32GB",
+  "sell_price": 45,
+  "bid_price": 39,
+  "expiryDate": "2025-09-22T19:17:41.180Z",
+  "varient_id": {
+    "_id": "60640658929f92309d347b14",
+    "varient_ar": "32GB",
+    "varient": "32GB"
+  }
+}

@@ -1,0 +1,1953 @@
+/v1/product:
+  get:
+    tags:
+      - Product
+    summary: Get Products with Pagination
+    description: Get list of products with page number and page size params
+    operationId: getProducts
+    parameters:
+      - in: header
+        name: lang
+        required: true
+        schema:
+          type: string
+          example: en
+      - in: query
+        name: page
+        description: Page Number
+        required: false
+        schema:
+          type: number
+      - in: query
+        name: size
+        description: Number of items per page
+        required: false
+        schema:
+          type: number
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/Products'
+      '404':
+        description: Products not found
+  post:
+    tags:
+      - Product
+    summary: Submit a product to save as draft
+    description: ''
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/json
+    operationId: postCreateProduct
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/definitions/DraftProduct'
+    responses:
+      '201':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PostCreateProductResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1PostCreateProductResponse'
+/v1/product/calculate:
+  get:
+    tags:
+      - Product
+    summary: Get product calculation summary
+    description: Given product info and promocode info if found calculate summary for a product
+    operationId: getProductCalculationSummary
+    parameters:
+      - in: query
+        name: productId
+        description: soum product id
+        required: true
+        schema:
+          type: string
+        example: 639b5b5b0a8dd40028176c9c
+      - in: query
+        name: promoCode
+        description: soum promo code value
+        required: false
+        schema:
+          type: string
+        example: AA11
+      - in: query
+        name: actionType
+        description: user action type for now only buy
+        required: false
+        schema:
+          type: string
+        example: 'buy'
+      - in: query
+        name: applyDefaultPromo
+        description: used to allow used to use soum default promo code if found
+        required: false
+        schema:
+          type: bool
+        example: true
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/ProductCalculationSummary'
+/v1/product/color:
+  get:
+    tags:
+      - Product
+    summary: Get list of color
+    description: Get list of color
+    operationId: getColors
+
+    parameters: []
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetColorsResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetColorsResponse'
+/v1/product/variant:
+  get:
+    tags:
+      - Product
+    summary: Get list of varient product
+    description: Get list of varient product
+    operationId: getVariant
+
+    parameters: []
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetVariantResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetVariantResponse'
+/v1/product/{productId}/uploadImage:
+  post:
+    tags:
+      - Product
+    summary: Upload the image of product
+    description: ''
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/json
+    operationId: postUploadProductImage
+    parameters:
+      - name: productId
+        in: path
+        description: ID of product to update
+        required: true
+        type: string
+      - in: additionalMetadata
+        name: body
+        description: Image data to pass to server
+        required: false
+        type: string
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                file_name:
+                  type: string
+                file_content:
+                  type: string
+                description:
+                  type: string
+              required:
+                - file_name
+                - file_content
+    responses:
+      '201':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/Product'
+/v1/product/{productId}/getBuyNow:
+  post:
+    tags:
+      - Product
+    summary: Get Buy Now price of product
+    description: ''
+    operationId: calculateBuyNowPrice
+    parameters:
+      - name: productId
+        in: path
+        description: ID of product to update
+        required: true
+        type: string
+      - in: additionalMetadata
+        name: body
+        description: Image data to pass to server
+        required: false
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              seller_type:
+                type: string
+              commission_profile:
+                type: string
+              current_price:
+                type: number
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/PriceDetail'
+/v1/product/{productId}/getBidPrice:
+  post:
+    tags:
+      - Product
+    summary: Get Bid price of product
+    description: ''
+    operationId: calculateBidPrice
+    parameters:
+      - name: productId
+        in: path
+        description: ID of product to update
+        required: true
+        type: string
+      - in: additionalMetadata
+        name: body
+        description: Image data to pass to server
+        required: false
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              current_price:
+                type: number
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/PriceDetail'
+/v1/product/image-scan:
+  get:
+    tags:
+      - Product
+    summary: Get Detect Images Product
+    description: Get Detect Images Product
+
+    operationId: identifyProductImages
+    parameters: []
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/scanImagesResponse'
+/v1/product/{productId}:
+  get:
+    tags:
+      - Product
+    summary: Get Detail Product
+    description: Get Detail Product
+
+    operationId: getProduct
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PGetProductResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1PGetProductResponse'
+  put:
+    tags:
+      - Product
+    summary: Update a Product
+    description: This will mainly update the status of a Product
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/json
+    operationId: putUpdateProduct
+    parameters:
+      - in: path
+        name: productId
+        description: Product Id needs to be updated
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/definitions/Product'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PostUpdateProductResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1PostUpdateProductResponse'
+/v1/product/{productId}/ask-seller:
+  get:
+    tags:
+      - Product
+    summary: Get questions and answers by product id
+    description: Get questions and answers by product id
+
+    operationId: getAskSeller
+    parameters:
+      - in: path
+        name: productId
+        description: The valid product id
+        required: true
+        schema:
+          type: string
+          example: 611a4942b4fc49a59f324bae
+      - in: query
+        name: isSeller
+        description: true = Seller, false = Buyer
+        required: false
+        schema:
+          type: boolean
+          example: true
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/Product'
+  post:
+    tags:
+      - Product
+    summary: Ask seller question about the product
+    description: Ask seller question about the product
+    operationId: askSeller
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY0NjE4ODcxNCwiZXhwIjoxNjQ4NzgwNzE0fQ.ieStLeeEw58XebmZ_KiwqICldx2y8xEaF1dO48Jbi-w
+      - in: path
+        name: productId
+        description: The valid product id
+        required: true
+        schema:
+          type: string
+          example: 611a4942b4fc49a59f324bae
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/AskSeller'
+    responses:
+      '201':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/AskSeller'
+/v1/product/{productId}/question/answer:
+  get:
+    tags:
+      - Product
+    summary: Get list of question and answer for product
+    description: Get list of question and answer for product
+    operationId: getProductQuestion
+    parameters:
+      - in: path
+        name: productId
+        description: The valid product id
+        required: true
+        schema:
+          type: string
+          example: 6064b28378be395130f332b5
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetProductQuestionResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetProductQuestionResponse'
+/v1/product/{productId}/ask-seller/{questionId}/answer:
+  put:
+    tags:
+      - Product
+    summary: Answer seller question about the product
+    description: Answer seller question about the product
+
+    operationId: answerAskSeller
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY0NjE4ODcxNCwiZXhwIjoxNjQ4NzgwNzE0fQ.ieStLeeEw58XebmZ_KiwqICldx2y8xEaF1dO48Jbi-w
+      - in: path
+        name: productId
+        description: The valid product id
+        required: true
+        schema:
+          type: string
+          example: 611a4942b4fc49a59f324bae
+      - in: path
+        name: questionId
+        description: The valid ask seller id
+        required: true
+        schema:
+          type: string
+          example: 611fbb1b94236c6d90e5a4ae
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              answer:
+                type: string
+                example: I used it for 4 years
+    responses:
+      '201':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/AskSeller'
+/v1/product/prerequisite:
+  get:
+    tags:
+      - Product
+    summary: Check listing item's pre condition
+    description: Check the interval between 2 listing, and returns needed data for the first steps of listing
+    operationId: checkPriorListingCondition
+
+    parameters:
+      - in: header
+        name: lang
+        required: true
+        schema:
+          type: string
+          example: en
+      - in: query
+        name: userId
+        description: User Id
+        required: true
+        schema:
+          type: string
+          example: 605ca1266575df62e8fca154
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1ProductPrerequisite'
+      '400':
+        description: Violate the precondition of listing
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1FailedProductPrerequisite'
+/v1/product/{productId}/price:
+  put:
+    tags:
+      - AdminProduct
+    summary: Update bid price, sell price Product
+    description: Edit existing listings from product
+    operationId: putAdminPriceProduct
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY0NjE4ODcxNCwiZXhwIjoxNjQ4NzgwNzE0fQ.ieStLeeEw58XebmZ_KiwqICldx2y8xEaF1dO48Jbi-w
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: productId
+        description: ID of product to edit price
+        required: true
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sell_price:
+                type: number
+              bid_price:
+                type: number
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/adminEditPriceProductLogResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/adminEditPriceProductLogResponse'
+/v1/product/{productId}/log:
+  get:
+    tags:
+      - AdminProduct
+    summary: Get history of change price
+    description: Get history of change price in existing listings from product
+    operationId: getAdminLog
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY0NjE4ODcxNCwiZXhwIjoxNjQ4NzgwNzE0fQ.ieStLeeEw58XebmZ_KiwqICldx2y8xEaF1dO48Jbi-w
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: productId
+        description: ID of product to update
+        required: true
+        type: string
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/adminGetProductLogResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/adminGetProductLogResponse'
+/v1/product/get-mpp-products/{modelId}:
+  get:
+    tags:
+      - Product
+    summary: Get all products by model id for MPP
+    description: Get all products by model id for MPP
+    operationId: getProductsForMPP
+    parameters:
+      - in: path
+        name: modelId
+        description: ID of model to select his products
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: token
+        required: false
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+      - in: header
+        name: cache
+        required: false
+        schema:
+          type: string
+          example: enable
+      - in: query
+        name: page
+        description: page number
+        required: false
+        type: number
+      - in: query
+        name: size
+        description: How many elements to return
+        required: false
+        type: number
+      - in: query
+        name: minPrice
+        description: filter start price
+        required: false
+        type: number
+      - in: query
+        name: maxPrice
+        description: filter end price
+        required: false
+        type: number
+      - in: query
+        name: capacities
+        description: comma separated capacities to filter with
+        required: false
+        type: string
+        example: 128 GB, 64 GB
+      - in: query
+        name: grades
+        description: comma separated soum grades values to filter with
+        required: false
+        type: string
+        example: excellent,great,good,extensive
+      - in: query
+        name: userCity
+        description: User city
+        required: false
+        type: string
+        example: Riyadh
+      - in: query
+        name: sortDirection
+        description: product sorting function, sorting may be applied for price or date
+        required: false
+        type: string
+        example: lowToHigh
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getMppProductsResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/getMppProductsResponse'
+      "400":
+        description: products not found
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1FailedToGetMppProducts"
+/v1/product/get-variant:
+  get:
+    tags:
+      - Product
+    summary: Get Varient (example data)
+    description: Get list of variants of a model
+    operationId: getVariants
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/getVariantsResponse'
+/v1/product/explore:
+  get:
+    tags:
+      - Product
+    summary: Get Products for explore
+    description: Get Products for explore
+    operationId: getExploreProducts
+    parameters:
+      - in: query
+        name: page
+        description: Page Number
+        required: false
+        schema:
+          type: number
+      - in: query
+        name: size
+        description: Number of items per page
+        required: false
+        schema:
+          type: number
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getExploreProductsResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/getExploreProductsResponse'
+/v1/product/list:
+  get:
+    tags:
+      - Product
+    summary: List products
+    description: List products, filter by query params
+    operationId: listProducts
+    parameters:
+      - in: header
+        name: token
+        required: false
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+      - in: categoryId
+        name: categoryId
+        description: categoryId
+        required: false
+        schema:
+          type: string
+          example: ''
+      - in: query
+        name: page
+        description: page number
+        required: false
+        schema:
+          type: string
+          example: 2
+      - in: query
+        name: size
+        description: How many elements to return
+        required: false
+        schema:
+          type: string
+          example: 10
+      - in: query
+        name: minPrice
+        description: filter start price
+        required: false
+        schema:
+          type: number
+      - in: query
+        name: maxPrice
+        description: filter end price
+        required: false
+        schema:
+          type: number
+      - in: query
+        name: capacities
+        description: comma separated capacities to filter with
+        required: false
+        schema:
+          type: string
+          example: '128 GB, 64 GB'
+      - in: query
+        name: grades
+        description: comma separated soum grades values to filter with
+        required: false
+        schema:
+          type: string
+          example: 'excellent,great,good,extensive'
+      - in: query
+        name: sortDirection
+        description: product sorting function, sorting may be applied for price or date
+        required: false
+        schema:
+          type: string
+          example: 'lowToHigh'
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/listProductsResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/listProductsResponse"
+/v1/product/delete/{productId}:
+  put:
+    tags:
+      - Product
+    summary: Delete a product
+    description: Delete a product by product Id and add a reason to delete
+    operationId: deleteProduct
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: productId
+        description: ID of product to delete
+        required: true
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              reason:
+                type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"
+/v1/product/deleted-listings:
+  get:
+    tags:
+      - Product
+    summary: Get all deleted products listing
+    description: Get deleted-listings in admin page
+    operationId: getDeletedListings
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Products"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Products"
+/v1/product/mismatched-listings:
+  get:
+    tags:
+      - Product
+    summary: Get all mismatched products listing
+    description: Get mismatched-listings in admin page
+    operationId: getMismatchedListings
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+      - in: query
+        name: sortByMostRecent
+        description: Sort By Most Recent
+        required: false
+        schema:
+          type: boolean
+          example: false
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Products"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Products"
+/v1/product/report/{productId}:
+  put:
+    tags:
+      - Product
+    summary: Report a product
+    description: Report a product by product Id and add a reason to report
+    operationId: reportProduct
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: productId
+        description: ID of product to report
+        required: true
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              reason:
+                type: string
+              userId:
+                type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"
+/v1/product/reported-listings:
+  get:
+    tags:
+      - Product
+    summary: Get all reported products listing
+    description: Get reported-listings in admin page
+    operationId: getReportedListings
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Products"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Products"
+/v1/product/filter/products:
+  get:
+    tags:
+      - Product
+    summary: Filter products 
+    description: Filter products
+    operationId: getProductsFilter
+    parameters:
+      - in: header
+        name: token
+        required: false
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+      - in: query
+        name: deviceType
+        description: comma separated deviceTypes
+        required: false
+        schema:
+          type: string
+          example: 60661c60fdc090d1ce2d4914,605760d858196850ac5dab32
+      - in: query
+        name: varients
+        description: comma separated varients
+        required: false
+        schema:
+          type: string
+          example: Capacity:256 GB|Color:Black
+      - in: query
+        name: isMerchant
+        description: products listed by merchants
+        required: false
+        schema:
+          type: boolean
+      - in: query
+        name: brand
+        description: comma separated brands
+        required: false
+        schema:
+          type: string
+          example: 6069faf484541d77f553167a
+      - in: query
+        name: modelId
+        description: comma separated models
+        required: false
+        schema:
+          type: string
+          example: 6151b6abddbc29197bbfb419
+      - in: query
+        name: grades
+        description: comma separated conditions
+        required: false
+        schema:
+          type: string
+          example: Like New,Lightly Used,Fair,Extensive Use
+      - in: query
+        name: page
+        description: page number
+        required: false
+        type: number
+        example: 1
+      - in: query
+        name: size
+        description: How many elements to return
+        required: false
+        schema:
+          type: number
+          example: 10
+      - in: query
+        name: price
+        description: filter price range
+        required: false
+        schema:
+          type: string
+          example: 1000-3000,5000-6000
+      - in: query
+        name: userCity
+        description: User city
+        required: false
+        schema:
+          type: string
+          example: Riyadh
+      - in: query
+        name: sortDirection
+        description: product sorting function, sorting may be applied for price or date
+        required: false
+        schema:
+          type: string
+          example: lowToHigh
+      - in: query
+        name: withPageInfo
+        description: adds pages information to the response, NOTE - alters response format
+        required: false
+        schema:
+          type: string
+          example: false
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getFilterProductsResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/getFilterProductsResponse'
+/v1/product/fraud-listings:
+  get:
+    tags:
+      - Product
+    summary: Get all fraud products listing
+    description: Get fraud-listings in admin page
+    operationId: getFraudListings
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Products"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Products"
+/v1/product/listings-transactions:
+  get:
+    tags:
+      - Product
+    summary: Get all listings transactions
+    description: Get all listings transactions in admin page
+    operationId: get listings transactions
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+      - in: query
+        name: isGetSuccess
+        description: filter by success payment or pending/fail payments
+        required: false
+        schema:
+          type: boolean
+          example: true
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Products"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Products"
+/v1/product/update-fraud-status/{productId}:
+  put:
+    tags:
+      - Product
+    summary: Update the fraud status of a product
+    description: Update the fraud status of a product
+    operationId: updateFraudStatus
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNWU3YjIyNjU1NDQ4NzlkMjk1ZmVmMSIsImlhdCI6MTY2MjM2MDk3MCwiZXhwIjoxNjY0OTUyOTcwfQ.TQubneNybLXg2EpOBO3QLSBFb-vxB1Ea9YBra9Fi0Ug
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: productId
+        description: ID of product to delete
+        required: true
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              fraudStatus:
+                type: boolean
+                default: false
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"
+/v1/product/flagged-listings:
+  get:
+    tags:
+      - Product
+    summary: Get all flagged products listing
+    description: Get flagged-listings in admin page
+    operationId: getFlaggedListings
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+      - in: query
+        name: sortBy
+        description: discount/listing_date/positive_flag/uncheck
+        required: false
+        schema:
+          type: string
+          example: discount
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Products"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/getFlaggedListingResponse"
+/v1/product/verify-product/{productId}:
+  put:
+    tags:
+      - Product
+    summary: Verify a product
+    description: Verify a product by product Id with verify status
+    operationId: verifyProduct
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNWU3YjIyNjU1NDQ4NzlkMjk1ZmVmMSIsImlhdCI6MTY2Mjk2OTMwNCwiZXhwIjoxNjY1NTYxMzA0fQ.jFQk7cOpE5v4HDQS1bQ6dppm0ovPay3gFVphxaZi4j4
+      - in: header
+        name: client-id
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: productId
+        description: ID of product to update verify status
+        required: true
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              verifyStatus:
+                type: boolean
+                required: true
+                default: true
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"
+/v1/product/update-price/{productId}:
+  put:
+    tags:
+      - Product
+    summary: Edit product price
+    description: Edit product price in my-sell-product-page
+    operationId: editProductPrice
+    parameters:
+      - in: path
+        name: productId
+        description: ID of product update
+        required: true
+        schema:
+          type: string
+          example: 60a2df79fcc03d3c0c442ef1
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTc0MmY3MzIzODYwYTIyMjZjZGE4MSIsImlhdCI6MTY2NTkxMTc5OSwiZXhwIjoxNjY4NTAzNzk5fQ.U9ffgpG3tnytswceyI-IkInD6c3RmZ41NjNEq_ejpMQ
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sell_price:
+                type: number
+              variant_id:
+                type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"
+/v1/product/{productId}/preview:
+  get:
+    tags:
+      - Product
+    summary: Get product detail by productId
+    description: Get product detail by productId with status Active/On hold and userId matched
+    operationId: getProductDetail
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: productId
+        description: ID of product
+        required: true
+        type: string
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/definitions/Product'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetProductPreviewResponse'
+      '400':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1FailedToGetProductPreview'
+/v1/product/send-report:
+  get:
+    tags:
+      - Product
+    summary: Send Products sheet
+    description: Send daily Product sheet
+    operationId: sendProductsReport
+    parameters:
+      - in: query
+        name: sendTo
+        description: List of emails that will receive the report, splitted by a comma
+        required: false
+        schema:
+          type: string
+          example: theodore@enclave.vn
+      - in: query
+        name: sendGridKey
+        description: Use this param for testing purpose only, on production, there is an official key.
+        required: false
+        schema:
+          type: string
+          example: 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
+      - in: query
+        name: from
+        description: Use this param for testing purpose only, keep this sample value if you use the sample above sendGridKey
+        required: false
+        schema:
+          type: string
+          example: t.nguyen@soum.sa
+      - in: query
+        name: months
+        description: Use this param for testing purpose only
+        required: false
+        schema:
+          type: number
+          example: 6
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1SendEmailSuccessResponse'
+      "424":
+        description: when failing in sending email
+        content:
+          application/json:
+            examples:
+              failExample:
+                $ref: '#/components/examples/v1FailedSendEmailResponse'
+/v1/product/update-variant-of-product:
+  post:
+    tags:
+      - Product
+    summary: Update variant ID of product
+    description: Update product id of specific product using product id and variant id
+    operationId: updateProductVariant
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWU4MGY1MmRhNGMyNjJhMDFlNWYxOSIsImlhdCI6MTY2NTQyMjA5OCwiZXhwIjoxNjY4MDE0MDk4fQ.80jhPBPvnSl33vkkgWv4GDfRTktZ3z2BqDzFmjPVh7c
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              productId:
+                type: string
+              newVariantId:
+                type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"      
+/v1/product/{productId}/reject:
+  put:
+    tags:
+      - Product
+    summary: Reject a product by productId
+    description: Reject a product with reason
+    operationId: rejectProduct
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWU4MGY1MmRhNGMyNjJhMDFlNWYxOSIsImlhdCI6MTY2NTQyMjA5OCwiZXhwIjoxNjY4MDE0MDk4fQ.80jhPBPvnSl33vkkgWv4GDfRTktZ3z2BqDzFmjPVh7c
+      - in: path
+        name: productId
+        description: ID of product to view
+        required: true
+        type: string
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rejected_reasons:
+                type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"
+/v1/product/my-sales:
+  get:
+    tags:
+      - Product
+    summary: Get my sales product
+    description: Get all orders that are made (orders for the listings that seller made)
+    operationId: getMySales
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2NhZTA5ODA2MzU4MmRkOGVjNjg5YSIsImlhdCI6MTY3MjIxMjMyNCwiZXhwIjoxNjc0ODA0MzI0fQ.sOyeOb7ujyl9tbSOWGE4lLrm9opcwKcS3FQhWKhcEXE
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/MySalesResponse"
+/v1/product/my-sales-detail/{dmOrderId}:
+  get:
+    tags:
+      - Product
+    summary: Get my sales product detail
+    description: Get order detail and it's tracking
+    operationId: getMySalesDetail
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2NhZTA5ODA2MzU4MmRkOGVjNjg5YSIsImlhdCI6MTY3MjIxMjMyNCwiZXhwIjoxNjc0ODA0MzI0fQ.sOyeOb7ujyl9tbSOWGE4lLrm9opcwKcS3FQhWKhcEXE]
+      - in: path
+        name: dmOrderId
+        description: ID of the order
+        required: true
+        type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/MySalesDetailResponse"
+/v1/product/countBetterPriceListings:
+  get:
+    tags:
+      - Product
+    summary: Get number of better price listings in the system
+    description: Base on the condition of the listing, get the number of better price listings that is showing in the system
+    operationId: countBetterPriceListings
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWU4MGY1MmRhNGMyNjJhMDFlNWYxOSIsImlhdCI6MTY2NTQyMjA5OCwiZXhwIjoxNjY4MDE0MDk4fQ.80jhPBPvnSl33vkkgWv4GDfRTktZ3z2BqDzFmjPVh7c
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: variantId
+        description: Variant ID
+        required: true
+        schema:
+          type: string
+          example: 605ca1266575df62e8fca154
+      - in: query
+        name: score
+        description: Condition score
+        required: true
+        schema:
+          type: number
+          example: 90
+      - in: query
+        name: listingPrice
+        description: Current listing price
+        required: true
+        schema:
+          type: number
+          example: 1111
+    responses:
+      "200":
+        description: successful operation
+        content:
+          text/plain:
+            schema:
+              type: number
+              example: 5
+/v1/product/calculate/{modelId}/{variantId}/{sellPrice}:
+  get:
+    tags:
+      - Product
+    summary: Calculate seller cut price
+    description: Calculate seller cut price
+
+    operationId: calculateSellerCutPrice
+    parameters:
+      - in: path
+        name: modelId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variantId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: sellPrice
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: promoCodeId
+        description: promo code id
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: grade
+        description: product grade
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: condition
+        description: product condition
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetSellerCutPrice'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetSellerCutPrice'
+/v1/product/user/{userId}:
+  get:
+    tags:
+      - Product
+    summary: Get active listings by user id
+    description: Get active listings by user id to show in profile page
+    operationId: getActiveListingByUserId
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+          example: 60c0bbeb68d221c173050b4e
+      - in: query
+        name: page
+        required: false
+        schema:
+          type: number
+          example: 1
+      - in: query
+        name: size
+        required: false
+        schema:
+          type: number
+          example: 5
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1ProductBySeller'
+/v1/product/{productId}/details:
+  put:
+    tags:
+      - Product
+    summary: Update product
+    description: Update product
+    operationId: updateProductDetails
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWU4MGY1MmRhNGMyNjJhMDFlNWYxOSIsImlhdCI6MTY2NTQyMjA5OCwiZXhwIjoxNjY4MDE0MDk4fQ.80jhPBPvnSl33vkkgWv4GDfRTktZ3z2BqDzFmjPVh7c
+      - in: path
+        name: productId
+        description: ID of product to view
+        required: true
+        type: string
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              imagesQualityScore:
+                type: number
+              isUpranked:
+                type: boolean
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+            examples:
+              successExample:
+                $ref: "#/components/definitions/Product"
+      '400':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/failedToUpdateProduct'
+/v1/product/status/{productId}:
+  get:
+    tags:
+      - Product
+    summary: Get Product Activation Status
+    description: Get Product Activation Status
+
+    operationId: getProductActivationStatus
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PGetProductActivationStatus'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1PGetProductActivationStatus'
+  put:
+    tags:
+      - Product
+    summary: Update Product Activation Status
+    description: Update Product Activation Status
+
+    operationId: updateProductActivationStatus
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              isActivated:
+                type: boolean
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PUpdateProductActivationStatus'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1PUpdateProductActivationStatus'
+/v1/product/activate/{productId}:
+  put:
+    tags:
+      - Product
+    summary: Activate product
+    description: Activate product
+    operationId: activateProduct
+    parameters:
+      - in: header
+        name: token
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWU4MGY1MmRhNGMyNjJhMDFlNWYxOSIsImlhdCI6MTY2NTQyMjA5OCwiZXhwIjoxNjY4MDE0MDk4fQ.80jhPBPvnSl33vkkgWv4GDfRTktZ3z2BqDzFmjPVh7c
+      - in: path
+        name: productId
+        description: ID of product to activate
+        required: true
+        type: string
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/activateProduct'
+      '400':
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: '#/components/examples/failedToUpdateProduct'

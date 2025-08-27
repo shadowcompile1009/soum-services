@@ -1,0 +1,16 @@
+// Original file: node_modules/soum-proto/proto/category.proto
+
+import type {
+  Attribute as _category_Attribute,
+  Attribute__Output as _category_Attribute__Output,
+} from '../category/Attribute';
+
+export interface GetAttributesResponse {
+  attributes?: _category_Attribute[];
+  total?: number;
+}
+
+export interface GetAttributesResponse__Output {
+  attributes: _category_Attribute__Output[];
+  total: number;
+}

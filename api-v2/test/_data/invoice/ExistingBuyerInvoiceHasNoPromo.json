@@ -1,0 +1,22 @@
+{
+  "_id": "61dffe6de389f80d900f9b77",
+  "bill_type": "buyer",
+  "invoice_number": "B-000226",
+  "tax_invoice_number": "B-000225",
+  "issue_date": "2022-01-13",
+  "bill_to": "MonaTestBuyer -",
+  "address": "Cairo - Mokattam - 11411",
+  "commission_detail": "{\"commission_en\":\"Commission\",\"commission_ar\":\"وساطة بيع منتج خلال المنصة\",\"unit_price\":60,\"discount\":0,\"unit_price_after_discount\":60,\"quantity\":1,\"tax\":9,\"sub_total\":69}",
+  "order_detail": "{\"device_en\":\"Macbook Pro-i7\",\"device_ar\":\"ماكب بوك برو-i7\",\"unit_price\":1200,\"discount\":0,\"unit_price_after_discount\":1200,\"quantity\":1,\"tax\":0,\"sub_total\":1200}",
+  "order": "611bbd978582ab289b4e4392",
+  "total_taxable_amount": 60,
+  "total_vat": 9,
+  "total_amount_due": 69,
+  "total_amount_due_device": 1200,
+  "total_discount": 0,
+  "net_amount": 0,
+  "shipping_charge": 0,
+  "created_at": "2022-01-13T10:26:53.452Z",
+  "updated_at": "2022-01-13T10:26:53.452Z",
+  "__v": 0
+}

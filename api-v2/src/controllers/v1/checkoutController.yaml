@@ -1,0 +1,81 @@
+/v1/checkout/prepare:
+  post:
+    tags:
+      - Checkout
+    description: Prepare Checkout
+    consumes:
+      - application/json
+    produces:
+      - text/html
+    operationId: prepareCheckout
+    summary: Prepare Checkout
+    parameters: []
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                example: 61123afc80d3805c7829ff65
+              card_type:
+                type: string
+                example: VISA_MASTER
+              test_mode:
+                type: string
+                example: EXTERNAL
+              order_number:
+                type: string
+                example: TEST_ORDER1213324
+              amount:
+                type: number
+                example: 500
+              currency:
+                type: string
+                example: SAR
+              address_info:
+                $ref: "#/components/definitions/CheckoutAddress"
+    responses: {}
+/v1/checkout/get-payment-status:
+  get:
+    tags:
+      - Checkout
+    description: Get Payment Status
+
+    operationId: getPaymentStatus
+    summary: Get Payment Status
+    parameters:
+      - in: query
+        name: userId
+        schema:
+          type: string
+          example: 61123afc80d3805c7829ff65
+        description: User Id
+      - in: query
+        name: cardType
+        schema:
+          type: string
+          example: VISA_MASTER
+        description: Checkout id returned by Hyper in the redirect path
+      - in: query
+        name: resourcePath
+        schema:
+          type: string
+          example: >-
+            %2Fv1%2Fcheckouts%2F919B1B5088B3D9795DBF4C1D769554FB.uat01-vm-tx01%2Fpayment
+        description: Path to get Payment status
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: >-
+                  #/components/examples/v1DeclinedCheckoutPaymentStatusResponse
+              transactionDeclined:
+                $ref: >-
+                  #/components/examples/v1DeclinedCheckoutPaymentStatusResponse
+              noPaymentSession:
+                $ref: "#/components/examples/v1NoPaymentSession"

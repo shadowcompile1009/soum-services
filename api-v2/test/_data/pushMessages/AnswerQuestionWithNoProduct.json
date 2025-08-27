@@ -1,0 +1,69 @@
+[
+  {
+    "_id": "6135a6e055e9f6a69581b901",
+    "isRead": true,
+    "productData": {
+      "brandName": "Apple",
+      "brandNameAr": "",
+      "modelName": "iPhone 6",
+      "modelNameAr": "",
+      "bidValue": 0,
+      "productId": "6135a63055e9f6ab6c81b8aa"
+    },
+    "activityType": "AnswerQuestion",
+    "userData": {
+      "userName": "Fahad",
+      "id": {
+        "$oid": "6068cbd13a82f23f8c77431b"
+      }
+    },
+    "push_tokens": [
+      {
+        "_id": "61cc1fbace93bf6b52b47ff7",
+        "platform": "android",
+        "status": "Enabled",
+        "fcm_token": "ftD-HmyrRtuj8p0_A3Kwi3:APA91bEImVOOdUUOi8lZHhaRPOhE7yvec-NeHEbSu--kS0Lj1WJwP6nLgLy4rGfMycGofHuH-CQxPklNH5ERSsaQiel5TfQZsTKL9pw6yEJ7-WfSaIyvpo7mrnZqibS4poTIgtSuaMhL"
+      }
+    ],
+    "message": {
+      "title": "",
+      "body": "قام بائع المنتج أبل ايفون 6 بالرد على سؤالك",
+      "screenPage": "ProductDetailsScreen",
+      "productId": "6135a63055e9f6ab6c81b8aa"
+    }
+  },
+  {
+    "_id": "6135a6e055e9f6a69581b901",
+    "isRead": true,
+    "productData": {
+      "brandName": "",
+      "brandNameAr": "أبل",
+      "modelName": "",
+      "modelNameAr": "ماكب بوك برو",
+      "bidValue": 0,
+      "productId": "612b628e10a6676bc4a21e48"
+    },
+    "activityType": "AnswerQuestion",
+    "userData": {
+      "userName": "Fahad",
+      "id": {
+        "$oid": "6068cbd13a82f23f8c77431b"
+      }
+    },
+    "push_tokens": [
+      {
+        "_id": "61cc1fbace93bf6b52b47ff7",
+        "platform": "android",
+        "lang": "en",
+        "status": "Enabled",
+        "fcm_token": "ftD-HmyrRtuj8p0_A3Kwi3:APA91bEImVOOdUUOi8lZHhaRPOhE7yvec-NeHEbSu--kS0Lj1WJwP6nLgLy4rGfMycGofHuH-CQxPklNH5ERSsaQiel5TfQZsTKL9pw6yEJ7-WfSaIyvpo7mrnZqibS4poTIgtSuaMhL"
+      }
+    ],
+    "message": {
+      "title": "",
+      "body": "The seller answered your question about Apple Macbook Pro",
+      "screenPage": "ProductDetailsScreen",
+      "productId": "612b628e10a6676bc4a21e48"
+    }
+  }
+]

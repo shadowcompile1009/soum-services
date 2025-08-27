@@ -1,0 +1,109 @@
+[
+  {
+    "_id": "612402f09edb4a4093c32e8e",
+    "isRead": true,
+    "productData": {
+      "brandName": "Apple",
+      "brandNameAr": "",
+      "modelName": "Macbook Pro",
+      "modelNameAr": "",
+      "bidValue": 150
+    },
+    "userData": {
+      "userName": "DummyUser18",
+      "isActivityCreator": true,
+      "id": "60da07f53bde511843c59cfe"
+    },
+    "sellerData": {
+      "userName": "DummyUser18",
+      "isActivityCreator": true,
+      "id": "60da07f53bde511843c59cfe"
+    },
+    "push_tokens": [
+      {
+        "_id": "61cc1fbace93bf6b52b47ff7",
+        "platform": "android",
+        "status": "Enabled",
+        "fcm_token": "ftD-HmyrRtuj8p0_A3Kwi3:APA91bEImVOOdUUOi8lZHhaRPOhE7yvec-NeHEbSu--kS0Lj1WJwP6nLgLy4rGfMycGofHuH-CQxPklNH5ERSsaQiel5TfQZsTKL9pw6yEJ7-WfSaIyvpo7mrnZqibS4poTIgtSuaMhL"
+      }
+    ],
+    "activityType": "BuyerBidAccepted",
+    "message": {
+      "title": "اكمل عملية الشراء الآن!",
+      "body": "",
+      "screenPage": "ProductDetailsScreen"
+    }
+  },
+  {
+    "_id": "612402f09edb4a4093c32e8e",
+    "isRead": true,
+    "productData": {
+      "brandName": "Apple",
+      "brandNameAr": "أبل",
+      "modelName": "Macbook Pro",
+      "modelNameAr": "ماكب بوك برو",
+      "bidValue": 0
+    },
+    "userData": {
+      "userName": "DummyUser18",
+      "isActivityCreator": true,
+      "id": "60da07f53bde511843c59cfe"
+    },
+    "sellerData": {
+      "userName": "DummyUser18",
+      "isActivityCreator": true,
+      "id": "60da07f53bde511843c59cfe"
+    },
+    "push_tokens": [
+      {
+        "_id": "61cc1fbace93bf6b52b47ff7",
+        "platform": "android",
+        "status": "Enabled",
+        "lang": "en",
+        "fcm_token": "ftD-HmyrRtuj8p0_A3Kwi3:APA91bEImVOOdUUOi8lZHhaRPOhE7yvec-NeHEbSu--kS0Lj1WJwP6nLgLy4rGfMycGofHuH-CQxPklNH5ERSsaQiel5TfQZsTKL9pw6yEJ7-WfSaIyvpo7mrnZqibS4poTIgtSuaMhL"
+      }
+    ],
+    "activityType": "BuyerBidAccepted",
+    "message": {
+      "title": "Complete the purchase now!",
+      "body": "Your 0SAR bid on Apple Macbook Pro is accepted.",
+      "screenPage": "ProductDetailsScreen"
+    }
+  },
+  {
+    "_id": "612402f09edb4a4093c32e8e",
+    "isRead": true,
+    "productData": {
+      "brandName": "",
+      "brandNameAr": "أبل",
+      "modelName": "",
+      "modelNameAr": "ماكب بوك برو",
+      "bidValue": 300
+    },
+    "userData": {
+      "userName": "DummyUser18",
+      "isActivityCreator": true,
+      "id": "60da07f53bde511843c59cfe"
+    },
+    "sellerData": {
+      "userName": "DummyUser18",
+      "isActivityCreator": true,
+      "id": "60da07f53bde511843c59cfe"
+    },
+    "push_tokens": [
+      {
+        "_id": "61cc1fbace93bf6b52b47ff7",
+        "platform": "android",
+        "status": "Enabled",
+        "lang": "en",
+        "fcm_token": "ftD-HmyrRtuj8p0_A3Kwi3:APA91bEImVOOdUUOi8lZHhaRPOhE7yvec-NeHEbSu--kS0Lj1WJwP6nLgLy4rGfMycGofHuH-CQxPklNH5ERSsaQiel5TfQZsTKL9pw6yEJ7-WfSaIyvpo7mrnZqibS4poTIgtSuaMhL"
+      }
+    ],
+    "activityType": "BuyerBidAccepted",
+    "message": {
+      "title": "Complete the purchase now!",
+      "body": "Your 0SAR bid on Apple Macbook Pro is accepted.",
+      "screenPage": "ProductDetailsScreen"
+    }
+  }
+]

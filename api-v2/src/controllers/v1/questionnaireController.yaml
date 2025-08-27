@@ -1,0 +1,609 @@
+/v1/questionnaire/:
+  get:
+    tags:
+      - Questionnaire
+    summary: Get all Questionnaires
+    description: >-
+      This will return an array of questionnaires and include brand, category,
+      device_model of the questionnaire.
+    operationId: getAllQuestionnaires
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetAllQuestionnaires"
+  post:
+    tags:
+      - Questionnaire
+    summary: Add a new questionnaire
+    description: >-
+      To create a questionnaire, you need to provide description in English or
+      Arabic, and you can input either one or all of brand id, category id and
+      device model id to denote that questionnaire specified for the brand or
+      category. It also validate the device model belongs to brand, and brand
+      belongs to category, returns 400 if the data is invalid. There is a
+      field is_active that is for deleting questionnaire purpose. This
+      endpoint required admin token access,not the public site's token
+
+    operationId: addQuestionnaire
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/definitions/Questionnaire"
+    responses:
+      "201":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#components/examples/v1AddQuestionnaire"
+/v1/questionnaire/single/upload:
+  post:
+    tags:
+      - Questionnaire
+    summary: Submit single image
+    description: >-
+      The API is used to upload an image file. It accepts these file
+      extensions .jpeg, jpg, .png and the file size is not bigger than 5 MB
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/json
+    operationId: uploadIllustration
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/definitions/SingleIllustration"
+    responses:
+      "201":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PostSingleIllustration"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PostSingleIllustration"
+/v1/questionnaire/filter:
+  post:
+    tags:
+      - Questionnaire
+    summary: Get detail of questionnaire filtered by brand, category, device models
+    description: >-
+      This will return an array of detailed questionnaire. You can input one
+      or all params: brand_id, category_id, and model_id. Only the
+      questionnaires that qualified the set of category, brand, device model
+      conditions will be returned. For example, if a questionnaire for
+      category Mobile, and brand Apple, and you only filter by category
+      Mobile, this questionnaire won't be included in the response. Each of
+      returned questionnaire includes all questions, answers and dropdown
+      options; as well as the brand, category, device model information.
+    operationId: filterQuestionnaire
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              brand_id:
+                type: string
+                example: ""
+              category_id:
+                type: string
+                example: ""
+              model_id:
+                type: string
+                example: ""
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1FilterQuestionnare"
+/v1/questionnaire/{questionnaireId}:
+  get:
+    tags:
+      - Questionnaire
+    summary: Get detail of questionnaire
+    description: >-
+      The API will return the detail of questionnaire based on the id of
+      questionnaire. This one is helpful for the front end to get all the
+      needed questions structure to display for the end user.
+    operationId: getQuestionnaire
+    parameters:
+      - in: path
+        name: questionnaireId
+        description: The valid questionnaire id
+        required: true
+        schema:
+          type: string
+          example: 612f1ffbc6ca3b34fa32863a
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1FilterQuestionnare"
+  put:
+    tags:
+      - Questionnaire
+    summary: Update general info of questionnaire
+    description: >-
+      The API will allow to update questionnaire description in English an
+      Arabic, is_active status. It also can update the brand id, category id
+      and model_id, but you should not change the info when the questionnaire
+      is in use for many products, that may potentially make the product data
+      showing inconsistently. This endpoint required admin token access,not
+      the public site's token
+
+    operationId: updateQuestionnaire
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTA4NjUzNCwiZXhwIjoxNjMzNjc4NTM0fQ.hShBBx0vD0MlH_KXMhJSAqFutwo-DfJVTTWhNQzCOGM
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: questionnaireId
+        description: The valid questionnaire id
+        required: true
+        schema:
+          type: string
+          example: 612f1ffbc6ca3b34fa32863a
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              brand_id:
+                type: string
+                example: ""
+              category_id:
+                type: string
+                example: ""
+              model_id:
+                type: string
+                example: ""
+              description_en:
+                type: string
+                example: ""
+              description_ar:
+                type: string
+                example: ""
+              is_active:
+                type: boolean
+                example: true
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              updateSuccessful:
+                $ref: "#/components/examples/v1UpdateQuestionnaire"
+  delete:
+    tags:
+      - Questionnaire
+    summary: >-
+      Remove questionnaire with all questions and answers/choices along with
+      it.
+    description: >-
+      This API is suitable to clean up the questionnaires that are not in use,
+      or have data broken. This endpoint required admin token access,not the
+      public site's token
+
+    operationId: deleteQuestionnaire
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTk2ODQyNywiZXhwIjoxNjM0NTYwNDI3fQ.-Oj6D7B-qd-fUdMHiAHCgppr8dliNGpjMYv5_7bXhhQ
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: questionnaireId
+        description: The valid questionnaire id
+        required: true
+        schema:
+          type: string
+          example: 6145dd746e2f504cb3311dac
+    requestBody: {}
+    responses:
+      "200":
+        description: successful delete
+        content:
+          application/json:
+            examples:
+              removeSuccessful:
+                $ref: "#/components/examples/v1DeleteQuestionResponse"
+/v1/questionnaire/{questionnaireId}/questions:
+  post:
+    tags:
+      - Questionnaire
+    summary: Add question with answers of questionnaire
+    description: >-
+      To add a question to a questionnaire, you needs to send the type of the
+      question among these types: `yes-no-with-options`,
+      `yes-no-without-options`, `dropdown`, `mcqs`. You need to add the order
+      index of the question, question ext in English and Arabic. If the
+      question types is `yes-no-with-options` and `yse-no-without-options`,
+      you will need to pass and array of `answers; otherwise for dropdown or
+      mcqs you need to pass and array of choices. An array can have zero or
+      many choices (options). In the example body below, base on the question
+      type, please keep/remove answers or choices. If answers and choices
+      section exists at the same time, only one of them get saved base on the
+      type. If an answer has options, you will need to pass sub_choices array.
+      This endpoint required admin token access,not the public site's token
+
+    operationId: addQuestion
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: questionnaireId
+        description: The valid questionnaire id
+        required: true
+        schema:
+          type: string
+          example: 61373938cd843e87f0169992
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              order:
+                type: number
+                example: 1
+              question_en:
+                type: string
+                example: Is there any screen or body problem?
+              question_ar:
+                type: string
+                example: هل هناك أي مشكلة في الشاشة أو الجسم?
+              type:
+                type: string
+                enum:
+                  - yes-no-with-options
+                  - yes-no-without-options
+                  - dropdown
+                  - mcqs
+                example: yes-no-with-options
+              answers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    answer_en:
+                      type: string
+                      example: "Yes"
+                    answer_ar:
+                      type: string
+                      example: نعم
+                    score:
+                      type: number
+                      example: 0
+                    icon:
+                      type: string
+                    sub_choices:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          option_en:
+                            type: string
+                            example: Visable/black/dead pixels
+                          option_ar:
+                            type: string
+                            example: بكسل مرئي / أسود / ميت
+                          score:
+                            type: number
+                            example: -2.5
+                          icon:
+                            type: string
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    option_en:
+                      type: string
+                      example: 100-95%
+                    option_ar:
+                      type: string
+                    score:
+                      type: number
+                      example: 0
+                    icon:
+                      type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Questionnaire"
+/v1/questionnaire/{questionnaireId}/question/{questionId}:
+  put:
+    tags:
+      - Questionnaire
+    summary: Update question with answers of questionnaire
+    description: >-
+      Update question with answers and choices. Please find more detail in the
+      request examples. If the Ids of answer, choice is not valid, the system
+      will ignore the answer, choice. This endpoint required admin token
+      access,not the public site's token
+
+    operationId: updateQuestion
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: questionnaireId
+        description: The valid questionnaire id
+        required: true
+        schema:
+          type: string
+          example: 612f1ffbc6ca3b34fa32863a
+      - in: path
+        name: questionId
+        description: The valid question id
+        required: true
+        schema:
+          type: string
+          example: 6131fd5139ee4264edffca3b
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              order:
+                type: number
+                example: 1
+              question_en:
+                type: string
+                example: >-
+                  Have you ever opened phone screen for repair or screen
+                  replacement?
+              question_ar:
+                type: string
+                example: هل سبق لك أن فتحت شاشة الهاتف للإصلاح أو استبدال الشاشة؟
+              answers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    answer_id:
+                      type: string
+                      example: 6131fd5539ee4264edffca3c
+                    answer_en:
+                      type: string
+                      example: "Yes"
+                    answer_ar:
+                      type: string
+                      example: نعم
+                    score:
+                      type: number
+                      example: 0
+                    icon:
+                      type: string
+                    sub_choices:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          choice_id:
+                            type: string
+                            example: 61226ca8c785226b575cd0ea
+                          option_en:
+                            type: string
+                            example: Visable/black/dead pixels
+                          option_ar:
+                            type: string
+                            example: بكسل مرئي / أسود / ميت
+                          score:
+                            type: number
+                            example: -2.5
+                          icon:
+                            type: string
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    choice_id:
+                      type: string
+                      example: 1
+                    option_en:
+                      type: string
+                      example: 100-95%
+                    option_ar:
+                      type: string
+                      example: 100 - 95٪
+                    score:
+                      type: number
+                      example: 0
+                    icon:
+                      type: string
+          examples:
+            dropdown:
+              value:
+                order: 4
+                question_en: Is there any functional problem? Update
+                question_ar: هل هناك أي مشكلة وظيفية؟
+                choices:
+                  - choice_id: 61373d6e463c6c99482bd585
+                    option_en: Yes update
+                    option_ar: نعم Update
+                    score: -3
+                    icon: >-
+                      https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/image_2021_09_07T02_38_40_664Z-1630983008987.png
+                  - choice_id: 61373d6e463c6c99482bd586
+                    option_en: No update
+                    option_ar: نعم Update
+                    score: 1
+                    icon: >-
+                      https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/image_2021_09_07T02_38_40_664Z-1630983008987.png
+            yesno:
+              value:
+                order: 1
+                question_en: >-
+                  Have you ever opened phone screen for repair or screen
+                  replacement?UP1
+                question_ar: هل سبق لك أن فتحت شاشة الهاتف للإصلاح أو استبدال الشاشة؟
+                answers:
+                  - answer_id: 6134eefa0e82cb2b94b770d0
+                    answer_en: "Yes"
+                    answer_ar: نعم
+                    score: 1
+                    icon: https://iconup1.com
+                    sub_choices:
+                      - choice_id: 6134eefb0e82cb2b94b770d1
+                        option_en: Visable/black/dead pixels
+                        option_ar: بكسل مرئي / أسود / ميت
+                        score: -2.5
+                        icon: https://iconsup.com
+                      - choice_id: 6134eefb0e82cb2b94b770d2
+                        option_en: Visible lines on screen
+                        option_ar: خطوط مرئية على الشاشة
+                        score: -2.5
+                        icon: https://iconsup.com
+                choices:
+                  - choice_id: "111"
+                    option_en: 100-95%
+                    option_ar: 100 - 95٪
+                    score: 0
+                    icon: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Questionnaire"
+            examples:
+              dropdownResponse:
+                $ref: "#/components/examples/v1UpdateDropDownQuestionResponse"
+              yesNoResponse:
+                $ref: "#/components/examples/v1UpdateYesNoQuestionResponse"
+  delete:
+    tags:
+      - Questionnaire
+    summary: Remove question with answers of questionnaire
+    description: Remove question with answers and choices
+
+    operationId: removeQuestion
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: questionnaireId
+        description: The valid questionnaire id
+        required: true
+        schema:
+          type: string
+          example: 6121f869621f5b3c0c39d62c
+      - in: path
+        name: questionId
+        description: The valid question id
+        required: true
+        schema:
+          type: string
+          example: 612c5ba2d3732e06308e0f69
+    requestBody: {}
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            examples:
+              removeSuccessful:
+                $ref: "#/components/examples/v1DeleteQuestionResponse"
+              questionNotFound:
+                $ref: "#/components/examples/v1DeleteQuestionNotFound"

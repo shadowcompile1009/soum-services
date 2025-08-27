@@ -1,0 +1,53 @@
+{
+  "_id": "61cdb0224a386f3c35d15078",
+  "bidding": [
+    {
+      "user_id": "60da07f53bde511843c59da0",
+      "bid_id": "61cdb9224a386f5a1dd1539a",
+      "bid_price": 448,
+      "bid_date": "2021-12-30T13:50:26.041Z",
+      "checkout_id": "491F4D46059CE65D438B5629A1D6364E.uat01-vm-tx02",
+      "pay_bid_amount": "0.10",
+      "payment_type": "STC_PAY",
+      "remaining_bid_amount": "473.76",
+      "grand_total": "473.76",
+      "vat": "3.36",
+      "commission": "22.4",
+      "shipping_charge": "0",
+      "buy_amount": 448,
+      "bid_status": "accepted",
+      "transaction_status": "Success",
+      "payment_take": "full",
+      "order_number": "SOUM16408722264459",
+      "transaction_detail": "{\"id\":\"8ac7a4a27e0b2e44017e0b9b3d6c0b8b\",\"paymentType\":\"DB\",\"paymentBrand\":\"STC_PAY\",\"amount\":\"0.10\",\"currency\":\"SAR\",\"descriptor\":\"7266.9900.7076 Soum online\",\"merchantTransactionId\":\"SOUM16408722264459\",\"result\":{\"code\":\"000.100.110\",\"description\":\"Request successfully processed in 'Merchant in Integrator Test Mode'\"},\"resultDetails\":{\"ExtendedDescription\":\"Transaction succeeded\",\"AcquirerResponse\":\"000.000.000\",\"risk.score\":\"01\",\"clearingInstituteName\":\"Simulator_Test\",\"ConnectorTxID1\":\"8ac7a4a27e0b2e44017e0b9b3d6c0b8b\"},\"customer\":{\"givenName\":\"DummyUser99\",\"surname\":\"DummyUser99\",\"ip\":\"46.38.84.73\",\"ipCountry\":\"SA\"},\"billing\":{\"street1\":\"Cairo, Egypt\",\"city\":\"Tolon, El-Sayeda Zainab, Cairo Governorate\",\"state\":\"TOLON, EL-\",\"postcode\":\"11111\",\"country\":\"SA\"},\"customParameters\":{\"SHOPPER_payment_mode\":\"qr_code\"},\"risk\":{\"score\":\"0\"},\"buildNumber\":\"4146679faa94a27e23eaaba59541b0432f63e37d@2021-12-28 09:40:34 +0000\",\"timestamp\":\"2021-12-30 13:50:33+0000\",\"ndc\":\"491F4D46059CE65D438B5629A1D6364E.uat01-vm-tx02\"}",
+      "transaction_id": "8ac7a4a27e0b2e44017e0b9b3d6c0b8b",
+      "accept_date": "2021-12-30T13:51:33.672Z"
+    }
+  ],
+  "sell_status": "Available",
+  "category_id": {
+    "_id": "6063f95f929f926b67347b0d",
+    "category_name_ar": "جوال",
+    "category_name": "Mobile"
+  },
+  "brand_id": {
+    "_id": "60640602929f92968a347b12",
+    "brand_name_ar": "أبل",
+    "brand_name": "Apple"
+  },
+  "model_id": {
+    "_id": "6064064a929f92c76a347b13",
+    "model_name_ar": "ايفون 6",
+    "model_name": "iPhone 6"
+  },
+  "varient": "32GB",
+  "varient_ar": "32GB",
+  "sell_price": 45,
+  "bid_price": 39,
+  "expiryDate": "2025-09-22T19:17:41.180Z",
+  "varient_id": {
+    "_id": "60640658929f92309d347b14",
+    "varient_ar": "32GB",
+    "varient": "32GB"
+  }
+}

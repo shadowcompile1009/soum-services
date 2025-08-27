@@ -1,0 +1,12 @@
+export const State = {
+  PRODUCT_STATUS: {
+    DRAFT: 'DRAFT',
+    AVAILABLE: 'AVAILABLE',
+    DELETED_DRAFT: 'DELETED DRAFT',
+    EXPIRED: 'EXPIRED',
+    RESERVED: 'RESERVED',
+    RETURNED: 'RETURNED',
+    SOLD: 'SOLD',
+    DELETED: 'DELETED',
+  },
+};

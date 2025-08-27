@@ -1,0 +1,210 @@
+/v1/response:
+  post:
+    tags:
+      - Response
+    summary: Add response of questions in questionnaire
+    description: Add response of questions in questionnaire
+
+    operationId: postCreateResponse
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/definitions/CreateResponse"
+    responses:
+      "201":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PostCreateResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PostCreateResponse"
+/v1/response/{responseId}:
+  get:
+    tags:
+      - Response
+    summary: Get response of question
+    description: Get response of question
+
+    operationId: getResponse
+    parameters:
+      - in: path
+        name: responseId
+        required: true
+        schema:
+          type: string
+          example: 6139cb10df9eba48ec21d08e
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PGetResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PGetResponse"
+  put:
+    tags:
+      - Response
+    summary: Put response of question
+    description: Put response of question
+
+    operationId: putResponse
+    parameters:
+      - in: path
+        name: responseId
+        required: true
+        schema:
+          type: string
+          example: 613b3250decdeb19084fb3d4
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/definitions/UpdateResponse"
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PutResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PutResponse"
+              failExample:
+                $ref: "#/components/examples/v1FailPutResponse"
+  delete:
+    tags:
+      - Response
+    summary: Delete response of question
+    description: Delete response of question
+
+    operationId: deleteResponse
+    parameters:
+      - in: path
+        name: responseId
+        required: true
+        schema:
+          type: string
+          example: 613b3250decdeb19084fb3d4
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1DeleteResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1DeleteResponse"
+/v1/response/filter/{productId}:
+  get:
+    tags:
+      - Response
+    summary: Get response of question via product id
+    description: Get response of question via product id
+
+    operationId: getFilterResponse
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: string
+          example: 6139af921362ca6328797a0f
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PGetFilterResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PGetFilterResponse"
+  put:
+    tags:
+      - Product
+    summary: Update a Product
+    description: This will mainly update the status of a Product
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/json
+    operationId: putUpdateProduct
+    parameters:
+      - in: path
+        name: productId
+        description: Product Id needs to be updated
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/definitions/Product"
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PostUpdateProductResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PostUpdateProductResponse"
+  delete:
+    tags:
+      - Product
+    summary: Delete a Product
+    description: ""
+    operationId: deleteProduct
+    parameters:
+      - in: path
+        name: productId
+        description: Product Id needs to be deleted
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Product"
+/v1/response/get-full-response/{responseId}:
+  get:
+    tags:
+      - Response
+    summary: Get full response data of question
+    description: Get response of question
+    operationId: getFullResponse
+    parameters:
+      - in: path
+        name: responseId
+        required: true
+        schema:
+          type: string
+          example: 6139cb10df9eba48ec21d08e
+      - in: header
+        name: token
+        required: false
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTcyODBjN2I2NjAwYmUwNTM0MTVkNiIsImlhdCI6MTY2MzY3NTc5MiwiZXhwIjoxNjY2MjY3NzkyfQ.sGaeHYZJy7pVfO_a3u613GMW0-BLXdwz7LQSKZp1Nu0
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PGetResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PGetResponse"

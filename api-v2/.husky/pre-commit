@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+if [ -z "$( cat package-lock.json | grep '\"lockfileVersion\": 1' )" ]; then
+  npx lint-staged
+  exit $?
+else
+  echo "lockfileVersion 1 not allowed for this repository. Please use a supported version of Node and npme to regenerate package-lock.json file"
+  exit 1
+fi
+

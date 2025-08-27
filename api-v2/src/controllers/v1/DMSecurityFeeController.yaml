@@ -1,0 +1,56 @@
+/v1/dm-securityfee/status:
+  get:
+    tags:
+      - DMSecurityFee
+    summary: Get DM security fee by id
+    description: Get DM security fee information by id
+    operationId: getByUserId
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetSecurityFeeResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetSecurityFeeResponse'
+/v1/dm-securityfee/deduct-fee:
+  put:
+    tags:
+      - DMSecurityFee
+    summary: Update DM security fee status by user id
+    description: Update DM security fee status by user id and deduct security fee amount from wallet
+    operationId: deductSecurityFee
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/DeductSecurityFee'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetSecurityFeeResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1UpdateSecurityFeeResponse'

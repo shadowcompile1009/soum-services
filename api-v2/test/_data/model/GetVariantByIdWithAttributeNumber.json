@@ -1,0 +1,186 @@
+{
+  "id": "6151b81939b100d6a1143a40",
+  "categoryId": "60661c60fdc090d1ce2d4914",
+  "brandId": "6069faf484541d77f553167a",
+  "modelId": "6151b6e2be662bcd43b9c3a9",
+  "varientEn": "1 TB",
+  "varientAr": "١ تيرابايت",
+  "currentPrice": 6599,
+  "position": 4,
+  "createdAt": "2021-09-26T18:05:29.518Z",
+  "status": "Delete",
+  "attributes": [],
+  "priceRanges": [
+    {
+      "like_new": [
+        {
+          "label": "Expensive",
+          "from": 3960,
+          "to": 39600
+        },
+        {
+          "label": "Fair",
+          "from": 3959,
+          "to": 3240
+        },
+        {
+          "label": "Excellent",
+          "from": 3239,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "light_use": [
+        {
+          "label": "Expensive",
+          "from": 3520,
+          "to": 35200
+        },
+        {
+          "label": "Fair",
+          "from": 3519,
+          "to": 2880
+        },
+        {
+          "label": "Excellent",
+          "from": 2879,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "good_condition": [
+        {
+          "label": "Expensive",
+          "from": 2640,
+          "to": 26400
+        },
+        {
+          "label": "Fair",
+          "from": 2639,
+          "to": 2160
+        },
+        {
+          "label": "Excellent",
+          "from": 2159,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "extensive_use": [
+        {
+          "label": "Expensive",
+          "from": 1760,
+          "to": 17600
+        },
+        {
+          "label": "Fair",
+          "from": 1759,
+          "to": 1440
+        },
+        {
+          "label": "Excellent",
+          "from": 1439,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "like_new_ar": [
+        {
+          "label": "Expensive",
+          "from": 3960,
+          "to": 39600
+        },
+        {
+          "label": "Fair",
+          "from": 3959,
+          "to": 3240
+        },
+        {
+          "label": "Excellent",
+          "from": 3239,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "light_use_ar": [
+        {
+          "label": "Expensive",
+          "from": 3520,
+          "to": 35200
+        },
+        {
+          "label": "Fair",
+          "from": 3519,
+          "to": 2880
+        },
+        {
+          "label": "Excellent",
+          "from": 2879,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "good_condition_ar": [
+        {
+          "label": "Expensive",
+          "from": 2640,
+          "to": 26400
+        },
+        {
+          "label": "Fair",
+          "from": 2639,
+          "to": 2160
+        },
+        {
+          "label": "Excellent",
+          "from": 2159,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "extensive_use_ar": [
+        {
+          "label": "Expensive",
+          "from": 1760,
+          "to": 17600
+        },
+        {
+          "label": "Fair",
+          "from": 1759,
+          "to": 1440
+        },
+        {
+          "label": "Excellent",
+          "from": 1439,
+          "to": 0
+        }
+      ]
+    },
+    {
+      "updatedAt": [
+        {
+          "label": "Expensive",
+          "from": 1832794368231,
+          "to": 18327943682310
+        },
+        {
+          "label": "Fair",
+          "from": 1832794368230,
+          "to": 1499559028553
+        },
+        {
+          "label": "Excellent",
+          "from": 1499559028552,
+          "to": 0
+        }
+      ]
+    }
+  ]
+}

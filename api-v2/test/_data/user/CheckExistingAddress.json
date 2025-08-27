@@ -1,0 +1,14 @@
+{
+  "is_default": true,
+  "_id": "63476d6c7d9ff309f0cbd9d1",
+  "street": "HaiPhong",
+  "district": "HaiChau",
+  "city": "Danang",
+  "postal_code": "50000",
+  "longitude": "123",
+  "latitude": "456",
+  "is_verified": true,
+  "user_id": "6054c75f331bb603c4321b2e",
+  "created_date": "2022-10-13T01:44:12.272Z",
+  "__v": 0
+}

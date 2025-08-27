@@ -1,0 +1,188 @@
+{
+  "message": "Get variant by Id successfully",
+  "responseData": {
+    "id": "632b378ff49ff67c8b3ff43b",
+    "categoryId": "605760789269ccf731430e86",
+    "brandId": "606b52309537c00601d3ba9f",
+    "modelId": "607336de1f2faf3a7ad109cd",
+    "varientEn": "Capacity 1 TB",
+    "varientAr": "السعة 1 TB",
+    "currentPrice": 1950,
+    "position": 0,
+    "createdAt": "2022-09-21T16:10:35.877Z",
+    "status": "Active",
+    "deletedDate": null,
+    "attributes": [
+      {
+        "featureId": "62e2aed53bb6130038e9130b",
+        "attributeId": "62e2aed53bb6130038e91302",
+        "nameAr": "السعة",
+        "nameEn": "Capacity",
+        "options": [
+          {
+            "id": "62e2aed53bb6130038e91302",
+            "nameAr": "1 TB",
+            "nameEn": "1 TB"
+          }
+        ]
+      }
+    ],
+    "priceRanges": [
+      {
+        "like_new": [
+          {
+            "label": "Expensive",
+            "from": 1594,
+            "to": 15940
+          },
+          {
+            "label": "Fair",
+            "from": 1593,
+            "to": 1304
+          },
+          {
+            "label": "Excellent",
+            "from": 1303,
+            "to": 0
+          }
+        ]
+      },
+      {
+        "light_use": [
+          {
+            "label": "Expensive",
+            "from": 1484,
+            "to": 14840
+          },
+          {
+            "label": "Fair",
+            "from": 1483,
+            "to": 1214
+          },
+          {
+            "label": "Excellent",
+            "from": 1213,
+            "to": 0
+          }
+        ]
+      },
+      {
+        "good_condition": [
+          {
+            "label": "Expensive",
+            "from": 1154,
+            "to": 11540
+          },
+          {
+            "label": "Fair",
+            "from": 1153,
+            "to": 944
+          },
+          {
+            "label": "Excellent",
+            "from": 943,
+            "to": 0
+          }
+        ]
+      },
+      {
+        "extensive_use": [
+          {
+            "label": "Expensive",
+            "from": 769,
+            "to": 7690
+          },
+          {
+            "label": "Fair",
+            "from": 768,
+            "to": 629
+          },
+          {
+            "label": "Excellent",
+            "from": 628,
+            "to": 0
+          }
+        ]
+      },
+      {
+        "like_new_ar": [
+          {
+            "label": "Expensive",
+            "from": 1594,
+            "to": 15940
+          },
+          {
+            "label": "Fair",
+            "from": 1593,
+            "to": 1304
+          },
+          {
+            "label": "Excellent",
+            "from": 1303,
+            "to": 0
+          }
+        ]
+      },
+      {
+        "light_use_ar": [
+          {
+            "label": "Expensive",
+            "from": 1484,
+            "to": 14840
+          },
+          {
+            "label": "Fair",
+            "from": 1483,
+            "to": 1214
+          },
+          {
+            "label": "Excellent",
+            "from": 1213,
+            "to": 0
+          }
+        ]
+      },
+      {
+        "good_condition_ar": [
+          {
+            "label": "Expensive",
+            "from": 1154,
+            "to": 11540
+          },
+          {
+            "label": "Fair",
+            "from": 1153,
+            "to": 944
+          },
+          {
+            "label": "Excellent",
+            "from": 943,
+            "to": 0
+          }
+        ]
+      },
+      {
+        "extensive_use_ar": [
+          {
+            "label": "Expensive",
+            "from": 769,
+            "to": 7690
+          },
+          {
+            "label": "Fair",
+            "from": 768,
+            "to": 629
+          },
+          {
+            "label": "Excellent",
+            "from": 628,
+            "to": 0
+          }
+        ]
+      }
+    ]
+  },
+  "status": "success",
+  "timeStamp": "2023-01-06 07:07:29",
+  "violations": null
+}

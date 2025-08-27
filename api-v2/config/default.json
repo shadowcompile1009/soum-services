@@ -1,0 +1,58 @@
+{
+  "App": {
+    "password_reset_url": "http://localhost:4353/rest/api/v1/user/reset?token=",
+    "password_reset_expiration_hours": 24,
+    "default_timzone_offset": -8,
+    "mail": {
+      "url": "smtp.sendgrid.net",
+      "port": 465,
+      "from": "no-reply@soum-sa.com",
+      "username": "apikey",
+      "password": "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"
+    },
+    "twilio": {
+      "accountSid": "ACbc2a72d32e475b09fa0bb7919de7dc7e",
+      "authToken": "a8eadadbdfcf7764345df89248a313c0",
+      "fromNumber": "+18184958641",
+      "secretKey": "f8c895576cbbb46d8fddcac509caa3c2c4b042fa616b42450e3deb5421c3e56f1f457aafe30aef76cd628b8c5b9787f92b79a474368d042fb41d3232dc2f96e1"
+    }
+  },
+  "freshchat": {
+    "api_uri": "FRESHCHAT_API_URI",
+    "token": "FRESHCHAT_API_TOKEN",
+    "sender": "FRESHCHAT_SENDER_PHONE_NUMBER",
+    "namespace": "FRESHCHAT_NAMESPACE",
+    "storage_type": "STORAGE_TYPE",
+    "lang_policy": "FRESHCHAT_LANG_POLICY",
+    "lang": "FRESHCHAT_LANG"
+  },
+  "ims": {
+    "api_url": "IMS_URL",
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX",
+    "kafka_topic": "KAFKA_IMS_PRODUCER_TOPIC"
+  },
+  "activitylog": {
+    "api_url": "ACTIVITY_LOG_URL",
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX",
+    "kafka_topic": "KAFKA_TOPIC_CREATE_ACTIVITY_LOG"
+  },
+  "notification": {
+    "kafka_brokers": "NOTIFICATION_KAFKA_BROKERS",
+    "prefix": "NOTIFICATION_PREFIX",
+    "kafka_topic": "KAFKA_TOPIC_CREATE_NOTIFICATION_LOG"
+  },
+  "categoryKafka": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX"
+  },
+  "torodWebhookKafka": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX"
+  },
+  "product": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX"
+  }
+}

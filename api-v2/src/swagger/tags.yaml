@@ -1,0 +1,39 @@
+tags:
+  - name: Setting
+    description: Setting Configurations
+  - name: Authentication
+    description: Phone number authentication
+  - name: Model
+    description: Model list, detail information
+  - name: Brand
+    description: Brand list, detail information
+  - name: Category
+    description: Category list, detail information
+  - name: Variant
+    description: Variant list, detail information
+  - name: User
+    description: User Profile, Bank Account, User's Orders
+  - name: Product
+    description: Products list, filter, detail information
+  - name: Order
+    description: Place order, update order, delete order, list orders
+  - name: Bidding
+    description: >-
+      Submit a bidding, view product bidding, delete product bidding, validate
+      bidding, accept bidding
+  - name: Questionnaire
+    description: List Questions of category or model, CRUD question of questionnaire
+  - name: Content
+    description: Welcome message in supported language
+  - name: Response
+    description: Response from questionnaire
+  - name: AdminProduct
+    description: Product in admin management
+  - name: Feed
+    description: Feed list
+  - name: Bank
+    description: Bank list, detail information
+  - name: AskSeller
+    description: Ask Seller (SPP Q&A)
+  - name: Listing Group
+    description: Listing Group (Bulk listing)

@@ -1,0 +1,86 @@
+{
+  "id": "632b378ff49ff67c8b3ffe93",
+  "categoryId": "60575fdb826cc52db3d02acc",
+  "brandId": "62bd48c5e93e14fd25b0ebc8",
+  "modelId": "62bd4d2939ad4d8d5dfb23bb",
+  "varientEn": "Series 15, Processor Core i7, Generation 8th Gen, Ram 8 GB, Storage memory 1 TB",
+  "varientAr": "الإصدار 15, المعالج كور أي 7, الجيل الجيل الثامن, الرام 8 جيجابيات, سعة التخزين 1 TB",
+  "currentPrice": 1899,
+  "position": 0,
+  "createdAt": "2022-09-21T16:10:35.877Z",
+  "status": "Active",
+  "deletedDate": null,
+  "attributes": [
+    {
+      "featureId": "62d914fb48259b003737a5cc",
+      "attributeId": "62d914fb48259b003737a5c9",
+      "nameAr": "الإصدار",
+      "nameEn": "Series",
+      "options": [
+        {
+          "id": "62d914fb48259b003737a5c9",
+          "nameAr": "15",
+          "nameEn": "15"
+        },
+        {
+          "id": "62d914fb48259b003737a5c9",
+          "nameAr": "15",
+          "nameEn": "15"
+        }
+      ]
+    },
+    {
+      "featureId": "62d91a5a0a94ff0038babeb3",
+      "attributeId": "62d91a5a0a94ff0038babeaf",
+      "nameAr": "المعالج",
+      "nameEn": "Processor",
+      "options": [
+        {
+          "id": "62d91a5a0a94ff0038babeaf",
+          "nameAr": "كور أي 7",
+          "nameEn": "Core i7"
+        }
+      ]
+    },
+    {
+      "featureId": "62d91b0fbc7f390037c8a786",
+      "attributeId": "62d91b0fbc7f390037c8a782",
+      "nameAr": "الجيل",
+      "nameEn": "Generation",
+      "options": [
+        {
+          "id": "62d91b0fbc7f390037c8a782",
+          "nameAr": "الجيل الثامن",
+          "nameEn": "8th Gen"
+        }
+      ]
+    },
+    {
+      "featureId": "62d91c78bc7f390037c8a79d",
+      "attributeId": "62d91c78bc7f390037c8a798",
+      "nameAr": "الرام",
+      "nameEn": "Ram",
+      "options": [
+        {
+          "id": "62d91c78bc7f390037c8a798",
+          "nameAr": "8 جيجابيات",
+          "nameEn": "8 GB"
+        }
+      ]
+    },
+    {
+      "featureId": "62d91d763013790037c78d2c",
+      "attributeId": "62d91d763013790037c78d10",
+      "nameAr": "سعة التخزين",
+      "nameEn": "Storage Memory",
+      "options": [
+        {
+          "id": "62d91d763013790037c78d10",
+          "nameAr": "1 TB",
+          "nameEn": "1 TB"
+        }
+      ]
+    }
+  ],
+  "priceRanges": []
+}

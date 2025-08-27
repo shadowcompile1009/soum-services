@@ -1,0 +1,62 @@
+[
+  {
+    "description": "Theo has changed Buy Now Price from 55 SAR to 30 SAR at 07/03/2022 12:51:16 PM",
+    "_id": "62259d54cf6e742908957970",
+    "userId": {
+      "_id": "612ddb16089d7528d3a6fa22",
+      "name": "Theo"
+    },
+    "productId": {
+      "_id": "60d23755ddd9c4d7dcaa1cbc",
+      "sell_price": 35,
+      "bid_price": 25
+    },
+    "createdDate": "2022-03-07T05:51:16.579Z",
+    "__v": 0
+  },
+  {
+    "description": "Theo has changed Bid Price from 45 SAR to 20 SAR at 07/03/2022 12:51:16 PM",
+    "_id": "62259d54cf6e742908957971",
+    "userId": {
+      "_id": "612ddb16089d7528d3a6fa22",
+      "name": "Theo"
+    },
+    "productId": {
+      "_id": "60d23755ddd9c4d7dcaa1cbc",
+      "sell_price": 35,
+      "bid_price": 25
+    },
+    "createdDate": "2022-03-07T05:51:16.586Z",
+    "__v": 0
+  },
+  {
+    "description": "Theo has changed Buy Now Price from 30 SAR to 35 SAR at 07/03/2022 12:52:48 PM",
+    "_id": "62259db0fc96f71b00f8755c",
+    "userId": {
+      "_id": "612ddb16089d7528d3a6fa22",
+      "name": "Theo"
+    },
+    "productId": {
+      "_id": "60d23755ddd9c4d7dcaa1cbc",
+      "sell_price": 35,
+      "bid_price": 25
+    },
+    "createdDate": "2022-03-07T05:52:48.477Z",
+    "__v": 0
+  },
+  {
+    "description": "Theo has changed Bid Price from 20 SAR to 25 SAR at 07/03/2022 12:52:48 PM",
+    "_id": "62259db0fc96f71b00f8755d",
+    "userId": {
+      "_id": "612ddb16089d7528d3a6fa22",
+      "name": "Theo"
+    },
+    "productId": {
+      "_id": "60d23755ddd9c4d7dcaa1cbc",
+      "sell_price": 35,
+      "bid_price": 25
+    },
+    "createdDate": "2022-03-07T05:52:48.482Z",
+    "__v": 0
+  }
+]

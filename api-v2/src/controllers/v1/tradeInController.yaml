@@ -1,0 +1,215 @@
+/v1/tradein:
+  get:
+    tags:
+      - TradeIn
+    summary: List Trade Ins
+    description: List Trade Ins
+    operationId: listTradeIns
+    parameters:
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: query
+        name: offset
+        description: 'Offset'
+        required: false
+        schema:
+          type: integer
+          example: 0
+      - in: query
+        name: limit
+        description: 'Limit'
+        required: false
+        schema:
+          type: integer
+          example: 10
+      - in: query
+        name: productId
+        description: 'productId'
+        required: false
+        schema:
+          type: string
+          example: 64215a47e4c5dddb684959ac
+    responses:
+      "200":
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/tradeInListResponse"
+/v1/tradein/{productId}:
+  get:
+    tags:
+      - TradeIn
+    summary: Get Trade In
+    description: Get Trade In
+    operationId: getTradeIn
+    parameters:
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: path
+        name: productId
+        description: 'productId'
+        required: false
+        schema:
+          type: string
+          example: 64215a47e4c5dddb684959ac
+    responses:
+      "200":
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PGetProductResponse"
+/v1/tradein/my-trade-ins:
+  get:
+    tags:
+      - TradeIn
+    summary: List My Trade Ins
+    description: List My Trade Ins
+    operationId: listMyTradeIns
+    parameters:
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: query
+        name: offset
+        description: 'Offset'
+        required: false
+        schema:
+          type: integer
+          example: 0
+      - in: query
+        name: limit
+        description: 'Limit'
+        required: false
+        schema:
+          type: integer
+          example: 10
+    responses:
+      "200":
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/tradeInListResponse"
+/v1/tradein/{productId}/status:
+  put:
+    tags:
+      - TradeIn
+    summary: Update Trade In status
+    description: Update Trade In status
+    operationId: updateTradeInStatus
+    parameters:
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: Accepted | Rejected
+    responses:
+      "200":
+        description: Trade In status updated successful
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PGetProductResponse"
+      "400":
+        description: Failed to update trade in status
+        content:
+          application/json:
+            examples:
+              failExample:
+                $ref: '#/components/examples/tradeInCapUpdateFail'
+/v1/tradein/cap:
+  put:
+    tags:
+      - TradeIn
+    summary: Update Trade In Cap
+    description: Update Trade In Cap
+    operationId: updateTradeInCap
+    parameters:
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              modelId:
+                type: string
+    responses:
+      "200":
+        description: Trade In Cap updated successful
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/tradeInCapUpdateSuccess"
+      "400":
+        description: Failed to update trade in cap
+        content:
+          application/json:
+            examples:
+              failExample:
+                $ref: '#/components/examples/tradeInCapUpdateFail'

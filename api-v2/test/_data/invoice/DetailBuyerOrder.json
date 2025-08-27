@@ -1,0 +1,90 @@
+{
+  "_id": "611503c1485a4f74c530510b",
+  "checkout_id": "3B9311052D8B9CB61D551CADE202FD2F.uat01-vm-tx02",
+  "order_number": "SOUM16287671709243",
+  "payment_type": "STC_PAY",
+  "transaction_id": "8ac7a49f7b39f84f017b3a16c7d01402",
+  "return_reason": "",
+  "dispute_comment": "",
+  "dispute_validity": "",
+  "transaction_detail": "{\"id\":\"8ac7a49f7b39f84f017b3a16c7d01402\",\"paymentType\":\"DB\",\"paymentBrand\":\"STC_PAY\",\"amount\":\"18.15\",\"currency\":\"SAR\",\"descriptor\":\"2154.6202.9320 Soum online\",\"merchantTransactionId\":\"SOUM16287671709243\",\"result\":{\"code\":\"000.100.110\",\"description\":\"Request successfully processed in 'Merchant in Integrator Test Mode'\"},\"resultDetails\":{\"ExtendedDescription\":\"Transaction succeeded\",\"AcquirerResponse\":\"000.000.000\",\"risk.score\":\"01\",\"clearingInstituteName\":\"Simulator_Test\",\"ConnectorTxID1\":\"8ac7a49f7b39f84f017b3a16c7d01402\"},\"customer\":{\"givenName\":\"DummyUser17\",\"surname\":\"DummyUser17\",\"ip\":\"197.36.120.157\",\"ipCountry\":\"EG\"},\"billing\":{\"street1\":\"Saudii\",\"city\":\"Saduii - Ryad\",\"state\":\"SADUII - R\",\"postcode\":\"71759\",\"country\":\"SA\"},\"customParameters\":{\"SHOPPER_payment_mode\":\"qr_code\"},\"risk\":{\"score\":\"0\"},\"buildNumber\":\"acf3c14e80ca6864021f0d2a3fc396f7c32174db@2021-08-02 08:32:25 +0000\",\"timestamp\":\"2021-08-12 11:19:39+0000\",\"ndc\":\"3B9311052D8B9CB61D551CADE202FD2F.uat01-vm-tx02\"}",
+  "transaction_status": "Success",
+  "paymentReceivedFromBuyer": "Yes",
+  "paymentMadeToSeller": "No",
+  "buy_type": "Direct",
+  "dispute": "No",
+  "status": "Active",
+  "delivery_desc": "",
+  "buyer": {
+    "_id": "60da07f53bde511843c59cfc",
+    "countryCode": "966",
+    "name": "DummyUser17",
+    "address": {
+      "address_id": "610b9a65ce44fc28d6e0c3a7",
+      "address": "Riyadh - Saudi",
+      "city": "Riyadh ",
+      "postal_code": "71759",
+      "address_type": "",
+      "latitude": "",
+      "longitude": ""
+    }
+  },
+  "seller": {
+    "_id": "60da07f53bde511843c59d1c",
+    "countryCode": "966",
+    "name": "DummyUser33",
+    "address": {
+      "address_id": "60da07f53bde511843c59d1b",
+      "address": "cfgdfg 0v - ,  jhdfjsd -لبلبل",
+      "city": "vg , - hjsdvjhd3h -بللبلبل",
+      "postal_code": "1111134",
+      "address_type": "",
+      "latitude": "",
+      "longitude": ""
+    }
+  },
+  "product": {
+    "_id": "6113cc964d682b56567eb0bf",
+    "category_id": {
+      "_id": "6063f95f929f926b67347b0d",
+      "category_name": "Mobile"
+    },
+    "brand_id": {
+      "_id": "60640602929f92968a347b12",
+      "brand_name": "Apple"
+    },
+    "model_id": {
+      "_id": "607487411dda2ef02b145bd0",
+      "model_name_ar": "ايفون 12 برو ماكس",
+      "model_name": "iPhone 12 Pro Max",
+      "current_price": 25
+    },
+    "varient": "256 GB",
+    "varient_ar": "256 GB",
+    "sell_price": 20,
+    "varient_id": "607487b7f3eafa7d52cd4711"
+  },
+  "buyer_address": {
+    "address_id": "610b9a65ce44fc28d6e0c3a7",
+    "address": "Saudii",
+    "city": "Saduii - Ryad",
+    "postal_code": "71759",
+    "address_type": "",
+    "latitude": "",
+    "longitude": ""
+  },
+  "buy_amount": 20,
+  "shipping_charge": 0,
+  "vat": 0.15,
+  "commission": 1,
+  "grand_total": 18.15,
+  "promos": {
+    "buyerPromocodeId": "61128d8c3cf985b555b6775e"
+  },
+  "created_at": "2021-08-12T11:19:29.898Z",
+  "updated_at": "2021-08-12T11:19:29.898Z",
+  "__v": 0,
+  "shipment_detail": {},
+  "pickup_detail": {},
+  "isUserNotified": true
+}

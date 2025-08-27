@@ -1,0 +1,16 @@
+{
+  "varient_ar": "32GB",
+  "position": 1,
+  "status": "Active",
+  "created_at": null,
+  "updated_at": "2022-10-12T11:48:10.013Z",
+  "_id": "6346678b2a6f2a003428d5bb",
+  "category_id": "6063f95f929f926b67347b0d",
+  "brand_id": "60640602929f92968a347b12",
+  "model_id": "6064064a929f92c76a347b13",
+  "varient": "32GB",
+  "current_price": 7877,
+  "deleted_date": null,
+  "attributes": [],
+  "__v": 0
+}

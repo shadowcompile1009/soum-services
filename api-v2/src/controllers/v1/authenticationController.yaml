@@ -1,0 +1,222 @@
+/v1/authentication/refresh:
+  get:
+    tags:
+      - Authentication
+    summary: Refresh token
+    description: Refresh token
+    operationId: getRefreshToken
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTg4ODU3NTAsImV4cGlyZXNJbiI6NDMyMCwiaXAiOiI6OjEiLCJlbWFpbF9hZGRyZXNzIjoidHVvbmdtYXJ0aW4xMkB5b3BtYWlsLmNvbSIsInVzZXJuYW1lIjoid3d3In0.51aBVVpHZQssHlXQ7kPAQCRP6QlEAGRXNHjm5ykJlGQ
+    responses:
+      "200":
+        description: Refresh Token Response
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetRefreshResponse"
+              failExample:
+                $ref: "#/components/examples/v1GetRefreshFailResponse"
+/v1/authentication/login:
+  post:
+    tags:
+      - Authentication
+    summary: Login
+    description: Login
+    operationId: login
+    parameters:
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1LoginResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1LoginResponse"
+              failExample:
+                $ref: "#/components/examples/v1FailLoginResponse"
+/v1/authentication/logout:
+  get:
+    tags:
+      - Authentication
+    summary: Log out
+    description: Log out
+    operationId: logout
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTRjNWQ3ZDVkZTIwNWNmM2VlMDZhZCIsImlhdCI6MTY1MDk2NzU5NywiZXhwIjoxNjUzNTU5NTk3fQ.-VQ5Euz-VmEKA4HC1MUHhSwigKYdgxuvv_tz5EXyxL0
+      - in: header
+        name: fcm-token
+        required: false
+        schema:
+          type: string
+          example: cpKROPGhL0FLjAilXCkI2w:APA91bELxcheEHXiZ5tR-Ve0uGk2s_yWOIKs6uzf3WNm1f4okJRElpdVEgl0dw1lvYkE9iElS75uUY2ro1GT8P7iU0gOBxMUQJLY7hrFxmcRxRX6TG-oNujWSmpBpTYBuBwHi3IpfyeA
+    responses:
+      "200":
+        description: Logout Response
+/v1/authentication/forget-password:
+  post:
+    tags:
+      - Authentication
+    summary: Forget password
+    description: Forget password
+    operationId: forgetPassword
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMjcyNjkyOCwiZXhwIjoxNjM1MzE4OTI4fQ.Zhk4vWxjLW62xqv4rbYLSm1Q80233Onx0ss4pGMqf_E
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              phone_number:
+                type: string
+              email:
+                type: string
+    responses:
+      "200":
+        description: Forget Password Response
+        content:
+          application/json:
+            examples:
+              successExample: {}
+              failExample: {}
+/v1/authentication/checkPhoneNumber:
+  post:
+    tags:
+      - Authentication
+    summary: Check phone number format and country code
+    description: >-
+      This will check if the phone number is correct and from the available
+      countries
+    operationId: postPhoneCheck
+    parameters:
+      - name: body
+        in: header
+        description: Phone number to check
+        required: true
+        schema:
+          $ref: "#/components/definitions/Phone"
+    requestBody:
+      content:
+        application/json:
+          schema:
+            properties:
+              phone:
+                type: string
+                example: +966 123 4567
+    responses:
+      "200":
+        description: Phone number is valid
+      "400":
+        description: Phone number is invalid or from country that is unsupported
+/v1/authentication/sendOTP:
+  post:
+    tags:
+      - Authentication
+    summary: Send OTP message to a phone number
+    description: ""
+    operationId: postSendOTP
+    parameters:
+      - name: body
+        in: header
+        description: Phone number to check
+        required: true
+        schema:
+          $ref: "#/components/definitions/Phone"
+    requestBody:
+      content:
+        application/json:
+          schema:
+            properties:
+              phone:
+                type: string
+                example: +966 123 4567
+    responses:
+      "200":
+        description: Send OTP Message successfully
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetSendOTPResponse"
+              failExample:
+                $ref: "#/components/examples/v1GetFailSendOTPResponse"
+/v1/authentication/verifyOTP:
+  post:
+    tags:
+      - Authentication
+    summary: Verify PTO Number
+    description: >-
+      The system will verify the OTP number that the user has received and
+      submitted.
+    operationId: postVerifyOTP
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTg4ODU3NTAsImV4cGlyZXNJbiI6NDMyMCwiaXAiOiI6OjEiLCJlbWFpbF9hZGRyZXNzIjoidHVvbmdtYXJ0aW4xMkB5b3BtYWlsLmNvbSIsInVzZXJuYW1lIjoid3d3In0.51aBVVpHZQssHlXQ7kPAQCRP6QlEAGRXNHjm5ykJlGQ
+    requestBody:
+      content:
+        application/json:
+          schema:
+            properties:
+              phone:
+                type: string
+                example: +966 123 4567
+              hash:
+                type: string
+                example: >-
+                  8a260ec7e8b5206734815190ce63b9f0940d931ad37b0a847071f4b70d7be13d.1626148566328
+              otp:
+                type: number
+                example: 594590
+    responses:
+      "200":
+        description: Verify OTP Response
+        content:
+          application/json:
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PostVerifyOTPResponse"
+              failExample:
+                $ref: "#/components/examples/v1PostFailVerifyOTPResponse"
