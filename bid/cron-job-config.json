@@ -1,0 +1,8 @@
+[
+  {
+    "name": "refund-expired-bids",
+    "schedule": "* * * * *",
+    "path": "clear-expired",
+    "method": "GET"
+  }
+]
