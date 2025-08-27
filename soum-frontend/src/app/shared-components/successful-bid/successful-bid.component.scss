@@ -1,0 +1,90 @@
+@import "../../../assets/css/color.scss";
+
+.cart-totals,
+.cart-totals table {
+  width: 95%;
+}
+
+.cart-totals table tr td {
+  font-size: 14px;
+}
+
+.cart-totals table tr .grand-total {
+  color: #363636;
+      font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+.payment-section .popup-inner {
+ 
+
+  padding: 20px !important;
+}
+.popup-inner .products-top-bar{
+  padding: 0px 15px 0px 15px;
+}
+.cart-totals table tr {
+  border: none;
+}
+.small-text {
+  width: 352px;
+  height: 17px;
+  left: 24px;
+  top: 318px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #a8a8a8;
+}
+.products-bottom .button {
+  width: calc(100% - 0px) !important;
+
+  .now-text {
+    text-align: center !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    
+  
+  }
+
+}
+.grey-button{
+  width: 40%;
+    height: 3px;
+    cursor: pointer;
+    margin:0px 100px 20px 100px;
+    background: #D2D7D9;
+    align-self: center;
+}
+
+.link-style{
+  color: #177AE2 !important;
+  text-decoration: underline!important;
+}
+.normal-font{
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+text-align: center;
+padding: 20px 0px 20px 0px;
+padding-bottom: 100px;
+color: #A8A8A8;
+}
+.bold-font{
+    font-weight: bold;
+    padding: 20px 0px 20px 0px;
+}
+.fa-check-circle{
+    font-size: 70px;
+    color: #31CDCD;
+}

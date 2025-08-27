@@ -1,0 +1,305 @@
+<div class="content">
+    <app-header [pageTitle]="'sellFlow.personalDetails' | translate" (goBack)="goBack()" (actionEvent)="showmodal()" [actionStyle]="'cancel-button'" [action]="'sellFlow.cancel' | translate"></app-header>
+
+    <div class="section-details my-addresses">
+        <app-banner-breadcrumb [type]="true" [photos]="true" [status]="true" [price]="true" [confirmation]="true"></app-banner-breadcrumb>
+        <div class="container container-padding">
+            <div class="description-row">
+                <h2 class="section_title section_style">
+                    <br>{{'labels.MyDetails' | translate}}
+                </h2>
+                <div>
+                    <mat-card class="example-card" *ngIf="address">
+                        <mat-card-header>
+                            <mat-card-title>
+                                <h2 *ngIf="address" class="section_title">
+
+                                    <img style="width: 20px; height: 20px;" alt="home" [src]="'home.svg' | imagePath: 'icons'">
+                                    {{'sellFlow.chooseAddress' | translate}}
+
+                                    <a (click)="cancel()" *ngIf="(!address) && (previousAddress)"
+                                        class="button_profile text-danger">
+                                        {{'orderDetails.cancel' | translate}}
+                                    </a>
+                                </h2>
+                            </mat-card-title>
+
+                        </mat-card-header>
+                        <hr>
+                        <mat-card-content class="styleBankDetails" >
+                            <div class="show-address" *ngIf="address">
+                                <h4 class="username">
+                                    <strong>
+                                        <span class="grey-color">{{'addAddress.street_name' | translate}} : </span>
+                                    </strong>  
+                                    {{address?.street || '-----'}}
+                                </h4>
+                                <br />
+                                <h4 class="username">
+                                    <strong>
+                                        <span class="grey-color">{{'addAddress.district' | translate}} : </span>
+                                    </strong>  
+                                    {{address?.district || '-----'  }}
+                                </h4>
+                                <br />
+                                <h4 class="username">
+                                    <strong>
+                                        <span class="grey-color">{{'addAddress.city' | translate}} : </span>
+                                    </strong>  
+                                    {{address?.city  || '-----'}}
+                                </h4>
+                                <br />
+                                
+                                <h4 class="username">
+                                    <strong>
+                                        <span class="grey-color">{{'addAddress.postal_code' | translate}} : </span>
+                                    </strong>   
+                                    {{address?.postal_code || '-----'}}
+                                </h4>
+                                <br />
+                        </div>
+                        </mat-card-content>
+                        <hr>
+                        <mat-card-actions class="btn-update">
+                            <a (click)="updateAddress();" *ngIf="address" class="btn-update">
+                                {{'addressFormat.updateBtn' | translate}}
+                            </a>
+                        </mat-card-actions>
+                    </mat-card>
+
+                <div class="detail-row" *ngIf="!address">
+                    <mat-card class="example-card2" style="min-height:300px">
+                        <mat-card-header>
+                            <mat-card-title>
+                                <h2  class="section-title">
+                                    <img style="width: 20px; height: 20px;" alt="home" [src]="'home.svg' | imagePath: 'icons'">
+                                    {{'sellFlow.chooseAddress' | translate}}
+    
+                                </h2>
+                            </mat-card-title>
+                        </mat-card-header>
+
+                        <mat-card-content>
+                            <form [formGroup]="addressForm" *ngIf="!address">
+                                <div class="addressForm">
+                                    <div class="street_name">
+                                        <mat-form-field class="field_name">
+                                            <mat-label>{{'addAddress.street_name' | translate}}</mat-label>
+                                            <input type="text" autocomplete="off" matInput
+                                                placeholder="{{'addAddress.street_name' | translate}}" formControlName="street" />
+                                            <mat-icon *ngIf="addressForm?.controls['street']?.value?.length>0" (click)="removeStreetName()" class="matIcon" matSuffix>close</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                    
+                                    <div class="district_name">
+                                        <mat-form-field class="field_name">
+                                            <mat-label>{{'addAddress.district' | translate}}</mat-label>
+                                            <input type="text" autocomplete="off" matInput
+                                                placeholder="{{'addAddress.district' | translate}}" formControlName="district" />
+                                        </mat-form-field>
+                                    </div>
+                    
+                                    <div class="city_postal_container">
+                                        <div class="city_name">
+                                            <mat-form-field class="field_name">
+                                                <mat-label>{{'addAddress.city' | translate}}</mat-label>
+                                                <input readonly (focus)="openCitiesModal()" type="text" autocomplete="off" matInput
+                                                    placeholder="{{'addAddress.city' | translate}}" formControlName="city" />
+                                            </mat-form-field>
+                                        </div>
+                    
+                                        <div class="postal_name">
+                                            <mat-form-field class="field_name">
+                                                <mat-label>{{'addAddress.postal_code' | translate}}</mat-label>
+                                                <input minlength="5" maxlength="5" (keypress)="numberOnly($event)" type="text"
+                                                    autocomplete="off" matInput placeholder="{{'addAddress.postal_code' | translate}}"
+                                                    formControlName="postal_code" />
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+
+                <div class="info_lsting_msg">
+                    <div class="s_part" style="margin-top:3%">
+                        <span class="f_text">{{"labels.afterConfirm" | translate}} </span>
+                        <span class="hours24">{{"labels.within24hours"| translate }}</span>
+                    </div>
+                    <div class="f_part">
+                        <img [src]="'buyerConfirm.svg' | imagePath" alt="buyerConfirm"/>
+                    </div>
+                </div>
+            <br>
+                <div class="enter-detail" [formGroup]="addBankForm">
+                    <div class="description-row">
+                        <div>
+                            <mat-card class="example-card" *ngIf="bankDetail">
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        <h2 class="section_title">
+                                            <img style="width: 25px; height: 20px;" alt="bank details"
+                                                [src]="'credit-card.svg' | imagePath: 'icons'">
+                                            {{( updateBankDetail ? 'bankDetail.updateBankDetail' :
+                                            'bankDetail.enterBank') |
+                                            translate}}
+                                        </h2>
+                                    </mat-card-title>
+                                </mat-card-header>
+                                <hr>
+                                <mat-card-content class="styleBankDetails">
+                                    <h4 class="username">
+                                        <strong>
+                                            <span class="grey-color">{{'bankDetail.name' |
+                                                translate}} </span></strong> {{bankDetail?.accountHolderName }}
+                                    </h4>
+                                    <br />
+                                    <h4 class="username">
+                                        <strong>
+                                            <span class="grey-color">{{'bankDetail.bankName' |
+                                                translate}} </span></strong> {{bankDetail?.bankName }}
+                                    </h4>
+                                     <h4 class="username"><strong>
+                                        </strong>
+                                        <span class="grey-color">{{'bankDetail.accId' | translate}}:</span> 
+                                        {{bankDetail?.accountId | uppercase }}
+                                    </h4>
+                                    <br />
+                                    <h4 class="username"><strong>
+                                            <span class="grey-color">{{'bankDetail.bankBIC' | translate}} </span>
+                                             </strong>{{bankDetail?.bankBIC }}
+                                    </h4>
+
+
+                                </mat-card-content>
+                                <hr>
+                                <mat-card-actions class="btn-update">
+                              
+                                    <a (click)="update();" *ngIf="bankDetail">
+                                        {{'bankDetail.updateBank' | translate}}
+                                    </a>
+                                </mat-card-actions>
+                            </mat-card>
+
+                            <!-- bank detail -->
+
+                            <!-- add bank form -->
+                            <div class="detail-row" *ngIf="!bankDetail">
+                                <mat-card class="example-card2" style="min-height:300px">
+                                    <mat-card-header>
+                                        <mat-card-title>
+                                            <h2 class="section-title">
+                                                <img style="width: 25px; height: 20px;" alt="bank details"
+                                                    [src]="'credit-card.svg' | imagePath: 'icons'">
+                                                {{( updateBankDetail ? 'bankDetail.updateBankDetail' :
+                                                'bankDetail.enterBank') |
+                                                translate}}
+                                            </h2>
+                            </mat-card-title>
+    
+                        </mat-card-header>
+
+                        <mat-card-content>
+                                <div class="detail-col">
+                                    <input type="text" id="holder-name" formControlName="accountHolderName"
+                                        name="Account Holder Name"
+                                        [placeholder]="'bankDetail.accHolderName' | translate">
+                                       <div class="" *ngIf="addBankForm.controls['accountHolderName']?.invalid && (addBankForm.controls['accountHolderName']?.dirty || addBankForm.controls['accountHolderName']?.touched)">
+                                         <span *ngIf="addBankForm.controls['accountHolderName']?.errors.minlength" class="hint-message">{{"bankDetail.mustbeFrom5toUp" | translate}}</span>
+                                       </div>
+                                    <div class="input-icon">
+                                        <img [src]="'account-holder-name.svg' | imagePath: 'icons'" alt="">
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-col">
+                                    <input type="text" autocapitalize style="text-transform: uppercase" id="accountId"
+                                        maxlength="24" minlength="24" formControlName="accountId" name="accountId"  (keyup)="checkPattern()"
+                                        [placeholder]="'bankDetail.accId' | translate" />
+                                        <div class="" >
+                                            <span *ngIf="!showErrorOfAccountID" class="hint-message">{{"bankDetail.iban-hint" | translate}}</span>
+                                          </div>
+                                          <br/>
+                                          <div>
+                                            <span *ngIf="ibanContainArabic" class="hint-message">{{'bankDetail.ibanContainArabic' | translate}}</span>
+                                          </div>
+                                    <div class="input-icon">
+                                        <img [src]="'account-id.svg' | imagePath: 'icons'" alt="" style="margin: 0px 3px" />
+                                    </div>
+                                </div>
+
+                                <div class="detail-col">
+                                    <div class="select-dropdown-address select-bank">
+                                        <ng-select [items]="bankList" [placeholder]="'bankDetail.bankBIC' | translate"
+                                            [bindLabel]="'bankName'" [name]="'Bank BIC'" [bindValue]="'bankCode'"
+                                            formControlName="bankBIC">
+                                        </ng-select>
+                                        <div class="input-icon"><img [src]="'bank-bIC.svg' | imagePath: 'icons'" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info_lsting_msg">
+                <div class="s_part">
+                    <span class="f_text">{{'labels.deviceSold2'| translate}} </span>
+                    <span class="s_text">{{'labels.within'| translate}} <span class="hours24">{{'labels.24hours'|
+                            translate}}</span></span>
+                    <span class="t_text">{{'labels.soumCover'| translate}}</span>
+                </div>
+                <div class="f_part">
+                    <img [src]="'bcycle.svg' | imagePath" alt=""/>
+                </div>
+            </div>
+      <br>
+            <div class="products-bottom">
+     
+      
+                <div class="products-bottom products-btns-price">
+                    <a class="save-as-draft-button" (click)="getPopupModal('saveAsDraft')">
+                      <span class="save-as-draft-text">
+                          {{'labels.saveAsDraft' | translate}}
+                      </span>
+                    </a>
+                
+                    <a class="button button-next"  
+
+                     [ngClass]="{'disabled-button': checkDisable() }"   (click)="checkForAddress() ">
+                        <span class="now-text">
+                            {{'labels.confirm' | translate}}
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-cancel-listing *ngIf="showModal"></app-cancel-listing>
+    <app-save-draft-modal *ngIf="showSaveAsDraftConfirm"></app-save-draft-modal>
+    <!--content-->
+
+    <div class="city_address_filter" *ngIf="showCitiesModal">
+        <img alt="Close" class="close_modal_icon" [src]="'close-icon-popup.svg' | imagePath: 'icons'" (click)="closeCitiesModal()" />
+        <div class="city_container">
+            <h2 class="title_city">{{'addAddress.select_city' | translate}}</h2>
+            <div class="input_filter form-group">
+                <mat-icon class="search_icon">search</mat-icon>
+                <input (keyup)="filterByCityName()" [value]="searchValue" [(ngModel)]="searchValue" class="form-control"
+                    type="text" placeholder="{{'addAddress.city' | translate}}" />
+                <mat-icon class="remove_icon" (click)="clearSearchFilter()">close</mat-icon>
+            </div>
+    
+            <div class="cities">
+                <h3 (click)="selectCity(language == 'en' ? city.name_en : city.name_ar)" *ngFor="let city of copy_cities">
+                    {{language == 'en' ? city.name_en : city.name_ar}}</h3>
+            </div>
+        </div>
+    </div>

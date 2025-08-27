@@ -1,0 +1,94 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'" [ngClass]="{'payment_section_ar': translate?.getDefaultLang() == 'ar'}">
+    <div class="popup-inner">
+        <a class="popup-close" (click)="hideBidModal()">
+            <img class="icon-close" [src]="'Union-icon.svg' | imagePath: 'icons'" alt="close" />
+        </a>
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button">
+        </div>
+
+        <span class="model_header">{{"labels.signInContinue" | translate}}</span>
+
+        <form class="container container-padding" (keydown)="submitOnEnter($event)" [formGroup]="loginForm">
+            <div class="login-bar">
+                <div class="form_wrapper">
+                    <mat-form-field class="example-full-width" appearance="fill" style="width: 1000px;">
+                        <mat-label> {{'forgotPassword.mobileNumber' | translate}}</mat-label>
+                        <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)"
+                            formControlName="mobileNumber" name="number" [(ngModel)]="formValue"
+                            [maxLength]="mobileNumberMaxLength">
+                        <button *ngIf="formValue" matSuffix mat-icon-button aria-label="Clear" (click)="formValue=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <button type="button" name="submit" class="submit button-sign-up"
+                        [disabled]="loginForm?.controls['mobileNumber']?.invalid || loginForm?.errors"
+                        (click)="navigateToEnterPassword($event)">
+                        {{'forgotPassword.verify' | translate}}
+                    </button>
+                </div>
+
+            </div>
+        </form>
+        <div class="otp_section" *ngIf="showOtpSection">
+            <div class="container container-padding">
+                <div class="login-bar input-bar-box">
+                    <div class="otp-input">
+                   
+                        <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                            [ngClass]="{activeOtp: otp1}">
+    
+                            <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp1"
+                                name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, null, digit2)" #digit1>
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                            [ngClass]="{activeOtp: otp2}">
+    
+                            <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp2"
+                                name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit1, digit3)" #digit2>
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                            [ngClass]="{activeOtp: otp3}">
+    
+                            <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp3"
+                                name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit2, digit4)" #digit3>
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                            [ngClass]="{activeOtp: otp4}">
+    
+                            <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp4"
+                                name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit3, digit5)" #digit4>
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                            [ngClass]="{activeOtp: otp5}">
+    
+                            <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp5"
+                                name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit4, digit6)" #digit5>
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                            [ngClass]="{activeOtp: otp6}">
+    
+                            <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp6"
+                                name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit5, null)" #digit6>
+                        </mat-form-field>
+                    </div>
+             
+                    <p class="countDown" *ngIf="disableResendCode">
+                        {{'signUp.pleaseWait' | translate}} <countdown class="countDown_timer" [config]="configCountdown" (event)="handleTimer($event)"></countdown> {{'signUp.anotherCode' | translate}}
+                    </p>
+    
+                    <p class="input-text-bar center-text"><a (click)="resendOtp();disableResendCode = true"
+                            class="font-color-primary" [ngClass]="{'disable_link': disableResendCode}">{{'signUp.resendCode' | translate}}</a>
+                    </p>
+            
+                </div>
+            </div>
+        </div>        
+
+    </div>
+</div>

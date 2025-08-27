@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>منصة سوم | بيع وشراء مضمون وسهل</title>
+  <meta name="google-site-verification" content="E9RY1P7ulii8u2CDron73SvAafgIU3bz6cTBRYk5xpI" />
+  <meta name="description" content="منصة سوم لبيع وشراء الأجهزة الالكترونية المستعملة من وإلى باب بيتك بأمان. نضمن لك أن البضاعة نفس الوصف، أو نرجّع لك فلوسك كاملة.">
+  
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no shrink-to-fit=no">
+  <link rel="icon shortcut" type="image/x-icon" href="assets/images/icons/favicon.png">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="application/javascript">
+    !function(t,a,e,r,s,n,l,d,o){t.Adjust=t.Adjust||{},t.Adjust_q=t.Adjust_q||[];for(var c=0;c<n.length;c++)l(t.Adjust,t.Adjust_q,n[c]);d=a.createElement("script"),o=a.getElementsByTagName("script")[0],d.async=!0,d.src="https://cdn.adjust.com/adjust-latest.min.js",d.onload=function(){for(var a=0;a<t.Adjust_q.length;a++)t.Adjust[t.Adjust_q[a][0]].apply(t.Adjust,t.Adjust_q[a][1]);t.Adjust_q=[]},o.parentNode.insertBefore(d,o)}(window,document,0,0,0,["initSdk","trackEvent","addGlobalCallbackParameters","addGlobalPartnerParameters","removeGlobalCallbackParameter","removeGlobalPartnerParameter","clearGlobalCallbackParameters","clearGlobalPartnerParameters","switchToOfflineMode","switchBackToOnlineMode","stop","restart","gdprForgetMe","disableThirdPartySharing","initSmartBanner"],function(t,a,e){t[e]=function(){a.push([e,arguments])}});
+  </script>
+
+</head>
+
+<body class="body-background">
+  <app-root></app-root>
+
+    <script type='text/javascript'>
+      let  enviroment = JSON.parse(localStorage.getItem('enviroment'));
+    if (enviroment == true) {
+      window.smartlook||(function(d) { var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0]; var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript'; c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c); })(document); smartlook('init', '24a5924f747d64959783b47bb78f534e63600ed3', { region: 'eu' });
+
+
+var myInterval = setInterval(function(){
+  const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+    const data = userDetails && JSON.parse(userDetails);
+    const mobile = data && data.mobileNumber;
+    const name = data && data.name;
+    const userID = data && data.userId;
+
+if(userID !== null )
+{
+  smartlook('identify', mobile, {
+    "mobile_number": mobile,
+    "name": name,
+    "user_id": mobile,
+    "ID" :userID
+  });
+clearInterval(myInterval); 
+}
+}, 1000);
+
+     }
+     
+     </script>
+  <script>
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+    const data = userDetails && JSON.parse(userDetails);
+    const userID = data && data.userId;
+
+    window['dataLayer'] = window['dataLayer'] || [];
+
+    if (userDetails && data.userId) {
+      window['dataLayer'].push({ userId: userID });
+    } else {}
+
+  </script>
+
+  <script type="text/javascript"> var wpwlOptions = { paymentTarget: "_top" }</script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery-ui.min.js"></script>
+  <!-- <script src="assets/js/owl.carousel.min.js"></script>--> 
+  <!-- <script src="assets/js/custom.js"></script> --> 
+
+ <script src="assets/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+ <script type="application/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js">
+ </script>
+
+</body>
+
+</html>

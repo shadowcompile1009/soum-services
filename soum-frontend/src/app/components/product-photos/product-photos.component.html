@@ -1,0 +1,88 @@
+<div class="content">
+    <app-header [pageTitle]="uriParam?.type === 'product' ? ('sellFlow.productPhotos' | translate) : ('sellFlow.defectPhotos' | translate)" (goBack)="goBack()" (actionEvent)="getPopupModal('cancel')" [actionStyle]="'cancel-button'" [action]="'sellFlow.cancel' | translate"></app-header>
+
+    <div class="section-selected-photos">
+        <app-banner-breadcrumb [type]="true" [photos]="true"></app-banner-breadcrumb>
+        <div class="container container-padding">
+            <h2 class="section_title section_style">
+                <br>{{'sellFlow.selectedPhotosToUpload' | translate}}<br>
+                <span class="color-hint">{{'labels.minimumPictures' | translate}}</span>
+            </h2>
+            <div class="selected-photos-row">
+                <div class="selected-photos-box" *ngFor="let photo of photosToUpload; let i = index;first as isFirst"
+                    [ngClass]="{'add-photos': !photo}"
+                    (click)="getPopupModal('showOptions')">
+                    <div class="selected-photos-img">
+
+                        <span class="input-icon photo-selected-img" *ngIf="!showDraftImg"
+                         [ngStyle]="{'background-image':'url(' + (photo?.base64) + ')'}">
+                         <div *ngIf="!photo?.base64">
+                             <br>
+                             <img *ngIf="isFirst" [src]="'camera-vector.svg' | imagePath: 'icons'" alt="camera" />
+                             <span *ngIf="isFirst" class="cover-photo">{{'labels.CoverPhoto' | translate}}</span><br>
+                             <span *ngIf="i < 3;else optional" class="required">{{'labels.required' | translate}}</span>
+                             <ng-template #optional>
+                                 <span class="not-required">{{'labels.optional' | translate}}</span>
+                             </ng-template>
+                         </div>
+                        </span>
+
+                        <span class="input-icon photo-selected-img" *ngIf="showDraftImg"
+                         [ngStyle]="{'background-image':'url(' + (photo) + ')'}">
+                         <div *ngIf="!photo">
+                             <br>
+                             <img  *ngIf="isFirst" [src]="'camera-vector.svg' | imagePath: 'icons'" alt="camera" />
+                             <span *ngIf="isFirst" class="cover-photo">{{'labels.CoverPhoto' | translate}}</span><br>
+                             <span *ngIf="i < 3;else optional" class="required">{{'labels.required' | translate}}</span>
+                             <ng-template #optional>
+                                 <span class="not-required">{{'labels.optional' | translate}}</span>
+                             </ng-template>
+                         </div>
+                        </span>
+
+                    </div>
+                    <img class="delete-photo" *ngIf="photo" (click)="deletePhoto(i)"
+                        [src]="'delete-circle-icon.png' | imagePath: 'icons'" alt="">
+                </div>
+            </div>
+            <!--rows-->
+
+            <div class="how_to_pick_image">
+                <img alt="" class="pick_image" [src]="'how_to_pick_image.svg' | imagePath" />
+            </div>
+            <div class="model-section-hint">
+                <span (click)="getPopupModal('photoHint')">{{'sellFlow.takePhotoHint' |translate}}</span>
+            </div>
+        </div>
+        <br>
+        <div class="products-bottom">
+            <a class="save-as-draft-button" (click)="getPopupModal('saveAsDraft')">
+                <span class="save-as-draft-text">
+                    {{'labels.saveAsDraft' | translate}}
+                </span>
+            </a>
+            <a class="button button-next" [ngClass]="{'disabled-button': proceedDisabled}" (click)="proceedToSelectDevice()">
+                    <span class="now-text">
+                        {{'labels.next' | translate}}
+                    </span>
+                </a>
+        </div>
+    </div>
+</div>
+
+<input type="file" capture="camera" hidden accept="image/*" (change)="selectImage($event)"
+    #camera id=" cameraInput" multiple="true" name="cameraInput">
+
+<input type="file" #gallery hidden accept="image/*" multiple="true"
+    (change)="selectImage($event)">
+
+<app-cancel-listing *ngIf="showModal"></app-cancel-listing>
+
+<app-upload-options *ngIf="showOptions" 
+                    (takePhoto)="camera.click();showOptions = false" 
+                    (selectPhoto)="gallery.click();showOptions = false">
+
+</app-upload-options>
+
+<app-photo-modal  *ngIf="takePhotoModal"></app-photo-modal>
+<app-save-draft-modal *ngIf="showSaveAsDraftConfirm"></app-save-draft-modal>

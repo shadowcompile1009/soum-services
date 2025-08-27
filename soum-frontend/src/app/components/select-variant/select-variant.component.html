@@ -1,0 +1,49 @@
+<div class="content">
+  <app-header [pageTitle]="'sellFlow.yourDevice' | translate" (goBack)="goBack()" (actionEvent)="showmodal()"
+    [actionStyle]="'cancel-button'" [action]="'sellFlow.cancel' | translate"></app-header>
+
+  <div class="section-device-memory">
+    <app-banner-breadcrumb [type]="true"></app-banner-breadcrumb>
+
+    <div class="container_attributes">
+      <div class="variant_container" *ngFor="let attribute of newVariantsAttributes; let attributeIndex=index">
+        <div [ngClass]="translate.getDefaultLang() === 'ar'? 'attribute_title_ar' : 'attribute_title'">{{attributeIndex === 0 ? ("sellFlow.selecta" | translate) : ""}} {{translate.getDefaultLang() === 'ar' ? attribute.nameAr : attribute.nameEn }}</div>
+        <div [ngClass]="translate.getDefaultLang() === 'ar'? 'variant_option_ar' : 'variant_option'">
+          <h2 class="option_value" *ngFor="let option of attribute.options; let optionIndex=index"
+            [ngClass]="{'option_active': selectedAttributeIDs.indexOf(option.id)>=0 || option.selected === true, 'option_value_ar': translate.getDefaultLang() === 'ar'}"
+            (click)="markOptiopnAsSelected(option.id, attributeIndex, optionIndex)">
+            {{translate.getDefaultLang() === 'ar' ? option.nameAr : option.nameEn }}
+          </h2>
+        </div>
+      </div>
+      <div class="api-inline-loader" *ngIf="!apiHit">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div *ngIf="newVariantsAttributes.length === 0 && apiHit" class="device_notFound">
+        <div class="fitst_part">
+          <span class="deviceType">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNyJwGLXZC7WRgx2I3W_OaEunUIY6JrDEOrp7xFdSn9nkhSQ/viewform"
+              target="_blank" class="contactUs">
+              {{'sellFlow.dontFindmodel' | translate}}<br /> {{'sellFlow.variant' | translate}}
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="products-bottom">
+      <a class="button button-next"
+        [ngClass]="{'disabled-button': selectedAttributeIDs.length - 1 !== filterableAttributes.length}"
+        (click)="getVariantDetails()">
+        <span class="now-text">
+          {{'labels.next' | translate}}
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<app-cancel-listing *ngIf="showModal"></app-cancel-listing>

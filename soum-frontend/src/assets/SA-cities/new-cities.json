@@ -1,0 +1,690 @@
+[
+    {
+        "name_ar": "الرياض",
+        "name_en": "Riyadh"
+    },
+    {
+        "name_ar": "جدة",
+        "name_en": "Jeddah"
+    },
+    {
+        "name_ar": "مكة",
+        "name_en": "Makkah"
+    },
+    {
+        "name_ar": "المدينة",
+        "name_en": "Madinah"
+    },
+    {
+        "name_ar": "ابها",
+        "name_en": "Abha"
+    },
+    {
+        "name_ar": "أبو عريش",
+        "name_en": "Abu Arish"
+    },
+    {
+        "name_ar": "الدرب",
+        "name_en": "Ad Darb"
+    },
+    {
+        "name_ar": "أضم",
+        "name_en": "Adham"
+    },
+    {
+        "name_ar": "عفيف",
+        "name_en": "Afif"
+    },
+    {
+        "name_ar": "افلاج",
+        "name_en": "Aflaj"
+    },
+    {
+        "name_ar": "أحد المسارحة",
+        "name_en": "Ahad Al Masarhah"
+    },
+    {
+        "name_ar": "أحد الرفيدة",
+        "name_en": "Ahad Rafidah"
+    },
+    {
+        "name_ar": "عين دار",
+        "name_en": "Ain Dar"
+    },
+    {
+        "name_ar": "الأحساء",
+        "name_en": "Al Ahsa"
+    },
+    {
+        "name_ar": "الأسياح",
+        "name_en": "Al Asyah"
+    },
+    {
+        "name_ar": "الباحة",
+        "name_en": "Al Baha"
+    },
+    {
+        "name_ar": "الدائر",
+        "name_en": "Al Dayer"
+    },
+    {
+        "name_ar": "العيدابي",
+        "name_en": "Al Edabi"
+    },
+    {
+        "name_ar": "الحائط",
+        "name_en": "Al Hait"
+    },
+    {
+        "name_ar": "القصيم",
+        "name_en": "Al Qassim"
+    },
+    {
+        "name_ar": "القنفذة",
+        "name_en": "Al Qunfudhah"
+    },
+    {
+        "name_ar": "العلا",
+        "name_en": "Al Ula"
+    },
+    {
+        "name_ar": "العريجاء",
+        "name_en": "Al Urayja (Riyadh)"
+    },
+    {
+        "name_ar": "العيينة",
+        "name_en": "Al Uyaynah (Riyadh)"
+    },
+    {
+        "name_ar": "الوجه",
+        "name_en": "Al Wajh"
+    },
+    {
+        "name_ar": "العارضة",
+        "name_en": "Alardhah"
+    },
+    {
+        "name_ar": "النبهانية",
+        "name_en": "An Nabhaniyah"
+    },
+    {
+        "name_ar": "النعيرية",
+        "name_en": "An Nairiyah"
+    },
+    {
+        "name_ar": "النماص",
+        "name_en": "An Namas"
+    },
+    {
+        "name_ar": "عنك",
+        "name_en": "Anak"
+    },
+    {
+        "name_ar": "عقيق",
+        "name_en": "Aqiq"
+    },
+    {
+        "name_ar": "الرس",
+        "name_en": "Ar Rass"
+    },
+    {
+        "name_ar": "الرين",
+        "name_en": "Ar Rayn"
+    },
+    {
+        "name_ar": "الرويضة",
+        "name_en": "Ar Ruwaidhah"
+    },
+    {
+        "name_ar": "عرعر",
+        "name_en": "Arar"
+    },
+    {
+        "name_ar": "عارضة",
+        "name_en": "Ardah"
+    },
+    {
+        "name_ar": "الارطاوية",
+        "name_en": "Artawiyah"
+    },
+    {
+        "name_ar": "السيل الكبير",
+        "name_en": "As Sail Al Kabeer"
+    },
+    {
+        "name_ar": "السليل",
+        "name_en": "As Sulayyil"
+    },
+    {
+        "name_ar": "الشملي",
+        "name_en": "Ash Shamli"
+    },
+    {
+        "name_ar": "الشماسية",
+        "name_en": "Ash Shimasiyah"
+    },
+    {
+        "name_ar": "الطوال",
+        "name_en": "At Tuwal"
+    },
+    {
+        "name_ar": "الأطاولة",
+        "name_en": "Atawlah"
+    },
+    {
+        "name_ar": "عيون الجواء",
+        "name_en": "Ayun"
+    },
+    {
+        "name_ar": "الزلفي",
+        "name_en": "Az Zulfi"
+    },
+    {
+        "name_ar": "البدائع",
+        "name_en": "Badaya"
+    },
+    {
+        "name_ar": "بدر حنين",
+        "name_en": "Badr Hunain"
+    },
+    {
+        "name_ar": "بحرة",
+        "name_en": "Bahrah"
+    },
+    {
+        "name_ar": "بلسمر",
+        "name_en": "Balasmar"
+    },
+    {
+        "name_ar": "بقعاء",
+        "name_en": "Baqaa"
+    },
+    {
+        "name_ar": "بارق",
+        "name_en": "Bariq"
+    },
+    {
+        "name_ar": "البشائر",
+        "name_en": "Bashayer"
+    },
+    {
+        "name_ar": "بطحاء",
+        "name_en": "Batha"
+    },
+    {
+        "name_ar": "بيش",
+        "name_en": "Baysh"
+    },
+    {
+        "name_ar": "بجادية",
+        "name_en": "Bijadiyah"
+    },
+    {
+        "name_ar": "بلجرشي",
+        "name_en": "Biljurashi"
+    },
+    {
+        "name_ar": "بيشه",
+        "name_en": "Bishah"
+    },
+    {
+        "name_ar": "البكيرية",
+        "name_en": "Bukayriyah"
+    },
+    {
+        "name_ar": "بقيق",
+        "name_en": "Buqaiq"
+    },
+    {
+        "name_ar": "بريدة",
+        "name_en": "Buraidah"
+    },
+    {
+        "name_ar": "الدمام",
+        "name_en": "Dammam"
+    },
+    {
+        "name_ar": "دومة الجندل",
+        "name_en": "Darb"
+    },
+    {
+        "name_ar": "درب",
+        "name_en": "Dawmat Al Jandal"
+    },
+    {
+        "name_ar": "داير",
+        "name_en": "Dayer"
+    },
+    {
+        "name_ar": "الظهران",
+        "name_en": "Dhahran"
+    },
+    {
+        "name_ar": " ظهران الجنوب",
+        "name_en": "Dhahran Aljanoub"
+    },
+    {
+        "name_ar": "ظلم",
+        "name_en": "Dhalim"
+    },
+    {
+        "name_ar": "ضمط",
+        "name_en": "Dhamad"
+    },
+    {
+        "name_ar": "ضبا",
+        "name_en": "Dhuba"
+    },
+    {
+        "name_ar": "ضرما",
+        "name_en": "Dhurma"
+    },
+    {
+        "name_ar": "الدلم",
+        "name_en": "Dilam"
+    },
+    {
+        "name_ar": "الدرعية",
+        "name_en": "Diriyah"
+    },
+    {
+        "name_ar": "الدوادمي",
+        "name_en": "Duwadimi"
+    },
+    {
+        "name_ar": "فرسان",
+        "name_en": "Farasan"
+    },
+    {
+        "name_ar": "الغاط",
+        "name_en": "Ghat"
+    },
+    {
+        "name_ar": "جيزان",
+        "name_en": "Gizan"
+    },
+    {
+        "name_ar": "حبونا",
+        "name_en": "Habuna"
+    },
+    {
+        "name_ar": "حفر الباطن",
+        "name_en": "Hafar Al Baten"
+    },
+    {
+        "name_ar": "حائل",
+        "name_en": "Hail"
+    },
+    {
+        "name_ar": "الحناكية",
+        "name_en": "Hanakiyah"
+    },
+    {
+        "name_ar": "حقل",
+        "name_en": "Haql"
+    },
+    {
+        "name_ar": "حريق",
+        "name_en": "Hareeq"
+    },
+    {
+        "name_ar": "الحوية",
+        "name_en": "Haweyah"
+    },
+    {
+        "name_ar": "حوطة بني تميم",
+        "name_en": "Hawtat Bani Tamim"
+    },
+    {
+        "name_ar": "حوطة سدير",
+        "name_en": "Hawtat Sudayr"
+    },
+    {
+        "name_ar": "الهفوف",
+        "name_en": "Hufuf"
+    },
+    {
+        "name_ar": "حريملاء",
+        "name_en": "Huraymila"
+    },
+    {
+        "name_ar": "جموم",
+        "name_en": "Jamoum"
+    },
+    {
+        "name_ar": "الجوف",
+        "name_en": "Jouf"
+    },
+    {
+        "name_ar": "الجبيل",
+        "name_en": "Jubail"
+    },
+    {
+        "name_ar": "جموم",
+        "name_en": "Jumum"
+    },
+    {
+        "name_ar": "الكامل",
+        "name_en": "Kamil"
+    },
+    {
+        "name_ar": "الخفقجي",
+        "name_en": "Khafji"
+    },
+    {
+        "name_ar": "الخماسين",
+        "name_en": "Khamasin"
+    },
+    {
+        "name_ar": "خميس مشيط",
+        "name_en": "Khamis Mushayt"
+    },
+    {
+        "name_ar": "الخرج",
+        "name_en": "Kharj"
+    },
+    {
+        "name_ar": "خيبر",
+        "name_en": "Khaybar"
+    },
+    {
+        "name_ar": "الخبر",
+        "name_en": "Khobar"
+    },
+    {
+        "name_ar": "خليص",
+        "name_en": "Khulais"
+    },
+    {
+        "name_ar": "الخرمة",
+        "name_en": "Khurma"
+    },
+    {
+        "name_ar": "ك خالد العسكرية",
+        "name_en": "King Khalid Military City"
+    },
+    {
+        "name_ar": "الليث",
+        "name_en": "Lith"
+    },
+    {
+        "name_ar": "مهد الذهب",
+        "name_en": "Mahd Al Dahab"
+    },
+    {
+        "name_ar": "المجارده",
+        "name_en": "Majarda"
+    },
+    {
+        "name_ar": "المجمعة",
+        "name_en": "Majmaah"
+    },
+    {
+        "name_ar": "المندق",
+        "name_en": "Mandaq"
+    },
+    {
+        "name_ar": "مرات",
+        "name_en": "Marat"
+    },
+    {
+        "name_ar": "المذنب",
+        "name_en": "Midhnab"
+    },
+    {
+        "name_ar": "المبرز",
+        "name_en": "Mubarraz"
+    },
+    {
+        "name_ar": "المظيلف",
+        "name_en": "Mudhaylif"
+    },
+    {
+        "name_ar": "محايل",
+        "name_en": "Muhayil"
+    },
+    {
+        "name_ar": "المخواة",
+        "name_en": "Mukhwah"
+    },
+    {
+        "name_ar": "منيف",
+        "name_en": "Muneef"
+    },
+    {
+        "name_ar": "الموية",
+        "name_en": "Muwayah"
+    },
+    {
+        "name_ar": "المزاحمية",
+        "name_en": "Muzamiyah"
+    },
+    {
+        "name_ar": "نجران",
+        "name_en": "Najran"
+    },
+    {
+        "name_ar": "نمرة",
+        "name_en": "Namerah"
+    },
+    {
+        "name_ar": "قرية العليا",
+        "name_en": "Qarya Ulya"
+    },
+    {
+        "name_ar": "القطيف",
+        "name_en": "Qatif"
+    },
+    {
+        "name_ar": "القيصومة",
+        "name_en": "Qaysumah"
+    },
+    {
+        "name_ar": "قلوة",
+        "name_en": "Qilwah"
+    },
+    {
+        "name_ar": "القريات",
+        "name_en": "Qurayyat"
+    },
+    {
+        "name_ar": "القويعية",
+        "name_en": "Quwayiyah"
+    },
+    {
+        "name_ar": "رابغ",
+        "name_en": "Rabigh"
+    },
+    {
+        "name_ar": " رفائع الجمش",
+        "name_en": "Rafaya AlGimsh"
+    },
+    {
+        "name_ar": "رفحاء",
+        "name_en": "Rafha"
+    },
+    {
+        "name_ar": "رحيمة",
+        "name_en": "Rahima"
+    },
+    {
+        "name_ar": "أس تنورة رحيمة",
+        "name_en": "Rahima (Ras Tannurah)"
+    },
+    {
+        "name_ar": "رنية",
+        "name_en": "Ranyah"
+    },
+    {
+        "name_ar": "رأس تنورة",
+        "name_en": "Ras Tannurah"
+    },
+    {
+        "name_ar": "رماح",
+        "name_en": "Remah"
+    },
+    {
+        "name_ar": "رجال ألمع",
+        "name_en": "Rijal Alma"
+    },
+    {
+        "name_ar": "رياض الخبراء",
+        "name_en": "Riyadh Al Khabra"
+    },
+    {
+        "name_ar": "رماح",
+        "name_en": "Rumah"
+    },
+    {
+        "name_ar": "سبت العلايه",
+        "name_en": "Sabt Al Alaya"
+    },
+    {
+        "name_ar": "صبيا",
+        "name_en": "Sabt Al Alaya (Balqarn)"
+    },
+    {
+        "name_ar": "صفوى",
+        "name_en": "Sabya"
+    },
+    {
+        "name_ar": "ساجر",
+        "name_en": "Safwa"
+    },
+    {
+        "name_ar": "صلبوخ",
+        "name_en": "Sajir"
+    },
+    {
+        "name_ar": "صامطة",
+        "name_en": "Salbukh"
+    },
+    {
+        "name_ar": "سراة عبيدة",
+        "name_en": "Samtah"
+    },
+    {
+        "name_ar": "الصرار",
+        "name_en": "Sarat Abida"
+    },
+    {
+        "name_ar": "بلقرن سبت العلايه",
+        "name_en": "Sarrar"
+    },
+    {
+        "name_ar": "سيهات",
+        "name_en": "Sayhat"
+    },
+    {
+        "name_ar": "شقراء",
+        "name_en": "Shaqra"
+    },
+    {
+        "name_ar": "شرورة",
+        "name_en": "Sharourah"
+    },
+    {
+        "name_ar": "الشقيق",
+        "name_en": "Shuqayq"
+    },
+    {
+        "name_ar": "سكاكا",
+        "name_en": "Skakah"
+    },
+    {
+        "name_ar": "طبرجل",
+        "name_en": "Tabarjal"
+    },
+    {
+        "name_ar": "تبوك",
+        "name_en": "Tabuk"
+    },
+    {
+        "name_ar": "الطائف",
+        "name_en": "Taif"
+    },
+    {
+        "name_ar": "تيماء",
+        "name_en": "Taima"
+    },
+    {
+        "name_ar": "تنومة",
+        "name_en": "Tanumah"
+    },
+    {
+        "name_ar": "طريب",
+        "name_en": "Tareeb"
+    },
+    {
+        "name_ar": "تاروت",
+        "name_en": "Tarut"
+    },
+    {
+        "name_ar": "تثليث",
+        "name_en": "Tathleeth"
+    },
+    {
+        "name_ar": "الثقبة",
+        "name_en": "Thqbah"
+    },
+    {
+        "name_ar": "ثول",
+        "name_en": "Thuwal"
+    },
+    {
+        "name_ar": "ثول كاوست",
+        "name_en": "Thuwal, KAUST"
+    },
+    {
+        "name_ar": "تمير",
+        "name_en": "Tumair"
+    },
+    {
+        "name_ar": "طريف",
+        "name_en": "Turayf"
+    },
+    {
+        "name_ar": "تربة",
+        "name_en": "Turbah"
+    },
+    {
+        "name_ar": "املج",
+        "name_en": "Umluj"
+    },
+    {
+        "name_ar": "عنيزة",
+        "name_en": "Unayzah"
+    },
+    {
+        "name_ar": " عقلة الصقور",
+        "name_en": "Uqlat As Suqur"
+    },
+    {
+        "name_ar": " عيون الجواء",
+        "name_en": "Uyun Al Jiwa"
+    },
+    {
+        "name_ar": "الواديين",
+        "name_en": "Wadeen"
+    },
+    {
+        "name_ar": " وادي الدواسر",
+        "name_en": "Wadi Al Dawasir"
+    },
+    {
+        "name_ar": " وادي حايل",
+        "name_en": "Wadi Hail"
+    },
+    {
+        "name_ar": "وادي ابن هشبل",
+        "name_en": "Wadi Ibn Hashbal"
+    },
+    {
+        "name_ar": "الوجه",
+        "name_en": "Wajh"
+    },
+    {
+        "name_ar": "ينبع",
+        "name_en": "Yanbu"
+    }
+]

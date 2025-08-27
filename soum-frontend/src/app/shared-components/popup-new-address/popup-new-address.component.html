@@ -1,0 +1,17 @@
+<div class="popup-address">
+    <div class="img">
+        <img alt="Address" [src]="'addressMap.jpg' | imagePath" />
+    </div>
+
+    <div class="body-popup">
+        <div class="details">
+           <h2 class="title">{{oldUserAddress? ('addressFormat.messageUpdate' | translate) : ('addressFormat.messageAddNewAddress' | translate)}}</h2>
+            <div class="btn_redirect" (click)="redirectToUpdateAddress()">
+                <p>{{oldUserAddress? ('addressFormat.AddBtn' | translate): ('addressFormat.AddBtn' | translate)}}</p>
+            </div>
+            <div class="btn_cancel" (click)="closePopupAddress()">
+                <span>{{'addressFormat.cancel' | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>

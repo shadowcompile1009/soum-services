@@ -1,0 +1,42 @@
+<div class="content">
+  <div class="back-bar margin-bottom">
+    <div class="container">
+      <a class="back-button" (click)="goBack()"
+        ><img alt="back" [src]="'back.png' | imagePath:'icons'"
+      /></a>
+      <h3 class="product-title">
+        {{ 'cancelReturn.disputeLabel' | translate }}
+      </h3>
+    </div>
+  </div>
+  <div class="section-description">
+    <div class="container container-padding">
+      <div class="description-row">
+        <h4 class="section_title">
+          {{ 'cancelReturn.reasonOrConcern' | translate }}
+        </h4>
+        <div class="textarea-field">
+          <textarea
+            id="w3review"
+            [(ngModel)]="reason"
+            name="w3review"
+            placeholder="{{ 'cancelReturn.placeholder' | translate }}"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fix-button fix-button-new">
+    <button
+      type="button"
+      name="submit"
+      [disabled]="!reason"
+      (click)="cancelOrder()"
+      class="submit"
+      class="send_button"
+    >
+      {{ 'cancelReturn.submit' | translate }}
+      <img alt="send" [src]="'arrow-send.svg' | imagePath:'icons'" />
+    </button>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+
+.soum-icon {
+  &[class*="ca-"] {
+    // Instead of using the font-based icons // We're applying SVG masks
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width:20px;
+    height:20px;
+    display: block;
+  }
+
+  input {
+    border-radius: 0px;
+  }
+
+  //usedIconsz
+
+  // custom icons footer menu
+  &[class*="ca-products"] {
+    mask-image: url(images/icons/products-icon.png);
+    color: #878787;
+  }
+
+  &[class*="ca-eye"] {
+    mask-image: url(images/icons/hide-show.svg);
+    color: #bcbcbc;
+  }
+  &[class*="ca-eye-open"] {
+    mask-image: url(images/icons/hide-show.svg);
+    color: var(--primary-color);
+  }
+  
+  &[class*="ca-products-icon"] {
+    // mask-image: url(images/icons/products-active-icon.png);
+    // color: var(--primary-color);
+  }
+
+  &[class*="ca-items-icon"] {
+    // mask-image: url(images/icons/items-active-icon.png);
+    // color: var(--primary-color);
+  }
+  &[class*="ca-works-icon"] {
+    mask-image: url(images/icons/works-icon.svg);
+    color: var(--primary-color);
+  }
+  &[class*="ca-notification-icon"] {
+    // mask-image: url(images/icons/notifications.png);
+    // color: var(--primary-color);
+  }
+  &[class*="ca-profile-icon"] {
+    // mask-image: url(images/icons/profile.png);
+    // color: var(--primary-color);
+  }
+  &[class*="ca-wishlist-icon"] {
+    // mask-image: url(images/icons/wishlist-add.svg);
+    // color: var(--primary-color);
+  }
+  &[class*="ca-button-check-icon"] {
+    mask-image: url(images/icons/button-icon-e.svg);
+    color: var(--primary-color) !important;
+  }
+  &[class*="ca-filter"] {
+    mask-image: url(images/icons/filter.svg);
+    color: #363636;
+  }
+  &[class*="ca-filter-select"] {
+    mask-image: url(images/icons/filter.svg);
+    color: var(--primary-color) !important;
+  }
+  &[class*="ca-sort"] {
+    mask-image: url(images/icons/sort.svg);
+    color: #363636;
+  }
+  &[class*="ca-sort-select"] {
+    mask-image: url(images/icons/sort.svg);
+    color: var(--primary-color) !important;
+  }
+  
+}

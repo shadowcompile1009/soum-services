@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="payment-box">
+        <div class="products-thumbnail">
+            
+            <a (click)="navigateTo('/product-detail', product)">
+                <img class="thumbnail" [src]="product?.product_images[0] | image" alt="">
+            </a>
+        </div>
+        <div class="products-content" (click)="navigateTo('/product-detail', product)">
+            <div class="product-info">
+                <div class="left"><a>
+                        <h4 class="product-title">{{product?.models?.model_name}}</h4>
+                        <!-- <span class="product-available">{{product?.varient}}</span> -->
+                    </a></div>
+                <div class="right">
+                    <span class="plus-text">
+                        <span [class]="checkGrade(product?.grade)">
+                            {{translate?.getDefaultLang() === 'en' ? product?.grade : product?.grade_ar}}
+                        </span>
+                       
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="products-bottom">
+        <div class="left">
+            <div class="price-buttons favouriteBTN"> <a class="button bg-color-primary"
+                    (click)="navigateTo('/order', product)">
+                    <span class="now-text">{{'labels.buy_now_at' | translate}}</span>
+                    <div>
+                        <span class="p-text">
+                            {{getOverAllPrice(product)?.totalAmount | number:'':'en'}}
+                        </span>
+                        <sub>{{'labels.sar' | translate}}</sub>
+                    </div>
+                </a>
+          
+            </div>
+            <div class="price">
+                <span class="f-price font-color-primary">-{{product?.discount}}%</span>
+                <span class="o-price">{{product?.current_price | number:'':'en'}}
+                </span>
+                <div class="d-text">{{'bidsAndItem.discountFromOriginal' | translate}}</div>
+            </div>
+        </div>
+        <div class="right">
+            <a class="wishlist-button wishlist-add" (click)="favorite(product)">
+                <img class="menu-icon" alt=""
+                    [src]="!product?.favourited ? ('wishlist-no-add.png' | imagePath:'icons') : ('wishlist-add.png'| imagePath:'icons') " loading="lazy">
+            </a>
+        </div>
+    </div>
+</div>

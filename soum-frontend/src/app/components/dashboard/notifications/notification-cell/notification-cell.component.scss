@@ -1,0 +1,115 @@
+.user-name {
+  font-size: 16px;
+  line-height: 20px;
+  color: #434343;
+  font-weight: 600;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif;
+}
+
+.description {
+  font-family: "DIN Next LT Arabic", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #939393;
+}
+
+.userBidder {
+    font-size: 16px;
+    line-height: 20px;
+    color: #434343;
+    font-weight: bold;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+  }
+
+.action {
+  font-family: 'DIN Next LT Arabic Medium', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #177ae2;
+  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+}
+
+.avatar_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container {
+  position: relative;
+  background-color: #f3f5f8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.point {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: red;
+}
+
+.desc-not {
+  padding: 5px;
+}
+
+.container-notification {
+  cursor: pointer;
+}
+
+.img-container:hover {
+  border: 2px solid #177ae2;
+  z-index: 9999999999;
+}
+
+.img-container:hover .point {
+  position: absolute;
+  top: -1px;
+}
+
+.your-details {
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  border-bottom: 0;
+  border-top: 2px solid #f2f5f8;
+}
+
+.content {
+  padding-top: 65px !important;
+  position: relative;
+  background-color: white;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  padding: 2px;
+}
+
+.bidDesc {
+  font-size: 15px;
+  line-height: 20px;
+  color: #363636;
+  font-weight: 400;
+  font-family: "DIN Next LT Arabic", sans-serif;
+}
+
+.activeNotification {
+  background-color: #31CDCD14;
+}
+
+
+.iconNotification {
+  max-width: 100%;
+  height: 25px;
+  width: 20px;
+  margin: 0 5px;
+}

@@ -1,0 +1,38 @@
+<div class="content">
+    <app-header [pageTitle]="'sellFlow.selectBrand' | translate" (goBack)="goBack()" (actionEvent)="showmodal()" [actionStyle]="'cancel-button'" [action]="'sellFlow.cancel' | translate"></app-header>
+
+    <div class="section-device-sell">
+        <app-banner-breadcrumb [type]="true"></app-banner-breadcrumb>
+
+        <div class="container container-padding">
+         
+            <h2 class="section_title  section_style">
+                 <br>{{'sellFlow.chooseBrand' | translate}}</h2>
+            <div class="device-sell-row" *ngIf="brands">
+                <div class="device-sell-box select-brand-box" [ngClass]="{'device-sell-box-acitve' : sellerService.uploadProductData.brand_id === brand.brand_id}" *ngFor="let brand of brands"
+                    (click)="proceedToSelectModel(brand)">
+                    <div class="device-sell-img">
+                       
+                        <img [src]="brand?.brand_icon" alt="">
+                      
+                    </div>
+                </div>
+
+                <div  *ngIf="apiHit" class="device-sell-box select-brand-box device_notFound">
+                    <div class="fitst_part">
+                        <span class="deviceType">  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNyJwGLXZC7WRgx2I3W_OaEunUIY6JrDEOrp7xFdSn9nkhSQ/viewform" target="_blank" class="contactUs" >{{'sellFlow.dontFindBrand' | translate}}<br /> {{'sellFlow.brand' | translate}}</a></span>
+                    </div>
+                 </div>
+
+            </div>
+            
+            <div class="api-inline-loader" *ngIf="!apiHit">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <!--rows-->
+        </div>
+    </div>
+</div>
+<app-cancel-listing *ngIf="showModal"></app-cancel-listing>

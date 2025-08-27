@@ -1,0 +1,53 @@
+<div class="content"
+     [ngClass]="{'custom_ar': translate.getDefaultLang() === 'ar', 'content_padding': !viewSearchResults}">
+     <app-header *ngIf="viewSearchResults" [pageTitle]="search_title"
+      (goBack)="navigateTo('/products', '')" class="sticky_top"></app-header>
+  
+    <div class="search_section" [ngStyle]="{ 'display': !viewSearchResults ? 'flex': 'block' }">
+      <form class="search-form">
+        <mat-form-field class="full-width" appearance="fill"> 
+          <img class="search_icon" src="assets/images/icons/search_icon.png" alt="search_icon">
+          <input type="text"
+                 placeholder="{{ 'labels.search_placeholder' | translate }}"
+                 matInput
+                 [formControl]="searchInput"
+                 [matAutocomplete]="auto"
+                 #trigger="matAutocompleteTrigger"
+                 (keydown.enter)="search($event.target.value);trigger.closePanel()">
+                 <button mat-button *ngIf="searchInput.value" matSuffix mat-icon-button aria-label="Clear" (click)="clear(searchInput)">
+                  <mat-icon>close</mat-icon>
+                </button>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+      <span *ngIf="!viewSearchResults" class="btn-cancel" (click)="navigateTo('/products', '')">{{"labels.cancel" | translate}}</span>
+    </div>
+  
+    <div *ngIf="viewSearchResults"
+      class="products products-list list-title-hide"
+      infinite-scroll
+      (scrolled)="onScrollDown($event)">
+
+      <app-product-model
+        *ngFor="let product of productList"
+        [product]="product"
+        [userDetail]="userDetail"
+        [userMobileNumber]="userMobileNumber"
+        (getProductsByModel)="getProductsByModel($event)">
+      </app-product-model>
+  
+      <div class="not_found_wrapper" *ngIf="!productList?.length">
+        <img src="assets/images/not_found.png" alt="not_found">
+        <div class="not_found_txt">
+          <span class="no_title">{{ 'labels.no_results_title' | translate }}</span>
+          <span class="sub_title">{{no_result_sub + ' ' + (searchInput.value ? searchInput.value : '')}}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  

@@ -1,0 +1,35 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <a class="popup-close" (click)="hideBidModal()"
+        ><img class="icon-close" [src]="'Union-icon.svg' | imagePath: 'icons'" alt=""
+      /></a>
+        <div draggable="true" (click)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+
+        <div class="products-top-bar" [ngClass]="{'custom_en': translate?.getDefaultLang() == 'en'}">
+            <div class="bold-font"> {{'labels.condition-title' |translate}}</div>
+            <div class="bold-text-normal title_des">{{ "labels.descCond" | translate }}</div>
+            <div class="bold-text plus-text">
+                <span class="excellent">{{ "labels.new" | translate }}</span>
+            </div>
+            <div class="bold-text-normal">{{ "labels.newDesc" | translate }}</div>
+            <div class="bold-text plus-text">
+                <span class="great">{{ "labels.veryGood" | translate }}</span>
+            </div>
+            <div class="bold-text-normal">{{ "labels.veryGoodDes" | translate }}</div>
+            <div class="bold-text plus-text">
+                <span class="good">{{ "labels.fair" | translate }}</span>
+            </div>
+            <div class="bold-text-normal">{{ "labels.heavilyUse" | translate }}</div>
+            <!-- <div class="bold-text plus-text">
+                <span class="extensive">{{ "labels.extensiveUse" | translate }}</span>
+            </div>
+
+            <div class="bold-text-normal">
+                <span>
+                    {{ "labels.extensiveDesc" | translate }}
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>

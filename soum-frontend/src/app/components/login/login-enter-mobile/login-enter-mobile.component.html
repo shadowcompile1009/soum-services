@@ -1,0 +1,50 @@
+<div class="first-bar">
+    <div class="custom_arrow"
+        [ngClass]="{'arrow_ar': translate?.getDefaultLang() == 'ar', 'arrow_en':translate?.getDefaultLang() == 'en'}">
+        <p class="sub-title step1">{{'forgotPassword.welcome' | translate}}</p>
+        <a class="back-button" (click)="goBack()"><img alt="" [src]="'right-arrow.png' | imagePath: 'icons'"></a>
+    </div>
+    <p class="sub-title mobileCode">{{'forgotPassword.enterMobileNumber' | translate}}</p>
+    <p class="sub-title onetime"> {{'forgotPassword.one-time-verification' | translate}}</p>
+
+</div>
+<div class="content">
+    <div class="section_login">
+        <form class="container container-padding" (keydown)="submitOnEnter($event)" [formGroup]="loginForm">
+            <div class="login-bar">
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label> {{'forgotPassword.mobileNumber' | translate}}</mat-label>
+                    <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)"
+                        formControlName="mobileNumber" name="number" [(ngModel)]="value"
+                        [maxLength]="mobileNumberMaxLength">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <p class="input-text-bar center-text">
+                    {{'login.agreemore' | translate}}
+                    <a class="terms-of-use underLine" [routerLink]="['/privacy-policy']">
+                        {{'login.termConditions' | translate}}
+                    </a>
+                </p>
+                <div>
+                    <button type="button" name="submit" class="submit button-sign-up"
+                        [disabled]="loginForm?.controls['mobileNumber']?.invalid || loginForm?.errors"
+                        (click)="navigateToEnterPassword($event)">
+                        {{'forgotPassword.verify' | translate}}
+                    </button>
+                </div>
+              
+                <div class="logos">
+                    <img [src]="'en-logo.png' | imagePath: 'icons'" alt="color-logo" class="color-logo en-logo">
+                    <img [src]="'ar-logo.png' | imagePath: 'icons'" alt="color-logo" class="color-logo ar-logo">
+                </div>
+
+
+            </div>
+        </form>
+
+    </div>
+</div>

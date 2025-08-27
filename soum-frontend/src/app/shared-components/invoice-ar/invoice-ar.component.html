@@ -1,0 +1,145 @@
+<div style="display: none;">
+	<div id="orderInvoice-ar" class="invoice-box" style="margin: auto;width: 100%;display: block;border: 0px;padding: 40px;">
+		<div class="container-fluid invoice-container" style="padding: 70px;max-width: 850px;background-color: #fff;border: 1px solid #ccc;border-radius: 6px;">
+			<header>
+				<table aria-describedby="invoice box table" class="rows order_table align-items-center" style="width: 100%;">
+					<tbody>
+						<tr style="display: none;">
+							<th id="invoives4Scope">invoives</th>
+						</tr>
+						<tr>
+							<td class="col-sm--5 text-sm-left" style="width: 50%;text-align: left;">
+								<h4 class="text-7 mb-0">الفاتورة</h4>
+							</td>
+							<td class="col-sm--7 text-sm-right mb-3 mb-sm-0 logos" style="width: 50%; text-align: right;">
+								<img [src]="'ar-logo.png' | imagePath: 'icons'" alt="color-logo" class="color-logo ar-logo ng-star-inserted" style="height: 35px;">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+			</header>
+			<main>
+				<table aria-describedby="order table" class="rows order_table" style="width: 100%;border-collapse: collapse;">
+					<tbody>
+						<tr style="display: none;">
+							<th id="invoives2Scope">invoives</th>
+						</tr>
+						<tr>
+							<td class="col-sm--6 text-left" style="width: 50%;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;/* font-weight: 400 !important; */font-style: normal;letter-spacing: normal;line-height: normal;">رقم
+                                    الفاتورة</strong>
+								<div class="order-details-id">{{orderDetails?._id}}</div>
+							</td>
+							<td class="col-sm--6 text-right" style="width: 50%;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: right;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;/* font-weight: 400 !important; */font-style: normal;letter-spacing: normal;line-height: normal; text-align: right;">
+                                    تاريخ</strong> {{orderDetails?.created_at | date: 'dd/MM/yyyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<table aria-describedby='order collapse' class="rows order_table" style="width: 100%;border-collapse: collapse;margin-bottom: 1rem;">
+					<tbody>
+						<tr style="display: none;">
+							<th id="invoives3Scope">invoives</th>
+						</tr>
+						<tr>
+							<td class="col-sm--6 text-left" style="width: 50%;"><strong style="font-family: 'Poppins', sans-serif;font-size: 14px;/* font-weight: 400 !important; */font-style: normal;letter-spacing: normal;line-height: normal;">الدفع
+                                    لـ</strong>
+								<address style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">
+                                    {{orderDetails?.seller?.name}}<br>
+                                    {{(orderDetails?.product?.pick_up_address?.address ? orderDetails?.product?.pick_up_address?.address : "")}}
+                                    <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> العنوان </strong>
+                                    <br>
+                                    {{(orderDetails?.product?.pick_up_address?.city ? orderDetails?.product?.pick_up_address?.city : "")}}
+                                    <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> مدينة
+                                    </strong>
+                                    <br>
+                                    {{(orderDetails?.product?.pick_up_address?.postal_code ? orderDetails?.product?.pick_up_address?.postal_code : "")}}
+                                    <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> الرمز البريدي </strong>
+
+                                </address>
+							</td>
+							<td class="col-sm--6 text-sm-right" style="width: 50%; text-align: right;"><strong style="font-family: 'Poppins', sans-serif;font-size: 14px;/* font-weight: 400 !important; */font-style: normal;letter-spacing: normal;line-height: normal;">الفاتورة
+                                    لـ</strong>
+								<address style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">
+                                    {{orderDetails?.buyer?.name}}<br>
+                                    {{(orderDetails?.buyer_address?.address ? orderDetails?.buyer_address?.address : "")}}
+                                    <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> العنوان
+                                    </strong>
+                                    <br>
+                                    {{(orderDetails?.buyer_address?.city ? orderDetails?.buyer_address?.city : "")}}
+                                    <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> مدينة </strong>
+                                    <br>
+                                    {{(orderDetails?.buyer_address?.postal_code ? orderDetails?.buyer_address?.postal_code : "")}}
+                                    <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> الرمز البريدي </strong>
+
+                                </address>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="card" style="position: relative;display: flex;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: .25rem;">
+					<div class="card-body px-0" style="padding: 0px;">
+						<div class="table-responsive" style="display: block;width: 100%;overflow-x: auto;-webkit-overflow-scrolling: touch;">
+							<table aria-describedby="invoice table" class="table" style="width: 100%;border-collapse: collapse; margin-bottom: 0px;">
+								<thead class="thead-light">
+									<tr>
+										<th id="priceScope" style="width: 125px;padding: .75rem;color: #495057;background-color: #e9ecef;text-align: left;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">المبلغ</strong>
+										</th>
+										<th id="descScope" style="width: 200px;text-align: right;padding: .75rem;color: #495057;background-color: #e9ecef;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">الوصف</strong>
+										</th>
+										<th id="bidPriceScope" style="text-align: right;padding: .75rem;color: #495057;background-color: #e9ecef;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">الخدمة</strong>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr style="display: none;">
+										<th id="invoivesScope">invoives</th>
+									</tr>
+									<tr>
+										<td class="text-left" style="padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;">{{orderDetails?.grand_total}} ﷼</td>
+										<td style="text-align: right;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">{{orderDetails?.product?.varient}}</td>
+										<td style="text-align: right;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;">{{orderDetails?.product?.model_id?.model_name}}</td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 text-left" style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;">{{orderDetails?.buy_amount}} ﷼</td>
+										<td class="bg-light-2 text-left" style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important;padding-top: 8px;padding-bottom: 8px;"> <strong>السعر</strong>
+										</td>
+										<td class="bg-light-2 text-left" style="text-align: right;background-color: #f8f8fa !important;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;"></td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 text-left" style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;">{{orderDetails?.shipping_charge}} ﷼</td>
+										<td class="bg-light-2 text-left" style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important;padding-top: 8px;padding-bottom: 8px;"> <strong>قيمة التوصيل</strong>
+										</td>
+										<td class="bg-light-2 text-left" style="text-align: right;background-color: #f8f8fa !important;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;"></td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 text-left" style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;">{{orderDetails?.commission}} ﷼</td>
+										<td class="bg-light-2 text-left" style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important;padding-top: 8px;padding-bottom: 8px;"> <strong>العمولة</strong>
+										</td>
+										<td class="bg-light-2 text-left" style="text-align: right;background-color: #f8f8fa !important;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;"></td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 text-left" style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;">{{orderDetails?.vat}} ﷼</td>
+										<td class="bg-light-2 text-left" style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important;padding-top: 8px;padding-bottom: 8px;"> <strong>ضريبة القيمة المضافة</strong>
+										</td>
+										<td class="bg-light-2 text-left" style="text-align: right;background-color: #f8f8fa !important;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;"></td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 text-left" style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;">{{orderDetails?.grand_total}} ﷼</td>
+										<td class="bg-light-2 text-left" style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important;padding-top: 8px;padding-bottom: 8px;"> <strong>القيمة الإجمالية</strong>
+										</td>
+										<td class="bg-light-2 text-left" style="text-align: right;background-color: #f8f8fa !important;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</main>
+			<footer class="text-center mt-4" style="text-align: center!important;">
+				<p class="text-1" style="direction: rtl;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">ملاحظة:</strong>
+					هذا فاتورة مؤتمتة ولا تتطلب توقيع</p>
+			</footer>
+		</div>
+	</div>
+</div>

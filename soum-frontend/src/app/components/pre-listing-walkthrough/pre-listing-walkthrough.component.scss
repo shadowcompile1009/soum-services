@@ -1,0 +1,163 @@
+.wlakThrought {
+    background: #fdfdfd;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  .img-height{
+    height: 300px;
+    background-color: #f2f6fc;
+  }
+    .header_part {
+      background-color: #f2f6fc;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 20px 10px 20px 10px;
+      .callUs_image {
+        width: 24px;
+        height: 24px;
+      }
+      .callUS_text {
+        font-size: 18px;
+        font-weight: 700;
+        color: #177ae2;
+      }
+    }
+  
+    // shared styles in all component
+    .image_part {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .walkThrough_image_step3 {
+         height: 320px;
+       }
+      .walkThrough_image {
+        height: 370px;
+      }
+    }
+  
+    .content_wlakThrought {
+      .congrates{
+        font-size: 16px;
+      }
+      .congrates_text{
+        font-size: 40px;
+      }
+      .congrates,
+      .congrates_text,
+      .shipDevice,
+      .receivePayment,
+      .afterVerification,
+      .manage {
+        font-family: 'DIN Next LT Arabic';
+        font-style: normal;
+        font-weight: 700;
+      }
+  
+      .congrates,
+      .ship,
+      .afterVerification,
+      .listingEasly {
+        color: #313437;
+      }
+  
+      .hint {
+        margin-top: 8px;
+        .hint_content {
+          font-family: 'DIN Next LT Arabic';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 26px;
+          color: #313437;
+        }
+      }
+    }
+  
+    #stepper3 {
+      .image_part {
+        justify-content: flex-end !important;
+      }
+    }
+  
+    #stepper4 {
+      .walkThrough_image {
+        width: auto !important;
+      }
+      .content_wlakThrought {
+        padding: 0 20px 0 40px;
+      }
+    }
+  
+    .stepper {
+      display: flex;
+      padding: 0 25px;
+      .stepper_circle {
+        width: 7px;
+        height: 7px;
+        border-radius: 7px;
+        margin: 0 3px;
+        border: 1px solid #177ae2;
+      }
+  
+      .stepper_active {
+        width: 17px;
+        height: 7px;
+        background: #177ae2;
+        border-radius: 3.5px;
+      }
+    }
+  
+    .footer {
+      position: absolute;
+      bottom: 60px;
+      width: 100%;
+  
+      .footer_content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .skipBtnnew{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+        }
+        .skipBtn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-bottom: 8px;
+          padding: 0px 15px 0px 15px;
+          border-radius: 0 25px 25px 0;
+          cursor: pointer;
+          height: 56px;
+  
+          span {
+            font-family: 'DIN Next LT Arabic';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 26px;
+            text-align: center;
+            color: #177ae2;
+          }
+        }
+  
+        .nextBtnPre {
+          height: 20px;
+          width: 15px;
+          margin-right: 25px !important;
+          cursor: pointer;
+        }
+      }
+    }
+    .backButton{
+      height: 20px;
+          width: 15px;
+          margin-left: 25px;
+          cursor: pointer;
+    }
+  }
+  

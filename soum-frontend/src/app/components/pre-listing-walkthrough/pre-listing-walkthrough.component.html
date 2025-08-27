@@ -1,0 +1,99 @@
+<div class="wlakThrought">
+    <div class="header_part">
+        <img class="callUs_image" src="../../../assets/images/callUS.png" alt="Call Us" />
+        <a href="https://api.whatsapp.com/send?phone=966920035039" class="callUS_text"
+            target="_blank">{{"postWalkThrough.callUs" | translate}}</a>
+    </div>
+<div class="img-height">
+    <div *ngIf="activeStepper === 'stepper1'" id="stepper1">
+        <div class="image_part">
+            <img class="walkThrough_image" *ngIf=" siteLang ==='ar'" src="../../../assets/images/Frame 1900 1.svg" alt="Walk Through" />
+
+            <img class="walkThrough_image" *ngIf=" siteLang ==='en'" src="../../../assets/images/Group 18w94 1 1.svg" alt="Walk Through" />
+        </div>
+        <div class="content_wlakThrought">
+            <h2 class="congrates">
+                {{"prelisting.step1text" | translate}}
+            </h2>
+            <p class="congrates_text">
+                {{"prelisting.step1label" | translate}}
+            </p>
+        </div>
+    </div>
+
+    <div *ngIf="activeStepper === 'stepper2'" id="stepper2">
+        <div class="image_part">
+            <img class="walkThrough_image" *ngIf=" siteLang ==='en'" src="../../../assets/images/Frame 1903 1.svg" alt="Walk Through" />
+
+            <img class="walkThrough_image" *ngIf=" siteLang ==='ar'" src="../../../assets/images/Group 1976.svg" alt="Walk Through" />
+        </div>
+
+        <div class="content_wlakThrought">
+            <h2 class="congrates">
+                {{"prelisting.step2text" | translate}}
+            </h2>
+            <p class="congrates_text">
+                {{"prelisting.step2label" | translate}}
+            </p>
+        </div>
+    
+    </div>
+
+    <div *ngIf="activeStepper === 'stepper3'" id="stepper3">
+        <div class="image_part">
+            <img class="walkThrough_image_step3"  src="../../../assets/images/Group 1978.svg" alt="Walk Through" />
+
+        </div>
+        <div class="content_wlakThrought">
+            <h2 class="congrates">
+                {{"prelisting.step3text" | translate}}
+            </h2>
+            <p class="congrates_text">
+                {{"prelisting.step3label" | translate}}
+            </p>
+        </div>
+    </div>
+
+</div>
+
+    <div class="footer">
+        
+
+        <div class="footer_content">
+            <div  class="skipBtn" (click)="goToSpp('skip')" *ngIf="activeStepper === 'stepper1' && skip_pre_listing ">
+                <span  class="skipText">{{"postWalkThrough.skip" | translate}}</span>
+            </div>
+            <div  class="skipBtnnew" *ngIf="activeStepper === 'stepper1' && !skip_pre_listing">
+              
+            </div>
+            <img (click)="goback('stepper2')" *ngIf="activeStepper === 'stepper2'" class="backButton nextBtnPre nextBtn"
+            src="../../../assets/images/Vector.png" alt="Next" />
+            <img (click)="goback('stepper3')" *ngIf="activeStepper === 'stepper3'" class="backButton nextBtnPre nextBtn" 
+            src="../../../assets/images/Vector.png" alt="Next" />
+            <div class="stepper">
+                <div (click)="activeStepper = 'stepper1'"
+                    [ngClass]="activeStepper === 'stepper1' ? 'stepper_active' : 'stepper_circle'"></div>
+                <div (click)="activeStepper = 'stepper2'"
+                    [ngClass]="activeStepper === 'stepper2' ? 'stepper_active' : 'stepper_circle'"></div>
+                <div (click)="activeStepper = 'stepper3'"
+                    [ngClass]="activeStepper === 'stepper3' ? 'stepper_active' : 'stepper_circle'"></div>
+              
+            </div>
+        
+
+            <img (click)="activeStepper = 'stepper2'" *ngIf="activeStepper === 'stepper1'" class="nextBtnPre nextBtn"
+                src="../../../assets/images/nextBtn.png"  alt="Next" />
+            <img (click)="activeStepper = 'stepper3'" *ngIf="activeStepper === 'stepper2'" class="nextBtnPre nextBtn"
+                src="../../../assets/images/nextBtn.png" alt="Next" />
+              
+
+                <div  class="skipBtn" (click)="goToSpp('finish')" *ngIf="activeStepper === 'stepper3' ">
+                    <span  class="skipText">
+                        {{"postWalkThrough.finish" | translate}}
+                     </span>
+                </div>
+                
+                
+        </div>
+    </div>
+</div>

@@ -1,0 +1,294 @@
+@import '../../../assets/css/color.scss';
+
+.content {
+    background: #FDFDFE;
+    height: 100%;
+    min-height: 100vh;
+    padding-bottom: 16%;
+}
+.payment_options ul li:first-child {
+    border: 0px !important;
+    margin-top:0px  !important;
+}
+.back-bar {
+    box-shadow: none !important;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.payment_options {
+    padding-top: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+.payment_options ul li {
+    padding:20px 10px 10px 10px;
+    position: relative;
+    // margin-top: 10px;
+    border-top: 1px solid #e6e6e6;
+}
+.payment_options ul li.active-card {
+   
+    border:1px solid $primary-color !important;
+    border-radius: 3px;
+    padding:10px;
+}
+
+
+.payment_options ul li input[type="radio"] {
+    opacity: 0;
+    z-index: 9999;
+    cursor: pointer;
+    width: 100%;
+    // height: 55px;
+    position: absolute;
+    left: 0;
+    height: 62px;
+    top: 0px;
+}
+
+.card-d {
+    padding-left: 45px;
+    z-index: 99;
+    position: relative;
+}
+
+
+.card-d .card-inner .bank-name {
+    color: #363636;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 26px;
+    // width: calc(100% - 70px);
+    float: left;
+}
+
+.card-d .card-inner .bank-name .card_number {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.card-d:before {
+    border-radius: 60px;
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left:6px;
+    top:6px;
+    z-index: 9;
+    margin: 0;
+    opacity: 0;
+    background:  $primary-color;
+}
+
+.card-d:after {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left:0px;
+    background-color: #f5f5f5;
+    border-radius: 60px;
+    top:0px;
+    content: "";
+    border: 1px solid #00000021;
+}
+
+.payment_options ul li input[type=radio]:checked+.card-d:after {
+    border-color: $primary-color;
+}
+.payment_options ul li input[type=radio]:checked+.card-d:before {
+ opacity: 1;
+}
+
+.payment_options ul li.active-card:after {content: "";height: 100%;width: 100%;display: inline-block;background:$primary-color;position: absolute;top: 0px;left: 0px;opacity: 0.1;}
+
+.payment_options ul li .card-inner .wpwl-brand-icon {
+    width: 65px;
+}
+
+
+.card-cvv .send_button {
+    height: 40px;
+    min-width: 125px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    border: 0px;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0px !important;
+    outline: none;
+    background-color:  $primary-color;
+}
+
+.card-inner {
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    &_text {
+        flex: 1;
+        order: 2;
+        display: flex;
+        margin: 0 10px;
+        font-size: 12px;
+        font-weight: 400;
+        justify-content: space-between;
+        font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+    &_text.lg {
+        margin: 0 10px 30px 10px;
+    }
+}
+.text_reverse {
+    flex-direction: row !important;
+}
+.text_reverse_en {
+    flex-direction: row-reverse !important;
+}
+
+
+.card-desc {
+    display: flex;
+    width: 100%;
+    font-size: 13px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+
+.custom_ar {
+    .model_margin {
+        margin-left: 50px;
+    }
+    .card-inner { 
+        flex-direction: row-reverse;
+        &_text {
+            flex-direction: row-reverse;
+        }
+    }
+    .card-desc {
+        margin-right: 2px;
+        flex-direction: row-reverse;
+    }
+}
+
+
+.card-cvv  .cvv {
+    width: calc(100% - 140px);
+    margin-right: 15px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px 65px 6px 6px;
+    border: 1px solid #e6e6e6;
+    background-color: #fff !important;
+    border-radius: 3px;
+    outline: none;
+    background-image: url(../../../assets/images/icons/brand.png);
+    background-position: 80px 67px !important;
+    background-size: 178px;
+}
+.wpwl-brand-APPLEPAY {
+    height:25px;
+    background-image: url(../../../assets/images/icons/apple_pay.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.wpwl-brand-TABBY {
+    height:25px;
+    background-image: url(../../../assets/images/tabby.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-cvv {
+    align-items: center;
+    display: none;
+}
+
+.wpwl-brand-VISA {
+    background-position: 0px -7481px;
+    height: 22px;
+    // margin-top: 5px;
+    background-size: 190px;
+}
+.wpwl-brand-MADA {
+    background-image: url(../../../assets/images/mada-logo.png);
+    background-repeat: round;
+    height: 60px !important;
+    width: 150px !important;
+}
+
+.payment_options2 {
+    border-top: 6px solid #f2f5f8;
+    padding-top: 0px;
+}
+
+.wpwl-brand-VISA_MASTER {
+    background-position: 0 -7902px;
+    // width: 65px;
+    height: 20px;
+}
+.wpwl-brand-STC_PAY {
+    background-position: 0 -5430px;
+    height: 20px;
+    background-size: 150px;
+}
+.back-button{
+    img {
+      width: 18px;
+    }
+}
+ 
+.money-lock-image {
+    height: 60px;
+    width: 90px;
+}
+
+.messge-main { 
+    color: #177ae2;
+  }
+  
+  .messge-secondary { 
+    color: #31CDCD;
+  }
+
+.div-card-message {
+    font-style: normal;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 30px;
+    background: #177AE20A;
+    direction: rtl;
+    padding: 20px;
+    margin: 20px 4px 0px 4px;
+    border-radius: 5px;
+}
+
+.div-card-support {
+    font-style: normal;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 30px;
+    background: #177AE20A;
+    margin: 15px 25px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.outgoing-call-image {
+    width: 40px;
+    height: 40px;
+}

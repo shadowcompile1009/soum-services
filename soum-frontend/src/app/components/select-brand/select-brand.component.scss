@@ -1,0 +1,139 @@
+@import "../../../assets/css/color.scss";
+
+.photo-brand-img {
+    height: 20px;
+    display: block !important;
+    background-size: contain !important;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.device-sell-img {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+.device-sell-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.section-device-sell .section_title {
+    padding-top: 0px;
+    text-align: center;
+    padding-bottom: 27px;
+}
+
+.section-device-sell {
+    padding-top: 20px;
+    background: #FDFDFE;
+    height: 100%;
+    min-height: 100vh;
+    display: inline-block;
+    width: 100%;
+}
+
+.device-sell-box {
+    position: relative;
+    float: left;
+    width: calc(33.33% - 12px);
+    margin-right: 18px;
+    min-height: 100px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000014;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.device-sell-box-acitve {
+    border: 1.5px solid #095988;
+}
+
+.device-sell-box:nth-child(3n) {
+    margin-right: 0px;
+}
+
+.device-sell-box img {
+    display: block;
+    margin: auto;     width:45px;
+    padding: 0px !important;
+}
+
+.device-sell-box .device-sell-img {
+    text-align: center;
+    padding-bottom: 25px;
+    width: 100%;
+}
+
+.device-sell-box .title-img {
+    color: $text-color;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 22px;
+    padding: 0px 10px 10px 10px;
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.back-button{
+    img {
+      width: 18px;
+    }
+}
+
+@media screen and (max-width:369px) {
+.device-sell-box .title-img {
+    font-size: 11px !important;
+}
+.device-sell-box {
+    height: 85px !important;
+}
+.device-sell-box .device-sell-img img {
+    padding: 0 10px;
+}
+
+
+}
+
+
+.device_notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deviceType{
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+    font-weight: bold;
+}
+
+.contactUs {
+    font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #212121;
+    cursor: pointer !important;
+    margin-top: 5px;
+}
+
+.fitst_part {
+    text-align: center
+}

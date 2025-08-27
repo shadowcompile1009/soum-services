@@ -1,0 +1,216 @@
+<app-products-header
+  *ngIf="categories"
+  [arabic]="arabic"
+  (changeLan)="changeLanguage()"
+  (addGtmSociialMedia)="addGtmSocialMedia($event)"
+></app-products-header>
+
+<div class="content padding-top-0" [ngClass]="{'custom_ar': translate?.getDefaultLang() === 'ar'}">
+  <div class="input_search_wrapper">
+    <input class="input_search" type="text" placeholder="{{ 'labels.search_placeholder' | translate }}" (click)="navigateSearchPage()">
+    <img class="search_icon" src="assets/images/icons/search_icon.png" alt="search_icon">
+  </div>
+  <app-hot-deals [heroSection]="true"></app-hot-deals>
+  <app-alert-popup></app-alert-popup>
+  <div class="category-slider">
+    <owl-carousel
+      class="category-sliders"
+      [options]="carouselOptions"
+      [items]="categories"
+    >
+      <div
+        class="item active"
+        *ngFor="let category of categories"
+        (click)="selectCategory(category)"
+        [ngClass]="{active: category?.category_id === selectedCategory?.category_id}"
+      >
+        <div class="cat-item">
+          <a>
+            <span class="cat-img">
+              <img
+                [src]="category?.category_icon"
+                [alt]="category?.category_name"
+                width="50"
+                height="50"
+                loading="lazy"
+              />
+            </span>
+            <h4 class="cat-name">{{ category?.category_name }}</h4>
+          </a>
+        </div>
+      </div>
+    </owl-carousel>
+  </div>
+  <div class="products">
+    <div class="container">
+      <div class="products-filter">
+        <div class="left">
+          <a
+            class="filter-btn"
+            [ngClass]="{ 's-btn': filterApplied }"
+            (click)="navigateTo('/filter')"
+          >
+            <span class="icon-btn">
+              <span class="soum-icon"></span>
+              <img
+                [src]="'filter-v.png' | imagePath: 'icons'"
+                alt="Filter"
+                class="filter_img"
+                loading="lazy"
+              />
+            </span>
+            {{ 'dashboard.filter' | translate }}
+          </a>
+        </div>
+        <div class="right">
+          <a
+            style="width: 100%"
+            class="filter-btns"
+            (click)="navigateTo('/allproducts')"
+          >
+            <span class="icon-btn">
+              <img
+                [src]="'bars.png' | imagePath: 'icons'"
+                alt="ViewAll"
+                class="filter_img"
+                loading="lazy"
+              />
+            </span>
+            {{ 'labels.viewAll' | translate }}
+          </a>
+        </div>
+      </div>
+      <div class="products-row products-cursor">
+        <div class="row products-home" #productsCurrentHeight>
+
+          <div class="col-6" *ngFor="let product of products">
+            <div class="products-box">
+              <div class="products-top">
+                <div class="price-bar">
+                  <div class="left">
+                    <div class="price" *ngIf="false">
+                      <span class="f-price font-color-primary"
+                        >-{{ product?.discount }}%</span
+                      >
+                      <span class="o-price">
+                        {{ product?.current_price | number: '':'en' }}
+                      </span>
+                      <span class="d-text">{{
+                        'labels.discountOriginal' | translate
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="product-thumbnail"
+                  (click)="goToDeviceList(product)"
+                >
+                  <a
+                    ><img
+                      class="thumbnail"
+                      [src]="product?.modelIcon"
+                      alt=""
+                      style="height: 100px"
+                      loading="lazy"
+                    />
+                    <h4 class="product-title">
+                      {{
+                        translate?.getDefaultLang() == 'ar'
+                          ? product?.arName
+                          : product?.enName
+                      }}
+                    </h4>
+                    <br />
+                    <span class="product-available"
+                      >{{ product?.totalAvailableProducts }}
+                      {{ 'labels.available' | translate }}
+                      <img
+                        class="next-arrow"
+                        [src]="'next-icon.svg' | imagePath: 'icons'"
+                        alt="Next"
+                        loading="lazy"
+                      />
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div class="products-bottom" *ngIf="false">
+                <a
+                  class="button bg-color-primary"
+                  (click)="navigateTo('/order', product)"
+                >
+                  <span class="now-text">
+                    {{
+                      userDetail?.userId == product?.seller_id
+                        ? ('labels.buy_price' | translate)
+                        : ('labels.buy_now_at' | translate)
+                    }}
+                  </span>
+                  <div>
+                    <span class="p-text">
+                      {{
+                        getOverAllPrice(product)?.totalAmount | number: '':'en'
+                      }}
+                    </span>
+                    <sub>{{ 'labels.sar' | translate }}</sub>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="view_all_wrapper" (click)="handleProductsChange(!showMoreProducts)" *ngIf="totalModals > 4">
+            <ng-container *ngIf="!showMoreProducts">
+              <img class="icon" [src]="'show_more.png' | imagePath: 'icons'" alt="show_more" />
+              <span class="view_all_txt">{{'labels.view_all_catagories' | translate}} </span>
+            </ng-container>
+            <ng-container *ngIf="showMoreProducts">
+              <img class="icon" [src]="'show_less.png' | imagePath: 'icons'" alt="show_less" />
+              <span class="view_all_txt">{{'labels.view_less_catagories' | translate}} </span>
+            </ng-container>
+            
+          </div>
+
+          <p *ngIf="apiHit && !products?.length" class="text-align-center">
+            {{ 'labels.no_products_found' | translate }}
+          </p>
+        </div> 
+        <div class="api-inline-loader" *ngIf="!apiHit">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <!-- disable explore section till fix production issues -->
+        <div class="row products-home" *ngIf="false">
+          
+          <div class="explore_more_wrapper">
+            <span class="view_all_txt">{{'labels.explore_more_products' | translate}} </span>
+            <div>
+              <img class="icon" [src]="'arrow_down.png' | imagePath:'icons'" alt="arrow_down" *ngIf="!toggleExplore" (click)="showAllProducts()" />
+              <img class="icon" [src]="'up_arrow.png' | imagePath:'icons'" alt="arrow_up" *ngIf="toggleExplore" (click)="showLessProducts()" />
+            </div>
+          </div>
+
+          <div class="col-4 mb-2" *ngFor="let product of exploreProducts"
+          infinite-scroll
+          (scrolled)="onScrollDown($event)">
+            <div class="explore_products-box">
+              <img class="explore_photo" (click)="handleSppNavigation(product?.productId)" [src]="product?.productImage" alt="productImage" loading="lazy" />
+              <div class="explore_txt">
+                <span>
+                  {{translate?.getDefaultLang() === 'ar' ? product?.arModelName : product?.modelName}}
+                </span>
+                <span>
+                  <span style="font-family: bolder;">{{product?.grandTotal}}</span><span style="font-size: 11px;">{{ 'labels.sar' | translate }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<bid-modal (refresh)="getCategories()"></bid-modal>
+<buy-modal></buy-modal>

@@ -1,0 +1,225 @@
+.content-congrates {
+    display: flex;
+    flex-direction: column;
+   background: #FDFDFE;
+   height: 100%;
+   min-height: 100vh;
+   width: 100%;
+   border-radius: 15px;
+    bottom: 15px;
+
+   .header-congrates {
+    background: #FDFDFE;
+    padding: 20px 0px;
+    position: relative;
+    height: 100px;
+
+    .title-congrates {
+        font-family: "DIN Next LT Arabic Bold", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 20px;
+        /* or 100% */
+        
+        display: flex;
+        align-items: center;
+        text-align: center;
+        
+        /* Primary blue */
+        
+        color: #177AE2;
+        margin-left: 15%;
+        padding-top: 20px;
+    }
+
+    .design1-congrates {
+        position: absolute;
+        top: 10px;
+        // left: 33px;
+        .entire-design-congrates{
+            position: relative;
+            width: 80px;
+            height: 100px;
+        }
+      
+        .entire-design1-congrates{
+            position: relative;
+            width: 50px;
+            height: 50px;
+       
+            .image1{
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .image2{
+                position: absolute;
+                top: 12px;
+                right: 15px;
+            }
+
+            .image3{
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+
+
+    .design2-congrates {
+        position: absolute;
+        bottom: 5px;
+        right: 47px;
+
+        .entire-design2-congrates{
+            position: relative;
+            width: 50px;
+            height: 50px;
+
+            .image1{
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            .image2{
+                position: absolute;
+                top: 20px;
+                right: -3px;
+            }
+
+            .image3{
+                position: absolute;
+                bottom: 0;
+                right: 17px;
+            }
+        }
+    }
+   }
+
+
+   .info_lsting_msg{
+    display: flex;
+    flex-direction: row;
+    background: #F4F6FA;
+    border-radius: 8px;
+    padding: 10px;
+    
+    .f_part {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        margin: 5px;
+    }
+
+    .s_part {
+    width: 50%;
+    text-align: center;
+    margin: 5px;
+
+    span {
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        color: #000000;
+
+        .hours24 {
+            color: #31CDCD;
+            font-weight: bold!important;
+        }
+       .red_text{
+        color: #31CDCD;
+        font-weight: bold!important;  
+       }
+        .soumName {
+            font-weight: bold!important;
+        }
+    }
+    }
+    .hours24 {
+        color: #31CDCD!important;
+        font-weight: bold!important;
+    }
+    .red_text{
+        color: #F35252 !important;
+        font-weight: bold!important;  
+       }
+}
+
+
+.info_lsting_msg_congrates {
+    flex-direction: row-reverse;
+}
+
+.part_display_info{
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 15px;
+    background: #F3F5F8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.btn_continue{
+    background: #177AE2;
+    border: 0;
+    padding: 5px 0px;
+    border-radius: 15px;
+    width: 48%;
+
+    .btn_continue_text{
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #FDFDFD;
+    }    
+}
+
+.footer-congrates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    }
+
+.btn_callUs {
+    background: #FFFFFF;
+    border: 0;
+    padding: 5px 0px;
+    border-radius: 15px;
+    width: 50%;
+
+    .btn_callUs_text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #313437;
+
+        img {
+            margin: 0 10px 0 0;
+        }
+
+    }
+}
+.arrow{
+    padding: 35px 10px 0px 10px;
+}
+}

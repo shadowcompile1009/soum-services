@@ -1,0 +1,20 @@
+<div class="back-bar">
+  <div class="container">
+    <a
+      *ngIf="showBackBtn"
+      class="back-button back-btn-header"
+      (click)="navigateTo()"
+    >
+      <img alt="back" [src]="'back.png' | imagePath: 'icons'" />
+    </a>
+    <h3 class="product-title" [ngClass]="titleStyle === true ? 'product-title1' : ''" *ngIf="pageTitle">{{ pageTitle }}</h3>
+    <h5
+      *ngIf="action"
+      class="headerAction"
+      (click)="fireActionEvent()"
+      [class]="actionStyle"
+    >
+      {{ action }}
+    </h5>
+  </div>
+</div>

@@ -1,0 +1,383 @@
+// @import "./assets/css/color.scss";
+@import "./assets/icons.scss";
+
+@import "~owl.carousel/dist/assets/owl.carousel.css";
+@import "~owl.carousel/dist/assets/owl.theme.default.css";
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+  
+/* You can add global styles to this file, and also import other style files */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    outline: none !important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    list-style: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    user-select: none;
+}
+*,*:focus,*:hover{
+    outline:none !important;
+}
+.color-title{
+    font-size: 14px;
+line-height: 18px;
+ font-weight: 600 !important;
+
+color: #177AE2 !important;
+}
+body {
+    max-width: 375px;
+    margin: auto;
+
+    // font-family: 'Poppins', sans-serif;
+     font-family: 'DIN Next LT Arabic', sans-serif !important;
+}
+
+.body-background {
+    background-color: #f2f5f8;
+}
+
+.section-details-q ul li strong {
+    font-weight: 600;
+}
+
+.products-list .products-thumbnail .thumbnail {
+    height: 85px;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+.products-list .products-thumbnail {
+    text-align: center;
+}
+.btn-update{
+    font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+text-align: center !important;
+
+/* Primary blue */
+
+color: #177AE2 !important;
+
+}
+.square-div {
+    display: inline-block;
+    width: 145px;
+    padding: 10px;
+    margin: 10px;
+    min-height: 41px;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+  
+    color: #565656;
+    border: 1px solid #F9F9F9;
+    background: #ffffff;
+    box-shadow: 0px 0px 20px rgba(208, 208, 208, 0.25);
+    border-radius: 8px;
+  }
+  .square-div-width{
+    display: inline-block;
+    width: 333px;
+    padding: 10px;
+    margin: 10px;
+    height: 41px;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+  
+    color: #565656;
+    border: 1px solid #F9F9F9;
+    background: #ffffff;
+    box-shadow: 0px 0px 20px rgba(208, 208, 208, 0.25);
+    border-radius: 8px;
+  }
+// Responsive
+
+@media screen and (max-width: 480px) {
+
+    body {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+.wpwl-brand-icon {
+    float: left;
+    background: url(assets/images/icons/brand.png) no-repeat top left;
+}
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    width: 117px !important;
+    height: 30px !important;
+}
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content{
+    line-height: 2 !important;
+}
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard{
+    border-radius: 25px !important;
+    margin: 10px !important
+}
+.mat-button-toggle-appearance-standard{
+    color: #8E9AA0 !important;
+    background: #F2F5F7 !important;
+}
+.mat-button-toggle-checked{
+    color: #fff !important;
+    background: #177AE2 !important;
+}
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+    display: none !important;
+}
+.mat-tab-label-content .mat-tab-label {
+    width: 54px;
+    color: #6b7786 !important;
+    font-family: "Open Sans";
+    font-size: 14px !important;
+    font-weight: 600;
+    letter-spacing: 1.25px;
+    line-height: 20px;
+  }
+.mat-tab-label{
+    width: 125px !important;
+}
+.mat-tab-group{
+    width: 375px !important;
+}
+.mat-tab-label-container {
+
+width: 375px !important;
+}
+.payment-card .wpwl-brand-VISA,
+.select_cards_detail .wpwl-brand-VISA {
+    background-position: 0px -7851px;
+    width: 65px;
+    height: 26px;
+}
+
+.wpwl-brand-MASTER {
+    background-position: 0 -4199px;
+    width: 65px;
+    height: 26px;
+}
+
+.wpwl-brand-MADA {
+    background-position: 0 -4093px;
+    width: 54px;
+    height: 26px;
+}
+
+.wpwl-brand-AMEX {
+    background-position: 0px -365px;
+    width: 54px;
+    height: 26px;
+}
+
+.wpwl-brand-no {
+    width: 65px;
+    height: 26px;
+    background: url(assets/images/icons/card-number-icon.svg) no-repeat center left;
+    background-size: 36px;
+}
+
+.wpwl-brand-APPLEPAY {
+    background-position: -134px -172px;
+    width: 65px !important;
+    height: 26px;
+}
+
+.ar {
+    @import "./assets/css/color.scss";
+    @import "assets/css/style.scss";
+    @import "assets/css/ar.scss";
+}
+
+.en {
+    @import "./assets/css/color.scss";
+    @import "assets/css/style.scss";
+    @import "assets/css/en.scss";
+}
+
+.products-slider .item .photo-slider-img {
+    background-size: contain !important;
+    background-color: #f5f5f5 !important;
+}
+
+.remove-item-btn {
+    color: red !important;
+}
+.custom-alert-font{
+    font-size: 13px;
+}
+.hide-certification {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.api-inline-loader {
+    display: block;
+    text-align: center;
+
+    .text-primary {
+        color: black !important;
+    }
+}
+
+
+.payment_hyper .wpwl-brand-MASTER {
+    background-position: 0 -4233px;
+    width: 54px;
+    height: 35px;
+}
+
+.payment_hyper .wpwl-brand-MADA {
+    background-position: 0 -4136px;
+    width: 54px;
+    height: 18px;
+}
+// html, body { height: 100%; }
+
+// @font-face {
+//     font-family: 'DIN Next LT Arabic' !important;
+//     font-style: normal;
+//     font-weight: 400;
+//     src: url('./assets/fonts/DIN Next LT Arabic.ttf') format('truetype');
+//   }
+body { margin: 1 !important; font-family: "DIN Next LT Arabic", sans-serif !important; }
+@font-face {
+    font-family: 'DIN Next LT Arabic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/DIN_Next_LT_Arabic_Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'DIN Next LT Arabic Regular';
+    font-weight: 400;
+    src: url('./assets/fonts/DINNextLTArabic-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'DIN Next LT Arabic Medium';
+    font-weight: 400;
+    src: url('./assets/fonts/DINNextLTArabic-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'DIN Next LT Arabic Bold';
+    font-weight: 400;
+    src: url('./assets/fonts/DINNextLTArabic-Bold.ttf') format('truetype');
+}
+body { margin: 1 !important; font-family: "DIN Next LT Arabic", sans-serif; }
+
+body.body-background.modal-open {
+    padding-right: 0!important;
+    overflow: initial;
+}
+
+div#exampleModal.modal.ng-star-inserted.show {
+    padding-right: 0!important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+ .select-bank .ng-select.ng-select-single .ng-select-container{
+    background-color: #dee2e600 !important;
+ }
+
+.custom-dialog-container .mat-dialog-container {
+    padding: 0%;
+}
+
+.custom-dialog-download-app { 
+    position: relative !important;
+    top: 117px;
+    .mat-dialog-container {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        overflow: hidden;
+    }
+}

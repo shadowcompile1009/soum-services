@@ -1,0 +1,61 @@
+<div id="wrapper">
+    <router-outlet></router-outlet>
+    <footer id="footer">
+        <div class="nav-fixe">
+            <ul>
+                <li [ngClass]="{'active': currentRoute === '/products' || currentRoute === '/'}">
+                    <a (click)="navigateTo('/products', '')">
+                        <div class="menu-box" (click)="scrollTop()">
+                            <span class="menu-icons">
+                                <img alt="" class="menu-icon" [src]="currentRoute === '/products' ? ('products-active-icon.png'| imagePath:'icons') : ('products-icon.png'| imagePath:'icons') " style="display: block;">
+                            </span>
+                            <h4>{{'menu.products' | translate}}</h4>
+                        </div>
+                    </a>
+                </li>
+                <li [ngClass]="{'active': currentRoute === '/bids-and-items'}">
+                    <a (click)="navigateTo('/bids-and-items', '')">
+                        <div class="menu-box">
+                            <span class="menu-icons">
+                                <img alt="" class="menu-icon" [src]="currentRoute === '/bids-and-items' ? ('items-active-icon.png'| imagePath:'icons') : ('items-icon.png'| imagePath:'icons') " style="display: block;">
+                            </span>
+                            <h4>{{'menu.my_products' | translate}}</h4>
+                        </div>
+                    </a>
+                </li>
+                <li [ngClass]="{'active': currentRoute === '/disclaimer'}">
+                    <a (click)="navigateTo('/disclaimer', 'sell')">
+                        <div class="menu-box menu-box-big ">
+                            <span class="menu-icons sell-icon">
+                                <img alt="" class="menu-icon" [src]="'sell-icon2.svg'| imagePath:'icons'">
+                                <img alt="" class="menu-plus-icon" [src]="'sell-plus-icon.png'| imagePath:'icons'">
+                            </span>
+                            <h4>{{'menu.sell' | translate}}</h4>
+                        </div>
+                    </a>
+                </li>
+                <li [ngClass]="{'active': currentRoute === '/notifications'}">
+                    <a (click)="navigateTo('/notifications', 'Notifications')">
+                        <div class="menu-box">
+                            <span class="menu-icons">
+                                <img alt="" class="menu-icon" [src]="currentRoute === '/notifications' ? ('notifications-active.png'| imagePath:'icons') : ('notification.png'| imagePath:'icons')" style="display: block;">
+                                <span class="notification-light" *ngIf="notificationCount"></span>
+                            </span>
+                            <h4>{{'menu.notification' | translate}}</h4>
+                        </div>
+                    </a>
+                </li>
+                <li [ngClass]="{'active': currentRoute === '/profile'}">
+                    <a (click)="navigateTo('/profile', '')">
+                        <div class="menu-box">
+                            <span class="menu-icons">
+                                <img alt="" class="menu-icon" [src]="currentRoute === '/profile' ? ('profile-active.png'| imagePath:'icons') : ('profile.png'| imagePath:'icons') " style="display: block;">
+                            </span>
+                            <h4>{{'menu.profile' | translate}}</h4>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>

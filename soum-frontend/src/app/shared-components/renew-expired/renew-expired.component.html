@@ -1,0 +1,39 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <!-- <a class="popup-close" (click)="hideBidModal()"
+        ><img class="icon-close" src="assets/images/icons/Union-icon.svg" alt=""
+      /></a> -->
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+        <div class="products-top-bar" style="text-align:center; margin-bottom: 20px;">
+            <div class="bold-font "> {{'labels.renewFor' |translate}}</div>
+            <div class="device-memory-box-expired"  [ngClass] ="{'selected-button': item.value == selectedItem}"*ngFor="let item of arrayOfExpiry"
+            (click)="selectItem(item.value)">
+            <span>{{translate?.getDefaultLang() == 'ar' ? item?.titleA : item?.titleE}}</span>
+        </div>
+     
+            <div class="products-bottom">
+                <a class="button btn-full normal-color" (click)="renew()">
+                    <span class="now-text">
+                        {{'labels.listrenew' | translate}}
+                    </span>
+                    <div>
+                    </div>
+                </a>
+                <br>
+                <br>
+                <a class=" full-size " (click)="hideBidModal()">
+                    <br>
+                <br>
+                    <span class="  err-color">
+                        {{'labels.cancel' | translate}}
+                    </span>
+                    <div>
+                        <br>
+                    </div>
+                </a>
+        
+            </div>
+        </div>
+    </div>
+</div>

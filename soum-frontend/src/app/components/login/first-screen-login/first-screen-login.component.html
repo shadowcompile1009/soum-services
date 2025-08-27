@@ -1,0 +1,62 @@
+<div class="products-top-bar" style="float: left;">
+    <div class="custom-control custom-switch"
+    [ngClass]="{'lang_ar': translate?.getDefaultLang() == 'ar', 'lang_en':translate?.getDefaultLang() == 'en'}">
+
+        <label class="text-lang" (click)="changeLanguage()">
+            <a><img alt="change language" class="rotate_img" [src]="'Vector.png' | imagePath: 'newSign'"></a>
+            <span *ngIf="!arabic">{{'labels.arabicMode' | translate}} </span>
+            <span *ngIf="arabic">{{'labels.englishMode' | translate}} </span>
+        </label>
+    </div>
+    <img alt="" *ngIf="showSecond" [src]="'1.png' | imagePath: 'newSign'" height="200px">
+
+    <img alt="" *ngIf="showFirst" [src]="'3.png' | imagePath: 'newSign'" height="200px">
+
+    <div class="background" *ngIf="showFirst">
+        <div class="bold-font"> {{'labels.signUp-firstlabel' |translate}}</div>
+        <div class="normal-font" style="font-weight: bold;">{{'labels.signUp-firstDes' | translate}}</div>
+
+        <div class="products-bottom" 
+        [ngClass]="{'custom_ar': translate?.getDefaultLang() == 'ar', 'custom_en':translate?.getDefaultLang() == 'en'}">
+            <a class="button button-next" [class.rotate_btn]="translate?.getDefaultLang() == 'ar'"
+                (click)="hideFirst()">
+                <span class="now-text" id="walkthrough_1_next" style="font-weight: bold;">
+                    {{'labels.next' | translate}}
+                </span>
+            </a>
+            <div class="dot_container">
+                <span class="dot" [ngClass]="{active: showFirst}"></span>
+                <span class="dot" (click)="hideFirst()"></span>
+            </div>
+            <a class="button skip-button skipped" (click)="showMainPAge()" style="background-color: transparent;">
+                <span class="now-text skip_btn"  id="walkthrough_1_skip">
+                    {{'labels.skip' | translate}}
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="background" *ngIf="showSecond">
+        <div class="bold-font"> {{'labels.signUp-thirdlabel' |translate}}</div>
+        <div class="normal-font" style="font-weight: bold;">{{'labels.signUp-thirdDes' | translate}}</div>
+
+        <div class="products-bottom"
+        [ngClass]="{'custom_ar': translate?.getDefaultLang() == 'ar', 'custom_en':translate?.getDefaultLang() == 'en'}">
+            <a class="button button-next" [class.rotate_btn]="translate?.getDefaultLang() == 'ar'"
+                (click)="hideSecond()">
+                <span class="now-text" id="walkthrough_2_next" style="font-weight: bold;">
+                    {{'labels.next' | translate}}
+                </span>
+            </a>
+            <div class="dot_container">
+                <span class="dot" (click)="returnToFirst()"></span>
+                <span class="dot" [ngClass]="{active: showSecond}"></span>
+            </div>
+            <a class="button skip-button skipped" (click)="showMainPAge()" style="background-color: transparent;">
+                <span class="now-text skip_btn" id="walkthrough_2_skip">
+                    {{'labels.skip' | translate}}
+                </span>
+            </a>
+        </div>
+    </div>
+
+</div>

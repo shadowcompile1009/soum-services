@@ -1,0 +1,171 @@
+.wlakThrought {
+  min-height: 100vh;
+  background: #fdfdfd;
+  width: 100%;
+  padding-top: 20px;
+
+  .stepperAr {
+    min-height: 560px !important;
+  }
+
+  #stepper1, #stepper2, #stepper3, #stepper4 {
+    min-height: 630px;
+  }
+
+  .header_part {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 30px;
+    margin-bottom: 20px;
+
+    .callUs_image {
+      width: 24px;
+      height: 24px;
+    }
+    .callUS_text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #177ae2;
+    }
+  }
+
+  // shared styles in all component
+  .image_part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .walkThrough_image {
+      width: 290px;
+      height: 320px;
+    }
+  }
+
+  .content_wlakThrought {
+    padding: 0 10px 0 30px;
+    margin-top: 5px;
+
+    .congrates,
+    .congrates_text,
+    .shipDevice,
+    .receivePayment,
+    .afterVerification,
+    .manage {
+      font-family: 'DIN Next LT Arabic';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 50px;
+    }
+
+    .congrates,
+    .ship,
+    .afterVerification,
+    .listingEasly {
+      color: #31cdcd;
+    }
+
+    .hint {
+      margin-top: 8px;
+      .hint_content {
+        font-family: 'DIN Next LT Arabic';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 26px;
+        color: #313437;
+      }
+    }
+  }
+
+  #stepper3 {
+    .image_part {
+      justify-content: flex-end !important;
+    }
+  }
+
+  #stepper4 {
+    .walkThrough_image {
+      width: auto !important;
+    }
+    .content_wlakThrought {
+      padding: 0 20px 0 40px;
+    }
+  }
+
+  .stepper {
+    display: flex;
+    padding: 0 25px;
+    margin-bottom: 2vh;
+    .stepper_circle {
+      width: 7px;
+      height: 7px;
+      border-radius: 7px;
+      margin: 0 3px;
+      border: 1px solid #177ae2;
+    }
+
+    .stepper_active {
+      width: 17px;
+      height: 7px;
+      background: #177ae2;
+      border-radius: 3.5px;
+    }
+  }
+
+  .footer {
+    width: 100%;
+    padding-bottom: 15px;
+
+    .footer_content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 50px;
+
+      .skipBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 8px;
+        background: #177ae2;
+        border-radius: 0 25px 25px 0;
+        cursor: pointer;
+        width: 174px;
+        height: 50px;
+
+        span {
+          font-family: 'DIN Next LT Arabic';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 26px;
+          text-align: center;
+          color: #ffffff;
+        }
+      }
+
+      .nextBtn {
+        height: 20px;
+        width: 15px;
+        margin-right: 25px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .walkThrough_image {
+    height: 300px !important;
+  }
+
+  .manage, .congrates, .congrates_text, .shipDevice, .receivePayment, .afterVerification {
+    line-height: 40px !important;
+  }
+
+  .hint_content {
+    line-height: 20px !important;
+  }
+}

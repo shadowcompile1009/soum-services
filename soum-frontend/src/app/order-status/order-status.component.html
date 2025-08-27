@@ -1,0 +1,66 @@
+<ng-container *ngIf="paymentStatus === 'Success'">
+    <div class="content">
+        <div class="products-top-bar" style="float: left">
+            <div class="backgroundThird">
+                <img alt="card" src="assets/images/newSign/order-success.png" style="margin-top: 30px;"/>
+                
+                <div class="bold-font">{{'orderDetails.orderStatus.success_title' | translate}}</div>
+                <div class="normal-font">
+                    {{'orderDetails.orderStatus.success_desc' | translate}} 
+                </div>
+
+                <div class="products-bottom done">
+                    <a class="button btn-full btn-done-SL" (click)="navigateTo('/order-details')">
+                        <span class="now-text">{{'orderDetails.orderStatus.done' | translate}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="paymentStatus === 'Pending'">
+    <div class="content">
+        <div class="products-top-bar" style="float: left">
+            <div class="backgroundThird">
+                <img alt="time-expanding" src="assets/images/newSign/time-expanding.png" style="margin-top: 30px;"/>
+                
+                <div class="bold-font">{{'orderDetails.orderStatus.pending_title' | translate}}</div>
+                <div class="normal-font">
+                    {{'orderDetails.orderStatus.pending_desc' | translate}}
+                </div>
+
+                <div class="products-bottom fail">
+                    <a class="button btn-full profile_go_SL" (click)="navigateTo('/profile')">
+                        <span class="now-text">{{'orderDetails.orderStatus.pending_btn' | translate}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="paymentStatus === 'Fail'">
+    <div class="content">
+        <div class="products-top-bar" style="float: left">
+            <div class="backgroundThird">
+                    <img alt="order success" src="assets/images/newSign/right-card.png"/>
+                <div class="bold-font">{{'orderDetails.orderStatus.fail_title' | translate}}</div>
+                <div class="normal-font">
+                    {{(paymentType == "MADA" ? ('orderDetails.orderStatus.mada_fail_desc' | translate) : ('orderDetails.orderStatus.fail_desc' | translate))}}
+
+                </div>
+
+                <div class="products-bottom fail ">
+                    <a class="button btn-full try-payment-fail-SL" (click)="navigateTo('/order')">
+                        <span class="now-text">
+                            {{(paymentType == "MADA" ? ('orderDetails.orderStatus.mada_fail_btn_try' | translate) : ('orderDetails.orderStatus.fail_btn_try' | translate))}}
+                        </span>
+                    </a>
+
+                    <a class="button btn-full skip-button contact_us_SL" style="background-color: transparent;text-align: center;">
+                        <a target="_blank" href="https://api.whatsapp.com/send?phone=966920035039" class="now-text" style="color: #177ae2">{{'orderDetails.orderStatus.contact_us' | translate}}</a>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

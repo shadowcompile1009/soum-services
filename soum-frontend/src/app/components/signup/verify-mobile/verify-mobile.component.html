@@ -1,0 +1,70 @@
+<div class="first-bar">
+    <div class="arrow_container"
+        [ngClass]="{'arrow_ar': translate?.getDefaultLang() == 'ar', 'arrow_en':translate?.getDefaultLang() == 'en'}">
+        <p class="sub-title step1">{{'forgotPassword.step2' | translate}}</p>
+        <a class="back-button" (click)="goBack()"><img alt="back" [src]="'right-arrow.png' | imagePath: 'icons'"></a>
+    </div>
+    <p class="sub-title mobileCode">{{'forgotPassword.verification' | translate}}</p>
+    <p class="sub-title onetime"> {{'signUp.enterOtp' | translate}}</p>
+</div>
+<div class="content">
+
+    <div class="section_login">
+        <div class="container container-padding">
+            <div class="login-bar input-bar-box">
+                <div class="otp-input">
+               
+                    <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                        [ngClass]="{activeOtp: otp1}">
+
+                        <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp1"
+                            name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, null, digit2)" #digit1>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                        [ngClass]="{activeOtp: otp2}">
+
+                        <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp2"
+                            name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit1, digit3)" #digit2>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                        [ngClass]="{activeOtp: otp3}">
+
+                        <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp3"
+                            name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit2, digit4)" #digit3>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                        [ngClass]="{activeOtp: otp4}">
+
+                        <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp4"
+                            name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit3, digit5)" #digit4>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                        [ngClass]="{activeOtp: otp5}">
+
+                        <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp5"
+                            name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit4, digit6)" #digit5>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;"
+                        [ngClass]="{activeOtp: otp6}">
+
+                        <input matInput type="tel" class="mobile-num" (keypress)="numberOnly($event)" [(ngModel)]="otp6"
+                            name="number" [maxLength]="1" (keyup)="checkOtpInputs($event, digit5, null)" #digit6>
+                    </mat-form-field>
+                </div>
+         
+                <p class="countDown" *ngIf="disableResendCode">
+                    {{'signUp.pleaseWait' | translate}} <countdown class="countDown_timer" [config]="configCountdown" (event)="handleTimer($event)"></countdown> {{'signUp.anotherCode' | translate}}
+                </p>
+
+                <p class="input-text-bar center-text"><a (click)="resendOtp();disableResendCode = true"
+                        class="font-color-primary" [ngClass]="{'disable_link': disableResendCode}">{{'signUp.resendCode' | translate}}</a></p>
+        
+            </div>
+        </div>
+    </div>
+</div>

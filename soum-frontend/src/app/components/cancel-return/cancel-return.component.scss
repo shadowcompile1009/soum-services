@@ -1,0 +1,32 @@
+.back-bar {
+  border-bottom: 6px solid #f2f5f8;
+  box-shadow: none;
+}
+.section-description .section_title {
+  padding-top: 0px;
+  text-align: left;
+  padding-bottom: 15px;
+}
+.section-description {
+  padding-top: 30px;
+  height: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding-bottom: 110px;
+}
+.description-row .textarea-field textarea {
+  height: 175px;
+  width: 100%;
+  outline: none !important;
+  border-radius: 4px;
+  border: 1px solid #c2c2c2;
+  background-color: #ffffff;
+  padding: 15px;
+  resize: none;
+  color: #363636;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+  font-family: 'DIN Next LT Arabic', sans-serif;
+}

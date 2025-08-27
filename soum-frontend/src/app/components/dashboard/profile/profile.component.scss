@@ -1,0 +1,385 @@
+@import "../../../../assets/css/color.scss";
+.user-info-edit {
+  // margin-top: 10px;
+  // border-top: 1px solid #EBEBEB;
+  padding-top: 5px;
+}
+.payment-box .products-content .product-info .plus-text span {
+  display: block;
+}
+.tab-wish-list .products-bottom .price-buttons {
+  width: 165px;
+}
+.err-desc{
+  font-size: 11px;
+  font-weight: bold;
+  color: #F35252 !important;
+}
+.tab-wish-list .product-info .product-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tab-wish-list .product-info .left {
+  width: calc(100% - 133px);
+}
+.pointer-cursor {
+  cursor: pointer;
+}
+.privacy_policy,
+.call_us{
+  color: #434343 !important;
+  font-size: 16px !important;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif !important
+}
+
+.button_password{
+  color: #F35252 !important;
+  font-size: 16px !important;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif !important
+}
+
+.tab-wish-list {
+  background: #f3f3f3;
+  padding: 0 0 15px 0;
+}
+
+.dateBoughtSold{
+  display: flex;
+    justify-content: flex-end;
+    font-family: 'DIN Next LT Arabic', sans-serif;
+    font-size: 8px;
+    color: #A6AEAF;
+}
+
+.sell-content .plus-text b p {
+  display: inline-block;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sell-content .plus-text span {
+  margin-left: auto;
+  margin-bottom: 6px;
+}
+.user-info-edit .section_title {
+  font-size: 16px;
+}
+ .section_title {
+  color: #434343;
+  font-size: 16px;
+  font-family: 'DIN Next LT Arabic Medium', sans-serif
+}
+
+.user-info-edit span {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.user-info-edit .user_name_edit {
+  padding-bottom: 10px;
+}
+
+.user-info-edit span input {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 10px;
+  border: 1px solid #ebebeb;
+  padding: 0 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.user-info-edit span .save_icon {
+  margin-left: 10px;
+  width: 23px;
+}
+
+.save_icon {
+  cursor: pointer;
+}
+
+.ng-invalid .save_icon {
+  cursor: not-allowed;
+}
+
+.user-info-edit span .icon_edit img {
+  display: inline-block;
+}
+
+a {
+  cursor: pointer;
+}
+
+.error-profile {
+      font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: normal;
+  display: block;
+  color: #878787;
+}
+
+/*****************/
+.user_name_edit {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.user_name_edit input {
+  outline: none;
+  border-radius: 0px !important;
+  border: 1px solid #bfbcbc;
+  padding: 3px 7px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.user_name_edit img {
+  width: 20px;
+}
+
+.user_name_edit .edit_icon {
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+.user_name_edit .icon_edit {
+  display: flex;
+}
+
+.card-number span {
+  margin-right: 0px !important;
+  margin-left: 15px;
+}
+
+.card-info .card-number {
+  width: calc(100% - 80px);
+}
+.wpwl-brand-icon {
+  // width: 70px;
+  width: 60px;
+}
+.wpwl-brand-MADA {
+  background-position: 0px -4092px;
+  background-size: 200px;
+}
+.wpwl-brand-VISA {
+  background-position: 0px -5890px;
+  background-size: 150px;
+  height: 18px;
+}
+.wpwl-brand-MASTER {
+  background-position: 0 -2753px;
+  width: 65px;
+  height: 18px;
+  background-size: 130px;
+}
+.wpwl-brand-AMEX {
+  background-position: 0px -369px;
+  height: 18px;
+}
+
+.section-details.more_information {
+  margin-bottom: 6px !important;
+}
+.sell-content .plus-text b {
+  // width: 85px;
+
+  width: 130px;
+}
+
+.sell-content .plus-text {
+  width: 100%;
+  display: block;
+}
+
+.listing-expired {
+  font-weight: 400;
+  color: #000 !important;
+}
+
+.accept-bid-btn {
+  background: none !important;
+  border: 0;
+}
+
+.accept-bid-btn:disabled {
+  background: none !important;
+}
+
+.accept-bid-btn:disabled span {
+  background-color: #bcbcbc !important;
+}
+.btn_2 span {
+  display: inline-block !important;
+}
+
+.borderRight {
+  border-right: 4px solid var(--primary-color);
+}
+.sells-content {
+  margin-bottom: 4px !important;
+}
+.btn_2 .allbid_btn {
+  // height: 20px;
+  width: 100px;
+  font-size: 12px;
+  margin-right: 0px !important;
+  color: #fff;
+  background-color: $primary-color;
+}
+
+#allbid-popup .bid-title {
+  top: 12px;
+  left: 15px;
+  position: absolute;
+  color: #363636;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+}
+
+#allbid-popup .popup-inner {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.all-bid-list .table td,
+.all-bid-list .table .thead-light th {
+  font-size: 14px;
+  padding: 10px 5px;
+}
+
+.addDetails {
+  overflow-wrap: break-word;
+}
+
+.button_profile{
+  font-size: 12px;
+  font-family: 'DIN Next LT Arabic', sans-serif;
+}
+
+.user-address{
+  p{
+    b{
+      color: #5A5555 ;
+      font-size: 12px ;
+      font-family: 'DIN Next LT Arabic', sans-serif;
+    }
+  }
+}
+.order_button {
+  img {
+    width: 18px;
+  }
+}
+
+.validPromo {
+  color: #1AD844;
+  font-weight: 500;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+.inValidPromo {
+  color: #E64505;
+  font-weight: 500;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+.waitingVerify {
+  color: #007BFF;
+  font-weight: 500;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+.addCode {
+  color: #363636;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 26px;
+  padding-bottom: 12px;
+  padding-top: 19px;
+  display: block;
+}
+.discount {
+  color: red;
+  text-decoration: line-through;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.halfstyle-width{
+  width: 230px!important;
+  display: inline-block;
+}
+
+.copy-box {
+  background: #177AE2;
+  color: white;
+  cursor: pointer;
+}
+
+.promo-row{
+  margin: 10px 0px;
+  border-radius: 10px;
+}
+.triangle {
+  background: linear-gradient(to bottom left, #fff 0%, #fff 50%, #F4F6FA 50%, #F4F6FA 100%);
+}
+
+.input-promo{
+  height: 50px !important;
+    border: 0px  !important;
+}
+.font-color {
+  color: #177AE2 !important;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+.underline{
+  text-decoration: underline !important;
+}
+.promo-font{
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 21px;
+color: #313437;
+}
+
+
+.moarf-number{
+  text-align: center;
+  padding: 20px 0;
+    img {width: 60px;}
+    .soum-moarf { 
+      margin: 10px 0;
+      span { font-size: 15px; font-weight: bold; }
+      a { font-size: 14px; font-weight: bold;}
+    }
+}

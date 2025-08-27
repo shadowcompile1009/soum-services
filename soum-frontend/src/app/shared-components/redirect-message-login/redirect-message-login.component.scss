@@ -1,0 +1,60 @@
+.container-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #F9F9FA;
+    padding: 20px 0;
+}
+
+.container-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+
+    .msg-text{
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: center;
+        color: #434343;
+    }
+}
+
+.container-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .btn-register {
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 26px;
+        text-align: center;
+        color: #FFFFFF;
+        background: #177AE2;
+        padding: 3px 10px 8px 10px;
+        border-radius: 20px;
+        margin-bottom: 15px;
+        width: 70%;
+        cursor: pointer;
+    }
+    
+    .btn-cancel{
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #F35252;
+        cursor: pointer;
+    }
+}

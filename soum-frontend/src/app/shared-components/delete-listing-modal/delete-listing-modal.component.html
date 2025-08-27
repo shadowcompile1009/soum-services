@@ -1,0 +1,27 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+  <div class="popup-inner">
+      <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+          class="grey-button"></div>
+      <div class="products-top-bar" style="text-align:center;">
+          <div class="bold-font err-color"> {{'labels.deleteDraft' |translate}}</div>
+          <div class="normal-font">{{'labels.deleteDesc' | translate}} </div>
+          <div class="products-bottom">
+              <a class="button err-color  btn-full " (click)="deleteDraft()">
+                  <span class="now-text">
+                      {{'labels.yesDelete' | translate}}
+                  </span>
+                  <div>
+                  </div>
+              </a>
+              <a class=" full-size " (click)="hideBidModal()">
+                <span class="normal-color">
+                    {{'labels.dontDelete' | translate}}
+                </span>
+                <div>
+                    <br>
+                </div>
+            </a>
+          </div>
+      </div>
+  </div>
+</div>

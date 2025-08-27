@@ -1,0 +1,115 @@
+  .content_padding {
+    padding-top: 0;
+  }
+  
+  .div-card {
+    display: flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-style: normal;
+    margin: 10px auto -10px auto;
+    background: rgba(49, 205, 205, 0.08);
+    font-family: 'DIN Next LT Arabic Bold';
+    .div_title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #177ae2;
+      text-align: center;
+    }
+    .div_sub_title {
+      font-size: 15px;
+      color: #12d5d4;
+    }
+  }
+  
+  .search_section{
+        display: flex;
+        padding-top: 20px;
+        align-items: center;
+        justify-content: space-between;
+        .full-width {
+        width: 100%;
+        }
+        .search-form {
+          flex: 0.85;
+        }
+        .btn-cancel {
+          flex: 0.1;
+          height: 45px;
+          font-size: 14px;
+          cursor: pointer;
+          font-weight: 400;
+          color: #177AE2;
+          font-family: 'DIN Next LT Arabic';
+        }
+    }
+    ::ng-deep .mat-form-field {
+        .mat-form-field-underline {
+            display: none;
+        }
+        .mat-form-field-flex {
+          background-color: #fff;
+          border-radius: 6px !important;
+          align-items: center;
+          height: 45px;
+          padding: 0 !important;
+          .mat-icon {
+            color: #A6AEAF;
+          }
+        }
+        .mat-form-field-infix {
+          display: flex;
+          .search_icon {
+            padding: 0 5px;
+            color: #D2D6D8;
+          }
+        }
+    }
+
+  .not_found_wrapper {
+    margin-top: 50px;
+    .not_found_txt {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .no_title {
+            color: black;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            font-family: 'DIN Next LT Arabic';
+        }
+        .sub_title {
+            color: #A6AEAF;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'DIN Next LT Arabic';
+        }
+    }
+  }
+
+  .mat-input-element::placeholder{
+    color: #D2D6D8;
+    font-family: 'DIN Next LT Arabic';
+  }
+
+  .custom_ar {
+    .search_section {
+      flex-direction: row-reverse;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .search_section {
+      width: 95%;
+      margin: auto;
+    }
+  }

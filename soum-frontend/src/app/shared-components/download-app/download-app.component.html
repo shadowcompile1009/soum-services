@@ -1,0 +1,14 @@
+<div draggable="true" (dragstart)="hideDownloadApp()" (drag)="hideDownloadApp()" (dragover)="hideDownloadApp()"
+    class="grey-button">
+</div>
+<div class="referral-popup" [ngClass]="{'custom_ar': translate?.getDefaultLang() == 'ar'}">
+    <h1 class="header_txt">{{'downloadApp.header1' | translate}}</h1>
+    <h1 class="header_txt">{{'downloadApp.header2' | translate}}</h1>
+    
+    <div class="image-background">
+        <img alt="app_popup" class="referral-image" [src]="translate?.getDefaultLang() == 'en' ? ('downloadEn.png' | imagePath): ('downloadAr.png' | imagePath)">
+    </div>
+</div>
+<div class="continue-button" (click)="navigateAppStore()">
+    <span class="now-text">{{'downloadApp.btn_text' | translate}}</span>
+</div>

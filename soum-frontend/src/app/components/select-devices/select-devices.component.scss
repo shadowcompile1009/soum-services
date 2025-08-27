@@ -1,0 +1,117 @@
+@import "../../../assets/css/color.scss";
+
+.section-device-sell .section_title {
+    padding-top: 0px;
+    text-align: center;
+    padding-bottom: 27px;
+}
+
+.section-device-sell {
+    padding-top: 20px;
+    background: #FDFDFE;
+    height: 100%;
+    min-height: 100vh;
+    display: inline-block;
+    width: 100%;
+}
+
+.device-sell-box {
+    float: left;
+    width: calc(50% - 10px);
+    margin-right: 20px;
+    height: 158px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000014;
+    border: 1px solid #E7E7E7;
+    border-radius: 4px;
+    display: flex;
+   // align-items: center;
+    //justify-content: center;
+    margin-bottom: 20px;
+}
+
+.device-sell-box-acitve {
+    border: 1.5px solid #095988;
+}
+
+.device-sell-box:nth-child(2n) {
+    margin-right: 0px;
+}
+
+.device-sell-box img {
+    display: block;
+    padding-bottom: 0px;
+    margin: 0px 17px;
+    height: 120px;
+    width: 120px;
+}
+
+.device-sell-box .device-sell-img {
+    text-align: center;
+}
+
+.device-sell-box .title-img {
+    color: $text-color;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 22px;
+    padding: 0 10px;
+    display: block;
+}
+
+
+.back-button{
+    img {
+      width: 18px;
+    }
+}
+
+@media screen and (max-width:369px) {
+.device-sell-box {
+    height: 130px;
+    padding: 10px;
+}
+.device-sell-box .title-img {
+    font-size: 13px;
+    padding: 0px;
+}
+
+}
+
+
+.device_notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deviceType{
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+    font-weight: bold;
+}
+
+.contactUs {
+    font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #212121;
+    cursor: pointer !important;
+    margin-top: 5px;
+}
+
+.fitst_part {
+    text-align: center
+}

@@ -1,0 +1,158 @@
+.section-device-memory {
+  padding-top: 20px;
+  margin-bottom: 75px;
+  background: #ffffff;
+  
+  .container_attributes {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 20px;
+    background: #fdfdfe;
+    display: inline-block;
+    position: relative;
+
+    .variant_container {
+      padding: 0 10px;
+      margin-bottom: 30px;
+
+      .attribute_title {
+        font-family: 'DIN Next LT Arabic Regular';
+        font-size: 16px;
+        font-weight: bold;
+        margin: 5px 0;
+        padding: 0 10px;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .attribute_title_ar {
+        font-family: 'DIN Next LT Arabic Regular';
+        font-size: 16px;
+        font-weight: bold;
+        margin: 5px 0;
+        padding: 0 10px;
+        display: flex;
+        justify-content: flex-end !important;
+      }
+
+      .variant_option {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .variant_option_ar {
+        display: flex;
+        justify-content: flex-end !important;
+        flex-wrap: wrap;
+      }
+
+      .option_value {
+        font-size: 15px;
+        font-weight: 600;
+        font-family: 'DIN Next LT Arabic Regular';
+        width: 46%;
+        margin: 8px 5px;
+        background: #ffffff;
+        cursor: pointer;
+        box-shadow: 1px 3px 5px #ddd;
+        min-height: 40px;
+        border-radius: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+      }
+
+      .option_value_ar {
+        direction: rtl;
+      }
+
+      .option_active {
+        background: #177ae2;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .products-bottom {
+    position: fixed;
+    bottom: 0;
+    height: 80px;
+    width: 375px;
+    background: #ffffff;
+    box-shadow: 1px 3px 25px #ddd;
+    margin-top: -60px;
+
+    .button-next {
+      margin-top: 20px;
+      background: #177ae2;
+      border-radius: 20px 0px 0px 20px;
+
+      .now-text {
+        text-align: center !important;
+        font-family: ' DIN Next LT Arabic';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px !important;
+        line-height: 29px !important;
+      }
+    }
+
+    .disabled-button {
+      background-color: #e3e3e3 !important;
+      cursor: not-allowed !important;
+    }
+  }
+
+  .device_notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
+
+  .deviceType {
+    font-family: 'DIN Next LT Arabic', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+    font-weight: bold;
+  }
+
+  .contactUs {
+    font-family: 'DIN Next LT Arabic', sans-serif !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #212121;
+    cursor: pointer !important;
+    margin-top: 5px;
+  }
+
+  .fitst_part {
+    text-align: center;
+  }
+
+  .api-inline-loader {
+    position: absolute;
+    top: -85px;
+    left: 0px;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+
+    .spinner-border {
+      margin-top: 100%;
+    }
+  }
+}

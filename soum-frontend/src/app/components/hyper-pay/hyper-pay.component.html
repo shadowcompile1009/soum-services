@@ -1,0 +1,23 @@
+<div class="content">
+    <div class="back-bar">
+        <div class="container">
+            <a class="back-button" (click)="goBack()">
+                <img alt="back" [src]="'back.png' | imagePath: 'icons'">
+            </a>
+            <h3 class="product-title">{{'labels.paymentDetails' | translate}}</h3>
+        </div>
+    </div>
+    <div class="payment_hyper">
+        <div class="container" [ngSwitch]="paymentMode">
+            <form *ngSwitchCase="'VISA_MASTER'" [action]="shopperResultUrl" class="paymentWidgets"
+                data-brands="MASTER VISA">
+            </form>
+            <form *ngSwitchCase="'MADA'" [action]="shopperResultUrl" class="paymentWidgets" data-brands="MADA">
+            </form>
+            <form *ngSwitchCase="'STC_PAY'" [action]="shopperResultUrl" class="paymentWidgets" data-brands="STC_PAY">
+            </form>
+            <form *ngSwitchCase="'APPLEPAY'" [action]="shopperResultUrl" class="paymentWidgets" data-brands="APPLEPAY">
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="content" [class.custom_ar]="translate?.getDefaultLang() == 'ar'">
+    <div class="back-bar">
+        <div class="container">
+            <a class="back-button" (click)="goBack()">
+                <img alt="back" [src]="'back.png' | imagePath: 'icons'">
+            </a>
+            <h3 class="product-title">{{'labels.paymentOptions' | translate}}</h3>
+        </div>
+    </div>
+    <div class="payment_options">
+        <div class="container">
+            <ul>
+                <li *ngFor="let card of cards, let i = index" [ngClass]="{'active-card': card?.selected}">
+                    <input type="radio" [(ngModel)]="selectedCard" class="payment_card_SL" [value]="card?.type" name="card">
+                    <div class="card-d card_SL">
+                        <div class="card-inner" [ngClass]="{'text_reverse': card.name === 'MADA' && translate?.getDefaultLang() == 'ar','text_reverse_en' : card.name === 'MADA' && translate?.getDefaultLang() == 'en'}">
+                            <div class="wpwl-brand-icon wpwl-brand-card"
+                            [class]="card?.type == 'VISA_MASTER' ? 'wpwl-brand-VISA' : 'wpwl-brand-' + card?.type">
+                            </div>
+                            <span *ngIf="card.name === 'MADA'" class="card-inner_text lg">
+                                {{'labels.madaPaymentDesc' | translate}}
+                            </span>
+                            <div *ngIf="card?.type == 'VISA_MASTER'" class="wpwl-brand-icon wpwl-brand-card"
+                                [class]="card?.type == 'VISA_MASTER' ? 'wpwl-brand-MASTER' : 'wpwl-brand-' + card?.type">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row div-card-support">
+        <strong class="messge-main">{{'soumCommunication.support.support1' | translate}}
+            <a target="_blank" href="https://api.whatsapp.com/send?phone=966920035039" class="messge-secondary"
+                style="text-decoration: underline !important">
+                {{'soumCommunication.support.support2' | translate}}
+            </a>
+        </strong>
+        <img alt="outgoing-call" class="outgoing-call-image" [src]="'outgoing-call.png' | imagePath: 'icons'">
+    </div>
+
+    <div class="fix-button fix-button-new ng-star-inserted">
+        <button [disabled]="!selectedCard" (click)="onContinue()" type="button" name="submit"
+            class="send_button payment_proceed_SL">
+            {{'labels.checkout' | translate}}
+            <img alt="send" [src]="'arrow-send.svg' | imagePath: 'icons'">
+        </button>
+    </div>

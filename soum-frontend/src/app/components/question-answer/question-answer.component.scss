@@ -1,0 +1,282 @@
+@import "../../../assets/css/color.scss";
+
+.back-bar {
+    border-bottom: 1px solid #E7E7E7;
+    box-shadow: none;
+}
+
+.section-condition .section_title {
+    padding-top: 0px;
+    text-align: center;
+    padding-bottom: 27px;
+}
+.button-next{
+    margin-top: 20px;
+    background: #177AE2;
+    border-radius: 20px 0px 0px 20px ;
+  }
+  
+  .now-text {
+    text-align: center !important;
+
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px !important;
+    line-height: 29px !important;
+  }
+.square-div{
+
+    width: 160px !important;
+    margin: 5px!important;
+
+}
+.question-line{
+    font-size: 14px;
+line-height: 24px;
+font-weight: bold;
+/* or 150% */
+
+
+/* Primary blue */
+
+color: #177AE2;
+
+}
+.section-condition {                    
+    padding-top: 15px;
+    height: 100%;
+    background: #fff;
+    min-height: 100vh !important;
+    .container-padding .description-row .products-bottom{
+      margin-top: 15px;
+    }
+}
+
+.condition-box .condition h3 {
+    color: $text-color;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 22px;
+    padding-bottom: 4px;
+}
+
+.condition-box .condition p {
+    color: #8D8D8D;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 22px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.condition-button {
+    margin-top: 30px;
+    float: left;
+    width: 100%;
+}
+
+
+.condition-button .condition-btn {
+    border: 1px solid #565656;
+    width:100%;
+    float: left;
+    color: #565656;
+    border-radius: 4px;
+    min-height: 50px;
+    padding: 10px 10px;
+    text-align: left;
+    font-size: 14px;
+    line-height: normal !important;
+    margin: 0 !important;
+    margin-bottom:20px !important;
+}
+
+
+
+.section-condition .condition {
+    float: left;
+    width: 100%;
+}
+
+.condition-button .condition-btn:last-child {
+    margin-right: 0px;
+}
+
+.description-row .input-field .sar-text {
+    width: 60px;
+    display: inline-block;
+    text-align: center;
+    line-height: 28px;
+    color: #a8a8a8;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+}
+.o-price{
+    font-size: 14px !important;
+}
+.description-row .textarea-field textarea {
+    height: 150px;
+    margin-top: 10px;
+    width: 100%;
+    outline: none !important;
+    border-radius: 4px;
+    border: 1px solid #c2c2c2;
+    background-color: #ffffff;
+    padding: 15px;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    resize: none;
+    color: #363636;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: normal;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+}
+
+.description-row .textarea-field textarea::placeholder {
+    color: #a8a8a8;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+
+.fix-button-new .send_button {
+    border: 0px !important;
+    outline: none;
+}
+
+.active {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+.condition-button .condition-btn:nth-child(2n) {
+    margin-left:0px !important;
+}
+
+
+.back-button{
+    img {
+      width: 18px;
+    }
+}
+.error-font{
+    font-size: 14px;
+    margin: 20px;
+    color: #e64505;
+}
+
+
+  .products-row .row {
+    margin: 0 -8px;
+  }
+  
+  .products-row .col-6 {
+      margin-bottom: 20px;
+      padding: 0 8px;
+      height: 220px;
+  }
+  
+  .products-box .products-top {
+    text-align: center;
+    height: 220px;
+    box-shadow: 0 0 9px rgba(190, 214, 195, 0.4);
+    background-color: #ffffff;
+    padding: 10px 10px 15px 10px;
+  
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 7px;
+  }
+  
+  .products-box .price-bar {
+    
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .price {
+    display: inline-block;
+  }
+  .selected-button{
+    border: 1px solid #177AE2 !important;
+    background: rgba(23, 122, 226, 0.04);
+    background-color: #f1f5f7 !important;
+  }
+
+.f_part {
+    width: calc(50% - 3px);
+    .button-final {
+      width: 95% !important
+    }
+
+  }
+
+  .s_part {
+    width: calc(50% - 3px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .f_text {
+    font-family: "DIN Next LT Arabic Medium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #3C3C3C;
+    margin-bottom: 5px;
+  }
+
+  .s_text{
+    font-family: 'DIN Next LT Arabic';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #A6AEAF;
+  }
+
+  .buttons_continue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .disabled-save-as-draft-button {
+    cursor: not-allowed !important;
+  }
+
+  .save-as-draft-button {
+    float: left;
+    margin-top: 15px;
+    margin-left: 20px;
+    vertical-align: middle;
+    margin-right: 15px;
+  }
+
+  .save-as-draft-text {
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 16px;
+    color: #313437;
+  }
+
+  .products-btns-price2 {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+  }

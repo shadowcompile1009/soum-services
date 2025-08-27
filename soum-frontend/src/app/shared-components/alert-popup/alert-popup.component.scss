@@ -1,0 +1,111 @@
+@import '../../../assets/css/color.scss';
+
+.ion-overlay-wrapper {
+    border-radius: 13px;
+    overflow: hidden;
+    background: #f9f9f9;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 250px;
+    display: inline-block;
+    width: 250px;
+    font-family: Poppins,sans-serif;
+}
+
+.sc-ion-alert-ios-s {
+   height: 100%;
+   width: 100%;
+}
+.alert-head.sc-ion-alert-ios {
+    padding-top: 12px;
+    padding-bottom: 7px;
+    text-align: center;
+    padding-inline-start: 16px;
+    padding-inline-end: 16px;
+}
+
+.alert-head.sc-ion-alert-ios h2 {
+    margin-top: 8px;
+    color: #000;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 0px;
+    margin-bottom: 0px;
+}
+.alert-message.sc-ion-alert-ios {
+    -webkit-padding-start: 16px;
+    padding-inline-start: 16px;
+    -webkit-padding-end: 16px;
+    padding-inline-end: 16px;
+    padding-top: 0;
+    padding-bottom: 21px;
+    color: #000;
+    font-size: 12px;
+    text-align: center;
+    font-family: Poppins,sans-serif;
+}
+button.alert-button {
+    outline: none;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+    -ms-flex: 1 1 auto;
+    /* flex: 1 1 auto; */
+    min-width: 50%;
+    height: 44px;
+    border-top: 0.55px solid #0000003b;
+    border-right: 0.55px solid #0000003b;
+    background-color: transparent;
+    color: $primary-color;
+    font-size: 17px;
+    /* overflow: hidden; */
+    border-bottom: 0px !important;
+    border-left: 0;
+    // font-weight: bold;
+}
+
+.alert-button-group.sc-ion-alert-ios {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: 100%;
+    -webkit-margin-end: -0.55px;
+    margin-inline-end: -0.55px;
+    margin-right: -0.55px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+button.alert-button+button.alert-button {
+    border-right: 0px !important;
+    border-left: 0px !important;
+}
+
+.sc-ion-alert-ios-s .sc-ion-alert-ios-backdrop {
+    background: #00000054;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+}
+
+.full-button {
+    min-width: 100% !important;
+}
+
+
+.ion-overlay-wrapper, .sc-ion-alert-ios-s .sc-ion-alert-ios-backdrop {
+    position: fixed !important;
+}

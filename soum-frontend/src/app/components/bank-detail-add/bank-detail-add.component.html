@@ -1,0 +1,80 @@
+<div class="content">
+  <app-header [pageTitle]="(updateBankDetail ? 'bankDetail.updateBank' : 'bankDetail.addBank') | translate"
+    (goBack)="goBack()"></app-header>
+
+  <div class="enter-detail" [formGroup]="addBankForm">
+    <div class="container container-padding">
+      <div class="detail-row" [ngClass]="{'custom_en': translate?.getDefaultLang() === 'en'}">
+        <h2 class="section_title">
+          {{
+          (updateBankDetail
+          ? "bankDetail.updateBankDetail"
+          : "bankDetail.enterBank"
+          ) | translate
+          }}
+
+        </h2>
+        <div class="detail-col">
+          <input type="text" id="holder-name" formControlName="accountHolderName" name="holder-name"
+            [placeholder]="'bankDetail.accHolderName' | translate" />
+          <div class="input-icon">
+            <img [src]="'account-holder-name.svg' | imagePath:'icons'" alt="" />
+          </div>
+        </div>
+        <div class="detail-col">
+          
+          <input
+            type="text"
+            autocapitalize
+            style="text-transform: uppercase"
+            id="accountId"
+            maxlength="22"
+            formControlName="accountId"
+            name="accountId"
+            [placeholder]="'bankDetail.accId' | translate"
+            (focus)="showHintIBAN()"
+            (blur)="hideHintIBAN()"
+            (keyup)="checkValidityIBAN()"
+          />
+          <div class="input-icon">
+SA
+          </div>
+        </div>
+
+        <div class="detail-col" style="margin-top: -10px;"
+          *ngIf="addBankForm.controls['accountId'].invalid && (addBankForm.controls['accountId'].touched || addBankForm.controls['accountId'].dirty)">
+          <div *ngIf="addBankForm.controls['accountId'].errors.pattern">
+            <p class="hint-iban">{{'bankDetail.iban-hint' | translate}}</p>
+          </div><br/>
+          <div *ngIf="ibanContainArabic">
+            <p class="hint-iban">{{'bankDetail.IBANshouldNotContainArabicCharacters' | translate}}</p>
+          </div>
+          <div *ngIf="ibanContainSA">
+            <p class="hint-iban">{{'bankDetail.IBANshouldNotContainSACharacters' | translate}}</p>
+          </div>
+        </div>
+
+        <div class="detail-col">
+          <div class="select-dropdown-address">
+            <ng-select [items]="bankList" [placeholder]="'bankDetail.bankBIC' | translate" [bindLabel]="'bankName'"
+              [bindValue]="'bankCode'" formControlName="bankBIC">
+            </ng-select>
+          </div>
+          <div class="input-icon">
+            <img [src]="'bank-bIC.svg' | imagePath: 'icons'" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fix-button fix-button-new">
+    <button type="button" name="submit" class="submit" [disabled]="addBankForm?.invalid" (click)="addBank()"
+      class="send_button">
+      {{
+      (updateBankDetail ? "bankDetail.updateBank" : "bankDetail.addBank")
+      | translate
+      }}
+      <img alt="send" [src]="'arrow-send.svg' | imagePath: 'icons'" />
+    </button>
+  </div>
+</div>

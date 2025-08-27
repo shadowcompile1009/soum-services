@@ -1,0 +1,544 @@
+@import "../../../assets/css/color.scss";
+
+.back-bar {
+  border-bottom: 1px solid #e7e7e7;
+  box-shadow: none;
+}
+.example-full-width {
+  width: 333px !important;
+}
+
+.section-description .section_title {
+  padding-top: 0px;
+  text-align: left;
+  padding-bottom: 10px;
+  font-size: 16px !important;
+}
+
+.question_hint{
+  font-family: 'DIN Next LT Arabic';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: right;
+  color: #B5BBBC;
+}
+
+.section-description {
+ padding-top: 20px;
+  height: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding-bottom: 110px;
+}
+
+.description-box {
+  position: relative;
+  float: left;
+  width: calc(33.33% - 12px);
+  margin-right: 18px;
+  height: 100px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000014;
+  border: 1px solid #e7e7e7;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.description-box .title-img {
+  color: $text-color;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 22px;
+  padding: 0px 10px 10px 10px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+
+.description-row {
+  display: inline-block;
+  width: 100%;
+  //padding-bottom: 35px;
+}
+.halfstyle-width{
+  width: 230px!important;
+  display: inline-block;
+}
+.inline-button{
+  height: 60px;
+  border-color: #bcbcbc ;
+    margin-bottom: 22px;
+  width: 100px!important;
+  display: inline-block;
+}
+.description-row .input-field {
+  display: flex;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid #c2c2c2;
+  background-color: #ffffff;
+  //padding: 10px 0px;
+}
+
+.description-row .input-field input {
+  border: 0px;
+  padding: 0 15px;
+  border-right: 1px solid #c2c2c2;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none !important;
+  color: #363636;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+}
+
+.description-row .input-field .sar-text {
+  width: 60px;
+  display: inline-block;
+  text-align: center;
+  line-height: 28px;
+  color: #a8a8a8;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+}
+
+.description-row .textarea-field textarea {
+  height: 247px;
+  width: 100%;
+  outline: none !important;
+  border-radius: 4px;
+  border: 1px solid #c2c2c2;
+  background-color: #ffffff;
+  padding: 15px;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  resize: none;
+  color: #363636;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+}
+
+.description-row .textarea-field textarea::placeholder {
+  color: #a8a8a8;
+  font-size: 14px;
+  font-weight: 400;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+}
+
+.fix-button-new {
+  border: 0px !important;
+  background: #f2f5f8;
+}
+
+.commission_seller {
+  padding-bottom: 25px !important;
+}
+
+.commission_seller .section_title {
+  padding-bottom: 0px !important;
+}
+
+.commission_seller .section_title strong {
+  font-weight: 700;
+}
+
+.description-row p {
+  margin-top: 5px;
+}
+
+.valid-month {
+  color: #363636;
+  font-weight: 500;
+  font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 12px;
+}
+
+.information {
+  display: inline-block;
+  text-align: center;
+  color: #363636;
+  font-weight: 500;
+  font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 12px;
+  line-height: 17px;
+  font-style: normal;
+  letter-spacing: normal;
+
+    img {
+    width: 15px;
+    float: right;
+    margin-left: 5px;
+  }
+}
+
+.ion-overlay-wrapper {
+  border-radius: 13px;
+  overflow: hidden;
+  background: #f9f9f9;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 250px;
+  width: 250px;
+  font-family: Poppins, sans-serif;
+  display: inline-block;
+}
+
+.sc-ion-alert-ios-s {
+  height: 100%;
+  width: 100%;
+}
+
+.alert-head.sc-ion-alert-ios {
+  padding-top: 12px;
+  padding-bottom: 7px;
+  text-align: center;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
+}
+
+.alert-head.sc-ion-alert-ios h2 {
+  margin-top: 8px;
+  color: #000;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+.alert-message.sc-ion-alert-ios {
+  -webkit-padding-start: 16px;
+  padding-inline-start: 16px;
+  -webkit-padding-end: 16px;
+  padding-inline-end: 16px;
+  padding-top: 0;
+  padding-bottom: 21px;
+  color: #000;
+  font-size: 12px;
+  text-align: center;
+  font-family: Poppins, sans-serif;
+}
+
+button.alert-button {
+  outline: none;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  -ms-flex: 1 1 auto;
+  /* flex: 1 1 auto; */
+  min-width: 50%;
+  height: 44px;
+  border-top: 0.55px solid #0000003b;
+  border-right: 0.55px solid #0000003b;
+  background-color: transparent;
+  color: $primary-color;
+  font-size: 17px;
+  /* overflow: hidden; */
+  border-bottom: 0px !important;
+  border-left: 0;
+  font-weight: bold;
+}
+
+.alert-button-group.sc-ion-alert-ios {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-margin-end: -0.55px;
+  margin-inline-end: -0.55px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -0.55px;
+}
+
+button.alert-button + button.alert-button {
+  border-right: 0px !important;
+  border-left: 0px !important;
+}
+
+.sc-ion-alert-ios-s .sc-ion-alert-ios-backdrop {
+  background: #00000054;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: block;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+}
+
+.full-button {
+  min-width: 100% !important;
+}
+
+.ion-overlay-wrapper,
+.sc-ion-alert-ios-s .sc-ion-alert-ios-backdrop {
+  position: fixed !important;
+}
+
+.section_title {
+  b {
+    font-weight: 700;
+  }
+}
+
+.cart-totals,
+.cart-totals table {
+  width: 95%;
+}
+
+.cart-totals table tr td {
+  font-size: 14px;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #c2c2c2;
+  outline: 0 !important;
+  box-shadow: none;
+}
+.now-text {
+  text-align: center !important;
+
+  font-family: "DIN Next LT Arabic", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px !important;
+  line-height: 29px!important;
+}
+.button-next{
+  background: #177AE2;
+  border-radius: 20px 0px 0px 20px ;
+}
+
+.card-promotion{
+  background: rgba(49, 205, 205, 0.09);
+border-radius: 8px;
+color: #31CDCD;
+height: 70px;
+}
+.img_discount-color{
+  color: #31CDCD;
+}
+.notes {
+  font-size: 12px;
+  line-height: 18px;
+  color: #b5bbbc;
+  display: block;
+  padding-bottom: 10px;
+}
+
+.expiration_date {
+  color: #363636;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 26px;
+  padding-bottom: 12px;
+  padding-top: 19px;
+  display: block;
+}
+
+.coupon-input {
+  border-style: dashed !important;
+  border-width: medium !important;
+  margin: 5px 0 0 0;
+}
+
+.coupon-input input {
+  border: 0 !important;
+}
+
+.coupon-input button {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0 10px;
+}
+
+.validPromo {
+  color: #1ad844;
+  font-weight: 500;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.inValidPromo {
+  color: #e64505;
+  font-weight: 500;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.waitingVerify {
+  color: #007bff;
+  font-weight: 500;
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.addCode {
+  color: #363636;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 26px;
+  padding-bottom: 12px;
+  padding-top: 19px;
+  display: block;
+}
+
+.discount {
+  color: red;
+  text-decoration: line-through;
+}
+
+.img_discount {
+  width: 20px;
+}
+
+.freeCharge {
+  color: #3dd0d0 !important;
+  font-size: 17px !important;
+}
+.color-title{
+  font-size: 16px !important;
+}
+
+
+.desc_info {
+  margin: -20px 0 20px 0;
+
+  .f_text {
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #B5BBBC;
+    display: inline;
+  }
+
+  .s_text {
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #177AE2 !important;
+    display: inline;
+  }
+
+}
+
+.hint_period {
+   .f_hint {
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #B5BBBC;
+   }
+
+   .s_hint {
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #177ae2;
+   }
+}
+
+
+.hint_displayed {
+
+  .hint_red {
+    font-family: "DIN Next LT Arabic", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 21px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #F35252;
+  }
+}
+
+.validity {
+  margin: -20px 0 20px 0;
+}
+
+.square-div, .square-div-width {
+  margin: 0 10px;
+}
+
+.save-as-draft-button {
+  vertical-align: middle;
+  margin-top: 5px;
+}
+
+.save-as-draft-text {
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 16px;
+  color: #313437;
+}
+.priceNudge {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.products-btns-price{
+   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 40px;
+}
+
+.err-desc{
+  font-size: 15px;
+  font-weight: bold;
+  margin: -20px 0 20px 0;
+  color: #F35252 !important;
+}
+
+.errorMaxPrice{
+  color: red;
+    font-size: 12px;
+    font-weight: bold;
+}

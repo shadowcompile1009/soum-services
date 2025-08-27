@@ -1,0 +1,139 @@
+.refer-container {
+    display: flex;
+    flex-direction: column;
+    background: #FDFDFD;
+    height: 100%;
+    min-height: 120vh;
+    width: 100%;
+    .header-title {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 2px solid #ECF0F1;
+        padding: 20px;
+        .back-arrow {
+            width: 20px;
+        }
+        .refer-title {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            font-family: "DIN Next LT Arabic", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 20px;
+            color: #177AE2;
+        }
+    }
+    .container-info {
+        .img-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+            img {
+                width: 318px;
+                height: 216px;
+            }
+        }
+    }
+    .howItWorksTitle {
+        h1 {
+            font-family: "DIN Next LT Arabic", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            color: #177AE2;
+        }
+    }
+    .containerRef {
+        margin-top: 15px;
+        .textInfo {
+            width: 80%;
+            position: relative;
+            margin: auto;
+            .text1 {
+                padding-bottom: 20px;
+                border-left: 1px dashed #31CDCD;
+                padding-left: 25px;
+                min-height: 50px;
+                h2 {
+                    font-family: "DIN Next LT Arabic", sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 21px;
+                    color: #313437;
+                    strong {
+                        font-weight: bold;
+                    }
+                }
+            }
+            .no {
+                position: absolute;
+                top: -1px;
+                left: -11px;
+                width: 22px;
+                height: 22px;
+                background: #31cdcd;
+                border-radius: 20px;
+                text-align: center;
+                color: #FDFDFD;
+                font-weight: bold;
+                line-height: 18px;
+                font-size: 16px;
+            }
+        }
+    }
+    .textSahreCode {
+        margin: 20px 0 5px 0;
+        font-family: "DIN Next LT Arabic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #B5BBBC;
+    }
+    .copyCode {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        .fPart {
+            background: #e9ecef;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            width: 20%;
+            font-family: "DIN Next LT Arabic", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 26px;
+            text-align: center;
+            color: #313437;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .codepart {
+            background: #177AE2;
+            justify-content: flex-start;
+            align-items: center;
+            display: flex;
+            width: 80%;
+            color: white;
+            padding: 0 10px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-width: 0;
+        }
+    }
+}

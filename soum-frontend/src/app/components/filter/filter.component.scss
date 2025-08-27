@@ -1,0 +1,92 @@
+@mixin btn_style($color, $bgcolor) {
+    color: $color;
+    background-color: $bgcolor;
+    border-color: $bgcolor;
+    border-radius: 10px;
+    font-size: 10px;
+    width: 100px;
+    cursor: pointer;
+    margin: 10px 13px;
+}
+
+.content {
+    background: #fff;
+    height: 100%;
+    min-height: 100vh;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.fix-button {
+    background: #fff;
+}
+
+.active-filter {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+.no-model {
+    font-size: 14px;
+    color: #5A5555;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif
+}
+
+.title-box {
+    h2 {
+        font-size: 16px;
+        color: #434343;
+        font-family: 'DIN Next LT Arabic Regular', sans-serif
+    }
+}
+
+.brand_name {
+    font-size: 16px !important;
+    color: #5A5555 !important;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif !important
+}
+
+.back-button{
+    img {
+      width: 18px;
+    }
+}
+
+.plus-text {
+    text-align: end;
+
+    span {
+        &.extensive {
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+
+        &.usable {
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+
+        &.excellent {
+            @include btn_style(#24C081, #C9E1D7);
+        }
+
+        &.good {
+            @include btn_style(#F79E1B, #E9D9C2);
+        }
+
+        &.great {
+            @include btn_style(#31CDCD, #C6E2E2);
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .model_area {
+        height: 218px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+.content {
+    background: #fff;
+    height: 100%;
+    min-height: 100vh;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 56px;
+}
+
+.back-bar {
+    border-bottom: 1px solid #E7E7E7;
+    box-shadow: none;
+}
+
+.wpwl-brand-VISA {
+    background-position: 0 -7942px;
+    width: 65px;
+    height: 20px;
+}
+
+.wpwl-group.wpwl-group-submit.wpwl-clearfix {
+    order: 5 !important;
+}
+
+.wpwl-apple-pay-button{-webkit-appearance: -apple-pay-button !important;}
+
+button.wpwl-apple-pay-button.wpwl-apple-pay-button-white-with-line {
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    width: 100%;
+    color: #E7E7E7 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 50px;
+    outline: none !important;
+    border: 0px;
+}
+.payment_hyper .wpwl-form input,
+.payment_hyper .wpwl-form input::placeholder {
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(33, 37, 41);
+}
+.back-button{
+    img{
+        width: 18px;
+    }
+}

@@ -1,0 +1,126 @@
+<div class="content">
+    <div class="back-bar margin-bottom">
+       
+        <div class="container">
+            <a class="back-button" (click)="goBack()"><img alt="back" style="height: 20px ;width:20px;" [src]="'back.png' | imagePath: 'icons'" /></a>
+            <h3 class="product-title">
+                <span class="cancel">{{"labels.summary" | translate}} </span>
+                <a class="cancel-button " (click)="showmodal()">{{"sellFlow.cancel"| translate}} </a>
+            </h3>
+        </div>
+    </div>
+    <div class="description-row products-slider">
+        <h2 class="section_title section_style">
+
+            <br>{{'labels.summaryListing' | translate}}
+        </h2>
+        <div>
+            <mat-card class="example-card arabic-direction" >
+                <img mat-card-image class="img-class" [src]="product?.product_images[0]" alt="Product Photos">
+                <mat-card-header>
+                    <mat-card-title>{{product?.models?.model_name}} - {{product?.varient}}</mat-card-title>
+                    <mat-card-subtitle>#{{product?.code}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+
+                    <div class="label-class">{{'labels.buyPrice' |translate}}</div>
+                    <span class="price">{{product?.sell_price}} {{'labels.sar' |translate}}</span>
+
+                    <div class="label-class">{{'labels.bidPricet' |translate}}</div>
+
+                    <span class="price"> {{product?.bid_price}} {{'labels.sar' |translate}}</span>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button (click)="showmodalGrade()" mat-button class="label-class">{{'labels.condition' | translate}}
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i></button>
+                        <span class="plus-text">
+                            <span [class]="(product?.score || 0) | soumCertification: 'class'">
+                                {{((product?.score || 0) | soumCertification: 'value') |translate | titlecase}}
+                            </span>
+                        </span>
+                </mat-card-actions>
+            </mat-card>
+          
+
+            <div class="section-details section-details-q">
+
+                <div class="container">
+
+                    <h2 class="section_title">{{'orderDetails.details' | translate}} <div class="right">
+                        </div>
+                    </h2>
+                    <ul class="m-00">
+
+                        <li *ngIf="hourRate"><strong>{{'orderDetails.from' | translate}}</strong>
+                            {{hourRate}} <span *ngIf="!DateSingle"> {{'orderDetails.hours' | translate}}</span><span
+                                *ngIf="DateSingle"> {{'orderDetails.hour' | translate}}</span></li>
+                        <li *ngIf="dayRate && !hideDays"><strong>{{'orderDetails.from' | translate}}</strong>
+                            {{dayRate}} <span *ngIf="!DateSingle"> {{'orderDetails.day' | translate}}</span><span
+                                *ngIf="DateSingle"> {{'orderDetails.day' | translate}}</span> </li>
+                        <li *ngIf="product?.seller_name"><strong>{{'orderDetails.sellerName' | translate}}</strong>
+                            {{product?.seller_name}}</li>
+                        <li *ngIf="product?.models?.model_name"><strong>{{'orderDetails.model' | translate}}</strong>
+                            {{product?.models?.model_name}}</li>
+                        <li *ngIf="product?.varient"><strong>{{'orderDetails.capacity' | translate}}</strong>
+                            {{product?.varient}}</li>
+                        <li *ngIf="product?.description"><strong>{{'orderDetails.additionalInfo' | translate}}</strong>
+                            {{product?.description}}</li>
+                        <li *ngIf="product?.code"><strong>{{'orderDetails.code' | translate}}</strong>
+                            {{product?.code}}</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="section-details section-details-q"
+                *ngIf="translate?.getDefaultLang() == 'ar' ? answer_to_questions_ar?.length : answer_to_questions?.length">
+                <div class="container">
+                    <h2 class="section_title">{{'orderDetails.sellerAnswered' | translate}}</h2>
+                    <ul>
+                        <li
+                            *ngFor="let question_answer of translate?.getDefaultLang() == 'ar' ? answer_to_questions_ar : answer_to_questions">
+                            <strong> {{question_answer?.question}}</strong>
+                            <span class="d-answer">{{question_answer?.answer}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="answersToQuestion">
+                <div class="questions questions-first" *ngIf="product?.product_questions?.length">
+                    <div class="container">
+                        <h2 class="section_title">{{'orderDetails.queriesFromBuyer' | translate}}</h2>
+                        <div class="questions-box" *ngFor="let question of product?.product_questions">
+                            <span class="user-info">
+                               
+                                <span class="info-user">
+                                    <h5 class="user-name">{{question?.user_id?.name}}</h5>
+                                  
+                                </span>
+                            </span>
+                            <h4>{{question?.question}} <span class="reply_btn bg-color-primary"
+                                    (click)="editAnswer(question)"
+                                    *ngIf="product?.seller_id != loggedUserId && !question?.answer"
+                                    [hidden]="question?.editAnswer">{{'orderDetails.reply' | translate}}</span>
+                            </h4>
+                            <div class="message_box" *ngIf="!question?.editAnswer">
+                                <p>{{(question?.answer || ('orderDetails.waitingForTheAnswer' | translate))}}</p>
+                            </div>
+                            <div class="message_reply" *ngIf="question?.editAnswer">
+                                <textarea id="reply" name="reply" [(ngModel)]="answer"
+                                    [placeholder]="'orderDetails.messageHere' | translate"></textarea>
+                                <button type="button" id="post-answer" (click)="postAnswer(question)"
+                                    class="arrow-send bg-color-primary">{{'orderDetails.save' | translate}}</button>
+                                <button type="button" class="arrow-send" (click)="editAnswer(question)"
+                                    style="background-color: grey;margin-left: 5px;">{{'orderDetails.cancel' |
+                                    translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <app-cancel-listing *ngIf="showModal"></app-cancel-listing>
+    <app-condition *ngIf="showCondition"></app-condition>

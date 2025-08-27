@@ -1,0 +1,27 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <div draggable="true" (dragstart)="hideSaveAsDraftComfirmModal()" (drag)="hideSaveAsDraftComfirmModal()" (dragover)="hideSaveAsDraftComfirmModal()"
+            class="grey-button"></div>
+        <div class="products-top-bar" style="text-align:center;">
+            <div class="bold-font err-color"> {{'labels.saveAsDraftProduct' |translate}}</div>
+            <div class="normal-font">{{'labels.saveAsDraftDesc' | translate}} </div>
+            <div class="products-bottom">
+                <a class="button err-color  btn-full " (click)="onSaveAsDraft()">
+                    <span class="now-text">
+                        {{'labels.yesSaveAsDraft' | translate}}
+                    </span>
+                    <div>
+                    </div>
+                </a>
+                <a class=" full-size " (click)="hideSaveAsDraftComfirmModal()">
+                  <span class="normal-color">
+                      {{'labels.cancelSaveAsDraft' | translate}}
+                  </span>
+                  <div>
+                      <br>
+                  </div>
+              </a>
+            </div>
+        </div>
+    </div>
+  </div>

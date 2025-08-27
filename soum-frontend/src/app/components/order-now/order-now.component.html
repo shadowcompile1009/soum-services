@@ -1,0 +1,217 @@
+<div class="content" [class.custom_flex]="translate?.getDefaultLang() == 'ar'">
+    <app-header 
+        [pageTitle]="'orderDetails.orderSummary' | translate"
+        (goBack)="goToDeviceList(product)">
+    </app-header>
+
+    <div class="products-slider">
+        <div class="slider_section">
+            <div class="container" [ngClass]="{'box_data': !userDetail?.name,'box_data_2': userDetail?.name}" >
+                <div class="name_section" *ngIf="profileData?.name">
+                    <span class="title">
+                        <span>
+                            {{'forgotPassword.hello' | translate}}
+                       </span>
+                       <span>
+                           {{profileData?.name}}
+                       </span>
+                        </span>
+                    {{'labels.confirm_data' | translate}}
+                </div>
+                <div id="div1" (click)="navigateTo('/product-detail', product)">
+                    <img [src]=[imgUrl] alt="Product Photos">
+                </div>
+                <div id="div2" *ngIf="!userDetail">
+                    <h2 class="section_title">
+                        <strong class="model_name">{{product?.models?.model_name}}</strong>
+                    </h2>
+                    <div class="section_title color-code"><span>{{'orderDetails.p_code' | translate}}</span> #{{product?.code}}</div>
+                    <div class="section_title">
+                        <h4 *ngIf="product?.seller_name">
+                            <strong class="sold-text"><span>{{'orderDetails.sold_by' | translate}}</span> {{product?.seller_name}}</strong>
+                        </h4>
+                    </div>                    
+                </div>    
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="section-details my-addresses" *ngIf="userDetail">
+        <div class="container container-padding">
+            <div class="set_name_section" *ngIf="!profileData?.name">
+                <div class="icon_title1">
+                    <i aria-hidden="true" class="fa fa-user"></i>&nbsp;<span class="payment"> {{'profile.contact_info' | translate}} </span>
+                </div><br>
+                <mat-form-field appearance="fill" style="display: inline-block;width: 100%;margin-left:5px;margin-bottom: -5px;margin-top: 10px;">
+                    <input matInput type="text" class="adress_txt" [(ngModel)]="setUsername" name="setUsername"  placeholder="{{'addAddress.name' | translate}}">
+                </mat-form-field>
+            </div>
+            <div class="icon_title">
+                <i aria-hidden="true" class="fa fa-home"></i>&nbsp;<span class="payment"> {{'profile.delivering_to' | translate}} </span><br>
+            </div>
+            <div class="user-info"> 
+                <mat-form-field appearance="fill" style="display: inline-block;width: 100%;margin-left:5px;margin-bottom: -5px;">
+                    <input matInput type="text" class="adress_txt" [(ngModel)]="newAddress" [value]="userAddress?.street"
+                        name="newAddress" [disabled]="userNewAddressExist"  placeholder="{{'addAddress.street_name' | translate}}">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="display: inline-block;width: 100%;margin-left:5px;margin-bottom: -5px;">
+                    <input matInput type="text" autocomplete="off"
+                            class="adress_txt" [(ngModel)]="newDistrict" 
+                            [value]="userAddress?.district"
+                            name="newDistrict" placeholder="{{'addAddress.district' | translate}}"
+                            [disabled]="userNewAddressExist">
+                </mat-form-field>
+                
+                <div class="address_2" style="display: flex;width: 100%;justify-content: space-between;margin-bottom: -20px;">
+                    <mat-form-field appearance="fill" style="display: inline-block;width: 48%; margin-left:5px;">
+                        <input  readonly (focus)="openCitiesModal()"
+                                matInput type="text" class="adress_txt" [(ngModel)]="newCity" 
+                                [value]="userAddress?.city ? userAddress?.city  : ''"
+                                name="city" [disabled]="userNewAddressExist" placeholder="{{'addAddress.city' | translate}}">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="display: inline-block;width: 48%; margin-left:5px;">
+                        <input matInput type="text" class="adress_txt" [(ngModel)]="newPostelCode" [value]="userAddress?.postal_code ? userAddress?.postal_code : ''"
+                        name="postalCode" maxlength="5" [disabled]="userNewAddressExist" placeholder="{{'addAddress.postal_code' | translate}}">
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-totals section-details">
+        
+       
+        <h5 class="addCode" *ngIf="!showCoupon">
+            {{'labels.have_promo' | translate}}
+            <span (click)="showCoupon = !showCoupon" class="active">{{'labels.use_here' | translate}}</span>
+        </h5>
+        <div class="couponCodeContainer" *ngIf="showCoupon">
+            <h5 class="addCode">
+                {{ 'labels.have_promo' | translate }}
+                <span class="cancel" (click)="revertCoupon()">{{'labels.cancel' | translate}}</span>
+            </h5>
+            <div class="input-field coupon-input">
+                <input type="text" name="coupon" [(ngModel)]="promoCode"
+                    placeholder="{{ 'sellFlow.add_new_coupon' | translate }}" />
+                <button class="btn btn-primary" (click)="verifyCoupon()" [disabled]="!promoCode">
+                    {{ "sellFlow.verify" | translate }}
+                </button>
+            </div>
+            <span class="pleaseSignFirst" *ngIf="!userLoggedIn">
+                {{'sellFlow.signFirst' | translate}} <a (click)="redirectToLogin()"
+                    style="color: '#007bff';font-size: '16px';">{{'sellFlow.here'
+                    | translate}}</a>
+            </span>
+            <span class="validPromo" *ngIf="promoCodeValid !== null && promoCodeValid">{{ "sellFlow.valid_promo_ode" |
+                translate }}
+            </span>
+            <span class="inValidPromo" *ngIf="promoCodeValid !== null && !promoCodeValid && BackendErrorMessage">{{BackendErrorMessage}}</span>
+            
+            <span class="waitingVerify" *ngIf="waitingVerify">{{
+                "sellFlow.verifiying_code" | translate
+                }}</span>
+        </div>
+
+        <table aria-describedby="table for order now - product">
+            <tbody>
+                <tr style="display: none;">
+                    <th id="Orderdetails">Order details table</th>
+                </tr>
+                <tr>
+                    <td><i aria-hidden="true" class="fa fa-credit-card"></i> <span class="payment"> {{'orderDetails.orderSummary' | translate}}: </span></td>
+                </tr>
+                <tr>
+                    <td class="commission titleCell">{{'sellFlow.devicePrice' | translate}}</td>
+                    <td class="cellValue">
+                        <span class="discount" *ngIf="devicePriceDiscount">
+                            <img alt="discount" class="img_discount" [src]="'discount.svg' | imagePath: 'icons'" />
+                            {{devicePriceDiscount}} {{'labels.sar' | translate}}
+                        </span>
+                        {{convertStringToNumber(calculationProduct?.sellPrice)}}
+                        {{'labels.sar' | translate}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="shipping-charges titleCell">{{'sellFlow.shippingCharges' | translate}}</td>
+                    <td class="cellValue" *ngIf="calculationProduct?.shipping !=0 ">
+                        {{calculationProduct?.shipping}} {{'labels.sar' | translate}}
+                    </td>
+                    <td *ngIf="calculationProduct?.shipping==0" class="freeCharge">
+                        {{ "sellFlow.free" | translate}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="commission titleCell">{{'sellFlow.commission' | translate}}</td>
+                    <td class="cellValue">
+                        <span class="discount" *ngIf="commissionDiscount">
+                            <img alt="discount" class="img_discount" [src]="'discount.svg' | imagePath: 'icons'" />
+                            {{commissionDiscount}}
+                            {{'labels.sar' | translate}}
+                        </span>
+                        {{convertStringToNumber(calculationProduct?.commission)}}
+                        {{'labels.sar' | translate}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="vat titleCell">{{'sellFlow.vat' | translate}}</td>
+                    <td class="cellValue">
+                        {{convertStringToNumber(calculationProduct?.vat)}}
+                        {{'labels.sar' | translate}}</td>
+                </tr>
+                <tr>&nbsp;</tr>
+                <tr style="border: 1px solid #B5BBBC;border-style: dashed;"></tr>
+                <tr>&nbsp;</tr>
+                <tr>
+                    <td class="grand-total titleCell">{{'sellFlow.grandTotal' | translate}}</td>
+                    <td class="f-price font-color-primary cellValue">
+                        {{convertStringToNumber(calculationProduct?.grandTotal)}}<sub>{{'labels.sar' | translate}}</sub>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<!--content-->
+<footer id="footer" class="details-buttons">
+    <div class="products-bottom">
+        <div style="display: flex;justify-content: space-between; padding: 5px;">
+            <span class="grand-total titleCell">{{'sellFlow.grandTotal' | translate}}</span>
+            <span class="f-price font-color-primary cellValue">{{convertStringToNumber(calculationProduct?.grandTotal)}}<span style="font-size: 12px;">{{'labels.sar' | translate}}</span></span>
+        </div>
+        <a class="button custom_primary buy_SL_button" (click)="buyProduct()">
+            <span class="now-text buy_SL">
+                {{userDetail?.userId == product?.seller_id ? ('labels.buy_price' | translate) : ('labels.placeOrder' |
+                translate)}}
+            </span>
+        </a>
+    </div>
+</footer>
+
+<div class="city_address_filter" *ngIf="showCitiesModal">
+    <img alt="Close" class="close_modal_icon" [src]="'close-icon-popup.svg' | imagePath: 'icons'" (click)="closeCitiesModal()" />
+    <div class="city_container">
+        <h2 class="title_city">{{'addAddress.select_city' | translate}}</h2>
+        <div class="input_filter form-group">
+            <mat-icon class="search_icon">search</mat-icon>
+            <input (keyup)="filterByCityName()" [value]="searchValue" [(ngModel)]="searchValue" class="form-control"
+                type="text" placeholder="{{'addAddress.city' | translate}}" />
+            <mat-icon class="remove_icon" (click)="clearSearchFilter()">close</mat-icon>
+        </div>
+
+        <div class="cities">
+            <h3 (click)="selectCity(language == 'en' ? city.name_en : city.name_ar)" *ngFor="let city of copy_cities">
+                {{language == 'en' ? city.name_en : city.name_ar}}</h3>
+        </div>
+    </div>
+</div>
+
+<bid-modal (refresh)="refreshList()"></bid-modal>
+<buy-modal></buy-modal>
+<app-login-modal *ngIf="showLoginInModal" (closeModal)="closeModal()" (loggedIn)="checkLoginState()"></app-login-modal>

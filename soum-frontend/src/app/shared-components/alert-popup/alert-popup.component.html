@@ -1,0 +1,28 @@
+<div [style.display]="'none'" id="alertController" class="sc-ion-alert-ios-h sc-ion-alert-ios-s">
+    <div class="sc-ion-alert-ios-backdrop"></div>
+    <div class="alert-wrapper ion-overlay-wrapper sc-ion-alert-ios">
+        <div class="alert-head sc-ion-alert-ios">
+            <h2 id="alert-4-hdr" class="alert-title sc-ion-alert-ios">{{alertControllerData?.header}}</h2>
+        </div>
+        <div id="alert-4-msg" class="alert-message sc-ion-alert-ios" [innerHTML]="alertControllerData?.message"></div>
+        <div class="alert-button-group sc-ion-alert-ios"
+            *ngIf="alertControllerData?.button1 && alertControllerData?.button2">
+            <button type="button" class="alert-button"
+                (click)="closeAlertController() && alertControllerData?.button2?.handler()"><span
+                    class="alert-button-inner sc-ion-alert-ios"
+                    [class]="alertControllerData?.button2?.cssClass">{{alertControllerData?.button2?.text}}</span>
+            </button>
+            <button type="button" class="alert-button"
+                (click)="closeAlertController() && alertControllerData?.button1?.handler()" tabindex="0"><span
+                    class="alert-button-inner sc-ion-alert-ios"
+                    [class]="alertControllerData?.button1?.cssClass">{{alertControllerData?.button1?.text}}</span></button>
+        </div>
+
+        <div class="alert-button-group sc-ion-alert-ios"
+            *ngIf="alertControllerData?.button1 && !alertControllerData?.button2">
+            <button type="button" class="alert-button full-button"
+                (click)="closeAlertController() && alertControllerData?.button1?.handler()" tabindex="0"><span
+                    class="alert-button-inner sc-ion-alert-ios">{{alertControllerData?.button1?.text}}</span></button>
+        </div>
+    </div>
+</div>

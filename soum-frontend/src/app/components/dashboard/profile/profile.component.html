@@ -1,0 +1,296 @@
+<div class="content">
+    <app-header [pageTitle]="'profile.title' | translate" [showBackBtn]="false"></app-header>
+
+    <div class="section-details your-details">
+        <div class="container container-padding">
+            <h2 class="section_title">{{'profile.your_details' | translate}}</h2>
+            <div class="user-info" [formGroup]="editProfileForm">
+                <a [hidden]="nameEdit" class="button_profile font-color-primary"
+                    (click)="toggleEditName()">{{'profile.change' | translate}}
+                </a>
+                <h4 class="user_name" [hidden]="nameEdit">{{profileData?.name}}</h4>
+                <span class="user_name_edit" [hidden]="!nameEdit">
+                    <input (keyup)="validationName()" class="name_edit" formControlName="name" type="text"
+                        [placeholder]="'labels.searchPlaceholder' | translate">
+                    
+                    <div class="icon_edit">
+                        <img alt="edit name" class="edit_icon" [src]="'close-icon-popup.svg' | imagePath: 'icons'"
+                            (click)="toggleEditName()">
+                        <img alt="save" class="save_icon"  [src]="'icon-save.svg' | imagePath: 'icons'" (click)="editProfile('name')">
+                    </div>
+   
+
+                    
+                </span>
+                <div *ngIf="!validatName" class="err-desc">{{"labels.validName" | translate}}</div>
+                <div *ngIf="!validNamePromo" class="err-desc">{{"labels.validCodeName" | translate}}</div>
+                <span class="phone_number">{{profileData?.countryCode}} {{profileData?.mobileNumber}}</span>
+                <span class="user_information"><img alt="user info" [src]="'information_icon.svg' | imagePath: 'icons'">
+                    {{'profile.infoUser' | translate}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="section-details my-addresses">
+        <div class="container container-padding">
+            <h2 class="section_title">{{'profile.my_addresses' | translate}}
+                <a (click)="navigateToAddress()" *ngIf="!address"
+                    class="button_profile font-color-primary">
+                    {{'profile.add_new_address' | translate}}
+                </a>
+                <a (click)="goToUpdateAddress()" *ngIf="address" class="button_profile font-color-primary">
+                    {{'bankDetail.update' | translate}}
+                </a>
+            </h2>
+            <div class="user-info" *ngIf="address">
+                <div class="user-address">
+                    <h4 class="username">{{profileData?.name}}</h4>
+                    <p>
+                        <strong>{{'addAddress.street_name' | translate}}:
+                        </strong>
+                        <span class="addDetails">{{ address?.street || '-----' }}</span>
+                        <br>
+                        <strong>{{'addAddress.district' | translate}}:
+                        </strong>
+                        <span class="addDetails">{{ address?.district || '-----' }}</span>
+                        <br>
+                        <strong>{{'addAddress.complete_address' | translate}}:
+                        </strong>
+                        <span class="addDetails">{{ address?.city || '-----' }}</span>
+                        <br>
+                        <strong>{{'addAddress.postal_code' | translate}}:
+                        </strong>
+                        <span class="addDetails">{{ address?.postal_code || '-----' }}</span>
+                    </p>
+                </div>
+                <a (click)="deleteAddress()" class="button_delete">{{'profile.delete' |
+                    translate}}</a>
+            </div>
+            <div class="user-info" *ngIf="!address">
+                <div class="card-info error-profile-full">
+                    <h4 class="error-profile">{{'profile.no_address' | translate}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-details my-addresses bank_detail">
+        <div class="container container-padding">
+            <h2 class="section_title">{{'bankDetail.title' | translate}}
+                <a *ngIf="!profileData?.bankDetail?.accountHolderName" class="button_profile font-color-primary"
+                    (click)="goToAddBankDetails()">
+                    {{'bankDetail.addBank' | translate}}</a>
+                <a *ngIf="profileData?.bankDetail?.accountHolderName" (click)="editBank()"
+                    class="button_profile font-color-primary">{{'bankDetail.update' | translate}}</a>
+            </h2>
+            <div class="user-info">
+                <div class="user-address" *ngIf="profileData?.bankDetail">
+                    <h4 class="username"><strong>{{'bankDetail.name' | translate}} :
+                        </strong>{{profileData?.bankDetail?.accountHolderName}}</h4>
+                    <h4 class="username"><strong>{{'bankDetail.bankName' | translate}} :
+                        </strong>{{profileData?.bankDetail?.bankName}}</h4>
+                    <h4 class="username"><strong>{{'bankDetail.accId' | translate}} :
+                        </strong>{{profileData?.bankDetail?.accountId | uppercase }}
+                    </h4>
+                    <h4 class="username"><strong>{{'bankDetail.bankBIC' | translate}} :
+                        </strong>{{profileData?.bankDetail?.bankBIC }}</h4>
+                </div>
+                <div class="user-address" *ngIf="!profileData?.bankDetail">
+                    <h4 class="username">{{'bankDetail.bankNotFound' | translate}}</h4>
+                </div>
+                <a class="button_delete" (click)="deleteBankDetail()" *ngIf="profileData?.bankDetail">{{'profile.delete'
+                    | translate}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="section-details" (click)="openReferAndEarnPage()">
+        <div class="container row">
+            <div class="col-4 triangle"> <img alt="profle money" [src]="'profile-money.png'| imagePath"> </div>
+            <div class="col-8" style="padding: 0px;">
+                <h3 class="section_title font-color section_title_ar">{{'referral.donotMiss' | translate}}</h3>
+                <div class="user-info">
+                    <h2 class="promo-font">{{'referral.summary' | translate}}
+                        <a class="font-color underline" style="font-weight: bold;">
+                            {{'referral.startNow' | translate}}
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-details more_information more_information2">
+        <div class="container container-padding pointer-cursor" (click)="showHistoryBuysFun()">
+            <h2 class="section_title">{{'profile.historyBuys' | translate}}
+                <a class="button_profile font-color-primary" style="font-weight: bold;" *ngIf="notifyUser === true">
+                    {{'profile.tracknow' | translate}}
+                </a>
+            </h2>
+            <div id="tab3" class="tab-content" *ngIf="showHistoryBuys">
+                <div class="tab-wish-list bought-Sold" *ngFor="let BoughtProducts of BoughtProducts"
+                    (click)="navigateTo('/order-details', BoughtProducts, 'bought')">
+                    <div class="container">
+                        <span class="dateBoughtSold">{{ BoughtProducts ?.updated_at | date: 'dd/MM/yyyy' }}</span>
+                        <div class="payment-box">
+                            <div class="products-thumbnail">
+                                <a>
+                                    <img class="thumbnail" [src]="(BoughtProducts?.product?.product_images[0]) | image"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="products-content">
+                                <div class="product-info">
+                                    <div class="left">
+                                        <a>
+                                            <h4 class="product-title">
+                                                {{BoughtProducts?.product?.model_id?.model_name}}
+                                            </h4>
+                                            <span class="product-available">
+                                                <!-- {{BoughtProducts?.product?.varient}} -->
+                                            </span>
+                                            <span class="product-price font-color-primary">
+                                                {{BoughtProducts?.calculated_sell_price}} {{'labels.sar' | translate}}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="right">
+                                        <div class="order-right">
+                                            <span [class]="bought" class="bought button-span">
+                                                {{(BoughtProducts.transaction_status === "Pending" ? ('bidsAndItem.pending' | translate) : ('bidsAndItem.bought' | translate))}}
+                                            </span>
+                                            <span class="shipped"
+                                                [class]="BoughtProducts.dispute === 'Yes' ? 'red_color' : 'font-color-primary'"
+                                                *ngIf="BoughtProducts?.dispute === 'Yes'">
+                                                {{'labels.disputeraised' | translate}}
+                                            </span>
+                                            <span class="shipped"
+                                                *ngIf="BoughtProducts?.status === 'Delivered' && BoughtProducts.dispute !== 'Yes'">
+                                                {{'labels.delivered' | translate}}
+                                            </span>
+                                        </div>
+                                        <a [hidden]="BoughtProducts.dispute === 'Yes'" class="order_button">
+                                            <img alt="back" [src]="'back.png'| imagePath: 'icons'">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div *ngIf="!BoughtProducts?.length" class="error_message">
+                    {{'bidsAndItem.noProductBoughtYet' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-details more_information more_information2">
+        <div class="container container-padding pointer-cursor" (click)="showHistorySoldFun()">
+            <h2 class="section_title">{{'profile.historySold' | translate}}
+                <a class="button_profile font-color-primary" style="font-weight: bold;" *ngIf="notifyUser === true">
+                    {{'profile.tracknow' | translate}}
+                </a>
+            </h2>
+            <div id="tab4" class="tab-content" *ngIf="showHistorySold">
+                <div class="tab-wish-list bought-Sold" *ngFor="let SoldProducts of SoldProducts"
+                    (click)="navigateTo('/order-details', SoldProducts, 'sold')">
+                    <div class="container">
+                        <span class="dateBoughtSold">{{ SoldProducts ?.updated_at | date: 'dd/MM/yyyy' }}</span>
+                        <div class="payment-box">
+                            <div class="products-thumbnail">
+                                <a>
+                                    <img class="thumbnail" [src]="(SoldProducts?.product?.product_images[0]) | image"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="products-content">
+                                <div class="product-info">
+                                    <div class="left">
+                                        <a>
+                                            <h4 class="product-title">
+                                                {{SoldProducts?.product?.model_id?.model_name}}
+                                            </h4>
+                                            <span class="product-available">
+                                                <!-- {{SoldProducts?.product?.varient}} -->
+                                            </span>
+                                            <span class="product-price font-color-primary">
+                                                {{SoldProducts?.calculated_sell_price}} {{'labels.sar' | translate}}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="right">
+                                        <div class="order-right">
+                                            <span [class]="sell" class="bought button-span">
+                                                {{'bidsAndItem.sold' | translate}}
+                                            </span>
+                                            <span class="shipped"
+                                                [class]="SoldProducts.dispute === 'Yes' ? 'red_color' : 'font-color-primary'"
+                                                *ngIf="SoldProducts?.dispute === 'Yes'">
+                                                {{'labels.disputeraised' | translate}}
+                                            </span>
+                                            <span class="shipped"
+                                                *ngIf="SoldProducts?.status === 'Delivered' && SoldProducts.dispute !== 'Yes'">
+                                                {{'labels.delivered' | translate}}
+                                            </span>
+                                        </div>
+                                        <a [hidden]="SoldProducts.dispute === 'Yes'" class="order_button">
+                                            <img alt="back" [src]="'back.png'| imagePath: 'icons'">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div *ngIf="!SoldProducts?.length" class="error_message">
+                    {{'bidsAndItem.noProductBoughtYet' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-soum section-details more_information">
+        <div class="container container-padding">
+            <h2 class="section_title" routerLink="/about-soum">{{'profile.about_soum' | translate}}</h2>
+        </div>
+    </div>
+
+    <div class="about-soum section-details more_information">
+        <div class="container container-padding">
+            <h2 class="section_title" routerLink="/FAQ">{{'sellFlow.questionsFAQ' | translate}}</h2>
+        </div>
+    </div>
+    <div>
+       
+    </div>
+    <div class="section-details more_information more_information2">
+        <div class="container container-padding">
+            <h2 class="section_title">{{'profile.more_information' | translate}}</h2>
+
+            <ul>
+                <li><a [routerLink]="['/privacy-policy']"
+                        class="privacy_policy">{{'profile.privacy_policy' | translate}}</a></li>
+                <li><a href="https://api.whatsapp.com/send?phone=966920035039" class="call_us" target="_blank">{{'profile.contact_us' | translate}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-details reset_password logout_section">
+        <div class="container container-padding">
+            <a class="button_password" (click)="logout()"><img alt="logOut" [src]="'logout-icon.svg'| imagePath: 'icons'">
+                {{'profile.logout' | translate}}</a>
+        </div>
+    </div>
+
+    <div class="moarf-number section-details">
+        <div class="container container-padding">
+            <img alt="logo-soum" [src]="'en-logo.png'| imagePath: 'icons'" />
+            <div class="soum-moarf">
+                <span>{{'dashboard.ministryCommerce' | translate}}</span><br/>
+                <a href="https://maroof.sa/221919" target="_blank">{{'dashboard.maroofNumber' | translate}}</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<referral-code *ngIf="showReferral"> </referral-code>

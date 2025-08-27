@@ -1,0 +1,92 @@
+@import '../../../assets/css/color.scss';
+.text-align-center {
+  text-align: center !important;
+  width: 100%;
+}
+
+.button {
+  cursor: default !important;
+}
+
+.custom-switch label {
+  color: #fff !important;
+}
+
+.custom-switch {
+  padding-right: 2.25rem;
+  padding-left: 0;
+}
+
+.custom-switch .custom-control-label::before {
+  right: -2.25rem;
+  left: auto;
+}
+
+.custom-switch .custom-control-label::after {
+  left: calc(2.5rem + 2px);
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  transform: translateX(0.6rem);
+}
+
+.custom-control-label {
+  cursor: pointer;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: $primary-color !important;
+  background-color: $primary-color !important;
+}
+
+.en-mode-switch {
+  display: none;
+}
+.product-thumbnail .product-title {
+  font-family: 'DIN Next LT Arabic Bold', sans-serif;
+  min-height: 30px;
+  color: #434343;
+  font-size: 18px;
+}
+
+.product-thumbnail .product-available {
+  color: #5a5555;
+  font-size: 14px;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif;
+}
+
+.container {
+  .title {
+    color: #434343 !important;
+    font-size: 18px;
+    font-family: 'DIN Next LT Arabic bold', sans-serif;
+  }
+}
+
+.left {
+  .filter-btn {
+    color: #177ae2 !important;
+    font-size: 14px;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+  }
+}
+
+.banner {
+  position: relative;
+}
+
+.socialMedia {
+  position: absolute;
+  bottom: 2px;
+  left: 10px;
+}
+
+.socialMedia .instagram,
+.socialMedia .twitter {
+  width: 20px;
+  height: 20px;
+  display: inline;
+  margin: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}

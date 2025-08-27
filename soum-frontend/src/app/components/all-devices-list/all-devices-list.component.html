@@ -1,0 +1,95 @@
+<div class="content">
+  <app-header
+    [pageTitle]="productList !== [] ? categoryName : ''"
+    (goBack)="navigateTo('/products', '')"
+  ></app-header>
+
+  <div class="products-filter filter-padding" *ngIf="productList !== []">
+    <div class="container">
+      <div class="left">
+        <!-- <a
+          class="filter-btn"
+          [ngClass]="{ 's-btn': filterApplied }"
+          (click)="navigateToFilter()"
+        >
+          <span class="icon-btn">
+            <span class="soum-icon"></span>
+            <img
+              [src]="'filter-v.png' | imagePath:'icons'"
+              alt="Filter"
+              class="filter_img"
+            /> </span
+          >{{ 'dashboard.filter' | translate }}</a
+        > -->
+      </div>
+      <div class="right">
+        <a
+          class="filter-btn"
+          [ngClass]="{ 's-btn': sortingApplied }"
+          (click)="navigateTo('/sort-by', '')"
+        >
+          <span class="icon-btn">
+            <span class="soum-icon"></span>
+            <img
+              [src]="'filter-v.png' | imagePath:'icons'"
+              alt="Sort"
+              class="sort_img"
+            /> </span
+          >{{ 'dashboard.sort' | translate }}</a
+        >
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="productList !== []"
+    class="products products-list list-title-hide"
+    infinite-scroll
+    (scrolled)="onScrollDown($event)"
+  >
+    <div class="products-row" *ngFor="let product of productList">
+      <div
+        class="products-thumbnail"
+        (click)="navigateTo('/product-detail', product)"
+      >
+        <a>
+          <img
+            class="thumbnail"
+            *ngIf="appSetting?.enable_cloudianry === 'true'"
+            [src]="
+              product?.product_images[0].replace(
+                appSetting.digitalocean_link_replacement,
+                appSetting.MPP_cloudaniry_img_link
+              ) | image
+            "
+            [alt]="product?.models?.model_name"
+          />
+          <img
+            class="thumbnail"
+            *ngIf="appSetting?.enable_cloudianry === 'false'"
+            [src]="product?.product_images[0] | image"
+            [alt]="product?.models?.model_name"
+          />
+        </a>
+      </div>
+      <app-product
+        [product]="product"
+        [userDetail]="userDetail"
+        (favoEmitter)="favorite($event)"
+      ></app-product>
+    </div>
+    <div class="products-row" *ngIf="apiHit && !productList?.length">
+      <p>{{ 'labels.no_products_found' | translate }}</p>
+    </div>
+    <div class="api-inline-loader" *ngIf="!apiHit">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!--- Products Row -->
+  </div>
+  <!--Products-->
+</div>
+<!--content-->
+
+<bid-modal (refresh)="getProductsByCategory()"></bid-modal>
+<buy-modal></buy-modal>

@@ -1,0 +1,26 @@
+<div class="products-top-bar" style="float: left;">
+
+    
+    <img alt="new sign" [src]="'5.png' | imagePath: 'newSign'">
+
+ 
+    <div class="background">
+        <div class="bold-font"> {{'labels.signUp-forthlabel' |translate}}</div>
+        <div class="normal-font">{{'labels.signUp-forthDes' | translate}}</div>
+
+        <div class="products-bottom">
+
+            <a class="button btn-full " style="  width: calc(100% - 0px) " (click)="showprofile()">
+                <span class="now-text">
+                    {{'labels.completedProfile' | translate}}
+                </span>
+            </a>
+            <a class="button btn-full skip-button" (click)="showMainPAge()"
+                style="background-color: transparent;   width: calc(100% - 0px) ;   text-align: center;">
+                <span class="now-text" style="color :#177AE2">
+                    {{'labels.later' | translate}}
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

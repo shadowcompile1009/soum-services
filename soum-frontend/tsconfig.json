@@ -1,0 +1,31 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "crypto": ["./node_modules/crypto-browserify"],
+      "stream": ["./node_modules/stream-browserify"],
+      "assert": ["./node_modules/assert"],
+      "http": ["./node_modules/stream-http"],
+      "https": ["./node_modules/https-browserify"],
+      "os": ["./node_modules/os-browserify"],
+      "path-browserify": ["./node_modules/path-browserify"],
+      "url": ["./node_modules/url"],
+      "path": ["./node_modules/path"],
+      "fs": ["./node_modules/fs"]
+    },
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es5",
+    "module": "es2020",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["es2018", "dom"]
+  }
+}

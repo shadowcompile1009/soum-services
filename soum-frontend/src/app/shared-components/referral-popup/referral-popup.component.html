@@ -1,0 +1,14 @@
+<div class="referral-popup" (click)="goToProfilePage()">
+    <div class="image-background">
+        <img alt="refferal popup" class="referral-image" [src]="'referral-popup-image.png' | imagePath">
+    </div>
+
+    <h1 class="do-not-miss">{{'referralPopup.doNotMiss' | translate}}</h1>
+    <strong> {{'referralPopup.info' | translate}}</strong>
+</div>
+<div class="continue-button" (click)="goToProfilePage()">
+    <span class="now-text">{{'howItWorks.continue' | translate}}</span>
+</div>
+<div class="dismiss-button" (click)="dismissButton()">
+    <span class="now-text">{{'howItWorks.dismiss' | translate}}</span>
+</div>

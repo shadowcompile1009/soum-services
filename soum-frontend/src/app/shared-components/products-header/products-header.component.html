@@ -1,0 +1,43 @@
+<div class="new-banner">
+    <img alt="header" [src]="'mainHeader.png' | imagePath">
+        <div class="top-bar">
+            <div class="left">
+                <img class="flogo" alt="header" [src]="'logo.png' | imagePath">
+            </div>
+            <div class="right">
+                <div class="language" (click)="changeLanguage()">
+                    <img alt="change language" class="iconLanguage" [src]="'langs.png' | imagePath"/>
+                    <span *ngIf="arabic" class="langs-mode">{{'labels.englishMode' | translate}} </span>
+                    <span *ngIf="!arabic" class="langs-mode">{{'labels.arabicMode' | translate}} </span>
+                </div>
+
+                <a href="https://twitter.com/soum_online?s=21" target="_blank">
+                    <img alt="twitter" class="twitter" [src]="'twitter.png' | imagePath"
+                        (click)="addGtmSocialMedia('twitter')" />
+                </a>
+                <a href="https://instagram.com/soum_online?utm_medium=copy_link" target="_blank">
+                    <img alt="instagram" class="instagram" [src]="'instagram.png' | imagePath"
+                        (click)="addGtmSocialMedia('instagram')" />
+                </a>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="left">
+                <span class="text1">{{'dashboard.moneyBack' | translate}}</span>
+                <span class="text2">{{'dashboard.try24hrs' | translate}} </span>
+                <span class="text3">{{'dashboard.meetSpecifications' | translate}}
+                    <strong>{{'dashboard.returnFree' | translate}}</strong>
+                </span>
+            </div>
+            <div class="right">
+                <img *ngIf="arabic" class="logo" alt="header" [src]="'logo-ar.png' | imagePath" />
+                <img *ngIf="!arabic" class="logo" alt="header" [src]="'logo-en.png' | imagePath" />
+            </div>
+        </div>
+    <div class="min-commerce">
+        <span class="ftext">{{'dashboard.ministryCommerce' | translate}}
+            <span class="stext">{{'dashboard.maroofNumber' | translate}}</span>
+        </span>
+    </div>
+</div>

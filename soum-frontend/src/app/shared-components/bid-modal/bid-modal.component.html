@@ -1,0 +1,145 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+
+        <div class="products-top-bar">
+       
+            <div class="left">
+                <div class="price">
+              
+                    <span class="f-price font-color-primary">{{product?.current_bid_price}}</span>
+                    <span class="o-price font-color-primary">{{'labels.sar' | translate}}</span>
+                    <span class="d-text">{{'labels.currentBid' | translate}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-bottom-bar">
+            <div class="left">
+                <h4 class="product-text">{{'labels.placeYourBid' | translate}}</h4>
+            </div>
+           
+            <br>
+            <div class="sar-input-field  col-bidPrice">
+                <div>
+                    <input type="number" [(ngModel)]="bidPrice" (keypress)="numberOnly($event)"
+                        (ngModelChange)="onValueChange($event)" name="number" class="number">
+                    <label class="sar-text">{{'labels.sar' | translate}}</label>
+                </div>
+            </div>
+
+
+            <div class="row small-text">
+                <div class="col-12 checkValidityBid" *ngIf="bidValueLessThanCurrentBid">
+                    <p>{{'alertPopUpTexts.bidCannotBeLessThanBidPrice' | translate}}</p>
+                </div>
+
+                <div class="col-12 checkValidityBid" *ngIf="bidValueMoreThanCurrentBid">
+                    <p>{{'alertPopUpTexts.bidCannotBeEqualToGreaterThanCurrentPrice' | translate}}</p>
+                </div>
+
+                <div class="col-12 checkValidityBid" *ngIf="bidValueEqualCurrentBid">
+                    <p>{{'alertPopUpTexts.bidCannotBeEqualToCurrentBidPrice' | translate}}</p>
+                </div>
+              
+            </div>
+        
+
+
+            <div class="cart-totals" *ngIf="bidValueIsValidToBid">
+                <table aria-describedby="product details with bid value valid">
+                    <tbody>
+                        <tr style="display: none;">
+                            <th id="prwithbidvalue">product details with bid value valid</th>
+                        </tr>
+                        <tr>            
+                            <td><i aria-hidden="true" class="fa fa-credit-card"></i> <span class="payment"> {{'labels.payment' | translate}} </span></td>    
+                        </tr>
+                        <tr>
+                            <td class="shipping-charges titleCell">{{'sellFlow.shippingCharges' | translate}}</td>
+                            <td class="cellValue">{{amountConfig?.shippingCharges == 0 ? '0' : amountConfig?.shippingCharges}} {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="commission titleCell">{{'sellFlow.commission' | translate}}</td>
+                            <td class="cellValue">{{amountConfig?.commission}} {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="vat titleCell">{{'sellFlow.vat' | translate}}</td>
+                            <td class="cellValue">{{amountConfig?.VAT}} {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="grand-total titleCell">{{'sellFlow.grandTotal' | translate}}</td>
+                            <td class="f-price font-color-primary cellValue">
+                                {{amountConfig?.totalAmount}}<sub>{{'labels.sar' | translate}}</sub></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <div  *ngIf="bidValueIsValidToBid" class="first-Div-Bid">
+                <hr>
+                <div *ngIf="translate?.getDefaultLang() == 'ar'" >{{'labels.only' | translate}} {{commonSettings.bidding_amount}}    {{'labels.deduct' | translate}}  </div>
+         
+            <div  *ngIf="translate?.getDefaultLang() == 'en'">
+             {{'labels.only' | translate}} {{commonSettings.bidding_amount}}    {{'labels.deduct' | translate}}  </div>
+        </div>
+
+            <div class="products-bottom">
+         
+                <a class="button button02 bg-color-primary" (click)="checkBidPrice() && putBid()">
+                    <span class="now-text">{{'labels.place-this-bid' | translate}}</span>
+                </a>
+
+            </div>
+       <br>
+
+       
+        </div>
+        <a class="popup-close" (click)="hideBidModal()">
+            <img class="icon-close" [src]="'close-icon-popup.svg' | imagePath: 'icons'" alt="">
+        </a>
+    </div>
+</div>
+
+
+
+
+<div class="sc-ion-alert-ios-h sc-ion-alert-ios-s cart-total-includes"
+    (click)="openAmountConfigModal(amountConfigPopUp)" #amountConfigPopUp style="display: none;">
+    <div class="sc-ion-alert-ios-backdrop"></div>
+    <div class="alert-wrapper ion-overlay-wrapper sc-ion-alert-ios">
+        <div class="alert-head sc-ion-alert-ios">
+            <h2 id="alert-4-hdr" class="alert-title sc-ion-alert-ios">{{'sellFlow.inclusivePriceIncludes' | translate}}
+            </h2>
+        </div>
+        <div id="alert-4-msg" class="alert-message sc-ion-alert-ios">
+            <div class="cart-totals">
+                <table aria-describedby="bid popup on product">
+                    <tbody>
+                        <tr style="display: none;">
+                            <th id="bidpopup">bid popup on product</th>
+                        </tr>
+                        <tr>
+                            <td class="shipping-charges">{{'sellFlow.shippingCharges' | translate}}</td>
+                            <td>{{amountConfig?.shippingCharges}} {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="commission">{{'sellFlow.commission' | translate}}</td>
+                            <td>{{amountConfig?.commission}} {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="vat">{{'sellFlow.vat' | translate}}</td>
+                            <td>{{amountConfig?.VAT}} {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="grand-total">{{'sellFlow.grandTotal' | translate}}</td>
+                            <td class="f-price font-color-primary"> {{amountConfig?.totalAmount}}
+                                <sub>{{'labels.sar' | translate}}</sub>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+</div>

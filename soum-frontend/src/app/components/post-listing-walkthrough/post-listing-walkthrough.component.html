@@ -1,0 +1,122 @@
+<div class="wlakThrought">
+    <div class="header_part">
+        <img class="callUs_image" src="../../../assets/images/callUS.png" alt="Call Us" />
+        <a href="https://api.whatsapp.com/send?phone=966920035039" class="callUS_text"
+            target="_blank">{{"postWalkThrough.callUs" | translate}}</a>
+    </div>
+
+    <div [ngClass]="{'stepperAr': translate.getDefaultLang() === 'ar'}" *ngIf="activeStepper === 'stepper1'" id="stepper1">
+        <div class="image_part">
+            <img class="walkThrough_image" src="../../../assets/images/walkThrought-1.png" alt="Walk Through" />
+        </div>
+
+        <div class="content_wlakThrought">
+            <h2 class="congrates">
+                {{"postWalkThrough.congrates" | translate}}
+            </h2>
+            <p class="congrates_text">
+                {{"postWalkThrough.listedSuccess1" | translate}}
+            </p>
+            <p class="congrates_text">
+                {{"postWalkThrough.listedSuccess2" | translate}}
+            </p>
+            <div class="hint">
+                <span class="hint_content">
+                    {{"postWalkThrough.congrates_hint" | translate}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div [ngClass]="{'stepperAr': translate.getDefaultLang() === 'ar'}" *ngIf="activeStepper === 'stepper2'" id="stepper2">
+        <div class="image_part">
+            <img class="walkThrough_image" src="../../../assets/images/walkThrought-2.png" alt="Walk Through" />
+        </div>
+
+        <div class="content_wlakThrought">
+            <p class="shipDevice">
+                <span class="ship">{{"postWalkThrough.ship" | translate}}</span> {{'postWalkThrough.shipThrow1' | translate}}
+            </p>
+            <p class="shipDevice">
+                {{'postWalkThrough.ship24hours' | translate}}
+            </p>
+            <div class="hint">
+                <span class="hint_content">
+                    {{"postWalkThrough.shipHint" | translate}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div [ngClass]="{'stepperAr': translate.getDefaultLang() === 'ar'}" *ngIf="activeStepper === 'stepper3'" id="stepper3">
+        <div class="image_part">
+            <img class="walkThrough_image" src="../../../assets/images/walkThrought-3.png" alt="Walk Through" />
+        </div>
+
+        <div class="content_wlakThrought">
+            <h2 class="receivePayment">{{"postWalkThrough.receivePayment" | translate}}</h2>
+            <h2 class="afterVerification">{{"postWalkThrough.afterVerify" | translate}}</h2>
+
+            <div class="hint">
+                <span class="hint_content">
+                    {{"postWalkThrough.receiveHint" | translate}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div [ngClass]="{'stepperAr': translate.getDefaultLang() === 'ar'}" *ngIf="activeStepper === 'stepper4'" id="stepper4">
+        <div class="image_part">
+            <img class="walkThrough_image"
+                [src]="siteLang ==='en'? '../../../assets/images/walkThrought-5.png' : '../../../assets/images/walkThrought-4.png'"
+                alt="Walk Through" />
+        </div>
+
+        <div class="content_wlakThrought">
+            <h2 class="manage">
+                <span class="listingEasly">{{"postWalkThrough.manage" | translate}}</span>{{"postWalkThrough.listingEasly1" | translate}}
+            </h2>
+            <h2 class="manage">
+                {{"postWalkThrough.listingEasly2" | translate}}
+            </h2>
+            <div class="hint">
+                <span class="hint_content">
+                    {{"postWalkThrough.manageListingHint" | translate}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="stepper">
+            <div (click)="activeStepper = 'stepper1'"
+                [ngClass]="activeStepper === 'stepper1' ? 'stepper_active' : 'stepper_circle'"></div>
+            <div (click)="activeStepper = 'stepper2'"
+                [ngClass]="activeStepper === 'stepper2' ? 'stepper_active' : 'stepper_circle'"></div>
+            <div (click)="activeStepper = 'stepper3'"
+                [ngClass]="activeStepper === 'stepper3' ? 'stepper_active' : 'stepper_circle'"></div>
+            <div (click)="activeStepper = 'stepper4'"
+                [ngClass]="activeStepper === 'stepper4' ? 'stepper_active' : 'stepper_circle'"></div>
+        </div>
+
+        <div class="footer_content">
+            <div class="skip_wrapper">
+                <div *ngIf="activeStepper !== 'stepper4' && skip_post_listing" class="skipBtn" (click)="goToProductDetails()">
+                    <span class="skipText">{{("postWalkThrough.skip" | translate)}}</span>
+                </div>
+                <div *ngIf="activeStepper === 'stepper4'" class="skipBtn" (click)="goToProductDetails()">
+                    <span class="skipText">{{"postWalkThrough.finish" | translate}}</span>
+                </div>
+            </div>
+
+            <div class="arrows">
+                <img (click)="activeStepper = 'stepper2'" *ngIf="activeStepper === 'stepper1'" class="nextBtn"
+                     src="../../../assets/images/nextBtn.png" alt="Next" />
+                <img (click)="activeStepper = 'stepper3'" *ngIf="activeStepper === 'stepper2'" class="nextBtn"
+                    src="../../../assets/images/nextBtn.png" alt="Next" />
+                <img (click)="activeStepper = 'stepper4'" *ngIf="activeStepper === 'stepper3'" class="nextBtn"
+                    src="../../../assets/images/nextBtn.png" alt="Next" />
+            </div>
+        </div>
+    </div>
+</div>

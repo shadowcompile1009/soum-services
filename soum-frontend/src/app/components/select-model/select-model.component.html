@@ -1,0 +1,39 @@
+<div class="content">
+    <app-header [pageTitle]="'sellFlow.selectModel' | translate" (goBack)="goBack()" (actionEvent)="showmodal()" [actionStyle]="'cancel-button'" [action]="'sellFlow.cancel' | translate"></app-header>
+
+    <div class="section-select-model">
+        <app-banner-breadcrumb [type]="true"></app-banner-breadcrumb>
+        <div class="container container-padding">
+            <h2 class="section_title section_style">
+                 <br>{{'sellFlow.chooseModel' | translate}}</h2>
+            <div class="select-model-row select-model-row2" [hidden]="!models?.length">
+                <div class="select-model-box" [ngClass]="{'device-sell-box-acitve' : sellerService.uploadProductData.model_id === model._id}" *ngFor="let model of models">
+                    <div class="model-box"  (click)="proceedToSelectVariant(model)">
+                        <span class="model-img"><img [src]="model?.model_icon" alt=""></span>
+                        <span class="title-img color-title">{{model?.model_name}}</span>
+                    </div>
+                </div>
+
+                <div *ngIf="apiHit" class="select-model-box model-box device_notFound" style="padding: 20px 10px;">
+                    <div class="fitst_part">
+                        <span class="deviceType">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNyJwGLXZC7WRgx2I3W_OaEunUIY6JrDEOrp7xFdSn9nkhSQ/viewform" target="_blank" class="contactUs" >
+                                {{'sellFlow.dontFindmodel' | translate}}<br /> {{'sellFlow.model' | translate}}
+                            </a>
+ 
+                           </span>
+                    </div>
+                   
+                </div>
+
+            </div>
+            <div class="api-inline-loader" *ngIf="!apiHit">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+</div>
+<app-cancel-listing *ngIf="showModal"></app-cancel-listing>

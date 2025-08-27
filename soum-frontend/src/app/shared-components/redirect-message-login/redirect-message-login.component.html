@@ -1,0 +1,12 @@
+<div class="container-modal">
+    <div class="container-image">
+        <img alt="regsiter" [src]="'registerLogin.svg' | imagePath" />
+    </div>
+    <div class="container-msg">
+        <p class="msg-text">{{"labels.shuldLoginFirst" | translate}}</p>
+    </div>
+    <div class="container-buttons">
+        <div class="btn-register" (click)="redirectToSign()">{{"labels.lginRegister" | translate}}</div>
+        <div class="btn-cancel" (click)="closeModal()">{{"labels.cancel" | translate}}</div>
+    </div>
+</div>

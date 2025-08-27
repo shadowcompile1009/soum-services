@@ -1,0 +1,140 @@
+<div class="content">
+    <app-header [pageTitle]="'sellFlow.pickUpAddress' | translate" (goBack)="goBack()"></app-header>
+
+    <div class="description-row">
+        <h2 class="section_title section_style">
+            <br />{{ 'labels.MyDetails' | translate }}
+        </h2>
+
+        <div>
+            <mat-card class="example-card" *ngIf="address">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h2 *ngIf="address" class="section_title">
+                            <img alt="choose address" style="width: 20px; height: 20px"
+                                [src]="'home.png' | imagePath:'icons'" />
+                            {{ 'sellFlow.chooseAddress' | translate }}
+
+                            <a (click)="cancel()" *ngIf="!address && previousAddress"
+                                class="button_profile text-danger">
+                                {{ 'orderDetails.cancel' | translate }}
+                            </a>
+                        </h2>
+                    </mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div class="show-address" *ngIf="address">
+                        <div class="user-info">
+                            <div class="user-address">
+                                <h4 class="username-color">{{ userDetails?.name }}</h4>
+                                <p class="address_detail">
+                                    <span class="grey-color">{{ 'addAddress.street_name' | translate }}:
+                                    </span>
+                                    <strong class="username-color">
+                                        {{ address?.street || '-----' }} </strong><br />
+                                    <span class="grey-color">{{ 'addAddress.district' | translate }}:
+                                    </span>
+                                    <strong class="username-color">
+                                        {{
+                                        address?.district || address?.address || '-----'
+                                        }} </strong><br />
+                                    <span class="grey-color">{{ 'addAddress.city' | translate }}:
+                                    </span>
+                                    <strong class="username-color">
+                                        {{ address?.city || '-----' }} </strong><br />
+                                    <span class="grey-color">{{ 'addAddress.postal_code' | translate }}:
+                                    </span>
+                                    <strong class="username-color">
+                                        {{ address?.postal_code || '-----' }}
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <hr />
+                <mat-card-actions>
+                    <a (click)="updateAddress()" *ngIf="address" class="btn-update">
+                        {{ 'addressFormat.updateBtn' | translate }}
+                    </a>
+                </mat-card-actions>
+            </mat-card>
+
+            <div class="products-bottom" *ngIf="address">
+                <button type="button" name="submit " class="submit" [disabled]="!address && addressForm?.invalid"
+                    (click)="checkForAddress()" class="btn btn-full">
+                    {{ 'sellFlow.addAdd' | translate }}
+                </button>
+            </div>
+        </div>
+
+        <form [formGroup]="addressForm" *ngIf="!address" (ngSubmit)="checkForAddress()">
+            <div class="addressForm">
+                <div class="street_name">
+                    <mat-form-field class="field_name">
+                        <mat-label>{{ 'addAddress.street_name' | translate }}</mat-label>
+                        <input type="text" autocomplete="off" matInput
+                            placeholder="{{ 'addAddress.street_name' | translate }}" formControlName="street" />
+                        <mat-icon *ngIf="addressForm?.controls['street']?.value?.length > 0"
+                            (click)="removeStreetName()" class="matIcon" matSuffix>close</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="district_name">
+                    <mat-form-field class="field_name">
+                        <mat-label>{{ 'addAddress.district' | translate }}</mat-label>
+                        <input type="text" autocomplete="off" matInput
+                            placeholder="{{ 'addAddress.district' | translate }}" formControlName="district" />
+                    </mat-form-field>
+                </div>
+
+                <div class="city_postal_container">
+                    <div class="city_name">
+                        <mat-form-field class="field_name">
+                            <mat-label>{{ 'addAddress.city' | translate }}</mat-label>
+                            <input readonly (focus)="openCitiesModal()" type="text" autocomplete="off" matInput
+                                placeholder="{{ 'addAddress.city' | translate }}" formControlName="city" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="postal_name">
+                        <mat-form-field class="field_name">
+                            <mat-label>{{ 'addAddress.postal_code' | translate }}</mat-label>
+                            <input minlength="5" maxlength="5" (keypress)="numberOnly($event)" type="text"
+                                autocomplete="off" matInput placeholder="{{ 'addAddress.postal_code' | translate }}"
+                                formControlName="postal_code" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-bottom">
+                <button type="submit" name="submit" class="submit" [disabled]="!address && addressForm?.invalid"
+                    class="btn btn-full">
+                    {{ 'sellFlow.addAdd' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="city_address_filter" *ngIf="showCitiesModal">
+    <img alt="Close" class="close_modal_icon" [src]="'close-icon-popup.svg' | imagePath:'icons'"
+        (click)="closeCitiesModal()" />
+    <div class="city_container">
+        <h2 class="title_city">{{ 'addAddress.select_city' | translate }}</h2>
+        <div class="input_filter form-group">
+            <mat-icon class="search_icon">search</mat-icon>
+            <input (keyup)="filterByCityName()" [value]="searchValue" [(ngModel)]="searchValue" class="form-control"
+                type="text" placeholder="{{ 'addAddress.city' | translate }}" />
+            <mat-icon class="remove_icon" (click)="clearSearchFilter()">close</mat-icon>
+        </div>
+
+        <div class="cities">
+            <h3 (click)="selectCity(language === 'en' ? city.name_en : city.name_ar)" *ngFor="let city of copy_cities">
+                {{ language === 'en' ? city.name_en : city.name_ar }}
+            </h3>
+        </div>
+    </div>
+</div>

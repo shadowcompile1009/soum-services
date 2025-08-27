@@ -1,0 +1,29 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+        <div class="products-top-bar" style="text-align:center;">
+            <div class="products-bottom">
+                <div class="option-container">
+                    <img alt="add photo" [src]="'addphoto.png' | imagePath  : 'newSign'">
+                    <a class="normal-first-color" (click)="handleTakePhoto()">
+                        <span class="now-text">
+                            {{'labels.takePhoto' | translate}}
+                        </span>
+                    </a>
+                </div>
+                <br>
+                <div class="option-container">
+                    <img alt="photo library" [src]="'photolibrary.png' | imagePath  : 'newSign'">
+                    <a class="normal-color" (click)="handleOpenLibrary()">
+                        <span class="now-text">
+                            {{'labels.chooseLibrary' | translate}}
+                        </span>
+                        <div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

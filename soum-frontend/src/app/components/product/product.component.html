@@ -1,0 +1,45 @@
+<div class="products-content">
+    <div class="product-info">
+        <div class="left">
+            <a (click)="navigateTo('/product-detail', product)">
+                <h4 class="product-title">{{product?.models?.model_name}}</h4>
+                <!-- <span class="product-available">{{product?.varient}}</span> -->
+            </a>
+        </div>
+        <div class="right" style="align-items: center">
+            <span class="plus-text" >
+                <span [class]="checkGrade(product?.grade)">
+                    {{translate?.getDefaultLang() == 'en' ? product?.grade : product?.grade_ar}}
+                </span>
+            </span>
+            <a  *ngIf="userDetail?.userId  != product?.seller_id" class="wishlist-button wishlist-add"
+                (click)="favorite(product)">
+           
+                <img alt="" class="menu-icon" [src]="!product?.favourited ? 'assets/images/icons/wishlist-no-add.png' : 'assets/images/icons/wishlist-add.png' " loading="lazy">
+            </a>
+        </div>
+        <span class="highest_bid red_color" *ngIf="product?.bid_text">{{product?.bid_text}}</span>
+    </div>
+    <div class="products-bottom">
+        <div class="left">
+            <div class="price">
+                <span class="f-price font-color-primary">{{product?.discount>0? '-' + product?.discount : 0}}%</span>
+                <span class="o-price">{{product?.varients?.current_price}}
+                </span>
+                <span class="d-text">{{'labels.discountOriginal' | translate}}</span>
+            </div>
+        </div>
+        <div class="right" *ngIf="userDetail?.userId  != product?.seller_id">
+            <a class="button buy_price Buy_SL_SPP" (click)="navigateTo('/order', product)">
+                <span class="now-text">
+                    {{userDetail?.userId == product?.seller_id ? ("labels.buy_price" | translate) : ("labels.buy_now_at" | translate)}}
+                </span>
+                <div><span class="p-text">
+                    {{getOverAllPrice(product)?.totalAmount | roundNumbers | number:'':'en'}}
+                </span>
+                <sub>{{'labels.sar' | translate}}</sub>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

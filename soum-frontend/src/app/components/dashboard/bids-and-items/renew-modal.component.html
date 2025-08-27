@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>{{ "labels.Modal_title" | translate }}</h1>
+<div mat-dialog-content>
+  <select class="form-select form-control dropdownlist" aria-label="Default select example"
+    (change)="changingValue($event.target.value)" [value]='1'>
+    <option value="0" selected disabled>
+      {{ "labels.Please_Select_Date" | translate }}
+    </option>
+    <option value="1">{{ "labels.day" | translate }}
+    </option>
+    <option value="2">{{ "labels.two_day" | translate }}
+    </option>
+    <option value="3">{{ "labels.three_days" | translate }}
+    </option>
+    <option value="7">{{ "labels.week" | translate }}
+    </option>
+    <option value="14">{{ "labels.two_week" | translate }}
+    </option>
+    <option value="30">{{ "labels.month" | translate }}
+    </option>
+  </select>
+</div>
+<div mat-dialog-actions>
+  <button mat-button style="background-color:  #60a4ec; margin-left: 10px;"
+  (click)=renewProductListing()>{{ "bidsAndItem.renew" | translate }}</button>
+  <button align="end" mat-button [mat-dialog-close] style="background-color:  #ec4747; margin-left: 50px;">
+    {{ "labels.Back" | translate }}</button>
+</div>

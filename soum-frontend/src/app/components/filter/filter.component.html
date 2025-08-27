@@ -1,0 +1,87 @@
+<div class="content">
+    <app-header [pageTitle]="'filter.title' | translate" (goBack)="goBack()"></app-header>
+
+    <div class="section-filter category-box" *ngIf="category">
+        <div class="container">
+            <div class="title-box">
+                <h2>{{'filter.brand' | translate}}</h2>
+                <a (click)="clear('brand')" class="clear">{{'filter.clear' | translate}}</a>
+            </div>
+            <div id="category" class="sort-box">
+                <a class="brand_name" [ngClass]="{'active-filter': brand?.selected}" *ngFor="let brand of brands" [id]="brand?.brand_id"
+                    (click)="select('brand', brand)">
+                    {{brand?.brand_name}}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-filter model_area" *ngIf="category">
+        <div class="container">
+            <div class="title-box">
+                <h2>{{'filter.model' | translate}}</h2>
+                <a class="clear" (click)="clear('model')">{{'filter.clear' | translate}}</a>
+            </div>
+            <div id="model" class="sort-box">
+                <a [ngClass]="{'active-filter': model?.selected}" *ngFor="let model of models" [id]="model?._id"
+                    (click)="select('model', model)">
+                    {{model?.model_name}}
+                </a>
+                <p class="no-model" *ngIf="!models?.length">
+                    {{'filter.selectBrand' | translate}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-filter rangeslider">
+        <div class="container">
+            <div class="title-box">
+                <h2>{{'filter.priceRange' | translate}}</h2>
+                <a (click)="clear('price')" class="clear">{{'filter.clear' | translate}}</a>
+            </div>
+            <div class="slider_range">
+            
+            
+                <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section-filter category-box" *ngIf="!category">
+        <div class="container">
+            <div class="title-box">
+                <h2>{{'filter.capacity' | translate}}</h2>
+                <a (click)="clear('capacities')" class="clear">{{'filter.clear' | translate}}</a>
+            </div>
+            <div id="category" class="sort-box">
+                <a [ngClass]="{'active-filter': capacity?.selected}" *ngFor="let capacity of capacities; let i = index"
+                    (click)="selectCapacity(capacity, i)">
+                    {{capacity.value}} 
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div  class="section-filter section-grade" *ngIf="!category">
+        <div class="container">
+            <div class="title-box">
+                <h2>{{'filter.soumCertificationGrade' | translate}}</h2>
+                <a (click)="clear('grade')" class="clear">{{'filter.clear' | translate}}</a>
+            </div>
+            <div id="grade" class="sort-box plus-text">
+                <span *ngFor="let g of grades; let i = index" (click)="selectGrade(g, i)"
+                    [ngClass]="{'active-filter': g.selected }" [class]="g.class">
+                    {{g.name | translate}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="fix-button">
+        <a class="clear-button" (click)="clearFilter()">{{'filter.clearAll' | translate}}</a>
+        <a class="apply-button" (click)="applyFilter()">{{'filter.applyFilter' | translate}}</a>
+    </div>
+</div>

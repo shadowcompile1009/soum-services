@@ -1,0 +1,85 @@
+.about-soum-container{
+    display: flex;
+    flex-direction: column;
+    background: #FDFDFD;
+    height: 100%;
+    min-height: 145vh;
+    width: 100%;
+
+    .header-title {
+        display: flex; flex-direction: row; border-bottom: 2px solid #ECF0F1; padding: 20px;
+        .back-arrow { width: 20px; }
+        .soum-title {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            font-family: "DIN Next LT Arabic", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 20px;
+            color: #177AE2;
+        }
+    }
+
+    .container-info {
+        padding: 0 20px;
+
+        .step1 {
+            display: flex;
+            flex-direction: row;
+            height: 105px;
+            background: #F4F6FA;
+            border-radius: 8px;
+            margin-top: 40px;
+            position: relative;
+            padding: 0 20px;
+
+            .imgStep1 { width: 82.87px; height: 139px; position: absolute; right: 0; top: -25px; }
+
+            .imgStep3 { width: 118.67px; height: 108px; position: absolute; right: 0; top: -5px; }
+
+           .imgStep5 { width: 106.81px; height: 123px; position: absolute; right: 0; top: -10px; }
+
+           .stepNo1 { 
+               position: absolute; 
+               top: -10px; 
+               width: 22px;
+                height: 22px;
+                background: #31cdcd;
+                border-radius: 22px;
+                font-size: 16px;
+                font-weight: bold;
+                color: white;
+                text-align: center;
+                line-height: 18px;
+            }
+
+            .titleStep {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    font-family: "DIN Next LT Arabic", sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 21px;
+                    color: #313437;
+                    width: 75%;
+                strong{ font-weight: bold; }
+                .step1Text{ font-weight: bold;}
+            }
+        }
+
+        .step2 {
+            flex-direction: row-reverse;
+            .imgStep2 { width: 102px; height: 78.48px; position: absolute; left: 5px; top: 25px;}
+            .imgStep4 { width: 73.87px; height: 139px; position: absolute; left: 5px; top: -20px; }
+            .titleStep {
+                width: 70%;
+                h3{ text-align: right; }
+            }
+        }
+    }
+}

@@ -1,0 +1,536 @@
+<div class="content">
+    <app-header [pageTitle]="product?.models?.model_name" (goBack)="goBack()"></app-header>
+
+    <div class="products-slider padding-list">
+        <div class="container">
+            <h2 class="section_title padding">
+                {{ "orderDetails.productPhotos" | translate }}
+            </h2>
+
+            <owl-carousel [options]="customOptions" [items]="product?.product_images" class="image-slider">
+                <div class="item" *ngFor="let image of product?.product_images">
+                    <span class="photo-slider-img"
+                        [ngStyle]="{ 'background-image': 'url(' + (image | image) + ')' }"></span>
+                    <span class="zoom_photo" (click)="openSliderDialog(image)">
+                        <img src="https://cdn2.iconfinder.com/data/icons/user-interface-46/256/menu_fullscreen-512.png"
+                            alt="big" loading="lazy" />
+                    </span>
+                </div>
+            </owl-carousel>
+        </div>
+    </div>
+
+    <div class="section-details section-details-q">
+        <div class="container">
+            <h2 class="section_title">
+                <div class="padding-list">
+                    {{
+                        translate?.getDefaultLang() == "ar"
+                        ?     product?.models?.model_name_ar 
+                        :   product?.models?.model_name
+                        }}
+              
+                    <span *ngIf="variants.length">{{ checkDefaultLangForVariants(variants[0].value)}}</span>
+                    <span class="title-main">
+                        <span *ngFor="let variant of variants; let i = index">
+
+                            <span *ngIf="i > 0 && i <  variants.length-1"> {{ checkDefaultLangForVariants(variant?.value)}}،
+                            
+
+                            </span>
+                            <span *ngIf="i == variants.length-1"> {{ checkDefaultLangForVariants(variant?.value)}}
+                            </span>
+
+                        </span>
+                    </span>
+                    <a *ngIf="product?.user_id !== product?.seller_id && showWishListIcon"
+                        class="wishlist-button wishlist-add" (click)="favorite(product)">
+                        <img class="menu-icon" alt="wishlist" loading="lazy" [src]="
+                !product?.favourited
+                  ? 'assets/images/icons/wishlist-no-add.png'
+                  : 'assets/images/icons/wishlist-add.png'
+              " />
+                    </a>
+
+                    <div class="price-text" [ngClass]="{ price_ar: translate?.getDefaultLang() == 'ar' }">
+                        <div>
+                            {{ getOverAllPrice(product)?.totalAmount }}
+                            <span class="price-text-sar">{{ "labels.sar" | translate }}</span><br />
+                        </div>
+
+                        <button mat-button>
+                            <span class="plus-text" (click)="showmodalGrade()">
+                                <span [class]="checkGrade(product?.grade)">
+                                    {{
+                                    translate?.getDefaultLang() == "ar"
+                                    ? product?.grade_ar
+                                    : product?.grade
+                                    }}
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                    <div *ngIf="expectedDeliveryTime === 2" class="fast_delivery_wrapper"
+                        [ngClass]="{ fast_delivery_wrapper_ar: translate?.getDefaultLang() == 'ar' }">
+                        <img class="icon" [src]="'fast_delivery_lg.png' | imagePath: 'icons'" alt="fast_delivery">
+                        <span class="delivery_txt">{{"labels.fast_delivery_text" | translate}}</span>
+                    </div>
+                </div>
+                <p style="width: 100% !important" class="separator-icons"></p>
+                <div class="action-bar calender-arabic" *ngIf="product?.seller_id == loggedUserId">
+                    <div class="icon-left" [ngStyle]="{
+              background: isExpired(product?.expiryDate)
+                ? '#FEF1F1'
+                : 'rgba(23, 122, 226, 0.04)'
+            }">
+                        <a class="iconLeft">
+                            <strong style="color: #f35252" class="pExpiredAvailable"
+                                (click)="showExpiryModal(product?.product_id)" *ngIf="isExpired(product?.expiryDate)">
+                                {{ "labels.expiredItem" | translate }}
+                            </strong>
+                            <strong *ngIf="!isExpired(product?.expiryDate)" class="RenewNotify">
+                                {{ "labels.listingExpiresin" | translate }}
+                                ({{ product?.expiryDate | date: "dd/MM/yyy" }}).
+                            </strong>
+                        </a>
+
+                        <a (click)="showExpiryModal(product?.product_id)">
+                            <button type="button" class="btn btn-labeled btn-primary">
+                                <span class="btn-label"> <i class="fa fa-refresh"></i></span>
+                                {{ "labels.listrenew" | translate }}
+                            </button>
+                        </a>
+
+                        <a (click)="showDeleteModal(product?.product_id)">
+                            <button type="button" class="btn btn-labeled btn-danger">
+                                <span class="btn-label"><i class="fa fa-trash"></i></span>{{ "labels.deleteItem" |
+                                translate }}
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="padding-list">
+                    <h2 class="section_title">
+                        {{ "orderDetails.details" | translate }}
+                        <div class="right"></div>
+                    </h2>
+                    <div class="detail-size">
+
+                        <div *ngIf="hourRate">
+                            <strong class="title-size" style="float: right">{{
+                                "orderDetails.from" | translate
+                                }}</strong>
+                            {{ hourRate }}
+                            <span *ngIf="!DateSingle">
+                                {{ "orderDetails.hourss" | translate }}</span><span *ngIf="DateSingle">
+                                {{ "orderDetails.hour" | translate }}</span>
+                        </div>
+                        <div *ngIf="dayRate && !hideDays">
+                            <strong class="title-size">{{
+                                "orderDetails.from" | translate
+                                }}</strong>
+                            {{ dayRate }}
+                            <span *ngIf="!DateSingle">
+                                {{ "orderDetails.day" | translate }}</span><span *ngIf="DateSingle">
+                                {{ "orderDetails.day" | translate }}</span>
+                        </div>
+
+                        <div class="variant-box">
+                            <span class="title-size">
+                                {{'labels.battH' |translate }}
+                                <span class="text-size-color">
+                                    : </span>
+                            </span>
+                            {{
+                                translate?.getDefaultLang() == "ar"
+                                ?    batteryList?.answer_ar
+                                :    batteryList?.answer_en
+                                }}
+                          
+                        </div>
+                        <div *ngFor="let variant of variants" class="variant-box">
+                            <span class="title-size">
+                                {{ checkDefaultLangForVariants(variant.title)}}
+                                <span class="text-size-color">
+                                    : </span>
+                            </span>
+
+
+                            {{ checkDefaultLangForVariants(variant.value)
+                            }}
+                        </div>
+                        <div *ngIf="product?.models?.model_name" class="variant-box">
+                            <span class="title-size">
+                                {{
+                                "orderDetails.model" | translate
+                                }}
+                                <span class="text-size-color">
+                                    : </span>
+                            </span>
+                            {{
+                                translate?.getDefaultLang() == "ar"
+                                ?     product?.models?.model_name_ar 
+                                :   product?.models?.model_name
+                                }}
+               
+                        </div>
+                    </div>
+
+                    <div *ngIf="product?.description">
+                        <hr>
+                        <h2 class="section_title">
+                            {{ "labels.descProd" | translate }}
+
+                            <div class="right"></div>
+                        </h2>
+                        <div class="detail-size"> {{ product?.description }}
+
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="div-card">
+                        <div style="display: flex">
+                            <img class="imgGrantuee" alt="shield-check" [src]="'shield-check.png' | imagePath: 'icons'"
+                                loading="lazy" />
+                            <strong>{{ "labels.grantuee" | translate }}</strong>
+                        </div>
+                        <div style="display: flex">
+                            <img class="imgDelivery" alt="shield-check" [src]="'Group 813583.svg' | imagePath: 'icons'"
+                                loading="lazy" />
+                            <strong>{{ "labels.warningMessage" | translate }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="padding-list">
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header class="arabic-direction">
+                                <mat-panel-title>
+                                    <img style="vertical-align: middle" alt=""
+                                        class="icon-no-add-width icons-no-add-width2"
+                                        [src]="'wrench.png' | imagePath: 'icons'" loading="lazy" />
+                                    <span class="middle-style bold">{{
+                                        "labels.conditionAndDetails" | translate
+                                        }}</span>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div *ngFor="let ques of listQuestions; let indexOfelement = index"
+                                style="display: inline-block">
+                                <ul class="ul-style">
+                                    <li>
+                                        <p>
+                                            {{
+                                            translate?.getDefaultLang() == "ar"
+                                            ? ques?.question_ar
+                                            : ques?.question_en
+                                            }}
+                                        </p>
+
+                                        <div *ngIf="ques?.answer_ar != 'نعم' || indexOfelement == '0'">
+                                            <span *ngIf="translate?.getDefaultLang() == 'ar'">
+                                                <span *ngIf="ques?.answer_ar == 'لا'">
+                                                    لا توجد مشاكل
+                                                </span>
+                                                <span *ngIf="ques?.answer_ar !== 'لا'">
+                                                    {{ques?.answer_ar}}
+                                                </span>
+                                            </span>
+                                            <span *ngIf="translate?.getDefaultLang() == 'en'">
+                                                <span *ngIf="ques?.answer_ar == 'لا'">
+                                                    No issues reported
+                                                </span>
+                                                <span *ngIf="ques?.answer_ar !== 'لا'">
+                                                    {{ques?.answer_en}}
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                        <div class="choices-box" *ngIf="translate?.getDefaultLang() == 'ar'">
+                                            <div class="square-div square-width choice-box"
+                                                *ngFor="let choice of ques.subChoice_ar">
+                                                <div *ngIf="ques?.answer_ar">
+                                                    <img alt="" src="{{ choice?.icon }}" loading="lazy" />
+                                                </div>
+
+                                                {{
+                                                translate?.getDefaultLang() == "ar"
+                                                ? choice?.subChoice_ar
+                                                : choice?.subChoice_en
+                                                }}
+                                            </div>
+                                        </div>
+
+                                        <div class="choices-box" *ngIf="translate?.getDefaultLang() == 'en'">
+                                            <div class="square-div square-width choice-box"
+                                                *ngFor="let choice of ques.subChoice_en">
+                                                <div *ngIf="ques?.answer_en">
+                                                    <img alt="" src="{{ choice?.icon }}" loading="lazy" />
+                                                </div>
+                                                {{
+                                                translate?.getDefaultLang() == "ar"
+                                                ? choice?.subChoice_ar
+                                                : choice?.subChoice_en
+                                                }}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="true" (opened)="panelOpenState2 = true"
+                            (closed)="panelOpenState2 = false">
+                            <mat-expansion-panel-header class="arabic-direction">
+                                <mat-panel-title>
+                                    <img alt="" style="vertical-align: middle"
+                                        class="icon-no-add-width icons-no-add-width2"
+                                        [src]="'cube.png' | imagePath: 'icons'" loading="lazy" />
+                                    <span class="middle-style bold">
+                                        {{ "labels.accessories" | translate }}</span>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div *ngFor="let AccessList of AccessList" style="display: inline-block">
+                                <div class="square-div square-width" *ngIf="AccessList?.answer_ar">
+                                    <div>
+                                        <img alt="" src="{{ AccessList?.icon }}" loading="lazy" />
+                                    </div>
+                                    {{
+                                    translate?.getDefaultLang() == "ar"
+                                    ? AccessList?.answer_ar
+                                    : AccessList?.answer_en
+                                    }}
+                                </div>
+                            </div>
+                            <div *ngIf="AccessList && AccessList.length == 0" class="no_question_found">
+                                {{ "labels.noAccess" | translate }}
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState3 = true" (closed)="panelOpenState3 = false">
+                            <mat-expansion-panel-header class="arabic-direction">
+                                <mat-panel-title>
+                                    <img alt="" style="vertical-align: middle"
+                                        class="icon-no-add-width icons-no-add-width2"
+                                        [src]="'truck.png' | imagePath: 'icons'" loading="lazy" />
+                                    <span class="middle-style bold">{{
+                                        "labels.shipping" | translate
+                                        }}</span>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ul class="ul-style">
+                                <li>
+                                    <p class="bold">{{ "labels.delivery" | translate }}:</p>
+
+                                    <div>
+                                        <span class="free">{{ "labels.Free" | translate }}</span>{{
+                                        "labels.descDelivery" | translate }}
+                                    </div>
+                                </li>
+                                <br />
+                                <li>
+                                    <p class="bold">{{ "labels.Refund" | translate }}:</p>
+
+                                    <div>{{ "labels.refundDesc" | translate }}</div>
+                                </li>
+                                <br />
+                                <li>
+                                    <p class="bold">{{ "labels.paymentOp" | translate }}:</p>
+
+                                    <div>
+                                        <img alt="applePay" style="vertical-align: middle" class="icon-no-add-width-img"
+                                            [src]="'applePay.png' | imagePath" loading="lazy" />
+                                        <img alt="stcPay" style="vertical-align: middle" class="icon-no-add-width-img"
+                                            [src]="'stcPay.png' | imagePath" loading="lazy" />
+                                        <img alt="madaPay" style="vertical-align: middle" class="icon-no-add-width-img"
+                                            [src]="'madaPay.png' | imagePath" loading="lazy" />
+                                        <img alt="visaPay" style="vertical-align: middle" class="icon-no-add-width-img"
+                                            [src]="'visaPay.png' | imagePath" loading="lazy" />
+                                        <img alt="masterCard" style="vertical-align: middle"
+                                            class="icon-no-add-width-img" [src]="'masterCard.png' | imagePath"
+                                            loading="lazy" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState4 = true" (closed)="panelOpenState4 = false">
+                            <mat-expansion-panel-header class="arabic-direction">
+                                <mat-panel-title>
+                                    <img alt="message" style="vertical-align: middle;"
+                                        class="icon-no-add-width icons-no-add-width2"
+                                        [src]="'message-question-circle.png' | imagePath: 'icons'" loading="lazy" />
+                                    <span class="middle-style bold">{{
+                                        "labels.seller" | translate
+                                        }}</span>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div class="no_question_found">
+                                {{
+                                product?.product_questions?.length == 0
+                                ? ("labels.noQuestionFound" | translate)
+                                : ""
+                                }}
+                            </div>
+
+                            <div id="answersToQuestion">
+                                <div class="questions questions-first" *ngIf="product?.product_questions?.length">
+                                    <div class="container">
+                                        <div class="questions-box" *ngFor="let question of product?.product_questions">
+                                            <span class="user-info">
+                                                <span class="info-user">
+                                                    <h5 class="user-name">
+                                                        {{ question?.user_id?.name }}
+                                                    </h5>
+                                                </span>
+                                            </span>
+                                            <h4>
+                                                <span class="bluePoint"></span>
+                                                <strong class="middle-styles">
+                                                    {{ "labels.Q" | translate
+                                                    }}{{ question?.question }}</strong>
+                                                <span class="reply_btn bg-color-primary" (click)="editAnswer(question)"
+                                                    *ngIf="
+                            product?.seller_id == loggedUserId &&
+                            !question?.answer
+                          " [hidden]="question?.editAnswer">{{ "orderDetails.reply" | translate }}</span>
+                                            </h4>
+                                            <div class="message_box" *ngIf="!question?.editAnswer">
+                                                <p class="answerQuestion">
+                                                    {{ "labels.A" | translate
+                                                    }}{{
+                                                    question?.answer ||
+                                                    ("orderDetails.waitingForTheAnswer" | translate)
+                                                    }}
+                                                </p>
+                                            </div>
+                                            <div class="message_reply" *ngIf="question?.editAnswer">
+                                                <textarea id="reply" name="reply" (keyup)="validateQuestion(answer)"
+                                                    [(ngModel)]="answer"
+                                                    [placeholder]="'orderDetails.messageHere' | translate"></textarea>
+                                                <div *ngIf="!validQuestion" class="err-desc">
+                                                    {{ "labels.validComment" | translate }}
+                                                </div>
+                                                <button [disabled]="!validQuestion" type="button" id="post-answer"
+                                                    (click)="postAnswer(question)" class="arrow-send bg-color-primary">
+                                                    {{ "orderDetails.save" | translate }}
+                                                </button>
+                                                <button type="button" class="arrow-send" (click)="editAnswer(question)"
+                                                    style="background-color: grey; margin-left: 5px">
+                                                    {{ "orderDetails.cancel" | translate }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="questions" *ngIf="product?.seller_id != loggedUserId">
+                                    <div class="container">
+                                        <div class="questions-send">
+                                            <input type="text" name="ask-question" (keyup)="validateQuestion(question)"
+                                                [(ngModel)]="question" class="ask-question"
+                                                [placeholder]="'orderDetails.askQuestion' | translate" />
+                                            <button [disabled]="!validQuestion || !validQuestion"
+                                                (click)="askQuestion()" type="button" [disabled]="!question"
+                                                class="arrow-send bg-color-blue">
+                                                {{ "labels.post" | translate }}
+                                            </button>
+                                        </div>
+                                        <div *ngIf="!validQuestion" class="err-desc">
+                                            {{ "labels.validComment" | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+
+                    <div class="products products-list similar_models">
+                        <div *ngIf="similarModels?.length">
+                            <h2 class="section_title title_bg black">
+                                {{ "labels.simliarPro" | translate }}
+                                <span (click)="goBack()" class="view_all">{{ "labels.viewAll" | translate }}
+                                    <img alt="" [src]="'arrow-send.svg' | imagePath: 'icons'" loading="lazy" /></span>
+                            </h2>
+                            <mat-card class="example-card" *ngFor="let similarModel of similarModels">
+                                <img alt="" mat-card-image class="img-class" [src]="similarModel?.product_images[0]"
+                                    loading="lazy" />
+
+                                <mat-card-content class="card-content">
+                                    <div (click)="navigateTo('/product-detail', similarModel)">
+                                        <a>
+                                            <h4 class="product-title" style="padding: 10px">
+                                                {{ similarModel?.models?.model_name }} -
+                                                {{ similarModel?.varient }}
+                                            </h4>
+                                            <span class="price-tag" style="padding: 10px">
+                                                {{ getOverAllPrice(similarModel)?.totalAmount }}
+                                            </span>
+                                            <span class="sar">{{ "labels.sar" | translate }}</span>
+                                        </a>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                        <!--- Products Row -->
+                    </div>
+                </div>
+            </h2>
+
+        </div>
+
+        <!--content-->
+        <footer id="footer" class="details-buttons" *ngIf="
+        product?.seller_id != loggedUserId &&
+        product?.sell_status == 'Available'
+      ">
+            <div class="products-bottom">
+                <a class="button button-buy" (click)="navigateTo('/order', product)">
+                    <span class="now-text bold">
+                        {{
+                        userDetail?.userId == product?.seller_id
+                        ? ("labels.buy_price" | translate)
+                        : ("labels.buy_now_at" | translate)
+                        }}
+                        <span>{{
+                            getOverAllPrice(product)?.totalAmount | number: "":"en"
+                            }}</span>
+                        <span class="reyal-text"> {{ "labels.sar" | translate }}</span><br />
+                        <span class="free_charge">{{
+                            "labels.free_delivery" | translate
+                            }}</span>
+                    </span>
+                </a>
+
+                <a class="but button" *ngIf="product?.seller_id != loggedUserId && !is_BiddingDisabled"
+                    (click)="openBidModal(product)">
+                    <span class="now-text font-color-blue">
+                        {{ "labels.place_bid" | translate }}
+                    </span>
+                    <p style="text-align: center">
+                        ( {{ "labels.highest_bid" | translate }}
+                        {{ product?.current_bid_price }} {{ "labels.sar" | translate }} )
+                    </p>
+                </a>
+            </div>
+        </footer>
+
+        <bid-modal (refresh)="refreshList()"></bid-modal>
+        <buy-modal></buy-modal>
+        <app-condition *ngIf="showCondition"></app-condition>
+        <renew-modal></renew-modal>
+        <app-delete-item [product]="product" (deletePush)="delete($event)" *ngIf="showDelete"></app-delete-item>
+        <app-renew-expired [ID]="productID" *ngIf="showExpire" (expireDate)="refreshData($event)"></app-renew-expired>
+    </div>
+</div>

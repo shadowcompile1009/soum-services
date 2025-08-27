@@ -1,0 +1,29 @@
+<div class="breadcrumb-banner">
+    <div class="type">
+        <span [ngClass]="{'active': type}">{{'banner.bannerDevice' | translate}}</span>
+    </div>
+    <div class="separator">
+        <img alt='banner image' [src]="type? ('banner-active.png' | imagePath: 'icons') : ('banner.png' | imagePath: 'icons')" />
+    </div>
+    <div class="type">
+        <span [ngClass]="{'active': photos}">{{'banner.bannerImage' | translate}}</span>
+    </div>
+    <div class="separator">
+        <img alt='banner image' [src]="photos? ('banner-active.png' | imagePath: 'icons') : ('banner.png' | imagePath: 'icons')" />
+    </div>
+    <div class="type">
+        <span [ngClass]="{'active': status}">{{'banner.bannerStatus' | translate}}</span>
+    </div>
+    <div class="separator">
+        <img alt='banner image' [src]="status? ('banner-active.png' | imagePath: 'icons') : ('banner.png' | imagePath: 'icons')" />
+    </div>
+    <div class="type">
+        <span [ngClass]="{'active': price}">{{'banner.bannerPrice' | translate}}</span>
+    </div>
+    <div class="separator">
+        <img alt='banner image' [src]="price? ('banner-active.png' | imagePath: 'icons') : ('banner.png' | imagePath: 'icons')" />
+    </div>
+    <div class="type">
+        <span [ngClass]="{'active': confirmation}">{{'banner.bannerConfirmation' | translate}}</span>
+    </div>
+</div>

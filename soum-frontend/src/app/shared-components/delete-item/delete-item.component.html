@@ -1,0 +1,35 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+        <div class="products-top-bar" style="text-align:center;">
+            <img alt="" [src]="product?.product_images[0]">
+            <div class="bold-font "> {{'labels.youwillDelete' |translate}}
+                {{translate?.getDefaultLang() == 'ar' ? product?.models.model_name_ar : product?.models.model_name}}
+            <span   *ngIf="translate?.getDefaultLang() == 'ar'">
+                {{'labels.fromYourList' |translate}}
+            </span>
+            </div>
+
+            <div class="normal-font">{{'labels.productWillBeDeleted' | translate}} </div>
+            <div class="products-bottom">
+             
+                <a class=" full-size " (click)="hideBidModal()">
+                  <span class="normal-color">
+                      {{'labels.dontDeleteItem' | translate}}
+                  </span>
+                  <div>
+                      <br>
+                  </div>
+              </a>
+              <a class="button err-color  btn-full " (click)="deleteItem()">
+                <span class="now-text">
+                    {{'labels.DeleteItems' | translate}}
+                </span>
+                <div>
+                </div>
+            </a>
+            </div>
+        </div>
+    </div>
+  </div>

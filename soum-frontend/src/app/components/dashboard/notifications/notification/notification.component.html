@@ -1,0 +1,24 @@
+<div class="content">
+  <app-header [pageTitle]="'notification.title' | translate" (goBack)="goBack()" (actionEvent)="clearAllNotification()" [actionStyle]="notificationCount == 0? 'notificationReaded' : 'notificationNotReaded'" [action]="'notification.mark-read' | translate"></app-header>
+
+  <div class="notifications">
+    <div *ngFor="let notification of listNotificationNotRead">
+      <app-notification-cell
+        [notificationData]="notification"
+      ></app-notification-cell>
+    </div>
+
+    <div *ngFor="let notification of listNotificationRead">
+      <app-notification-cell
+        [notificationData]="notification"
+      ></app-notification-cell>
+    </div>
+
+    <div class="api-inline-loader" *ngIf="!apiHit">
+      <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+      </div>
+  </div>
+  </div>
+
+</div>

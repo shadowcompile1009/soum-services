@@ -1,0 +1,229 @@
+@import "../../../assets/css/color.scss";
+
+@mixin btn_style($color, $bgcolor) {
+  color: $color;
+  background-color: $bgcolor;
+  border-color: $bgcolor;
+  border-radius: 10px;
+  font-size: 10px;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif;
+}
+
+.text-lang {
+  color: #31CDCD !important;
+  margin: 10px;
+  margin-top: 30px;
+  font-size: 16px !important;
+}
+
+.button-next {
+  background: #177ae2;
+
+  //   border-radius: 0px 0px 0px 20px !important;
+}
+
+.skip-buton {
+  background: transparent !important;
+  font-size: 16px;
+
+  color: #434343 !important;
+}
+
+.background {
+  background-color: #ffffff;
+  // padding: 20px;
+  height: 400px;
+}
+
+.backgroundThird {
+  background-color: #ffffff;
+  padding: 20px;
+  height: 400px;
+}
+
+.cart-totals,
+.cart-totals table {
+  width: 95%;
+}
+
+.cart-totals table tr td {
+  font-size: 14px;
+}
+
+.cart-totals table tr .grand-total {
+  color: #363636;
+  font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+.payment-section .popup-inner {
+  padding: 20px !important;
+}
+
+.popup-inner .products-top-bar {
+  //padding:0px 0px 15px 0px;
+  width: 97%;
+}
+
+.cart-totals table tr {
+  border: none;
+}
+
+.small-text {
+  width: 352px;
+  height: 17px;
+  left: 24px;
+  top: 318px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #a8a8a8;
+}
+
+.products-bottom .button {
+  width: calc(30% - 0px) !important;
+  box-shadow: 0 0 9px rgb(190 214 195 / 0%) !important;
+  margin-right: 0px !important;
+
+  .now-text {
+    text-align: center !important;
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+  }
+}
+
+.products-bottom .btn-full {
+  width: calc(100% - 0px) !important;
+  border-radius: 30px;
+  background: #177ae2;
+  padding: 15px;
+}
+
+.grey-button {
+  width: 40%;
+  height: 3px;
+  cursor: pointer;
+  margin: 0px 100px 20px 100px;
+  background: #d2d7d9;
+  align-self: center;
+}
+
+.link-style {
+  color: #177ae2 !important;
+  text-decoration: underline !important;
+}
+
+.normal-font {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  padding: 20px;
+  // padding-bottom: 60px;
+  color: #a8a8a8;
+}
+
+.bold-font {
+  // text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 20px 0px 0px 0px;
+}
+
+.bold-text {
+  font-style: normal;
+  font-weight: bold;
+  padding: 5px 0 5px 0;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+  /* Primary blue */
+  color: #177AE2;
+}
+
+.bold-text-normal {
+  position: relative;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  /* or 150% */
+  /* Black */
+  color: #434343;  
+  &:not(.title_des)::before {
+    content: "";
+    top: 11px;
+    width: 7px;
+    height: 7px;
+    right: -12px;
+    border-radius: 4px;
+    position: absolute;
+    background-color: #31CDCD;
+  }
+}
+.custom_en{
+  .bold-text-normal {  
+    &:not(.title_des)::before {
+      top: 10px;
+      left: -12px;
+    }
+  }
+}
+.title_des {
+  color: #909A9F;
+}
+
+.plus-text {
+  span {
+    width: auto;
+    padding: 5px 10px;
+
+    &.extensive {
+      @include btn_style(#F25C5C, #E8D3D3);
+    }
+
+    &.usable {
+      @include btn_style(#F25C5C, #E8D3D3);
+    }
+
+    &.excellent {
+      @include btn_style(#24C081, #C9E1D7);
+    }
+
+    &.good {
+      @include btn_style(#F79E1B, #E9D9C2);
+    }
+
+    &.great {
+      @include btn_style(#31CDCD, #C6E2E2);
+    }
+  }
+}
+
+.step {
+  color: #177AE2;
+}
+
+.fa-check-circle {
+  font-size: 70px;
+  color: #31cdcd;
+}
+
+.custom-control-label {
+  color: #31cdcd !important;
+
+  font-size: 16px !important;
+}

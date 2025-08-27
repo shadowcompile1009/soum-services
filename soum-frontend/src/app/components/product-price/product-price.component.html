@@ -1,0 +1,349 @@
+<div class="content">
+  <app-header [pageTitle]="'sellFlow.productPrice' | translate" (goBack)="goBack()" (actionEvent)="showmodal()" [actionStyle]="'cancel-button'" [action]="'sellFlow.cancel' | translate"></app-header>
+
+  <div class="section-description">
+    <app-banner-breadcrumb [type]="true" [photos]="true" [status]="true" [price]="true"></app-banner-breadcrumb>
+    <div class="container container-padding">
+      <div class="description-row">
+        <h2 class="section_title section_style">
+          <br>{{'labels.almostThere' | translate}}
+        </h2>
+        <div>
+
+          <div class="description-row">
+            <h2 class="section_title section_style">
+              <span class="color-title">{{'labels.setBuyPrics' | translate}}
+                <i class="fa fa-question-circle-o" (click)="openInfoBuy()" aria-hidden="true"></i>
+              </span>
+              
+          </h2>
+            <div >
+              <p *ngIf="condition" class="valid-month priceNudge">
+                {{ "sellFlow.priceNudegGRomSoum" | translate}} ({{siteLang == "en"? condition : condition_ar}})
+              </p>
+              <mat-form-field class="example-full-width" appearance="fill" style="display: inline-block ;width: 50px; margin-left:5px;">          
+                <mat-label>{{'labels.setPrice' | translate }}</mat-label>  <input 
+                matInput type="number"  class="number Sell-Price" id="Sell-Price"
+                (ngModelChange)="onEnterSellPrice()" 
+                [(ngModel)]="sell_price" name="number"   placeholder="0.00">
+                <label matSuffix class="notes">{{ "labels.sar" | translate }}</label>
+              </mat-form-field>
+
+              <div class="validity">
+                <p class="valid-month">
+                  {{ "sellFlow.currentMarketPrice" | translate: varient }}
+                </p>
+                <p class="errorMaxPrice" *ngIf="!validProductSellPrice">{{"labels.sellingPriceHigherThanMarketPrice" | translate}}</p>
+              </div>
+            
+            </div>
+
+            <div>
+              <mat-form-field *ngIf="promoCodeValid != true " class="halfstyle-width" appearance="fill"
+                style="display: inline-block ;width: 50px; margin-left:5px;">
+                <mat-label>{{ 'sellFlow.add_new_coupon' | translate }}</mat-label>
+                <input matInput type="text" name="coupon" [(ngModel)]="promoCode" class="number">
+             
+              </mat-form-field>
+              <button *ngIf="promoCodeValid != true " class="btn btn-primary inline-button" (click)="verifyCoupon()"
+                [disabled]="!promoCode">
+                {{ "sellFlow.verify" | translate }}
+              </button>
+
+              <mat-card class="card-promotion" *ngIf="promoCodeValid !== null && promoCodeValid">
+                <img alt="" class="tag-class" [src]="'tag.svg' | imagePath: 'icons'">
+                {{ "sellFlow.valid_promo_ode" |
+                translate }}
+                <button *ngIf="promoCodeValid" class="close-class" mat-icon-button aria-label="Clear"
+                  (click)="removePromoCode()">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <br>
+
+                <p *ngIf="promoCodeInfo.percentage" class="promo-arabic" style="color: #434343;"> {{'labels.promo_title'
+                  |translate}} {{promoCodeInfo.percentage }} %</p>
+                <p *ngIf="promoCodeInfo.discount && !promoCodeInfo.percentage" style="color: #434343;">
+                  {{'labels.promo_title' |translate}} {{promoCodeInfo.discount}} {{'labels.sar' |translate}}</p>
+              </mat-card>
+            </div>
+            <span class="inValidPromo" *ngIf="promoCodeValid !== null && !promoCodeValid">{{
+              "sellFlow.invalid_promo_code" |
+              translate }}</span>
+            <span class="waitingVerify" *ngIf="waitingVerify">{{
+              "sellFlow.verifiying_code" | translate
+              }}</span>
+
+
+            <!-- Add Descriptopn For Seller Product Price -->
+
+            <div class="cart-totals" *ngIf="amountConfig?.totalAmount">
+              <mat-card style="width: 300px;">
+                <table aria-describedby="Add Descriptopn For Seller Product Price">
+                  <tbody>
+                    <tr style="display: none;">
+                      <th id="Orderdesc">Descriptopn For Seller Product Price</th>
+                  </tr>
+                    <tr>
+                      <td class="shipping-charges">
+                        {{ "sellFlow.shippingCharges" | translate }}
+                      </td>
+                      <td *ngIf="amountConfig?.shippingCharges !=0">
+                        {{ amountConfig?.shippingCharges }}
+                      </td>
+
+                      <td *ngIf="amountConfig?.shippingCharges==0" class="freeCharge">
+                        {{ "sellFlow.free" | translate}}
+                      </td>
+
+                    </tr>
+                    <tr *ngIf="!amountConfig?.coupon">
+                      <td class="commission">
+                        {{ "sellFlow.commission" | translate }}
+                      </td>
+                      <td>
+                        {{userDetails?.isKeySeller ? amountConfig?.commission_seller_key : amountConfig?.commission_seller }} {{ "labels.sar" | translate }}
+                    </td>
+                    </tr>
+
+                    <tr *ngIf="amountConfig?.coupon">
+                      <td class="commission" >
+                        {{ "sellFlow.commission" | translate }}
+                      </td>
+                      <td>
+                        <span class="discount" *ngIf="amountConfig?.coupon">
+                          <img alt="" class="img_discount" [src]="'discount.svg' | imagePath: 'icons'" />
+                          {{amountConfig?.coupon}} {{'labels.sar' | translate}}
+                        </span>
+                    
+                {{userDetails?.isKeySeller ? amountConfig?.commission_seller_key : amountConfig?.commission_seller }} {{ "labels.sar" | translate }}
+                      </td>
+                    </tr>
+
+                
+
+                    <tr *ngIf="amountConfig?.coupon">
+                      <td class="vat">{{ "sellFlow.vat" | translate }}</td>
+                      <td *ngIf="userDetails?.isKeySeller">
+                        {{ calculateVatExistCode(amountConfig?.commission_seller_key, amountConfig?.coupon) }} {{ "labels.sar" |
+                        translate }}
+                      </td>
+                      <td *ngIf="!userDetails?.isKeySeller">
+                        {{ calculateVatExistCode(amountConfig?.commission_seller, amountConfig?.coupon) }} {{ "labels.sar" |
+                        translate }}
+                      </td>
+                  
+                    </tr>
+
+                    <tr *ngIf="!amountConfig?.coupon">
+                      <td class="vat">{{ "sellFlow.vat" | translate }}</td>
+                      <td>{{     calculateVat()  }} {{ "labels.sar" | translate }}</td>
+                    </tr>
+
+
+
+                    <tr>
+                      <td class="grand-total">
+                        {{ "labels.Net_amount_for_Seller" | translate }}
+                      </td>
+                      <td *ngIf="userDetails?.isKeySeller && !amountConfig?.coupon" class="f-price font-color-primary" >
+                        {{
+                        amountConfig?.amount -
+                        (amountConfig?.commission_seller_key + calculateVat())
+                        }}<sub>{{ "labels.sar" | translate }}</sub>
+                      </td>
+
+                      <td *ngIf="userDetails?.isKeySeller && amountConfig?.coupon" class="f-price font-color-primary" >
+                        {{
+                        amountConfig?.amount - (calculateCommsissionExistCode(amountConfig?.commission_seller_key,
+                        amountConfig?.coupon)
+                        + calculateVatExistCode(amountConfig?.commission_seller_key, amountConfig?.coupon))
+                        }}<sub>{{ "labels.sar" | translate }}</sub>
+                      </td>
+                      <td *ngIf="!userDetails?.isKeySeller && !amountConfig?.coupon" class="f-price font-color-primary" >
+                        {{
+                        amountConfig?.amount -
+                        (amountConfig?.commission_seller + calculateVat())
+                        }}<sub>{{ "labels.sar" | translate }}</sub>
+                      </td>
+
+                      <td *ngIf="!userDetails?.isKeySeller && amountConfig?.coupon" class="f-price font-color-primary" >
+                        {{
+                        amountConfig?.amount - (calculateCommsissionExistCode(amountConfig?.commission_seller,
+                        amountConfig?.coupon)
+                        + calculateVatExistCode(amountConfig?.commission_seller, amountConfig?.coupon))
+                        }}<sub>{{ "labels.sar" | translate }}</sub>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-card>
+            </div>
+
+          </div>
+
+          <div class="description-row">
+            <h2 *ngIf="!is_BiddingDisabled" class="section_title section_style" style="margin-top: 10px;">
+              <span class="color-title">{{'labels.startBidding' | translate}}
+                <i class="fa fa-question-circle-o" (click)="openInfoBid()" aria-hidden="true"></i>
+              </span>
+
+            </h2>
+            <div *ngIf="!is_BiddingDisabled">
+              <mat-form-field class="example-full-width" appearance="fill"
+                style="display: inline-block ;width: 50px; margin-left:5px;">
+                <mat-label>{{'labels.startBidding' | translate }}</mat-label> <input matInput type="number"
+                  class="number" [(ngModel)]="bid_price" name="number" placeholder="0.00">
+                <label matSuffix class="notes">{{ "labels.sar" | translate }}</label>
+              </mat-form-field>
+
+              <div class="desc_info">
+                <span class="f_text">{{'labels.Buyer_buy_once' | translate}} {{bid_price || "--"}} {{"labels.sar"
+                  |translate}}</span> <span class="s_text"> {{'labels.Buyer_accpet_or_reject' | translate}}</span>
+              </div>
+            </div>
+     
+            <div class="description-row form-group">
+              <div class="description-row">
+                <div class="description-row form-group">
+                  <h2 class="section_title section_style" style="margin-top:'10px'">
+                    <span class="color-title">{{'labels.question' | translate}}</span><br />
+                    <span class="question_hint">{{'labels.question_hint' | translate}}</span>
+                  </h2>
+                  <div class="square-div" (click)="changeListingt('yes')"
+                    [ngClass]="{'selected-button': isListedBefore == 'yes' }">{{ "labels.yes" | translate }}</div>
+                  <div class="square-div" (click)="changeListingt('no')"
+                    [ngClass]="{'selected-button': isListedBefore == 'no' }">{{ "labels.no" | translate }}</div>
+                  <div class="information" *ngIf="isListedBefore == 'yes'">{{'labels.listedBefore' | translate}}</div>
+
+                  <div class="hint_displayed">
+                  </div>
+            
+                </div>
+
+                <h2 class="section_title section_style" style="margin-top:'10px'"><span
+                    class="color-title">{{'labels.ListingDuration' | translate}}</span>
+                </h2>
+                <div>
+
+                  <div class="square-div-width selected-button" (click)="showSetExpired()">
+                    <span *ngIf="expiryAfterInDays == 14"> {{'labels.two_week' | translate}}</span>
+                    <span *ngIf="expiryAfterInDays == 1"> {{'labels.day' | translate}}</span>
+                    <span *ngIf="expiryAfterInDays == 2"> {{'labels.two_day' | translate}}</span>
+                    <span *ngIf="expiryAfterInDays == 3"> {{'labels.three_days' | translate}}</span>
+                    <span *ngIf="expiryAfterInDays == 7"> {{'labels.week' | translate}}</span>
+                    <span *ngIf="expiryAfterInDays == 30"> {{'labels.month' | translate}}</span>
+                  </div>
+
+                  <div class="hint_period">
+                    <span class="f_hint">{{'labels.delete_auto' | translate}} </span>
+                    <span class="s_hint">{{'labels.can_renew' | translate}}</span>
+
+                  </div>
+       
+                </div>
+
+            
+                <div class="description-row">
+                  <h2 class="section_title section_style" style="margin-top:'15px'"><span
+                      class="color-title">{{'labels.describe' | translate}}</span>
+                  </h2>
+
+
+                  <mat-form-field class="example-full-width" appearance="fill">
+     
+                    <textarea matInput id="w3review" (keyup)="validateDescription()" [(ngModel)]="description" name="w3review"
+                      [placeholder]="'labels.pleaseDescribe' | translate"></textarea>
+                  </mat-form-field>
+                  
+                  <div *ngIf="!validDescriptionPromo" class="err-desc">{{"labels.validCodeDesc" | translate}}</div>
+
+                  <div *ngIf="!validDescription" class="err-desc">{{"labels.validDesc" | translate}}</div>
+                </div>
+
+    </div>
+  </div>
+  <div class="products-bottom products-btns-price">
+    <a class="save-as-draft-button" (click)="getPopupModal('saveAsDraft')">
+      <span class="save-as-draft-text">
+          {{'labels.saveAsDraft' | translate}}
+      </span>
+    </a>
+
+    <a class="button button-next" [ngClass]="{'disabled-button': !validDescription || !validDescriptionPromo ||  !bid_price || !sell_price || expiryAfterInDays == 0 || isListedBefore == 0 || !validDescription || !validProductSellPrice}" (click)="addProductPrice()">
+                <span class="now-text">
+                  {{'labels.next' | translate}}
+                </span>
+              </a>
+
+            </div>
+
+          </div>
+          <div class="sc-ion-alert-ios-h sc-ion-alert-ios-s cart-total-includes"
+            (click)="openAmountConfigModal(amountConfigPopUp)" #amountConfigPopUp style="display: none">
+            <div class="sc-ion-alert-ios-backdrop"></div>
+            <div class="alert-wrapper ion-overlay-wrapper sc-ion-alert-ios">
+              <div class="alert-head sc-ion-alert-ios">
+                <h2 id="alert-4-hdr" class="alert-title sc-ion-alert-ios">
+                  {{ "sellFlow.inclusivePriceIncludes" | translate }}
+                </h2>
+              </div>
+
+
+              <div id="alert-4-msg" class="alert-message sc-ion-alert-ios">
+                <div class="cart-totals">
+                  <mat-card class="card-promotion">
+                    <table aria-describedby="product details summary">
+                      <tbody>
+                        <tr style="display: none;">
+                          <th id="Productdetailss">Product details table</th>
+                      </tr>
+                        <tr>
+                          <td class="shipping-charges">
+                            {{ "sellFlow.sellPrice" | translate }}
+                          </td>
+                          <td>{{ sell_price }} {{ "labels.sar" | translate }}</td>
+                        </tr>
+                        <tr>
+                          <td class="shipping-charges">
+                            {{ "sellFlow.shippingCharges" | translate }}
+                          </td>
+                          <td>
+                            {{ amountConfig?.shippingCharges }}
+                            {{ "labels.sar" | translate }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="commission">
+                            {{ "sellFlow.commission" | translate }}
+                          </td>
+                          <td>
+                            {{ amountConfig?.commission }} {{ "labels.sar" | translate }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="vat">{{ "sellFlow.vat" | translate }}</td>
+                          <td>{{ calculateVat()}} {{ "labels.sar" | translate }}</td>
+                        </tr>
+                        <tr>
+                          <td class="grand-total">
+                            {{ "sellFlow.grandTotal" | translate }}
+                          </td>
+                          <td class="f-price font-color-primary">
+                            {{ amountConfig?.totalAmount
+                            }}<sub>{{ "labels.sar" | translate }}</sub>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </mat-card>
+                </div>
+              </div>
+      
+            </div>
+          </div>
+
+<app-cancel-listing *ngIf="showModal"></app-cancel-listing>
+<app-bid-info *ngIf="showModalBid" ></app-bid-info>
+<app-buy-info *ngIf="showModalBuy"></app-buy-info>
+<app-set-expiry (emitDate)="setDate($event)" *ngIf="showExpiry"></app-set-expiry>
+<app-save-draft-modal *ngIf="showSaveAsDraftConfirm"></app-save-draft-modal>

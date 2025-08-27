@@ -1,0 +1,79 @@
+@import "../../../assets/css/color.scss";
+
+.section-select-model .section_title {padding-top: 0px;text-align: center;padding-bottom:27px;}
+.section-select-model {height: 100%;min-height: 100vh;background: #FDFDFE;   display: inline-block;
+    width: 100%; padding: 15px 0 30px 0;}
+.select-model-box {
+    background: #fff; 
+    box-shadow: 0px 3px 6px #0000000A;
+    border: 1px solid #E7E7E7; 
+    position: relative;
+    float: left;
+    padding:20px 18px;
+    border-right: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+    width: calc(33.33% - 5px) !important;
+    margin-right: 5px;
+    margin-bottom: 5px !important;
+}
+
+.device-sell-box-acitve {
+    border: 1.5px solid #095988;
+}
+
+// .select-model-box:nth-child(3n) {margin-right: 0px;border-right: 0px;}
+.select-model-box img {display: block;margin: auto;height: 65px;}
+.select-model-box .model-box {text-align: center;width: 100%;}
+.select-model-box .title-img {color:$text-color;font-size: 15px;font-weight: 400;font-style: normal;letter-spacing: normal;line-height: 22px;display: block;}
+.select-model-row {display: flex;width: 100%;height: 100%;flex-wrap: wrap;border-radius: 4px;}
+.model-box .model-img {display: block;margin-bottom: 10px;}
+
+.select-model-row.select-model-row2 {
+    display: flex !important;
+}
+.back-button{
+    img {
+      width: 18px;
+    }
+}
+@media screen and (max-width:369px) {
+    .select-model-box {
+        padding: 15px 10px;
+    }
+}
+
+
+.device_notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deviceType{
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+    font-weight: bold;
+}
+
+.contactUs {
+    font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #212121;
+    cursor: pointer !important;
+    margin-top: 5px;
+}
+
+.fitst_part {
+    text-align: center
+}

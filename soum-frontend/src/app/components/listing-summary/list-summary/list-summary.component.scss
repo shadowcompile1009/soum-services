@@ -1,0 +1,308 @@
+@import "../../../../assets/css/color.scss";
+@mixin btn_style($color,$bgcolor) {
+    color: $color;
+    background-color: $bgcolor;
+    border-color: $bgcolor;
+    border-radius: 10px;
+    font-size: 10px;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+  }
+  
+.products-list .product-info .plus-text span {
+    display: block;
+}
+
+.products-list .product-info .right {
+    align-items: end;
+}
+
+.products-slider .item .photo-slider-img {
+    width: 100%;
+    height: 200px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.products-slider {
+    padding-bottom: 15px;
+}
+
+// .section-details-q ul li {
+//     padding-bottom: 10px;
+// }
+
+.section-details-q ul li .d-answer {
+    display: block;
+    position: relative;
+    padding-left: 14px;
+    line-height: 14px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+.example-card {
+    max-width: 400px;
+    box-shadow: 0px 0px 20px rgba(208, 208, 208, 0.25);
+  }
+  .fa-question-circle-o{
+      color: #31CDCD;
+  }
+  .grade-class{
+    background: rgba(49, 205, 205, 0.07);
+    border-radius: 27px;
+    font-weight: bold;
+font-size: 12px;
+line-height: 20px;
+width: 150px;
+
+/* or 167% */
+padding: 10px;
+text-align: center;
+
+color: #31CDCD;
+  }
+  .label-class{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    width: 150px;
+    color: #A6AEAF;
+  }
+  .price{
+    font-style: normal;
+    font-weight: normal;
+    padding-bottom: 5px ;
+    font-size: 14px;
+    line-height: 21px;
+    /* or 150% */
+    
+    
+    /* Primary blue */
+    
+    color: #177AE2;
+  }
+  .img-class{
+    margin : 2px !important;
+    box-shadow: 0px 0px 20px rgba(208, 208, 208, 0.25);
+    border-radius: 8px;
+    width: 50px;
+    height: 50px;
+    float: right;
+  }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+.description-row{
+    background-color: #fff !important;
+    padding: 0px 20px;
+}
+.section-details-q ul li .d-answer:before {
+    content: "";
+    border: 1px solid #777474;
+    display: block;
+    height: 7px;
+    width: 7px;
+    position: absolute;
+    left: -4px;
+    border-left: 0px;
+    border-bottom: 0px;
+    transform: rotate(45deg);
+    top: 3px;
+    background-color: #fff;
+}
+
+.section-details-q ul li:last-child {
+    padding-bottom: 0px;
+}
+
+
+/******* message_reply  ********/
+.message_reply {
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.message_reply textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 0px !important;
+    border: 1px solid #EBEBEB !important;
+    color: #878787;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+    text-align: left;
+    padding: 5px 10px;
+    outline: none;
+    display: block;
+}
+
+.message_reply .arrow-send {
+    border: 0px;
+    width: 45px;
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 0px;
+    height: 22px;
+    outline: none;
+    line-height: 22px;
+    color: #fff;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.reply_btn {
+    float: right;
+    color: #fff;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    padding: 2px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.questions-box h4 {
+    float: left;
+    width: 100%;
+}
+
+.message_box p {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.message_box {
+    display: inline-block;
+    width: 100%;
+}
+
+.message_box p:last-child {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    border-bottom: 0px;
+}
+
+.questions-send {
+    padding-bottom: 0px;
+}
+
+.products-bottom .button{
+    width: calc(100% - 0px) ;
+  
+    .now-text {
+        text-align: center ;
+    }
+    .p-text{
+        text-align: center ;
+    }
+
+}
+.products-bottom .class-size{
+    width: calc(50% - 0px) !important ;
+
+}
+
+.questions {
+    padding-bottom: 80px;
+    padding-top: 25px;
+}
+
+.wishlist-add .icon-no-add {
+    display: block !important;
+}
+
+div#answersToQuestion {
+    float: left;
+    width: 100%;
+    padding-bottom: 65px;
+}
+
+.questions-box:last-child {
+    padding-bottom: 0px;
+}
+
+div#answersToQuestion .questions-first {
+    padding-bottom: 15px;
+    margin-bottom: -2px;
+    padding-top:0px;
+}
+
+.products-list .product-info .product-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.products-list .product-info .left {width: calc(100% - 120px);}
+
+footer.details-buttons {
+    height: 120px !important;
+    background-color: $background-color !important;
+    padding: 8px 15px !important;
+}
+
+footer.details-buttons .button {
+    padding: 10px;
+}
+
+.reyal-text{
+    font-size: 12px;
+}
+footer.details-buttons .button .now-text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+}
+footer.details-buttons .button .now-text-font {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+}
+
+
+.details-buttons .button {
+    width: calc(100% - 3px);
+ 
+    // margin-left: 8px;
+}
+
+.details-buttons .button2 {
+    margin-right: 8px;
+    background-color: $background-color !important;
+    border: transparent;
+    box-shadow: none;
+
+  //  margin-right: 0px;
+}
+.plus-text{
+    span{
+        width:80px;
+        &.extensive{
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+        &.usable{
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+        &.excellent{
+            @include btn_style(#24C081, #C9E1D7);
+        }
+        &.good{
+            @include btn_style(#F79E1B, #E9D9C2);
+        }
+        &.great{
+            @include btn_style(#31CDCD, #C6E2E2);
+        }
+    }
+  }

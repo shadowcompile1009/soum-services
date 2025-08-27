@@ -1,0 +1,30 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <a class="popup-close" (click)="hideBidModal()"
+        ><img class="icon-close" [src]="'Union-icon.svg' | imagePath: 'icons'" alt=""
+      /></a>
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+        <div class="products-top-bar" style="text-align:center;">
+            <div class="bold-font err-color"> {{'labels.cancelList' |translate}}</div>
+            <div class="normal-font">{{'labels.cancelDesc' | translate}} </div>
+            <div class="products-bottom">
+                <a class=" full-size " (click)="hideBidModal()">
+                    <span class="normal-color">
+                        {{'labels.dontCancel' | translate}}
+                    </span>
+                    <div>
+                        <br>
+                    </div>
+                </a>
+                <a class="button err-color  btn-full " (click)="cancel()">
+                    <span class="now-text">
+                        {{'labels.yesCancel' | translate}}
+                    </span>
+                    <div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

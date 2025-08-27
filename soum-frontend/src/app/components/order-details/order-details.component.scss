@@ -1,0 +1,508 @@
+.products-list .product-info {
+    .plus-text span {
+        display: block;
+    }
+
+    .right {
+        align-items: center;
+    }
+}
+
+.products-slider {
+    padding-bottom: 15px;
+    .item .photo-slider-img {
+        width: 100%;
+        height: 200px;
+        display: block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.section-details-q ul li{
+    &:last-child {
+        padding-bottom: 0px;
+    }
+    .d-answer {
+        display: block;
+        position: relative;
+        padding-left: 14px;
+        margin-top: 5px;
+        margin-bottom: 3px;
+        &::before {
+            content: "";
+            border: 1px solid #777474;
+            display: block;
+            height: 7px;
+            width: 7px;
+            position: absolute;
+            left: -4px;
+            border-left: 0px;
+            border-bottom: 0px;
+            transform: rotate(45deg);
+            top: 3px;
+        }
+    }
+}
+
+/******* message_reply  ********/
+.message_reply {
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.message_reply textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 0px !important;
+    border: 1px solid #EBEBEB !important;
+    color: #878787;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+    text-align: left;
+    padding: 5px 10px;
+    outline: none;
+    display: block;
+}
+
+.message_reply .arrow-send {
+    border: 0px;
+    width: 45px;
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 0px;
+    height: 22px;
+    outline: none;
+    line-height: 22px;
+    color: #fff;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.reply_btn {
+    float: right;
+    color: #fff;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    padding: 2px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.questions-box h4 {
+    float: left;
+    width: 100%;
+}
+
+.message_box p {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.message_box {
+    display: inline-block;
+    width: 100%;
+}
+
+.message_box p:last-child {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    border-bottom: 0px;
+}
+
+.questions-send {
+    padding-bottom: 0px;
+}
+
+.questions {
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+
+.wishlist-add .icon-no-add {
+    display: block !important;
+}
+
+div#answersToQuestion {
+    float: left;
+    width: 100%;
+    padding-bottom: 65px;
+}
+
+.questions-box:last-child {
+    padding-bottom: 0px;
+}
+
+div#answersToQuestion .questions-first {
+    padding-bottom: 0px;
+    margin-bottom: -2px;
+}
+
+.section-details-q {
+    margin-bottom: 0px;
+}
+.section-details-q:last-child {
+    margin-bottom: 0px !important;
+}
+.section-order-details{
+    margin: 0px !important;
+    border-top: 0;
+
+    .order-details{
+        tr {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .styleTR {
+            display: flex !important;
+            justify-content: flex-start;
+            align-items: center;
+
+            .discount {
+                margin-left: 10px !important;
+            }
+        }
+
+    }
+}
+.successfully_order {
+    margin: 0px !important;
+    border-top: 0;
+    .smile_container {
+        display: flex;
+        display: -ms-flexbox;
+        flex-direction: row-reverse;
+        .smile-icon{
+            object-fit: contain;
+        }
+    }
+    .points {
+        position: relative;
+        padding-right: 30px;
+        font-weight: 400;
+        font-family: 'DIN Next LT Arabic Regular', sans-serif;
+        span::before{
+            top: 12px;
+            right: 9px;
+            width: 6px;
+            height: 6px;
+            content: "";
+            position: absolute;
+            border-radius: 4px;
+            background-color: #31cdcd;
+        }
+    }
+}
+
+.orderDetails_container{
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 10px;
+    border: 1px solid #f2eded;
+    .files_container {
+        display: flex;
+        display: -ms-flexbox;
+        flex-direction: row-reverse;
+        .files-icon{
+            object-fit: contain;
+            margin-right: -15px;
+            margin-bottom: 7px;
+            margin-left: 5px;
+        }
+        .camera-icon{
+            object-fit: contain;
+            margin-right: -15px;
+            margin-bottom: -5px;
+            margin-left: 5px;
+        }
+        .product-icon{
+            object-fit: contain;
+            margin-right: -15px;
+            margin-top: 13px;
+            margin-left: 5px;
+        }
+        .section_title{
+            flex: 1;
+            font-weight: bold;
+        }
+        .camera_section_title{
+            margin: 15px 0;
+            font-weight: bold;
+        }
+    }
+    .dispute_container{
+        display: flex;
+        display: -ms-flexbox;
+        flex-direction: column;
+        .title{
+            color: #177AE2;
+            font-weight: 800;
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+            font-family: 'DIN Next LT Arabic Regular', sans-serif !important;
+        }
+        .discription {
+            font-size: 14px;
+            font-weight: 400;
+            color: #979797;
+            text-align: center;
+            font-family: 'DIN Next LT Arabic Regular', sans-serif !important;
+        }
+        .dispute-button{
+            width: 80%;
+            background-color: #f35252;
+            border-radius: 15px;
+            margin: auto auto 15px auto;
+            padding: 5px 0;
+            a {
+                color: #fff;
+                margin-left: 37%;
+                font-family: 'DIN Next LT Arabic Regular', sans-serif;
+            }
+        }
+    }
+    .order-details{
+        tr {
+            td{
+                text-align: left;
+                display: inline-block;
+                width: 50%;
+                &:nth-child(1){
+                    text-align: right;
+                    color: #B5BBBC;
+                }
+            }
+            .overflow_ellipses{
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 150px;
+            }
+            .f-price{
+                font-weight: 800;
+                color: #31cdcd;
+            }
+        }
+        .invoice-download{
+            width: 100% !important;
+            text-align: center !important; 
+        }
+        .font-color-primary {
+            color: #177AE2 !important;
+        }
+    }
+}
+
+.successfully_message {
+    padding: 15px 7px 15px 0px;
+    color: #177AE2;
+    font-family: "DIN Next LT Arabic Regular", sans-serif !important;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.invoice-box .invoice-container {
+    // margin: 15px auto;
+    padding: 70px;
+    max-width: 850px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.invoice-box address {
+    margin-bottom: 1rem;
+    font-style: normal;
+    line-height: inherit;
+}
+
+.invoice-box .card-body {
+    padding: 0px;
+}
+
+.invoice-box .bg-light-2 {
+    background-color: #f8f8fa !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.invoice-box table.table {
+    margin-bottom: 0px;
+}
+
+.invoice-box b,
+.invoice-box strong {
+    font-weight: 600;
+}
+
+.invoice-box .table .thead-light th {
+    border: 0px;
+}
+
+.invoice-box {
+    margin: auto;
+    width: 100%;
+    display: block;
+    border: 0px;
+    padding: 40px;
+}
+
+table.order_table {
+    width: 100%;
+}
+div#orderInvoice-ar b, div#orderInvoice-ar  strong {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.back-button{
+    img {
+      width: 18px;
+    }
+}
+
+.margin-bottom{
+    margin-bottom: 0;
+}
+
+.contact{
+    background-color: #177AE2;
+    height: 50px;
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    border-radius: 40px;
+    a {
+        color: #fff;
+        margin: auto;
+    }
+}
+
+.container.shadow {
+    box-shadow: 0px 0px 20px rgba(208, 208, 208, 0.25);
+}
+
+.list_wrapper{
+    margin: 25px 0;
+    li{
+        padding: 0;
+        margin-bottom: 10px ;
+        &::before {
+            content: none;
+        }
+        .question_wrapper{
+            display: flex;
+            display: -ms-flexbox;
+            .question_icon1{
+                background-image: url(../../../assets/images/icons/wrench.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 30px;
+                height: 30px;
+            }
+            .question_icon2{
+                background-image: url(../../../assets/images/icons/mobile.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 42px;
+                height: 30px;
+            }
+            .question_icon3{
+                background-image: url(../../../assets/images/icons/setting.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 27px;
+                height: 30px;
+            }
+            .question_icon4{
+                background-image: url(../../../assets/images/icons/cube.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 30px;
+                height: 30px;
+            }
+            .question_icon5{
+                background-image: url(../../../assets/images/icons/battery-bolt.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 28px;
+                height: 30px;
+            }
+        }
+        .d-answer {
+            &::before {
+                content: none !important;
+            }
+        }
+    }
+    li:not(:last-child) {
+        border-bottom: 1px solid #ECF0F1;
+    }
+}
+
+.custom_en{
+    .smile_container {
+        flex-direction: row;
+    }
+    .points {
+        padding-left: 30px;
+        span::before{
+            left: 9px;
+        }
+    }
+
+    .files_container {
+        flex-direction: row;
+        .files-icon{
+            object-fit: contain;
+            margin-left: -15px;
+            margin-bottom: 7px;
+            margin-right: 5px;
+        }
+        .camera-icon, .product-icon{
+            margin-left: -15px;
+            margin-right: 5px;
+        }
+    }
+    .order-details{
+        tr {
+            .invoice-download{
+                text-align: center !important; 
+            }
+            td{
+                text-align: left !important;
+            }
+            .overflow_ellipses{
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 150px;
+            }
+        }
+    }
+}
+
+.order_date{
+    direction: ltr;
+}
+
+.discount {
+    display: inline-flex;
+    margin-right: 10px;
+    color: red;
+    text-decoration: line-through;
+
+    .img_discount {
+        width: 18px;
+    }
+}

@@ -1,0 +1,21 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <a class="popup-close" (click)="hideBidModal()"
+        ><img class="icon-close" [src]="'Union-icon.svg' | imagePath  : 'icons'" alt=""
+      /></a>
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+
+        <div class="products-top-bar">
+            <div class="bold-font"> {{'labels.HowManyDays' |translate}}</div>
+
+
+            <div class="bold-text" [ngClass] ="{'selected-button': ExpiryDate == 1 }"  (click)="selectDay(1)">{{ "labels.day" | translate }}</div>
+            <div class="bold-text" [ngClass] ="{'selected-button': ExpiryDate == 2 }"  (click)="selectDay(2)">{{ "labels.two_day" | translate }}</div>
+            <div class="bold-text" [ngClass] ="{'selected-button': ExpiryDate == 3 }"  (click)="selectDay(3)">{{ "labels.three_days" | translate }}</div>
+            <div class="bold-text" [ngClass] ="{'selected-button': ExpiryDate == 7 }"  (click)="selectDay(7)">{{ "labels.week" | translate }}</div>
+            <div class="bold-text" [ngClass] ="{'selected-button': ExpiryDate == 14 }"  (click)="selectDay(14)">{{ "labels.two_week" | translate }}</div>
+            <div class="bold-text" [ngClass] ="{'selected-button': ExpiryDate == 30 }"  (click)="selectDay(30)">{{ "labels.month" | translate }}</div>
+        </div>
+    </div>
+</div>

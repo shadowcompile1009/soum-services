@@ -1,0 +1,75 @@
+<div class="content-min">
+    <div class="content">
+        <div class="back-bar margin-bottom">
+            <div class="container">
+                <a class="back-button" (click)="goBack()"><img alt="back" [src]="'back.png' | imagePath: 'icons'"></a>
+                <h3 class="product-title">{{'trackOrder.title' | translate}}</h3>
+            </div>
+        </div>
+        <div class="tracking-product">
+            <div class="products-thumbnail">
+                <a>
+                    <img class="thumbnail" [src]="orderedProduct?.product?.product_images[0] | image" alt="">
+                </a>
+            </div>
+            <div class="products-content">
+            
+                <span class="order-id"></span>
+                <a (click)="goToOrderDetail()" class="clear-button order_details_button">{{'trackOrder.orderDetails' |
+                    translate}}</a>
+            </div>
+        </div>
+
+        <div class="tracking-product">
+
+            <div class="product_number">
+                <span class="p_title">{{"trackOrder.product_number" | translate}}</span>
+                <span>{{orderedProduct?.product?.code}}</span>
+            </div>
+
+            <div class="product_number">
+                <span class="p_title">{{"trackOrder.order_number" | translate}}</span>
+                <span>{{orderedProduct?.order_number}}</span>
+            </div>
+
+        </div>
+        <div class="tracking-product" style="text-align: center;">
+            <p>{{'trackOrder.aggrement' | translate}}</p>
+        </div>
+
+
+        <div [class]="userDetail?.userId === orderedProduct?.seller?._id ? 'order_seller' : 'order_buyer'">
+  
+            <div class="shipping-address">
+                <div class="container">
+                    <h3 class="section_title">{{orderedProduct?.seller?._id === userDetail?.userId?
+                        ('trackOrder.product_sending_address' | translate): ('trackOrder.product_delivery_address' |
+                        translate)}}</h3>
+
+                    <div class="user-address" *ngIf="orderedProduct">
+                        <h4 class="username">{{userDetail?.name}}</h4>
+                        <p>
+                            <strong *ngIf="userDetailAddress?.address">{{'addAddress.address' | translate}}:
+                            </strong>{{(userDetailAddress?.address ? userDetailAddress?.address + ','
+                            : "")}}<br>
+                            <strong *ngIf="userDetailAddress?.city">{{'addAddress.complete_address' |
+                                translate}}:
+                            </strong>{{(userDetailAddress?.city ? userDetailAddress?.city + "," :
+                            "")}}<br>
+                            <strong *ngIf="userDetailAddress?.postal_code">{{'addAddress.floorOptional' |
+                                translate}}:
+                            </strong>{{(userDetailAddress?.postal_code ?
+                            userDetailAddress?.postal_code : "")}}
+                        </p>
+                    </div>
+
+                </div>
+            
+
+            </div>
+        </div>
+    </div>
+    <div class="pdf_label">
+        <pdf-viewer id="shipment_label" [src]="file" [render-text]="true"></pdf-viewer>
+    </div>
+</div>

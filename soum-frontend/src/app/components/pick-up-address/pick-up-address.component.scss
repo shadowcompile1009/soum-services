@@ -1,0 +1,275 @@
+.back-bar {
+    border-bottom:1px solid #EFEFEF;
+    box-shadow: none;
+}
+.section-details {
+    margin-bottom: 0px;
+}
+.disabled-button{
+    background-color: grey;
+}
+.username-color{
+        font-size: 14px;
+line-height: 21px;
+    color:#434343!important;
+}
+
+mat-card-actions{
+    text-align: center !important;
+}
+mat-card>.mat-card-actions:last-child {
+     margin-bottom: 0 !important;
+}
+
+.grey-color{
+    color: #B5BBBC;
+    font-size: 14px;
+line-height: 21px;
+}
+.btn-full {
+    width: calc(100% - 0px) !important;
+    border-radius: 30px;
+    background: #177ae2;
+    padding: 15px;
+    color: #fff;
+    margin-top: 60px;
+  }
+.content {
+    background: #fff;
+    display: inline-block;
+    height: 100%;
+    min-height: 100vh;
+    width: 100% !important;
+}
+.button-next{
+    width: calc(50% - 3px) !important;
+    background: #177AE2;
+    color: #fff;
+    border-radius: 20px 0px 0px 20px ;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+  }
+  
+.calc{
+    float: left;
+    width: calc(50% - 3px) !important; 
+}
+.mat-card-header {
+    height: 30px !important;
+}
+  .button-final {
+    width: 95% !important
+  }
+  
+.example-card {
+    max-width: 400px;
+    min-height: 220px;
+    box-shadow: 0px 0px 20px rgba(208, 208, 208, 0.25);
+    margin: 5px;
+    background-color: #F4F6FA;
+  }
+  
+  .example-card2 {
+    max-width: 400px;
+    min-height: 220px;
+    margin: 5px;
+
+    .mat-card-header {
+        border-bottom: 2px solid #ECF0F1;
+        margin-bottom: 15px;
+    }
+
+    .section-title{
+        font-family: 'DIN Next LT Arabic';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #177AE2;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+  }
+
+.info_lsting_msg{
+    display: flex;
+    flex-direction: row;
+    background-color: #fff !important;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 25px;
+    
+    .f_part {
+        width: 30%;
+    }
+
+    .s_part {
+    width: 70%;
+    text-align: center;
+    padding: 0 5px;
+
+    .hours24 {
+        font-family: "DIN Next LT Arabic";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        color: #000000;
+        color: #177ae2;
+    }
+
+    .f_text, .s_text, .t_text{ display: block; }
+
+    span {
+        font-family: "DIN Next LT Arabic";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        color: #000000;
+
+        .hours24 {
+            color: #177ae2;
+        }
+
+        .soumName {
+            font-weight: bold;
+        }
+     }
+    }
+    
+}
+
+.detail-col .input-icon img {
+    height: 22px;
+}
+.detail-col input{
+    background-color: #dee2e657 !important;
+    border: 1px solid #d4d4d4;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+}
+
+.select-dropdown-address{
+    background-color: #dee2e657 !important;
+    border: 1px solid #d4d4d4;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    .ng-select-container{
+        background-color: #dee2e657 !important;
+    }
+}
+.hint-message {
+    color: #177ae2;
+    font-size: 13px;
+    margin-top: 5px;
+}
+.enter-detail{
+       border-top: 0px !important;
+}
+
+.detail-col .select-dropdown-address img {
+    height: 18px;
+}
+
+.username{
+    font-size: 14px !important;
+line-height: 21px!important;
+}
+
+.save-as-draft-button {
+    vertical-align: middle;
+  }
+  
+  .save-as-draft-text {
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 16px;
+    color: #313437;
+  }
+  .now-text {
+    text-align: center !important;
+  
+    font-family: "DIN Next LT Arabic";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px !important;
+    line-height: 29px!important;
+  }
+
+  .products-bottom{
+      padding-top: 20px !important;
+  }
+
+  .products-btns-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+
+  .addressForm {
+    width: 100%;
+    
+    ::ng-deep .mat-form-field-flex {
+      background-color: #F9F9F9;
+      padding: 5px 10px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .field_name {
+        width: 100%;
+        
+        input {
+          font-family: 'DIN Next LT Arabic';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          color: #2D2E2E;
+        }
+
+        .matIcon {
+          width: 15px;
+          height: 15px;
+          font-size: 12px;
+          color: white;
+          background-color: #E7E9EA;
+          border-radius: 10px;
+          text-align: center;
+          font-weight: bold;
+          overflow: hidden;
+          padding-top: 2px;
+        }
+    }
+
+    .city_postal_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .city_name, .postal_name {
+            width: 45%;
+        }
+
+        .city_name{
+            input{
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+::ng-deep .mat-card-header-text{
+    margin: 0 !important;
+}

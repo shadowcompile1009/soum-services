@@ -1,0 +1,32 @@
+@media (max-width: 369px) {
+  .products-list .product-info .product-available {
+    width: auto !important;
+  }
+}
+
+.div-card {
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-style: normal;
+  margin: 10px auto -10px auto;
+  background: rgba(49, 205, 205, 0.08);
+  font-family: 'DIN Next LT Arabic Bold';
+  .div_title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #177ae2;
+    text-align: center;
+  }
+  .div_sub_title {
+    font-size: 15px;
+    color: #12d5d4;
+  }
+}

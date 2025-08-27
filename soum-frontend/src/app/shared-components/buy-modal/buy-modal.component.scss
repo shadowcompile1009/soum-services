@@ -1,0 +1,128 @@
+.cart-totals,
+.cart-totals table {
+    width: 95%;
+}
+
+.cart-totals table tr td {
+    font-size: 14px;
+}
+
+.payment-box {
+    margin-bottom: 15px;
+}
+
+.cart-totals table tr .grand-total {
+    color: #363636;
+        font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: normal;
+}
+
+
+.cart-totals table tr {
+    border: none
+}
+
+.cart-totals table tr.grand-total-bordered {
+    border-top: 1px solid #E5E5E5;
+}
+
+.addDetaills {
+    overflow-wrap: break-word;
+    width: 90%;
+}
+
+
+.coupon-input {
+    border-style: dashed !important;
+    border-width: medium !important;
+    margin: 10px 20px;
+  }
+  
+  .coupon-input input {
+    border: 0 !important;
+  }
+  
+  .coupon-input button {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0 10px;
+  }
+  
+  .validPromo, .inValidPromo, .waitingVerify {
+    font-weight: 500;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-size: 14px;
+    display: block;
+    margin: 0 20px;
+  }
+  
+
+  .validPromo {
+    color: #1ad844;
+  }
+
+  .inValidPromo {
+    color: #e64505;
+  }
+  
+  .waitingVerify {
+    color: #007bff;
+  }
+  
+  .addCode {
+    color: #363636;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 26px;
+    padding-bottom: 12px;
+    margin: 0 15px;
+    display: block;
+  }
+
+
+ .input-field {
+    display: flex;
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid #c2c2c2;
+    background-color: #ffffff;
+    padding: 6px 0px;
+    width: 90%;
+  }
+  
+.input-field input {
+    border: 0px;
+    padding: 0 15px;
+    border-right: 1px solid #c2c2c2;
+    box-sizing: border-box;
+    width: 90%;
+    outline: none !important;
+    color: #363636;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: normal;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+  }
+
+
+  .discount {
+    color: red;
+    text-decoration: line-through;
+  }
+  
+  .img_discount {
+    width: 20px;
+  }
+  
+  .freeCharge {
+    color: #3dd0d0 !important;
+    font-size: 17px !important;
+  }

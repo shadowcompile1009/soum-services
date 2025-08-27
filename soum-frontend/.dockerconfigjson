@@ -1,0 +1,10 @@
+{
+    "auths": {
+        "https://registry.gitlab.com":{
+            "username":"soum-gitlab",
+            "password":"Zj4tvDj2yc2cq6aCpxVB",
+            "email":"ankit@greychaindesign.com",
+            "auth":"c291bS1naXRsYWI6Wmo0dHZEajJ5YzJjcTZhQ3B4VkI="
+    	}
+    }
+}

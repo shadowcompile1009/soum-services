@@ -1,0 +1,152 @@
+@import "../../../../assets/css/color.scss";
+
+.products-top-bar {
+  .lang_ar{
+    flex-direction: row-reverse !important;
+  }
+
+  .custom-switch {
+    cursor: pointer;
+    display: flex;
+    display: -ms-flexbox;
+    justify-content: space-between;
+
+    .text-lang {
+      color: #31cdcd !important;
+      margin: 10px;
+      margin-top: 30px;
+      font-size: 16px !important;
+
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .background {
+    background-color: #ffffff;
+    height: 400px;
+    
+    .normal-font {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 24px;
+      text-align: center;
+      padding: 20px;
+      padding-bottom: 60px;
+      color: #a8a8a8;
+    }
+  
+    .bold-font {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px !important;
+      padding: 20px;
+      font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+  }
+}
+
+.rotate_btn {
+  transform: rotate(180deg);
+  span {
+    transform: rotate(180deg);
+  }
+}
+
+.backgroundThird {
+  background-color: #ffffff;
+  padding: 20px;
+  height: 400px;
+}
+.cart-totals,
+.cart-totals table {
+  width: 95%;
+  tr {
+    border: none;
+    td {
+      font-size: 14px;
+    }
+    .grand-total {
+      color: #363636;
+          font-family: "DIN Next LT Arabic", sans-serif !important;
+      font-size: 14px;
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: normal;
+      line-height: normal;
+    }
+  }
+}
+
+.products-bottom {
+  display: flex !important;
+  display: -ms-flexbox !important;
+  flex-direction: row-reverse !important;
+  justify-content: space-between !important;
+  align-items: center;
+
+  .dot {
+    height: 7px;
+    width: 7px;
+    background-color: #fff;
+    border: 1px solid #177ae2;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 1px;
+    cursor: pointer;
+  }
+
+  .active {
+    background-color: #177ae2;
+    width: 11px;
+    border-radius: 40%;
+    cursor: unset;
+  }
+
+  .button-next {
+    background: #177ae2;
+    border-radius: 20px 0px 0px 20px;
+  }
+  .button {
+    width: calc(30% - 0px) !important;
+    box-shadow: 0 0 9px rgb(190 214 195 / 0%) !important;
+  
+    .now-text {
+      font-size: 18px;
+      line-height: 29px;
+      font-style: normal;
+      font-weight: normal;
+      text-align: center !important;
+      font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+  }
+  .btn-full {
+    width: calc(100% - 0px) !important;
+    border-radius: 30px;
+    background: #177ae2;
+    padding: 15px;
+  }
+
+  .skip-buton {
+    background: transparent !important;
+    font-size: 16px;
+    color: #434343 !important;
+  }
+
+  .skip_btn{
+    color: #434343 !important;
+    font-weight: bold !important;
+  }
+}
+
+.custom_ar{
+flex-direction: row !important;
+  .rotate_btn{
+    transform: rotate(0deg);
+    span{
+      transform: rotate(0deg);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <a class="popup-close" (click)="hideBidModal()"
+        ><img class="icon-close" [src]="'Union-icon.svg' | imagePath : 'icons'" alt=""
+      /></a>
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+        <h3 class="section_title font-color" s>{{'referral.donotMiss' | translate}}</h3>
+        <h4 class="section_title"> {{'referral.givePromo' |translate}}</h4>
+
+        <div class="container container-padding">
+            <h3 class="section_title font-color">{{'referral.yourCode' | translate}}</h3>
+            <div class="input-group mb-3 ">
+                <div [ngxClipboard]="inputTarget" (click)="copy(inputTarget.value)" class="input-group-prepend">
+                    <span class="input-group-text copy-box" id="basic-addon1">{{'referral.copy' | translate}}</span>
+                </div>
+                <input #inputTarget class="input-promo" style="  height: 50px; border:0" type="text"
+                    class="form-control" disabled aria-label="Username" aria-describedby="basic-addon1"
+                    [(ngModel)]="profileData.referralCode">
+            </div>
+        </div>
+        <div class="products-top-bar" style="text-align:center;">
+            <div class="products-bottom">
+
+                <a class="button full-btn" (click)="hideBidModal()">
+                    <span class="now-text">
+                        {{'referral.continue' | translate}}
+                    </span>
+                    <div>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

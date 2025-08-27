@@ -1,0 +1,69 @@
+<div class="content-congrates">
+    <div class="header-congrates">
+        <p class="title-congrates">{{'labels.congratesProduct' | translate}}</p>
+        <div class="design1-congrates">
+            <div class="entire-design1-congrates">
+                <div class="image1"><img alt="" class="" [src]="'circle1.svg' | imagePath" /></div>
+                <div class="image2"><img alt="" class="" [src]="'polygon1.svg' | imagePath" /></div>
+                <div class="image3"><img alt="" class="" [src]="'rectangle1.svg' | imagePath" /></div>
+            </div>
+        </div>
+
+        <div class="design2-congrates">
+            <div class="entire-design2-congrates">
+                <div class="image1"><img alt="" class="" [src]="'polygon2.svg' | imagePath" /></div>
+                <div class="image2"><img alt="" class="" [src]="'rectangle2.svg' | imagePath" /></div>
+                <div class="image3"><img alt="" class="" [src]="'ellipse2.svg' | imagePath" /></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="part_display_info">
+        <div class="info_lsting_msg info_lsting_msg_congrates">
+            <div class="s_part">
+                <span class="f_text">{{'labels.deviceSold2'| translate}} </span>
+                <span class="s_text">{{'labels.within'| translate}} <span class="hours24">{{'labels.24hours'|
+                        translate}}</span></span>
+                <span class="t_text">{{'labels.soumCover'| translate}}</span>
+            </div>
+            <div class="f_part image1x">
+                <img alt="" [src]="'bcycle.svg' | imagePath" />
+            </div>
+        </div>
+
+        <div class="info_lsting_msg">
+            <div class="s_part" style="margin-top:3%">
+                <span class="f_text">{{"labels.afterConfirm" | translate}} </span>
+                <span class="hours24">{{"labels.within24hours"| translate }}</span>
+            </div>
+            <div class="f_part image2x">
+                <img alt="" [src]="'buyerConfirm.svg' | imagePath" />
+            </div>
+        </div>
+
+        <div class="info_lsting_msg info_lsting_msg_congrates" style="padding:0">
+            <div class="s_part sx_part" style="margin: 1% 0 3% 0">
+                <span class="f_text">{{'labels.acceptRejectBid' | translate}}</span>
+                <span class="hours24" (click)="navigateToLastStep()"> {{'labels.fromHere'|translate}} <img
+                        class="arrow_call_us" alt="" [src]="'arrow.svg' | imagePath" /></span>
+            </div>
+            <div class="f_part image3x">
+                <img alt="" [src]="'man.svg' | imagePath" />
+            </div>
+        </div>
+
+
+        <div class="footer-congrates">
+            <button class="btn_continue" (click)="navigateToProduct()"><span
+                    class="btn_continue_text">{{'labels.continue' | translate}}</span></button>
+            <button class="btn_callUs"><a class="btn_callUs_text" target="_blank"
+                target="_blank" href="https://api.whatsapp.com/send?phone=966920035039"><img class="arrow_call_us"
+                    alt="" [src]="'calling.svg' | imagePath" />{{'labels.callUs' | translate}}</a></button>
+        </div>
+
+    </div>
+
+
+</div>

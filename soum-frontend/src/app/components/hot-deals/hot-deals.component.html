@@ -1,0 +1,56 @@
+<div *ngIf="hotDeals">
+  <div
+    [ngClass]="{
+      'hot-deals': true,
+      'hot-deals--ar': translate?.getDefaultLang() == 'ar'
+    }"
+  >
+    <div
+      *ngIf="heroSection; then heroDealsSection; else allHotDealsSection"
+    ></div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <ng-template #heroDealsSection>
+    <div class="hot-deals__header">
+      <div class="hot-deals__header-title">
+        {{ 'hotDeals.title' | translate }}
+      </div>
+      <a class="hot-deals__header-link" (click)="navigateToAllHotDeals()">
+        <div class="hot-deals__header-title">
+          {{ 'labels.viewAll' | translate }}
+        </div>
+        <img
+          alt="link to all hot deals view"
+          class="hot-deals__header-link-icon"
+          [src]="'back.png' | imagePath: 'icons'"
+        />
+      </a>
+    </div>
+    <div class="hot-deals__hero-container">
+      <div
+        class="hot-deals__hero-item"
+        *ngFor="let product of hotDeals.items | slice: 0:5; let i = index"
+      >
+        <app-product-catalog-card [product]="product">
+        </app-product-catalog-card>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- ALL HOT DEALS SECTION -->
+  <ng-template class="hot-deals" #allHotDealsSection>
+    <div class="content">
+      <app-header
+        [pageTitle]="'hotDeals.title' | translate"
+        (goBack)="navigateBack()"
+      ></app-header>
+      <div class="hot-deals__container">
+        <div class="hot-deals__item" *ngFor="let product of hotDeals.items">
+          <app-product-catalog-card withDiscount="true" [product]="product">
+          </app-product-catalog-card>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

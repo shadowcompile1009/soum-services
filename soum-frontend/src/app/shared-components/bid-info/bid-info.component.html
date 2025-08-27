@@ -1,0 +1,29 @@
+<div class="popup payment-section" [style.display]="showModal ? 'block' : 'none'">
+    <div class="popup-inner">
+        <a class="popup-close" (click)="hideBidModal()"
+        ><img alt="" class="icon-close" [src]="'Union-icon.svg' | imagePath: 'icons'" alt=""
+      /></a>
+        <div draggable="true" (dragstart)="hideBidModal()" (drag)="hideBidModal()" (dragover)="hideBidModal()"
+            class="grey-button"></div>
+
+        <div class="products-top-bar" style="text-align:center;" >
+        
+            <img alt="bid" [src]="'bid.png' | imagePath: 'newSign'">
+
+            <div class="bold-font align-normal">{{'labels.biddingTitle' | translate}} </div>
+            
+            <div class="normal-font align-normal">{{'labels.biddingInfo' | translate}} {{'labels.biddingNote' | translate}}</div>
+            <div class="products-bottom">
+            <a class="button   btn-full " (click)="hideBidModal()">
+                <span class="now-text">
+                    {{'alertPopUpTexts.ok' | translate}}
+                </span>
+                <div>
+                </div>
+            </a>
+    </div>
+
+        </div>
+
+</div>
+</div>

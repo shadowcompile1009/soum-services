@@ -1,0 +1,255 @@
+<div class="content">
+    <app-header [pageTitle]="'sellFlow.questions' | translate" (goBack)="goBack()" (actionEvent)="showmodal()" [actionStyle]="'cancel-button'" [action]="'sellFlow.cancel' | translate"></app-header>
+
+    <div class="section-condition">
+        <app-banner-breadcrumb [type]="true" [photos]="true" [status]="true"></app-banner-breadcrumb>
+        <div class="container container-padding">
+            <div class="description-row">
+               
+            <div class="products-bottom arabic-dir">
+                <p class="f_text">
+                    {{'labels.tell_use_more' | translate}}
+                </p>
+                <p class="s_text">
+                    {{'labels.avoid_returning' | translate}}
+                </p>
+            </div>
+
+                <div>
+                    <div class="condition-row" *ngFor="let question of questionsList; let j = index;">
+                        <div class="condition-box">
+                          
+                            <div class="condition-button" *ngIf="question?.type === 'yes-no-without-options'">
+                                <h3 class="question-line">{{translate?.getDefaultLang() == 'ar' ? question?.question_ar
+                                    : question?.question_en}}
+                                </h3>
+
+                        
+                                <div class="products-row products-cursor">
+                                    <div class="row products-home">
+                                        <div class="col-6" style="height: 45px;
+                                margin-top: 10px; " *ngFor="let answer of question?.answers; let i = index;">
+                                            <div class="products-box" (click)="selectAnswer(i , j ,answer)">
+                                                <div class="products-top" style="height: 50px; "
+                                                    [ngClass]="{'selected-button': answer?.selected}">
+                                                    <div class="price-bar">
+                                                        <div>
+                                                            <div>
+
+                                                                <span class="o-price">
+                                                                    {{translate?.getDefaultLang() == 'ar' ?
+                                                                    answer?.answer_ar : answer?.answer_en}}
+
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div> <!-- Col-6 End-->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="condition-button"
+                                *ngIf="question?.type === 'dropdown' && question.question_en == 'Battery health'">
+                                <h3 class=" question-line">{{translate?.getDefaultLang() == 'ar' ? question?.question_ar
+                                    : question?.question_en}}
+                                </h3>
+                                <div>
+                                    <app-set-battery (emitDate)="setBattery($event , j)" *ngIf="showBattery"
+                                        [question]="question"></app-set-battery>
+                                </div>
+
+                                <div class="products-row products-cursor" (click)="showSetBattery()">
+                                    <div class="row products-home">
+
+                                        <div class="col-12" style="height: 45px;
+                                margin-top: 10px; ">
+                                            <div class="products-box">
+                                                <div class="products-top" style="height: 50px; "
+                                                    [ngClass]="{'selected-button': selectedBattery?.selected}">
+                                                    <div class="price-bar">
+                                                        <div>
+                                                            <div>
+
+                                                                <span class="o-price" *ngIf="selectedBattery">
+
+                                                                    {{translate?.getDefaultLang() == 'ar' ?
+                                                                    selectedBattery?.option_ar :
+                                                                    selectedBattery?.option_en}}
+
+                                                                </span>
+                                                                <span class="o-price" *ngIf="!selectedBattery">
+
+                                                                    {{'labels.battH' |translate}}
+                                                                </span>
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div> <!-- Col-6 End-->
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="condition-button"
+                                *ngIf="question?.type === 'dropdown' && question.question_en != 'Battery health' ">
+                                <h3 class=" question-line">{{translate?.getDefaultLang() == 'ar' ? question?.question_ar
+                                    : question?.question_en}}
+                                </h3>
+
+                                <div class="products-row products-cursor">
+                                    <div class="row products-home">
+                                        <div class="col-6" style="height: 45px;
+                                margin-top: 10px; " *ngFor="let answer of question?.choices; let i = index;">
+                                            <div class="products-box" (click)="selectAnswerA(i , j ,answer)">
+                                                <div class="products-top" style="height: 50px; "
+                                                    [ngClass]="{'selected-button': answer?.selected}">
+                                                    <div class="price-bar">
+                                                        <div>
+                                                            <div>
+
+                                                                <span class="o-price">
+                                                                    {{translate?.getDefaultLang() == 'ar' ?
+                                                                    answer?.option_ar : answer?.option_en}}
+
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div> <!-- Col-6 End-->
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="condition-button" *ngIf="question?.type === 'yes-no-with-options'">
+                                <h3 class="question-line">{{translate?.getDefaultLang() == 'ar' ? question?.question_ar
+                                    : question?.question_en}}
+                                </h3>
+                                <div class="products-row products-cursor">
+                                    <div class="row products-home">
+                                        <div class="col-6" style="height: 45px;
+                                    margin-top: 10px; " *ngFor="let answer of question?.answers; let i = index;">
+                                            <div class="products-box" (click)="selectAnswerCho(i , j ,answer)">
+                                                <div class="products-top" style="height: 50px; "
+                                                    [ngClass]="{'selected-button': answer?.selected}">
+                                                    <div class="price-bar">
+                                                        <div>
+                                                            <div>
+
+                                                                <span class="o-price">
+                                                                    {{translate?.getDefaultLang() == 'ar' ?
+                                                                    answer?.answer_ar : answer?.answer_en}}
+
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div> <!-- Col-6 End-->
+
+                                    </div>
+
+                                </div>
+
+
+                                <div *ngIf="question?.answers[0]?.selected && question?.answers[0]?.answer_ar == 'نعم'">
+
+
+                                    <div class="products-row products-cursor">
+                                        <div class="row products-home">
+                                            <div class="col-6"
+                                                *ngFor="let choice of question?.answers[0].sub_choices; let k = index;">
+                                                <div class="products-box" (click)="selectAnswerChoice(0 , j , k)">
+                                                    <div class="products-top"
+                                                        [ngClass]="{'selected-button': choice?.selected}">
+                                                        <div class="price-bar">
+                                                            <div>
+                                                                <div>
+                                                                    <span class="f-price font-color-primary">
+                                                                        <img alt="" height="50px" src={{choice?.icon}}>
+                                                                        <br>
+                                                                    </span>
+                                                                    <span class="o-price">
+                                                                        {{translate?.getDefaultLang() == 'ar' ?
+                                                                        choice?.option_ar : choice?.option_en}}
+
+                                                                    </span>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div> <!-- Col-6 End-->
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+             
+
+                </div>
+            </div>
+          
+
+        </div>
+        <div class="error-font" *ngIf="!showButton">{{'labels.enterQues' | translate }}</div>
+        
+        <div class="products-bottom products-btns-price2">
+            <a class="button button-next"  
+            [ngClass]="{'disabled-button': disableQuestions ||  (answersList?.length !== questionsList?.length )}"
+            (click)="navigateToaddress()">
+                <span class="now-text">
+                    {{'labels.next' | translate}}
+                </span>
+            </a>
+            <a class="save-as-draft-button" (click)="getPopupModal('saveAsDraft')">
+                <span class="save-as-draft-text">
+                    {{'labels.saveAsDraft' | translate}}
+                </span>
+              </a>
+          
+        
+        </div>
+    </div>
+
+</div>
+<app-cancel-listing *ngIf="showModal"></app-cancel-listing>
+<app-save-draft-modal *ngIf="showSaveAsDraftConfirm"></app-save-draft-modal>

@@ -1,0 +1,291 @@
+@mixin btn_style($color, $bgcolor) {
+  color: $color;
+  background-color: $bgcolor;
+  border-color: $bgcolor;
+  font-size: 9px;
+  position: absolute;
+  right: 0;
+  width: 75px;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif;
+}
+
+.product-catalog-card {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 162px;
+  height: 195px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.products-row .product-info {
+  .plus-text span {
+    display: block;
+  }
+
+  .right {
+    align-items: center;
+  }
+
+  .product-info-inner {
+    .product-title {
+      font-size: 14px;
+      color: #a6aeaf;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: 'DIN Next LT Arabic', sans-serif;
+    }
+
+    .product-available {
+      width: 125px;
+      font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+  }
+
+  .product-available {
+    width: 150px;
+  }
+}
+
+.product-info {
+  border-bottom: unset !important;
+  margin-bottom: 0 !important;
+}
+
+.thumbnail {
+  // disbale it so the photo take the whole width  
+  // object-fit: contain;
+}
+
+.thumbnail_img {
+  height: 80px;
+  width: 146px;
+}
+
+.wishlist-add {
+  border-radius: 50%;
+  background-color: #ecfafa;
+
+  .menu-icon {
+    border-radius: 50%;
+  }
+
+  .icon-no-add {
+    display: block !important;
+  }
+}
+
+.highest_bid {
+  font-size: 10px;
+  padding-top: 5px;
+}
+
+.products-bottom {
+  .right {
+    width: unset;
+
+    .buy_price {
+      background-color: #177ae2;
+      width: 130%;
+      margin: auto;
+    }
+  }
+}
+
+.products-thumbnail {
+  position: relative;
+
+  .plus-text {
+    position: relative;
+
+    span {
+      width: 80px;
+
+      &.extensive {
+        @include btn_style(#f25c5c, #e8d3d3);
+      }
+
+      &.usable {
+        @include btn_style(#f25c5c, #e8d3d3);
+      }
+
+      &.excellent {
+        @include btn_style(#24c081, #c9e1d7);
+      }
+
+      &.good {
+        @include btn_style(#f79e1b, #e9d9c2);
+      }
+
+      &.great {
+        @include btn_style(#31cdcd, #c6e2e2);
+      }
+    }
+  }
+
+  .plus-text {
+    span.great,
+    span.good,
+    span.excellent,
+    span.usable,
+    span.extensive {
+      position: relative;
+    }
+  }
+
+  .ar_plus_text {
+    span.great,
+    span.good,
+    span.excellent,
+    span.usable,
+    span.extensive {
+      left: 0;
+      right: unset !important;
+    }
+  }
+}
+
+.product-title {
+  color: #177ae2;
+  font-size: 18px;
+}
+
+.product-available {
+  color: #5a5555;
+  font-size: 14px;
+}
+
+.f-price {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'DIN Next LT Arabic', sans-serif;
+}
+
+.o-price {
+  color: #f35252;
+  font-size: 10px;
+  font-family: 'DIN Next LT Arabic', sans-serif;
+}
+
+.product-prices {
+  margin-top: 6px;
+  .product-prices-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    line-height: 14px;
+
+    .f-price {
+      color: #177ae2;
+      font-size: 16px;
+      font-weight: 700;
+      display: inline-block;
+      font-family: 'DIN Next LT Arabic Medium', sans-serif;
+      span {
+        font-weight: normal;
+        font-family: 'DIN Next LT Arabic Regular';
+      }
+    }
+
+    .o-price {
+      color: #f35252;
+      font-size: 10px;
+      text-decoration: line-through;
+      display: inline-block;
+      font-family: 'DIN Next LT Arabic Medium', sans-serif;
+    }
+
+    .d-text,
+    .discount {
+      color: #5a5555;
+      font-size: 10px;
+      font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+  }
+}
+
+.product-catalog-card--ar {
+  .ar_prices {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+}
+
+.highlights_ar {
+  flex-direction: row-reverse;
+  .product_highlights {
+    flex-direction: row-reverse;
+    margin-left: 2px;
+  }
+}
+
+.highlights {
+  display: flex;
+  margin-top: 20px;
+  .product_highlights {
+    margin-right: 2px;
+    background-color: #f5f9fe;
+    display: flex;
+    display: -ms-flexbox;
+    height: 22px;
+    align-items: center;
+    width: 109px;
+
+    img {
+      width: 15px;
+      margin: 1.5px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .ar_high {
+    flex-direction: row-reverse;
+  }
+}
+
+.button {
+  .now-text {
+    font-size: 12px !important;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+  }
+
+  p-text {
+    font-size: 14px !important;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+  }
+
+  .sar {
+    font-size: 9px !important;
+    color: #fff;
+  }
+}
+
+.product-catalog-card--ar {
+  .o-price {
+    margin-left: 6px;
+  }
+  .product-info-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .product-prices-row {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 369px) {
+  .products-list .product-info .product-available {
+    width: auto !important;
+  }
+}

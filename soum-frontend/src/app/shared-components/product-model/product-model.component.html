@@ -1,0 +1,137 @@
+<div
+  class="products-row"
+  [ngClass]="{ ar_products_row: translate?.getDefaultLang() == 'ar' }"
+>
+  <div
+    class="products-thumbnail"
+    (click)="navigateTo('/product-detail', product)"
+  >
+    <a>
+      <img
+        class="thumbnail"
+        *ngIf="appSetting?.enable_cloudianry == 'true'"
+        [src]="
+          product?.productImage.replace(
+            appSetting.digitalocean_link_replacement,
+            appSetting.MPP_cloudaniry_img_link
+          ) | image
+        "
+        [alt]="
+          translate?.getDefaultLang() == 'en'
+            ? product?.modelName
+            : product?.arModelName
+        "
+        loading="lazy"
+      />
+      <img
+        class="thumbnail thumbnail_img"
+        *ngIf="appSetting?.enable_cloudianry == 'false'"
+        [src]="product?.productImage | image"
+        [alt]="
+          translate?.getDefaultLang() == 'en'
+            ? product?.modelName
+            : product?.arModelName
+        "
+        loading="lazy"
+      />
+    </a>
+    <span
+      class="plus-text"
+      [ngClass]="{ ar_plus_text: translate?.getDefaultLang() == 'ar' }"
+    >
+      <span [class]="checkGrade(product?.grade)">
+        {{
+          translate?.getDefaultLang() == 'en'
+            ? product?.grade
+            : product?.arGrade
+        }}
+      </span>
+    </span>
+    <div class="product-created-at">
+      {{ getHumanReadableProductCreatedAt() }}
+    </div>
+  </div>
+  <div class="products-content">
+    <div class="product-info">
+      <div class="left">
+        <a (click)="navigateTo('/product-detail', product)">
+          <div class="product-title_wrapper" [ngClass]="{'product-title_wrapper_ar': translate?.getDefaultLang() === 'ar'}">
+            <h4 class="product-title">
+                {{translate?.getDefaultLang() === 'en' ? product?.modelName : product?.arModelName}} 
+               <span *ngIf="variants.length">{{ checkDefaultLangForVariants(variants[0]?.value)}}</span> 
+                <span class="title-main">
+                  
+                    <span *ngFor="let variant of variants; let i = index">
+
+                      <span *ngIf="i > 0 && i <  variants.length-1"> {{ checkDefaultLangForVariants(variant?.value)}}،
+                      
+
+                      </span>
+                      <span *ngIf="i == variants.length-1"> {{ checkDefaultLangForVariants(variant?.value)}}
+                      </span>
+
+                  </span>
+                </span>
+            </h4>
+            <img *ngIf="product.expectedDeliveryTime === 2" class="icon" [src]="'fast_delivery_sm.png' | imagePath: 'icons'" alt="fast_delivery">
+        </div>
+        </a>
+      </div>
+      <div class="right">
+        <a
+          *ngIf="product?.seller_mobileNumber !== userMobileNumber"
+          class="wishlist-button wishlist-add"
+          (click)="favorite(product)"
+        >
+          <img
+            class="menu-icon"
+            alt="wishlist"
+            [src]="
+              !product?.liked
+                ? ('wishlist-no-add.png' | imagePath: 'icons')
+                : ('wishlist-add.png' | imagePath: 'icons')
+            "
+          />
+        </a>
+      </div>
+      <span class="highest_bid red_color" *ngIf="product?.bid_text">{{
+        product?.bid_text
+      }}</span>
+    </div>
+  </div>
+  <div
+    class="product_prices"
+    [ngClass]="{ ar_prices: translate?.getDefaultLang() == 'ar' }"
+  >
+    <div>
+      <span class="o-price">
+        <span>{{ product?.originalPrice }}</span>
+        <span>{{ 'labels.sar' | translate }}</span>
+        &nbsp;
+      </span>
+      <span class="d-text">{{ 'labels.compare' | translate }}</span>
+    </div>
+    <span class="f-price">
+      <span>{{ product?.grandTotal }}</span>
+      <span>{{ 'labels.sar' | translate }}</span>
+      &nbsp;
+    </span>
+  </div>
+  <div
+    class="highlights"
+    *ngIf="product.highlights"
+    [ngClass]="{ highlights_ar: translate?.getDefaultLang() == 'ar' }"
+  >
+    <div
+      class="product_highlights"
+      *ngFor="let highlight of product.highlights"
+    >
+      <img [src]="highlight.iconUrl" alt="icon" />
+      <span>{{
+        translate?.getDefaultLang() == 'en'
+          ? highlight.content
+          : highlight.arContent
+      }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<div style="display: none;">
+	<div id="orderInvoice-en" class="invoice-box" style="margin: auto;width: 100%;display: block;border: 0px;padding: 40px;">
+		<div class="container-fluid invoice-container" style="padding: 70px;max-width: 850px;background-color: #fff;border: 1px solid #ccc;border-radius: 6px;">
+			<header>
+				<table aria-describedby='invoice-box' class="rows order_table align-items-center" style="width: 100%;">
+					<tbody>
+						<tr style="display: none;">
+							<th id="invID">invoives</th>
+						</tr>
+						<tr>
+							<td class="col-sm--7  mb-3 mb-sm-0 logos" style="width: 50%;  text-align:left;">
+								<img [src]="'en-logo.png' | imagePath: 'icons'" alt="color-logo" class="color-logo ar-logo ng-star-inserted" style="height: 35px;">
+							</td>
+							<td class="col-sm--5 text-sm-lefts" style="width: 50%;text-align: right;">
+								<h4 class="text-7 mb-0">Invoice</h4>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+			</header>
+			<main>
+				<table aria-describedby='invoice details3' class="rows order_table" style="width: 100%;border-collapse: collapse; margin-bottom: 0px;">
+					<tbody>
+						<tr style="display: none;">
+							<th id="invoivesScope">invoives</th>
+						</tr>
+						<tr>
+							<td class="col-sm--6" style="width: 50%;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align:left;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-style: normal;letter-spacing: normal;line-height: normal; text-align: right; font-weight:500 !important;"> Date</strong> {{orderDetails?.created_at | date: 'dd/MM/yyyy'}}</td>
+							<td class="col-sm--6" style="width: 50%;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: right;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight:500 !important;font-style: normal;letter-spacing: normal;line-height: normal;">Invoice No </strong>
+								<div class="order-details-id">{{orderDetails?._id}}</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<table aria-describedby='invoice details1' class="rows order_table" style="width: 100%;border-collapse: collapse;margin-bottom: 1rem;">
+					<tbody>
+						<tr style="display: none;">
+							<th id="invoives2Scope">invoives</th>
+						</tr>
+						<tr>
+							<td class="col-sm--6 " style="width: 50%; text-align:left;"><strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight:500 !important;font-style: normal;letter-spacing: normal;line-height: normal; text-align:left;">Invoiced To </strong>
+								<address style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> {{orderDetails?.buyer?.name}}<br>
+                                                                <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> Address
+                                                                </strong>
+                                                                {{(orderDetails?.buyer_address?.address ? orderDetails?.buyer_address?.address + ',' : "")}}
+                            
+                                                                <br>
+                                                                <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> City </strong>
+                            
+                                                                {{(orderDetails?.buyer_address?.city ? orderDetails?.buyer_address?.city + "," : "")}}
+                                                                <br>
+                                                                <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> Postal Code </strong>
+                                                                {{(orderDetails?.buyer_address?.postal_code ? orderDetails?.buyer_address?.postal_code : "")}}
+                                                            </address>
+							</td>
+							<td class="col-sm--6" style="width: 50%;     text-align: right;"><strong style="font-family: 'Poppins', sans-serif;font-size: 14px; font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: right;">Pay To </strong>
+								<address style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> {{orderDetails?.seller?.name}}<br>
+                                    <strong  style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> Address </strong>
+                                    {{(orderDetails?.product?.pick_up_address?.address ? orderDetails?.product?.pick_up_address?.address + ',' : "")}}
+
+                                    <br>
+                                    <strong  style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> City
+                                    </strong>
+                                    {{(orderDetails?.product?.pick_up_address?.city ? orderDetails?.product?.pick_up_address?.city + "," : "")}}
+
+                                    <br>
+                                    <strong  style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> Postal Code </strong>
+                                    {{(orderDetails?.product?.pick_up_address?.postal_code ? orderDetails?.product?.pick_up_address?.postal_code : "")}}
+
+
+                                </address>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="card" style="position: relative;display: flex;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: .25rem;">
+					<div class="card-body px-0" style="padding: 0px;">
+						<div class="table-responsive" style="display: block;width: 100%;overflow-x: auto;-webkit-overflow-scrolling: touch;">
+							<table aria-describedby='invoice details0' class="table" style="width: 100%;border-collapse: collapse;    margin-bottom: 0px;">
+								<thead class="thead-light">
+									<tr>
+										<th id="serviceScope" style="width: 125px;padding: .75rem;color: #495057;background-color: #e9ecef;text-align: left;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;">Service</strong>
+										</th>
+										<th id="descScope" style="width: 200px;text-align: right;padding: .75rem;color: #495057;background-color: #e9ecef;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;">Description</strong>
+										</th>
+										<th id="amountScope" style="text-align: right;padding: .75rem;color: #495057;background-color: #e9ecef;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> <strong style="font-family: 'Poppins', sans-serif;font-size: 14px;font-weight:500 !important;font-style: normal;letter-spacing: normal;line-height: normal;">Amount</strong>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr style="display: none;">
+										<th id="invoives4Scope">invoives</th>
+									</tr>
+									<tr>
+										<td style="padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;">{{orderDetails?.product?.model_id?.model_name}}</td>
+										<td style="text-align: right;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;">{{orderDetails?.product?.varient}}</td>
+										<td style="text-align: right;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;">{{orderDetails?.grand_total}} SAR</td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 " style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;"></td>
+										<td class="bg-light-2 " style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important;padding-top: 8px;padding-bottom: 8px;"> <strong>Price</strong>
+										</td>
+										<td class="bg-light-2 " style="text-align: right;background-color: #f8f8fa !important; font-size: 14px;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;">{{orderDetails?.buy_amount}} SAR</td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 " style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;"></td>
+										<td class="bg-light-2 " style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important; padding-top: 8px;padding-bottom: 8px;"> <strong>Shipping Charges</strong>
+										</td>
+										<td class="bg-light-2 " style="text-align: right;background-color: #f8f8fa !important; font-size: 14px;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;">{{orderDetails?.shipping_charge}} SAR</td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 " style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;"></td>
+										<td class="bg-light-2 " style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important; padding-top: 8px;padding-bottom: 8px;"><strong>Commission</strong>
+										</td>
+										<td class="bg-light-2 " style="text-align: right;background-color: #f8f8fa !important; font-size: 14px;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;">{{orderDetails?.commission}} SAR</td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 " style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;"></td>
+										<td class="bg-light-2 " style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important; padding-top: 8px;padding-bottom: 8px;"><strong>VAT</strong>
+										</td>
+										<td class="bg-light-2 " style="text-align: right;background-color: #f8f8fa !important; font-size: 14px;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;">{{orderDetails?.vat}} SAR</td>
+									</tr>
+									<tr>
+										<td class="bg-light-2 " style="padding: 8px .75rem;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;text-align: left;background-color: #f8f8fa !important;"></td>
+										<td class="bg-light-2 " style="text-align: right;vertical-align: top;border-top: 1px solid #dee2e6;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;background-color: #f8f8fa !important;padding-top: 8px;padding-bottom: 8px;"><strong>Total</strong>
+										</td>
+										<td class="bg-light-2 " style="text-align: right;background-color: #f8f8fa !important; font-size: 14px;padding: .75rem;vertical-align: top;border-top: 1px solid #dee2e6;">{{orderDetails?.grand_total}} SAR</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</main>
+			<footer class="text-center mt-4" style="text-align: center!important;">
+				<p class="text-1" style="direction: ltr;font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 400 !important;font-style: normal;letter-spacing: normal;line-height: normal;"> <strong style="font-family: 'Poppins', sans-serif;font-weight: 500 !important;font-style: normal;letter-spacing: normal;line-height: normal;">Note:</strong> This is computer generated receipt and does not require physical signature.</p>
+			</footer>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="content">
+  <app-header
+    [pageTitle]="'filter.sortBy' | translate"
+    (goBack)="goBack()"
+  ></app-header>
+  <div class="section-sort">
+    <div class="container">
+      <div id="sort" class="sort-box">
+        <a
+          [ngClass]="{ active: selectedSorting == ProductSortBy.LOW_TO_HIGH }"
+          (click)="selectSorting(ProductSortBy.LOW_TO_HIGH)"
+        >
+          {{ 'filter.lowToHigh' | translate }}
+        </a>
+        <a
+          [ngClass]="{ active: selectedSorting == ProductSortBy.HIGH_TO_LOW }"
+          (click)="selectSorting(ProductSortBy.HIGH_TO_LOW)"
+        >
+          {{ 'filter.highToLow' | translate }}
+        </a>
+        <a
+          [ngClass]="{
+            active: selectedSorting == ProductSortBy.NEW_ARRIVALS
+          }"
+          (click)="selectSorting(ProductSortBy.NEW_ARRIVALS)"
+        >
+          {{ 'filter.newestArrivals' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fix-button">
+    <a class="clear-button" (click)="clearSort()">{{
+      'filter.clearAll' | translate
+    }}</a>
+    <a class="apply-button" (click)="applySort()">{{
+      'filter.applySort' | translate
+    }}</a>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+@import "../../../../assets/css/color.scss";
+.text-lang {
+  color: #31cdcd !important;
+  margin: 10px;
+  margin-top: 30px;
+  font-size: 16px !important;
+  span {
+    cursor: pointer;
+  }
+}
+.custom_ar{
+  flex-direction: row;
+  .back-button{
+    .rotate_btn{
+      transform: rotate(180deg) !important;
+    }
+  }
+}
+.custom_en{
+  .custom-switch{
+    flex-direction: row;
+    .back-button{
+      .rotate_btn{
+        transform: rotate(180deg) !important;
+      }
+    }
+  }
+  .secondDes{
+    margin-bottom: -50px;
+  }
+}
+
+.button-next {
+  background: #177ae2;
+
+  //   border-radius: 0px 0px 0px 20px !important;
+}
+.skip-buton {
+  background: transparent !important;
+  font-size: 16px;
+
+  color: #434343 !important;
+}
+.cart-totals,
+.cart-totals table {
+  width: 95%;
+  tr {
+    border: none;
+    td {
+      font-size: 14px;
+    }
+    .grand-total {
+      color: #363636;
+          font-family: "DIN Next LT Arabic", sans-serif !important;
+      font-size: 14px;
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: normal;
+      line-height: normal;
+    }
+  }
+}
+
+
+.products-top-bar {
+  .backgroundThird {
+    background-color: #ffffff;
+    padding: 20px;
+    height: 400px;
+    .bold-font {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px !important;
+      padding: 20px 0px 0px 0px;
+      font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+    .normal-font {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 24px;
+      text-align: center;
+      padding: 20px;
+      padding-bottom: 60px;
+      color: #a8a8a8;
+    }
+    .flex-custom {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.products-bottom .button {
+  width: calc(30% - 0px) !important;
+  box-shadow: 0 0 9px rgb(190 214 195 / 0%) !important;
+
+  .now-text {
+    text-align: center !important;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+  }
+}
+.products-bottom .btn-full {
+  width: calc(100% - 0px) !important;
+  border-radius: 30px;
+  background: #177ae2;
+  padding: 15px;
+}
+
+.custom-switch {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+
+  .back-button {
+    float: right;
+    margin-top: 40px;
+  }
+}
+
+.custom_font, .content{
+  font-family: "DIN Next LT Arabic", sans-serif !important;
+}

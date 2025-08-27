@@ -1,0 +1,40 @@
+<div class="content">
+    <app-header [pageTitle]="'sellFlow.selectDevice' | translate" (goBack)="goBack()"></app-header>
+
+    <div class="section-device-sell">
+        <app-banner-breadcrumb [type]="true"></app-banner-breadcrumb>
+
+        <div class="container container-padding">
+
+            <h2 class="section_title section_style">
+                <br>{{'sellFlow.selectDeviceToSell' | translate}}
+            </h2>
+            <div class="device-sell-row">
+                
+                <div class="device-sell-box" [ngClass]="{'device-sell-box-acitve' : sellerService?.uploadProductData?.category_id === category?.category_id}" *ngFor="let category of categories"
+                (click)="proceedToSelectBrand(category)">
+                    <div class="device-sell-img">
+                        <span class="title-img color-title">{{category?.category_name}}</span>
+                        <img [src]="category?.category_icon" alt="">
+
+                    </div>
+                </div>
+
+                <div *ngIf="apiHit" class="device-sell-box device_notFound">
+                    <div class="fitst_part">
+                        <span class="deviceType"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeNyJwGLXZC7WRgx2I3W_OaEunUIY6JrDEOrp7xFdSn9nkhSQ/viewform" target="_blank" class="contactUs" > {{"sellFlow.dontFind" | translate}}<br /> {{"sellFlow.device" | translate}}</a>
+                           </span>
+                    </div>
+                 
+                </div>
+
+            </div>
+            <div class="api-inline-loader" *ngIf="!apiHit">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <!--rows-->
+        </div>
+    </div>
+</div>

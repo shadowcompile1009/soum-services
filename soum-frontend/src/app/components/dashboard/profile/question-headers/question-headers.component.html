@@ -1,0 +1,25 @@
+<div class="content">
+    <app-header [pageTitle]="'sellFlow.questionsFAQ' | translate" (goBack)="goBack()"></app-header>
+
+    <div class="background">
+        <img [src]="'illustration.svg' | imagePath" alt="imgforquestion" />
+        <div class="title">{{language == 'en' ? englishTitle : arabicTitle }}</div>
+
+
+        <div class="btn-wrapper">
+            <button *ngFor="let cat of categories" [ngClass]="{'selected-button': cat.selected }"
+                (click)="showCategory(cat)" type="button" class="btn btn-labeled button btn-question">
+                <div>
+                    <img src={{cat.icon}} alt="icon" />
+                    <span>
+                        {{language == 'en' ? cat.titleEN : cat.titleAR }}
+                    </span>
+                </div>
+            </button>
+        </div>
+
+        <div *ngFor="let cat of categories">
+            <app-question-category *ngIf="cat.showCategoryModel" [tiles]="cat.tiles"></app-question-category>
+        </div>
+    </div>
+</div>

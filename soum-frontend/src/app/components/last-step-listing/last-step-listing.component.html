@@ -1,0 +1,86 @@
+<div class="content-congrates">
+    <div class="header-congrates">
+        <p class="title-congrates english-margin">{{'labels.lastStepTitle' | translate}}</p>
+        <div class="design1-congrates">
+            <div class="entire-design-congrates">
+                <div class="img1"><img alt="" class="" [src]="'Group2054.svg' | imagePath" /></div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+   <div class="part_display_info">
+    
+
+    <div class="info_lsting_msg info_lsting_msg_congrates">
+        <div class="s_part">
+            <img alt="" *ngIf="showEnglish" [src]="'imgTest.svg' | imagePath" />
+            <img alt="" *ngIf="showArabic" [src]="'Group 2083.svg' | imagePath" />
+           
+        </div>
+        <div class="f_part">
+            <img alt="" *ngIf="showEnglish" [src]="'Group 2085.svg' | imagePath" />
+            <img alt="" *ngIf="showArabic" [src]="'Group 991.svg' | imagePath" />
+           
+        </div>
+    </div>
+
+
+    <div class="info_lsting_msg">
+        <div class="s_part"  style="margin-top:3%">
+            
+            <span class="red_text">{{"labels.deleteProduct" | translate}} </span>
+            <span class="f_text">{{"labels.contentParag1"| translate }}</span>
+ 
+        </div>
+        <div>
+            <img alt="" class="arrow arrow_lastStep" [src]="'arrow.svg' | imagePath" />
+        </div>
+        <div class="f_part">
+            <img alt="" *ngIf="showEnglish" [src]="'Group 993.svg' | imagePath" />
+            <img alt="" *ngIf="showArabic" [src]="'Group 998.svg' | imagePath" />
+        </div>
+    </div>
+    <div class="info_lsting_msg">
+        <div class="s_part"  style="margin-top:3%">
+            <span class="f_text">{{"labels.contentParag2" | translate}} </span>
+            <span class="hours24">{{"labels.renew2"| translate }}</span>
+            <span class="f_text">{{"labels.theway" | translate}} </span>
+        </div>
+        <div>
+            
+            <img alt="" class="arrow arrow_lastStep" [src]="'arrow.svg' | imagePath" />
+        </div>
+        <div class="f_part">
+            <img alt="" *ngIf="showEnglish" [src]="'Group 1001.svg' | imagePath" />
+            <img alt="" *ngIf="showArabic" [src]="'Group 999.svg' | imagePath" />
+        </div>
+    </div>
+    <div class="info_lsting_msg">
+        <div class="s_part"  style="margin-top:3%">
+            <span class="f_text">{{"labels.youCan" | translate}} </span>
+            <span class="hours24">{{"labels.bidsAccept"| translate }}</span>
+            <span class="f_text">{{"labels.contentParag3" | translate}} </span>
+        </div>
+        <div>
+            <img alt="" class="arrow arrow_lastStep" [src]="'arrow.svg' | imagePath" />
+        </div>
+        <div class="f_part">
+            <img alt="" *ngIf="showEnglish" [src]="'Group 1007.svg' | imagePath" />
+            <img alt="" *ngIf="showArabic" [src]="'Group 1000.svg' | imagePath" />
+        </div>
+    </div>
+
+
+
+    <div class="footer-congrates">
+        <button class="btn_continue"  (click)="navigateToProduct()"><span class="btn_continue_text">{{'labels.clear' | translate}}</span></button>
+        <button class="btn_callUs"><a target="_blank" class="btn_callUs_text" href="https://api.whatsapp.com/send?phone=966920035039"><img alt="" class="arrow_call_us" [src]="'calling.svg' | imagePath" />{{'labels.clearCallUS' | translate}}</a></button>
+    </div>
+
+   </div>
+
+
+</div>

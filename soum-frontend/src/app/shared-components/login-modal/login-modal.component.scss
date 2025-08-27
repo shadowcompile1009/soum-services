@@ -1,0 +1,288 @@
+@import "../../../assets/css/color.scss";
+
+.text-lang {
+  color: #31CDCD !important;
+  margin: 10px;
+  margin-top: 30px;
+  font-size: 16px !important;
+}
+
+.button-next {
+  background: #177ae2;
+
+  //   border-radius: 0px 0px 0px 20px !important;
+}
+
+.skip-buton {
+  background: transparent !important;
+  font-size: 16px;
+
+  color: #434343 !important;
+}
+
+.background {
+  background-color: #ffffff;
+  // padding: 20px;
+  height: 400px;
+}
+
+.cart-totals,
+.cart-totals table {
+  width: 95%;
+}
+
+.cart-totals table tr td {
+  font-size: 14px;
+}
+
+.cart-totals table tr .grand-total {
+  color: #363636;
+  font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+.payment-section .popup-inner {
+  height: 450px;
+  padding: 20px 0px 0px 0px !important;
+}
+
+.cart-totals table tr {
+  border: none;
+}
+
+.small-text {
+  width: 352px;
+  height: 17px;
+  left: 24px;
+  top: 318px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #a8a8a8;
+}
+
+.products-bottom .button {
+  width: calc(30% - 0px) !important;
+  box-shadow: 0 0 9px rgb(190 214 195 / 0%) !important;
+  margin-right: 0px !important;
+
+  .now-text {
+    text-align: center !important;
+
+    font-family: "DIN Next LT Arabic", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+  }
+}
+
+.products-bottom .btn-full {
+  width: calc(100% - 0px) !important;
+  border-radius: 30px;
+  background: #177ae2;
+  padding: 15px;
+}
+
+.grey-button {
+  width: 40%;
+  height: 3px;
+  cursor: pointer;
+  margin: 0px 100px 20px 100px;
+  background: #d2d7d9;
+  align-self: center;
+}
+
+.link-style {
+  color: #177ae2 !important;
+  text-decoration: underline !important;
+}
+
+.normal-font {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  padding: 20px;
+  // padding-bottom: 60px;
+  color: #a8a8a8;
+}
+
+.bold-font {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px !important;
+  padding: 10px 0px 0px 0px;
+}
+
+.step {
+  color: #177AE2;
+}
+
+.fa-check-circle {
+  font-size: 70px;
+  color: #31cdcd;
+}
+
+.custom-control-label {
+  color: #31cdcd !important;
+
+  font-size: 16px !important;
+}
+
+.content {
+  height: 100%;
+  min-height: 100vh;
+  background: #fff;
+  display: block;
+  border-radius: 15px;
+  bottom: 15px;
+  padding-top: 0px !important;
+
+  .input-bar-box .input-text-bar {
+    color: #5A5555;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+  }
+
+  .example-full-width {
+    width: 333px;
+    margin-bottom: 40px;
+
+    .mobile-num {
+      padding-left: 20px !important;
+      font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+  }
+
+  .terms-of-use {
+    color: #31CDCD !important;
+    display: inherit;
+  }
+
+  div.otp-input {
+    margin-top: 20px;
+    position: relative;
+    span {
+      position: absolute;
+      border-radius: 4px;
+      border: 1px solid #c5c5c5;
+      height: 45px;
+      left: 0px;
+      width: 45px;
+      top: 0px;
+    }
+    .mobile-num {
+      text-align: center !important;
+    }
+  }
+}
+
+.otp_section {
+  margin-top: 20px;
+}
+
+.underLine {
+  text-decoration: underline !important;
+}
+
+.button-sign-up {
+  font-size: 22px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 59px;
+  background: #177ae2 !important;
+}
+
+.form_wrapper {
+  display: flex;
+  display: -ms-flexbox;
+}
+
+.model_header {
+  display: block;
+  padding: 10px 20px 20px 20px;
+  font-size: 18px;
+  color: #434343;
+  line-height: 26px;
+  letter-spacing: normal;
+  font-family: "DIN Next LT Arabic Medium", sans-serif;
+}
+
+.disable_link{
+  color: #a6aeaf !important;
+  cursor: default !important;
+}
+
+.first-bar {
+  position: relative;
+  padding: 20px;
+  background-color: #177ae2;
+  padding-top: 100px;
+  color: #ffffff;
+
+  .custom_arrow {
+    display: flex;
+    display: -ms-flexbox;
+    justify-content: space-between;
+    align-items: center;
+
+    .back-button {
+      width: 15px;
+    }
+  }
+
+  .arrow_ar {
+    flex-direction: row-reverse;
+  }
+
+  .arrow_en {
+    flex-direction: row;
+  }
+
+  .onetime {
+    font-family: 'DIN Next LT Arabic Medium', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 2px;
+  }
+
+  .mobileCode {
+    font-family: 'DIN Next LT Arabic Bold', sans-serif;
+    padding: 10px 0px 10px 0px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 35px;
+  }
+}
+
+.payment_section_ar {
+  .button-sign-up {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .model_header {
+    text-align: initial;
+  }
+  .otp-input {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}

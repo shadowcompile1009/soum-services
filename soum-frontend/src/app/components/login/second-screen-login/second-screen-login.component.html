@@ -1,0 +1,41 @@
+<div class="products-top-bar" style="float: left;" [ngClass]="{'custom_ar': translate?.getDefaultLang() == 'ar', 'custom_en':translate?.getDefaultLang() == 'en'}">
+    <div class="custom-control custom-switch">
+ 
+        <label class="text-lang" (click)="changeLanguage()">
+        <a><img alt="change language" [src]="'Vector.png' | imagePath: 'newSign'"></a>
+            <span *ngIf="!arabic">{{'labels.arabicMode' | translate}} </span>
+            <span *ngIf="arabic">{{'labels.englishMode' | translate}} </span>
+        </label>
+
+        <a class="back-button" (click)="goBack()"><img alt="" class="rotate_btn" [src]="'back.png' | imagePath: 'icons'" style="width: 15px;"></a>
+    </div>
+
+    <img alt="" [src]="'illustration.png' | imagePath: 'newSign'">
+
+    <div class="backgroundThird">
+        <div class="bold-font"> {{'labels.signUp-secondlabel' |translate}}</div>
+        <div class="normal-font secondDes">{{'labels.signUp-secondDes' | translate}}</div>
+
+        <div class="products-bottom flex-custom">
+
+            <a class="button btn-full sign-up-sign-in m-1" style="width: calc(100% - 0px)" [routerLink]="['/login/enter-mobile']">
+                <span class="now-text" [class.custom_font]="translate?.getDefaultLang() == 'ar'">
+                    {{'labels.haveAccount' | translate}}
+                </span>
+            </a>
+            <a class="button btn-full sign-up-sign-in" style="  width: calc(100% - 0px) " (click)="hideThird()">
+                <span class="now-text" [class.custom_font]="translate?.getDefaultLang() == 'ar'">
+                    {{'labels.dohaveAccount' | translate}}
+                </span>
+            </a>
+
+        
+            <a class="button btn-full skip-button ctn-as-guest" (click)="showMainPAge()"
+                style="background-color: transparent;   width: calc(100% - 0px) ;   text-align: center;">
+                <span class="now-text" style="color :#177AE2">
+                    {{'labels.guest' | translate}}
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

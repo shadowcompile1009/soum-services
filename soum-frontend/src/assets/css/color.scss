@@ -1,0 +1,66 @@
+$primary-color: var(--primary-color);
+$text-color:#363636;
+$gray-color:#878787;
+$red-color:#E13737;
+$yellow-color:#ffbb00;
+$green_color:#00B761;
+$background-color:#f2f5f8;
+$border-color:#EBEBEB;
+$border-color2:#c6e5f1;
+$box-shadow-color-rgb:190, 214, 195;
+
+.excellent{color: rgb(56, 118, 29);border-color: rgb(56, 118, 29);}
+.great{color: #11a811;border-color:#11a811;}
+.good{color: #cf9c10;border-color: #cf9c10;}
+.usable{color: rgb(255, 153, 0);border-color: rgb(255, 153, 0);}
+.extensive{color: rgb(255, 0, 0);border-color: rgb(255, 0, 0);}
+
+
+.green_color{color:$green_color ; border-color:$green_color ;}
+.yellow_color{color: $yellow-color; border-color: $yellow-color;}
+.red_color{color:$red-color ; border-color:$red-color ;}
+
+.body-background {background-color: $background-color;}
+.bg-color-primary,.fix-button .apply-button,div#slider-range .ui-slider-range  {background-color: $primary-color;}
+.font-color-primary,.button .font-color-primary,.tracking-product .products-content  .product-title {color: $primary-color !important;}
+.border-color-primary,.ui-slider-track .ui-btn.ui-slider-handle {border-color: $primary-color;}
+.category-slider .item.active .cat-img {border-color: $primary-color;}
+/*.plus-text {background-color: #ebf7ed;color: $primary-color;}*/
+.menu-box-big .menu-icons {box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.16); background-color:$primary-color}
+.button {box-shadow: 0 0 9px rgba(190, 214, 195, 0.4);}
+.button2{box-shadow: 0 0 9px rgba(190, 214, 195, 0.4);border: 1px solid $border-color2;}
+.products-list .right .button {border-color:$primary-color;}
+.products-list .right .button2,.wishlist-button {border-color: #ddf2e2;}
+.button-bg {box-shadow: 0 0 9px rgba(190, 214, 195, 0.4);background-color: #ebf7ed;}
+.owl-dots .owl-dot.active {background-color: $primary-color !important;}
+.tab-bar ul li.active a,.tab-bar ul li:hover a {color: $primary-color !important;}
+.tab-bar ul li a:after {border-color: $primary-color !important;}
+.sort-box a.active {background-color: $primary-color;border-color: $primary-color;color: #fff !important;}
+.ui-slider-track .ui-slider-bg {background: $primary-color;}
+
+.midnight-green-color {background-color: #4e5850;}
+.red-color {background-color: $red-color;}
+.space-blue-color {background-color: #083459;}
+.white-color {background-color: #ebebe3;}
+
+.heavily-products {border-left: 4px solid $red-color;}
+.lightly-products {border-left: 4px solid $yellow-color;}
+.excellent-products {border-left: 4px solid $primary-color;}
+.heavily-products  .plus-text b {color: $red-color;}
+.excellent-products .plus-text b {color: $primary-color;}
+.lightly-products .plus-text b {color: $yellow-color;}
+
+.heavily-products .button2 {box-shadow: 0 0 9px #ffe8e5;border: 1px solid #ffe2de;}
+.heavily-products .button2 * {color: $red-color !important;}
+.lightly-products .button2 {box-shadow: 0 0 9px rgba(255, 145, 0, 0.16);border: 1px solid #ffeacf;}
+.lightly-products .button2 * {color: $yellow-color !important;}
+.excellent-products .button2 {box-shadow: 0 0 9px #d7f3fe;border: 1px solid $border-color2;background-color: #dbf5ff;}
+.excellent-products .button2 * {color: $primary-color !important;}
+.bought {border: 1px solid $primary-color;color: $primary-color;}
+.sell {border: 1px solid $red-color;color: $red-color;}
+.nav-fixe ul li.active h4 {color: $primary-color !important;}
+.processing-list li.complete:before {border-color: $primary-color;background-color: $primary-color;}
+.processing-list li.complete:after {border-color: $primary-color;}
+
+div#slider-range .ui-slider-handle{border-color: $primary-color !important;}
+.products-slider .owl-dots .owl-dot.active{background-color: var(--primary-color) !important;}

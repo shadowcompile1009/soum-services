@@ -1,0 +1,77 @@
+<div class="content">
+  <app-header [pageTitle]="pageTitle" (goBack)="navigateTo('/products', '')" class="sticky_top"></app-header>
+
+  <div class="div-card">
+    <div class="div_title">
+      <span>{{ bannerData.header }}</span>
+    </div>
+
+    <div class="div_sub_title">
+      <span>{{ bannerData.sub_header }}</span>
+    </div>
+  </div>
+
+  <div class="products-filter filter-padding">
+    <div class="container">
+      <div class="left">
+        <!-- <a
+          class="filter-btn"
+          [ngClass]="{ 's-btn': filterApplied }"
+          (click)="navigateToFilter()"
+        >
+          <span class="icon-btn">
+            <span class="soum-icon"></span>
+            <img
+              [src]="'filter-v.png' | imagePath: 'icons'"
+              alt="Filter"
+              class="filter_img"
+              loading="lazy"
+            /> </span
+          >{{ 'dashboard.filter' | translate }}
+        </a> -->
+      </div>
+      <div class="right">
+        <a
+          class="filter-btn"
+          [ngClass]="{ 's-btn': sortingApplied }"
+          (click)="navigateTo('/sort-by', '')"
+        >
+          <span class="icon-btn">
+            <span class="soum-icon"></span>
+            <img
+              [src]="'filter-v.png' | imagePath: 'icons'"
+              alt="Sort"
+              class="sort_img"
+              loading="lazy"
+            /> </span
+          >{{ 'dashboard.sort' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="products products-list list-title-hide"
+    infinite-scroll
+    (scrolled)="onScrollDown($event)"
+  >
+    <app-product-model
+      *ngFor="let product of productList"
+      [product]="product"
+      [userDetail]="userDetail"
+      [userMobileNumber]="userMobileNumber"
+      (getProductsByModel)="getProductsByModel($event)"
+    >
+    </app-product-model>
+
+    <div class="products-row" *ngIf="apiHit && !productList?.length">
+      <p>{{ 'labels.no_products_found' | translate }}</p>
+    </div>
+
+    <div class="api-inline-loader" *ngIf="!apiHit">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>

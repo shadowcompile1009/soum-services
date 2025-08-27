@@ -1,0 +1,209 @@
+<div class="content" [class.custom_en]="translate?.getDefaultLang() == 'en'">
+    <app-header [pageTitle]="'orderDetails.title' | translate" (goBack)="goBack()"></app-header>
+
+
+    <div class="section-order-details successfully_order">
+        <div class="container">
+            <div class="smile_container">
+                <img alt="" class="smile-icon" [src]="'smile.png' | imagePath: 'icons'">
+                <p class="successfully_message thanksOrderDetails">{{(orderSoldState ? 'orderDetails.thanksSold' : 'orderDetails.thanks') | translate}}</p>
+            </div>
+            <p class="points"><span>{{(orderSoldState ? 'orderDetails.point1Sold' : 'orderDetails.point1') | translate}}</span></p>
+            <p class="points"><span>{{(orderSoldState ? 'orderDetails.point2Sold' : 'orderDetails.point2') | translate}}</span></p>
+            <p class="points"><span>{{(orderSoldState ? 'orderDetails.point3Sold' : 'orderDetails.point3') | translate}}</span></p>
+        </div>
+    </div>
+    <div class="section-order-details">
+        <div class="container orderDetails_container shadow">
+            <div class="files_container">
+                <img alt="" class="files-icon" [src]="'files.png' | imagePath: 'icons'">
+                <h3 class="section_title">{{'orderDetails.title' | translate}}</h3>
+            </div>
+            <div class="order-details">
+                <table aria-describedby="Order details table">
+                    <tbody>
+                        <tr style="display: none;">
+                            <th id="Ordersdetails">Order details table</th>
+                        </tr>
+                        <tr>
+                            <td class="order-id">{{'orderDetails.orderDate' | translate}}</td>
+                            <td class="order_date">{{orderCreatedDate | date: 'dd MMM, yyyy'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="order-total">{{'orderDetails.orderID' | translate}}</td>
+                            <td>{{orderDetails?.order_number}}</td>
+                        </tr>
+                        <tr>
+                            <td class="order-total">&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td class="price">{{'orderDetails.price' | translate}}</td>
+                            <td class="styleTR">
+                                {{orderDetailsPrice?.sell_price}} {{'labels.sar' | translate}}
+                                <span class="discount" *ngIf="orderDetailsPrice?.sell_discount>0">
+                                    <img alt="" class="img_discount" [src]="'discount.svg' | imagePath: 'icons'" />
+                                    {{convertStringToNumber(orderDetailsPrice?.sell_discount)}} {{'labels.sar' | translate}}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="packaging">{{'orderDetails.shippingCharges' | translate}}</td>
+                            <td class="styleTR">{{convertStringToNumber(orderDetailsPrice?.shipping_charge)}} {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tax">{{'orderDetails.commission' | translate}}</td>
+                            <td class="styleTR">
+                                {{convertStringToNumber(orderDetailsPrice?.commission)}} {{'labels.sar' | translate}}
+                                <span class="discount" *ngIf="orderDetailsPrice?.commission_discount>0">
+                                    <img alt="" class="img_discount" [src]="'discount.svg' | imagePath: 'icons'" />
+                                    {{convertStringToNumber(orderDetailsPrice?.commission_discount)}} {{'labels.sar' | translate}}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tax">{{'orderDetails.vat' | translate}}</td>
+                            <td class="styleTR" style="margin-bottom: 0;">{{convertStringToNumber(orderDetailsPrice?.vat)}} {{'labels.sar' | translate}}</td>
+                        </tr>
+
+                        <tr style="border-top: 1px dotted #ECF0F1;margin-bottom: 0;">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="grand-total">{{(orderSoldState ? 'orderDetails.grandSoldTotal' : 'orderDetails.grandTotal') | translate}}</td>
+                            <td class="f-price" dir="ltr">{{ orderDetailsPrice?.grand_total }}  {{'labels.sar' | translate}}</td>
+                        </tr>
+                        <tr *ngIf="orderDetailsPrice?.promo_code">
+                            <td class="tax">{{orderSoldState? ('orderDetails.seller_promo' | translate) : ('orderDetails.buyer_promo' | translate)}}</td>
+                            <td>{{orderDetailsPrice?.promo_code}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr style="border-top: 1px dotted #ECF0F1;">
+                            <td class="invoice-download font-color-primary" (click)="downloadPDF()">
+                            {{'orderDetails.downloadInvoice' | translate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-details section-details-q" *ngIf="!orderSoldState" style="margin-bottom: 0;">
+        <div class="container orderDetails_container shadow">
+            <div class="dispute_container">
+                <p class="title">
+                    {{'trackOrder.24Hoour' | translate}}</p>
+                <p class="discription">{{'trackOrder.disputeInfo' | translate}}</p>
+                <div class="dispute-button">
+               
+                    <a class="clear-button dispute-raised" [routerLink]="['/cancel-return', orderId]">{{'trackOrder.disputeLabel' |
+                        translate}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="products-slider" *ngIf="orderDetails?.product?.product_images?.length != 0" style="border: none; margin-bottom: 0;">
+        <div class="container orderDetails_container shadow">
+            <div class="files_container">
+                <img alt="" class="camera-icon" [src]="'camera.png' | imagePath: 'icons'">
+                <h3 class="camera_section_title">{{'orderDetails.productPhotos' | translate}}</h3>
+            </div>
+    
+            <owl-carousel [options]="customOptions" class="image-slider">
+                <div class="item" *ngFor="let image of orderDetails?.product?.product_images">
+                    <span class="photo-slider-img"
+                        [ngStyle]="{'background-image':'url(' + (image | image) + ')'}"></span>
+                </div>
+            </owl-carousel>
+        </div>
+    </div><!-- Products Slider -->
+
+    <div class="products-slider" *ngIf="orderDetails?.product?.defected_images?.length != 0" style="border: none; margin-bottom: 0;">
+        <div class="container orderDetails_container shadow">
+            <div class="files_container">
+                <img alt="camera" class="camera-icon" [src]="'camera.png' | imagePath: 'icons'">
+                <h3 class="camera_section_title">{{'orderDetails.productDefects' | translate}}</h3>
+            </div>
+          
+            <owl-carousel [options]="customOptions" class="image-slider">
+                <div class="item" *ngFor="let image of orderDetails?.product?.defected_images">
+                    <span class="photo-slider-img"
+                        [ngStyle]="{'background-image':'url(' + (image | image) + ')'}"></span>
+                </div>
+            </owl-carousel>
+        </div>
+    </div><!-- Products Slider -->
+    <div class="section-details section-details-q">
+        <div class="container orderDetails_container shadow">
+            <div class="files_container">
+                <img alt="" class="product-icon" [src]="'files.png' | imagePath: 'icons'">
+                <h2 class="section_title">{{'orderDetails.details' | translate}}</h2>
+            </div>
+            <div class="order-details">
+                <table aria-describedby="table for order details">
+                    <tbody>
+                        <tr style="display: none;">
+                            <th id="Orders">Order details table</th>
+                        </tr>
+                        <tr *ngIf="orderDetails?.product?.model_id?.model_name">
+                            <td class="order-total">{{'orderDetails.model' | translate}}</td>
+                            <td>{{orderDetails?.product?.model_id?.model_name}}</td>
+                        </tr>
+                        <tr *ngIf="orderDetails?.product?.varient">
+                            <td class="price">{{'orderDetails.capacity' | translate}}</td>
+                            <td>{{orderDetails?.product?.varient}}</td>
+                        </tr>
+                        <tr *ngIf="orderDetails?.product?.description">
+                            <td class="packaging">{{'orderDetails.additionalInfo' | translate}}</td>
+                            <td class="overflow_ellipses">{{orderDetails?.product?.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          
+        </div>
+    </div>
+
+    <div class="section-details section-details-q" *ngIf="orderDetails?.product?.answer_to_questions_migration?.length">
+
+        <div class="container orderDetails_container shadow">
+            <ul *ngIf="translate?.getDefaultLang() == 'ar'" class="list_wrapper">
+                <li *ngFor="let question_answer of questionsAR; let i= index">
+                    <div class="question_wrapper">
+                        <div [class]="'question_icon'+(i+1)"></div>
+                        <strong> {{question_answer?.question}} </strong>
+                    </div>
+                    <span class="d-answer">{{question_answer?.answer}}</span>
+                </li>
+            </ul>
+            <ul *ngIf="translate?.getDefaultLang() == 'en'" class="list_wrapper">
+                <li *ngFor="let question_answer of questionsEN; let i= index">
+                    <div class="question_wrapper">
+                        <div [class]="'question_icon'+(i+1)"></div>
+                        <strong> {{question_answer?.question}} </strong>
+                    </div>
+                    <span class="d-answer">{{question_answer?.answer}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="contact">
+            <a  target="_blank"href="https://api.whatsapp.com/send?phone=966920035039"
+                class="clear-button">{{ "trackOrder.contact_us" | translate}}</a>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- English Mode Invoice -->
+<app-invoice-en [orderDetails]="orderDetails"></app-invoice-en>
+
+<!-- Arabic Mode Invoice -->
+<app-invoice-ar [orderDetails]="orderDetails"></app-invoice-ar>

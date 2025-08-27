@@ -1,0 +1,55 @@
+// set custom width for desktop view
+:host-context(.sticky_top) {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  max-width: 375px;
+}
+
+.container {
+  position: relative;
+
+  .headerAction {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  .back-btn-header {
+    z-index: 9999999;
+  }
+
+  .notificationNotReaded {
+    font-size: 12px;
+    color: #177ae2;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .notificationReaded {
+    font-size: 12px;
+    color: rgb(193, 193, 193);
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .product-title{
+    width:  88%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    margin: 0px 30px 0px 30px;
+    font-size:16px !important;
+  }
+ .product-title1 {
+  color: #000000;
+ } 
+}
+
+@media only screen and (max-width: 768px) {
+  :host-context(.sticky_top) {
+    width: 100%;
+    max-width: unset;
+  }
+}

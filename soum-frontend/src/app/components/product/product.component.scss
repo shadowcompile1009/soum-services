@@ -1,0 +1,139 @@
+@import "../../../assets/css/color.scss";
+@mixin btn_style($color,$bgcolor) {
+    color: $color;
+    background-color: $bgcolor;
+    border-color: $bgcolor;
+    border-radius: 10px;
+    font-size: 10px;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+}
+.plus-text{
+    span{
+        width:80px;
+        &.extensive{
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+        &.usable{
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+        &.excellent{
+            @include btn_style(#24C081, #C9E1D7);
+        }
+        &.good{
+            @include btn_style(#F79E1B, #E9D9C2);
+        }
+        &.great{
+            @include btn_style(#31CDCD, #C6E2E2);
+        }
+    }
+}
+.text-align-center {
+  text-align: center !important;
+  width: 100%;
+}
+
+.custom-switch label {
+  color: #fff !important;
+}
+.custom-switch {
+  padding-right: 2.25rem;
+  padding-left: 0;
+}
+
+.custom-switch .custom-control-label::before {
+  right: -2.25rem;
+  left: auto;
+}
+.custom-switch .custom-control-label::after {
+  left: calc(2.5rem + 2px);
+}
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  transform: translateX(0.6rem);
+}
+.custom-control-label {
+  cursor: pointer;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: $primary-color !important;
+  background-color: $primary-color !important;
+}
+
+.en-mode-switch {
+  display: none;
+}
+.product-thumbnail .product-title {
+  font-family: "DIN Next LT Arabic Bold", sans-serif;
+  min-height: 30px;
+  color: #434343;
+  font-size: 18px;
+}
+
+.product-thumbnail .product-available {
+  color: #5a5555;
+  font-size: 14px;
+  font-family: "DIN Next LT Arabic Regular", sans-serif;
+}
+
+.container {
+  .title {
+    color: #434343 !important;
+    font-size: 18px;
+    font-family: "DIN Next LT Arabic bold", sans-serif;
+  }
+}
+
+.left {
+  .filter-btn {
+    color: #177ae2 !important;
+    font-size: 14px;
+    font-family: "DIN Next LT Arabic Regular", sans-serif;
+  }
+}
+
+.banner {
+  position: relative;
+}
+
+.socialMedia {
+  position: absolute;
+  bottom: 2px;
+  left: 10px;
+}
+
+.socialMedia .instagram,
+.socialMedia .twitter {
+  width: 20px;
+  height: 20px;
+  display: inline;
+  margin: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.button {
+  background-color: #177ae2 !important;
+  cursor: default !important;
+  width: 80px;
+}
+.wishlist-add {
+  border-radius: 50%;
+  background-color: #ecfafa;
+}
+.wishlist-button {
+  box-shadow: 0 0 9px rgb(190 214 195 / 40%);
+  border: 1px solid transparent;
+}
+.products-bottom {
+  .right {
+    width: 130px;
+    .button {
+      width: 80px;
+    }
+  }
+}
+.product-info .left{
+    width: 120px;
+}
+ .button .now-text{
+    font-size:12px;
+}

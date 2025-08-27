@@ -1,0 +1,124 @@
+.input-bar-box .input-text-bar {
+  color: #5A5555;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.login-bar .logos .color-logo {
+  height: 40px !important;
+  margin-top: 20px;
+}
+.button-sign-up {
+  font-size: 22px;
+  width: calc(100% - 0px) !important;
+  border-radius: 30px;
+  background: #177ae2 !important;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+.content {
+  height: 100%;
+  min-height: 100vh;
+  background: #fff;
+  display: block;
+  border-radius: 15px;
+  bottom: 15px;
+  padding-top: 0px !important;
+  div.otp-input {
+    margin-top: 20px;
+    position: relative;
+    span {
+      position: absolute;
+      border-radius: 4px;
+      border: 1px solid #c5c5c5;
+      height: 45px;
+      left: 0px;
+      width: 45px;
+      top: 0px;
+    }
+    .mobile-num {
+      text-align: center !important;
+    }
+  }
+}
+
+.first-bar {
+  padding: 20px;
+  background-color: #177ae2;
+  padding-top: 100px;
+  color: #ffffff;
+  .arrow_container {
+    display: flex;
+    display: -ms-flexbox;
+    justify-content: space-between;
+    align-items: center;
+    .back-button {
+      width: 15px;
+    }
+  }
+  .arrow_ar {
+    flex-direction: row-reverse;
+  }
+  .arrow_en {
+    flex-direction: row;
+  }
+  .step1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .onetime {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 2px;
+  }
+  .mobileCode {
+    padding: 10px 0px 10px 0px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 35px;
+  }
+}
+div.otp-input .otp_input::placeholder {
+  letter-spacing: 30px;
+  text-align: center;
+}
+
+::ng-deep {
+  .activeOtp {
+    .mat-form-field-flex {
+      border-bottom: 2px solid #177ae2 !important;
+    }
+    .mobile-num {
+      text-align: center !important;
+      &:valid {
+        color: #177ae2;
+      }
+    }
+  }
+}
+
+.font-color-primary {
+  color: #177AE2 !important;
+  position: fixed;
+  left: 47%;
+ // top: 55%;
+  text-decoration: underline !important;
+}
+
+.disable_link{
+  color: #a6aeaf !important;
+  cursor: default !important;
+}
+
+.countDown {
+  font-weight: 600;
+  .countDown_timer {
+    color: #177AE2;
+  }
+}

@@ -1,0 +1,281 @@
+<div
+  class="popup payment-section"
+  [style.display]="showModal ? 'block' : 'none'"
+>
+  <div class="popup-inner">
+    <a class="popup-close" (click)="hideBuyModal()"
+      ><img class="icon-close" [src]="'Union-icon.svg' | imagePath: 'icons'" alt=""
+    /></a>
+    <div class="payment-box">
+      <div class="container">
+        <span class="select-address"
+          ><img
+          alt=""
+            class="location-icon"
+            [src]="'location-icon.svg' | imagePath: 'icons'"
+          />
+   
+          <p *ngIf="!address" (click)="onAddressChange('add')">
+            {{ "profile.add_new_address" | translate }}
+          </p>
+          <p *ngIf="address" class="addDetaills">
+            {{ address?.address + "-" + address?.postal_code }}
+          </p>
+         
+        </span>
+        <div class="products-row">
+          <div class="products-thumbnail">
+            <a>
+              <img
+                class="thumbnail"
+                [src]="
+                  product?.product_images
+                    ? product?.product_images[0]
+                    : product?.model_icon
+                "
+                alt=""
+              />
+            </a>
+          </div>
+
+          <div class="products-content">
+            <div class="product-info">
+              <div class="left">
+                <a>
+                  <h4 class="product-title">
+                    {{
+                      product?.models?.model_name ||
+                        product?.model_name ||
+                        product?.model_id?.model_name
+                    }}
+                  </h4>
+                  <span class="product-available">{{ product?.varient }}</span>
+                </a>
+              </div>
+              <div class="right">
+                <div class="price">
+                  <span
+                    *ngIf="!productDetailsInfo"
+                    class="f-price font-color-primary">
+                    <!-- {{ amountConfigForBuy?.totalAmount }} -->
+                    {{ convertStringToNumber(calculationProduct?.grandTotal) }}
+                    </span
+                  >
+                  <span
+                    *ngIf="productDetailsInfo"
+                    class="f-price font-color-primary">
+                    <!-- {{ productDetailsInfo?.grand_total }} -->
+                    {{ convertStringToNumber(calculationProduct?.grandTotal) }}
+                    </span
+                  >
+
+                  <span class="o-price font-color-primary">{{
+                    "labels.sar" | translate
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h5 class="addCode">{{ "sellFlow.add_your_coupon" | translate }}</h5>
+      <div class="input-field coupon-input">
+        <input
+          type="text"
+          name="coupon"
+          [(ngModel)]="promoCode"
+          placeholder="{{ 'sellFlow.add_new_coupon' | translate }}"
+        />
+        <button
+          class="btn btn-primary"
+          (click)="verifyCoupon()"
+          [disabled]="!promoCode"
+        >
+          {{ "sellFlow.verify" | translate }}
+        </button>
+      </div>
+      <span class="validPromo" *ngIf="promoCodeValid !== null && promoCodeValid"
+        >{{ "sellFlow.valid_promo_ode" | translate }}
+      </span>
+      <span
+        class="inValidPromo"
+        *ngIf="promoCodeValid !== null && !promoCodeValid"
+        >{{ "sellFlow.invalid_promo_code" | translate }}</span
+      >
+      <span class="waitingVerify" *ngIf="waitingVerify">{{
+        "sellFlow.verifiying_code" | translate
+      }}</span>
+    </div>
+
+    <div class="cart-totals" *ngIf="productDetailsInfo">
+      <table aria-describedby="product details with/ without promo">
+        <tbody>
+          <tr style="display: none;">
+            <th id="pdetails">product details with/ without promo</th>
+        </tr>
+          <tr>
+            <td class="shipping-charges">
+              {{ "sellFlow.shippingCharges" | translate }}
+            </td>
+            <td *ngIf="calculationProduct?.shipping != 0">
+              <!-- {{ productDetailsInfo?.shipping_charge }} -->
+              {{ convertStringToNumber(calculationProduct?.shipping) }}
+              {{ "labels.sar" | translate }}
+            </td>
+
+            <td *ngIf="calculationProduct?.shipping==0" class="freeCharge">
+              {{ "sellFlow.free" | translate}}
+            </td>
+
+          </tr>
+          <tr>
+            <td class="commission">{{ "sellFlow.commission" | translate }}</td>
+            <td>
+              <span class="discount" *ngIf="commissionDiscount">
+                <img alt="discount" class="img_discount" [src]="'discount.svg' | imagePath: 'icons'" /> 
+                {{convertStringToNumber(commissionDiscount)}} 
+                {{'labels.sar' | translate}}
+            </span>
+
+              <!-- {{productDetailsInfo?.commission}} -->
+              {{ convertStringToNumber(calculationProduct?.commission) }}
+              {{ "labels.sar" | translate }}
+            </td>
+          </tr>
+          <tr>
+            <td class="vat">{{ "sellFlow.vat" | translate }}</td>
+            <td>
+            
+              {{ convertStringToNumber(calculationProduct?.vat) }}
+              {{ "labels.sar" | translate }}
+            </td>
+          </tr>
+
+
+          <tr class="grand-total-bordered">
+            <td class="grand-total">{{ "sellFlow.grandTotal" | translate }}</td>
+            <td class="f-price font-color-primary">
+            
+              <span class="discount" *ngIf="devicePriceDiscount">
+                <img alt="discount" class="img_discount" [src]="'discount.svg' | imagePath: 'icons'" /> 
+                {{convertStringToNumber(devicePriceDiscount)}} 
+                {{'labels.sar' | translate}}
+            </span>
+
+              {{ convertStringToNumber(calculationProduct?.grandTotal) }}
+              <sub>{{ "labels.sar" | translate }}</sub>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="grand-total">
+              {{ "labels.Prepaid_amount" | translate }}
+            </td>
+            <td class="f-price font-color-primary">
+              {{ convertStringToNumber(productDetailsInfo?.pay_bid_amount)
+              }}<sub>{{ "labels.sar" | translate }}</sub>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="grand-total">
+              {{ "labels.Remaining_amount" | translate }}
+            </td>
+            <td class="f-price font-color-primary">
+           
+              {{ convertStringToNumber(calculationProduct?.grandTotal) }}
+              <sub>{{ "labels.sar" | translate }}</sub>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- this handled in page order now -->
+    <div class="cart-totals" *ngIf="!productDetailsInfo">
+      <table aria-describedby="product details">
+        <tbody>
+          <tr style="display: none;">
+            <th id="pdetail">product details</th>
+        </tr>
+          <tr>
+            <td class="shipping-charges">
+              {{ "sellFlow.shippingCharges" | translate }}
+            </td>
+            <td>
+              {{ amountConfigForBuy?.shippingCharges }}
+              {{ "labels.sar" | translate }}
+            </td>
+          </tr>
+          <tr>
+            <td class="commission">{{ "sellFlow.commission" | translate }}</td>
+            <td>
+              {{ amountConfigForBuy?.commission }}
+              {{ "labels.sar" | translate }}
+            </td>
+          </tr>
+          <tr>
+            <td class="vat">{{ "sellFlow.vat" | translate }}</td>
+            <td>
+              {{ amountConfigForBuy?.VAT }} {{ "labels.sar" | translate }}
+            </td>
+          </tr>
+          <tr class="grand-total-bordered">
+            <td class="grand-total">{{ "sellFlow.grandTotal" | translate }}</td>
+            <td class="f-price font-color-primary">
+              {{ amountConfigForBuy?.totalAmount
+              }}<sub>{{ "labels.sar" | translate }}</sub>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!--Section Details--->
+    <div class="section-details">
+      <div class="container">
+        <h2 class="section_title">{{ "sellFlow.sellerDetail" | translate }}</h2>
+        <p>{{ product?.seller_name }}</p>
+      </div>
+    </div>
+    <!--Section Details--->
+    <div class="place-order" *ngIf="!bidAccepted">
+      <div class="order-button bg-color-primary">
+        <span class="f-price"
+          >{{ amountConfigForBuy?.totalAmount }}
+          <sub>{{ "labels.sar" | translate }}</sub></span
+        >
+        <button type="button" class="place_order" (click)="buyProduct()">
+          {{ "sellFlow.placeOrder" | translate
+          }}<img alt="back" [src]="'arrow-send.svg' | imagePath: 'icons'" />
+        </button>
+      </div>
+    </div>
+
+    <div class="place-order" *ngIf="bidAccepted">
+      <div class="order-button bg-color-primary">
+        <span class="f-price"
+          >
+          <!-- {{
+            productDetailsInfo?.coupon
+              ? calculateRemainingAmount()
+              : convertStringToNumber(amountConfigForBuy?.totalAmount)
+          }} -->
+          {{convertStringToNumber(calculationProduct?.grandTotal)}}
+          <sub>{{ "labels.sar" | translate }}</sub></span
+        >
+        <button
+          type="button"
+          class="place_order"
+          (click)="buyProductWhenBidAccepted()"
+        >
+          {{ "sellFlow.placeOrder" | translate
+          }}<img alt="send" [src]="'arrow-send.svg' | imagePath: 'icons'" />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

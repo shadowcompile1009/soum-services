@@ -1,0 +1,46 @@
+<div class="about-soum-container content">
+    <app-header [pageTitle]="'profile.how_soum_work' | translate" (goBack)="goBack('/profile')"></app-header>
+
+    <div class="container-info">
+        <div class="step1">
+            <div class="titleStep">
+               <h3> <strong>{{'profile.buyer' | translate}}</strong> {{'profile.chooseListDevice' | translate}}</h3>
+            </div>
+            <img alt="" class="imgStep1" [src]="'step1.png' | imagePath: 'icons'" />
+            <div class="stepNo1">{{'profile.one' | translate}}</div>
+        </div>
+
+        <div class="step1 step2">
+            <img alt="" class="imgStep2" [src]="'step2.png' | imagePath: 'icons'" />
+            <div class="titleStep">
+               <h3> <strong>{{'profile.soum' | translate}}</strong> {{'profile.holdDevice' | translate}}</h3>
+            </div>
+            <div class="stepNo1">{{'profile.two' | translate}}</div>
+        </div>
+
+        <div class="step1">
+            <div class="titleStep">
+               <h3> <strong>{{'profile.soum' | translate}}</strong> {{'profile.freeShip' | translate}}</h3>
+            </div>
+            <img alt="" class="imgStep3" [src]="'step3.png' | imagePath: 'icons'" />
+            <div class="stepNo1">{{'profile.three' | translate}}</div>
+        </div>
+
+        <div class="step1 step2">
+            <img alt="" class="imgStep4" [src]="'step4.png' | imagePath: 'icons'" />
+            <div class="titleStep">
+               <h3> <strong>{{'profile.buyer' | translate}}</strong> {{'profile.triesProduct' | translate}}</h3>
+            </div>
+            <div class="stepNo1">{{'profile.four' | translate}}</div>
+        </div>
+
+        <div class="step1">
+            <div class="titleStep">
+               <h3> <strong>{{'profile.soum' | translate}}</strong> {{'profile.transferAmount' | translate}}</h3>
+            </div>
+            <img alt="" class="imgStep5" [src]="'step5.png' | imagePath: 'icons'" />
+            <div class="stepNo1">{{'profile.five' | translate}}</div>
+        </div>
+
+    </div>
+</div>

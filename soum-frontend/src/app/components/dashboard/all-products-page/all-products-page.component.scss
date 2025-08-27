@@ -1,0 +1,88 @@
+@import "../../../../assets/css/color.scss";
+@mixin btn_style($color, $bgcolor) {
+    color: $color;
+    background-color: $bgcolor;
+    border-color: $bgcolor;
+    border-radius: 10px;
+    font-size: 10px;
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+}
+.favouriteBTN{
+    width: 170px !important;
+}
+.d-text{
+    font-size: 12px !important;
+}
+
+.d-text{
+    font-size: 12px !important;
+}
+.plus-text {
+    span {
+        width: 80px;
+        &.extensive {
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+        &.usable {
+            @include btn_style(#F25C5C, #E8D3D3);
+        }
+        &.excellent {
+            @include btn_style(#24C081, #C9E1D7);
+        }
+        &.good {
+            @include btn_style(#F79E1B, #E9D9C2);
+        }
+        &.great {
+            @include btn_style(#31CDCD, #C6E2E2);
+        }
+    }
+}
+
+.tab-wish-list .container {
+    .product-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #434343;
+        font-size: 16px;
+        direction: ltr;
+    }
+    .product-available {
+        color: #5A5555;
+        font-size: 14px;
+    }
+    .f-price {
+        font-size: 16px;
+        font-family: 'DIN Next LT Arabic Medium', sans-serif;
+    }
+    .o-price {
+        font-family: 'DIN Next LT Arabic Medium', sans-serif;
+        color: #F35252;
+        font-size: 16px;
+    }
+    .d-text {
+        height: 20px;
+        width: 170px;
+        color: #5A5555;
+        font-size: 14px;
+        font-family: 'DIN Next LT Arabic Regular', sans-serif;
+    }
+}
+.wishlist-add {
+    border-radius: 50%;
+    margin-top: 10px;
+    background-color: #ecfafa;
+    .icon-no-add {
+        display: block !important;
+    }
+}
+
+.tab-wish-list .product-info .left {
+    width: calc(100% - 133px);
+}
+.grand-total,
+.cart-totals table td,
+.acceptRejectTitle.h2 {
+    font-family: 'DIN Next LT Arabic Regular', sans-serif;
+}
+

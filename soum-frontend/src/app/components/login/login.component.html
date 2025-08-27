@@ -1,0 +1,51 @@
+<div class="content">
+    <div class="back-bar margin-bottom">
+        <div class="container">
+          
+            <h3 class="product-title">{{'login.profile' | translate}}</h3>
+        </div>
+    </div>
+    <div class="section-tabs profile-login">
+        <div class="tabs">
+            <div class="tab-bar">
+                <ul id="tabs-nav">
+                    <li [ngClass]="{'active': currentTab == 'login'}">
+                        <a (click)="toggleSignupLogin('login')">{{'login.login' | translate}}</a>
+                    </li>
+                    <li [ngClass]="{'active': currentTab == 'signup'}">
+                        <a (click)="toggleSignupLogin('signup')">{{'login.signUp' | translate}}</a>
+                    </li>
+                </ul> <!-- END tabs-nav -->
+            </div>
+            <div id="tabs-content" [ngSwitch]="currentTab">
+                <div id="tab1" *ngSwitchCase="'login'" class="tab-content">
+                    <div class="section-details ">
+                        <div class="container container-padding">
+                            <a class="login-btn"
+                                [routerLink]="['/login/enter-mobile']">{{'login.login' | translate}}</a>
+                        </div>
+                    </div>
+                </div> <!-- END tab1-content -->
+                <div id="tab2" *ngSwitchCase="'signup'" class="tab-content">
+                    <div class="section-details ">
+                        <div class="container container-padding">
+                            <a class="login-btn"
+                                [routerLink]="['/signup/enter-mobile']">{{'login.signUp' | translate}}</a>
+                        </div>
+                    </div>
+                </div> <!-- END tab1-content -->
+            </div> <!-- END tabs-content -->
+        </div>
+    </div>
+    <div class="section-details more_information">
+        <div class="container container-padding">
+            <h2 class="section_title">{{'login.moreInformation' | translate}}</h2>
+            <ul>
+               
+                <li><a [routerLink]="['/privacy-policy']">{{'profile.privacy_policy' | translate}}</a></li>
+                <li><a href="tel:+966920035039" >{{'login.contactUs' | translate}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>

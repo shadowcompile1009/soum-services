@@ -1,0 +1,38 @@
+.privacy-policy {
+    height: 100%;
+    min-height: calc(100vh - 56px);
+    padding: 20px 15px 0 15px;
+    direction: rtl;
+    text-align: right;
+}
+
+.privacy-policy h3 {
+    color: #363636;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 26px;
+     font-family: "DIN Next LT Arabic", sans-serif !important;
+    margin-bottom: 10px;
+}
+
+.privacy-policy ul li {
+    list-style: disc !important;
+    color: #878787;
+        font-family: "DIN Next LT Arabic", sans-serif !important;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.privacy-policy ul {
+    margin-top: 0;
+    padding-inline-start: 20px;
+    margin-bottom: 10px;
+    list-style: disc !important;
+}
+
+.privacy-policy ul li:last-child {
+    margin-bottom: 80px !important;
+}

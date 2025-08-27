@@ -1,0 +1,304 @@
+@import "../../../assets/css/color.scss";
+
+.cart-totals,
+.cart-totals table {
+  width: 95%;
+}
+
+.cart-totals table tr td {
+  font-size: 14px;
+}
+
+.cart-totals table tr .grand-total {
+  color: #363636;
+      font-family: "DIN Next LT Arabic", sans-serif !important;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+.payment-section .popup-inner {
+  padding: 20px !important;
+}
+.cart-totals table tr {
+  border: none;
+}
+.small-text {
+  width: 352px;
+  height: 17px;
+  left: 24px;
+  top: 318px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #a8a8a8;
+}
+.product-text {
+  height: 24px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  color: #000000;
+}
+.cart-totals table tr.grand-total-bordered {
+  border-top: 1px solid #e5e5e5;
+}
+.fa-credit-card {
+  color: #177ae2;
+}
+.payment {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  color: #434343;
+  font-family: 'DIN Next LT Arabic Medium', sans-serif;
+}
+.titleCell {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px !important;
+  line-height: 21px;
+  color: #A6AEAF !important;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif !important;
+}
+
+.grand-total {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px !important;
+  line-height: 24px;
+
+  color: #1d252d !important;
+}
+.payment-card {
+  padding-top: 0px !important;
+  border: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  margin-bottom: 20px;
+}
+
+.payment-card .select-address {
+  padding: 10px 10px;
+  border: 1px solid #c2c2c2 !important;
+  margin-bottom: 0px;
+  border-radius: 4px;
+}
+.products-bottom .button {
+  width: calc(100% - 3px) !important;
+}
+
+.first-Div-Bid {
+  margin-top: 140px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 21px;
+  /* or 175% */
+
+  text-align: center;
+
+  /* Secondary/Onyx */
+
+  color: #1d252d;
+}
+.blocked_card {
+   font-family: "DIN Next LT Arabic", sans-serif !important;
+  color: #8d8d8d;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.col-bidPrice {
+margin-bottom: 0px  !important;
+}
+
+.products-bottom-bar .col-cvv {
+  width: 40%;
+  float: left;
+  margin-left: 5%;
+}
+
+.popup-inner .sar-input-field .sar-text {
+  font-size: 14px;
+  width: 45px;
+}
+
+.popup-inner .sar-input-field .number {
+  width: calc(100% - 45px);
+  padding: 0 10px;
+}
+
+.payment-card .select-address select {
+  width: calc(100% - 75px) !important;
+  margin-left: 10px;
+}
+
+.blocked_card img {
+  width: 12px;
+}
+
+.ion-overlay-wrapper {
+  border-radius: 13px;
+  overflow: hidden;
+  background: #f9f9f9;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 250px;
+  display: inline-block;
+  width: 250px;
+  font-family: Poppins, sans-serif;
+}
+
+.sc-ion-alert-ios-s {
+  height: 100%;
+  width: 100%;
+}
+
+.alert-head.sc-ion-alert-ios {
+  padding-top: 12px;
+  padding-bottom: 7px;
+  text-align: center;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
+}
+
+.alert-head.sc-ion-alert-ios h2 {
+  margin-top: 8px;
+  color: #000;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+.alert-message.sc-ion-alert-ios {
+  -webkit-padding-start: 16px;
+  padding-inline-start: 16px;
+  -webkit-padding-end: 16px;
+  padding-inline-end: 16px;
+  padding-top: 0;
+  padding-bottom: 21px;
+  color: #000;
+  font-size: 12px;
+  text-align: center;
+  font-family: Poppins, sans-serif;
+}
+
+button.alert-button {
+  outline: none;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  -ms-flex: 1 1 auto;
+  /* flex: 1 1 auto; */
+  min-width: 50%;
+  height: 44px;
+  border-top: 0.55px solid #0000003b;
+  border-right: 0.55px solid #0000003b;
+  background-color: transparent;
+  color: $primary-color;
+  font-size: 17px;
+  /* overflow: hidden; */
+  border-bottom: 0px !important;
+  border-left: 0;
+  font-weight: bold;
+}
+
+.alert-button-group.sc-ion-alert-ios {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  -webkit-margin-end: -0.55px;
+  margin-inline-end: -0.55px;
+  margin-right: -0.55px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+button.alert-button + button.alert-button {
+  border-right: 0px !important;
+  border-left: 0px !important;
+}
+
+.sc-ion-alert-ios-s .sc-ion-alert-ios-backdrop {
+  background: #00000054;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: block;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+}
+
+.full-button {
+  min-width: 100% !important;
+}
+
+.ion-overlay-wrapper,
+.sc-ion-alert-ios-s .sc-ion-alert-ios-backdrop {
+  position: fixed !important;
+}
+
+.checkValidityBid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkValidityBid p {
+  margin-bottom: 15px;
+  padding: 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+
+.cellValue{
+  color: #434343 !important;
+  font-size: 14px;
+  font-family: 'DIN Next LT Arabic Regular', sans-serif !important;
+}
+
+.grand-total,
+.f-price{
+  font-size: 16px !important;
+  color: #177ae2 !important;
+  font-family: 'DIN Next LT Arabic Medium', sans-serif !important;
+}
+
+
+.products-bottom{
+  margin-top: 10px;
+  .now-text{
+    background-color: #177ae2 !important;
+  }
+}
+
+*{
+  font-family: 'DIN Next LT Arabic', sans-serif;
+}

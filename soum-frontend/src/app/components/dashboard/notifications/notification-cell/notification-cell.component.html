@@ -1,0 +1,150 @@
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'BuyerBidAccepted'">
+  <div class="container container-padding" >
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="bid Accepted" [src]="'bidAccepted.png' | imagePath: 'icons'" class="img"/>
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="user-name">{{"notification.bid_accepted" | translate:notificationData}}</h3>
+        <h6 class="action">{{"notification.complete_payment" | translate}} <img alt="go" class="iconNotification" [src]="'go.png' | imagePath: 'icons'" /></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'Bidding' && !is_BiddingDisabled">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="bidsIcons"  [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.bidding" | translate:notificationData}}</h3>
+        <h6 class="action">{{"notification.acceptBid" | translate}} <img alt="go" class="iconNotification" [src]="'go.png' | imagePath: 'icons'" /></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'AnswerQuestion'">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="" [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.answerQuestion" | translate:notificationData}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'AskQuestion'">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt=""  [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.askQuestion" | translate:notificationData}}</h3>
+        <h6 class="action">{{"notification.pleaseanswer" | translate}} <img alt="" class="iconNotification" [src]="'go.png' | imagePath: 'icons'" /></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'BuyerPayment'">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="" [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.paymentCompleted" | translate:notificationData}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'ProductShipped'">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="" [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.productShipped" | translate:notificationData}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'ProductExpired'">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="" [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.ProductExpired" | translate:notificationData}}</h3>
+        <h6 class="action">{{"notification.editListing" | translate}} <img alt=""  class="iconNotification" [src]="'go.png' | imagePath: 'icons'" /></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'BuyerBidRejected' && !is_BiddingDisabled">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="" [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.rejectedBid" | translate:notificationData}}</h3>
+        <h6 class="action">{{"notification.rejectedBidAction" | translate}} <img alt="" class="iconNotification" [src]="'go.png' | imagePath: 'icons'" /></h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="section-details your-details" [ngClass]="{'activeNotification' : !notificationData?.isRead}" *ngIf="notificationData?.activityType === 'BuyerPaymentCompleted'">
+  <div class="container container-padding">
+    <div class="row container-notification" (click)="navigateTo(notificationData, notificationData?._id)">
+      <div class="col-3 avatar_body">
+        <div class="img-container">
+          <img alt="" [src]="'bidSAIDBIDGREY.png' | imagePath: 'icons'" class="img" />
+        </div>
+      </div>
+      <div class="col-9 desc-not">
+        <h3 class="userBidder">{{"notification.BuyerPaymentCompleted" | translate:notificationData}}</h3>
+      </div>
+    </div>
+  </div>
+</div>

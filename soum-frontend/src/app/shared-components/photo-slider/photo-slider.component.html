@@ -1,0 +1,30 @@
+<!-- carousel -->
+<img
+  alt="close"
+  class="close_icon"
+  [src]="'close_x.jpg' | imagePath: 'icons'"
+  width="20px"
+  (click)="closeDialog()"
+/>
+<div class="carousel">
+  <ng-container *ngFor="let slide of slides; let i = index">
+    <img
+      alt=""
+      *ngIf="i === currentSlide"
+      [src]="slide"
+      class="slide"
+      @carouselAnimation
+    />
+  </ng-container>
+
+  <button class="control prev" (click)="onPreviousClick()">
+    <div class="arrow_container">
+      <span class="arrow left"></span>
+    </div>
+  </button>
+  <button class="control next" (click)="onNextClick()">
+    <div class="arrow_container">
+      <span class="arrow right"></span>
+    </div>
+  </button>
+</div>

@@ -1,0 +1,41 @@
+<div class="content">
+  <app-header
+    [pageTitle]="'howItWorks.sellProd' | translate"
+    (goBack)="navigateTo('/products')"
+  ></app-header>
+
+  <div class="products-top-bar" style="float: left">
+    <div class="backgroundThird">
+      <img alt="sign" [src]="'3.png'|imagePath: 'newSign'" />
+
+      <div class="bold-font">{{ 'labels.sell-label' | translate }}</div>
+      <div class="normal-font">{{ 'labels.sell-desc' | translate }}</div>
+
+      <div class="products-bottom">
+        <a
+          class="button btn-full skip-button"
+          (click)="hideThird()"
+          style="
+            background-color: transparent;
+            width: calc(100% - 0px);
+            text-align: center;
+          "
+        >
+          <span class="now-text" style="color: #177ae2">
+            {{ 'labels.see-walkthrough' | translate }}
+          </span>
+        </a>
+        <a
+          class="button btn-full"
+          style="width: calc(100% - 0px)"
+          (click)="navigateTo('/select-devices')"
+        >
+          <span class="now-text">
+            {{ 'labels.sell-now' | translate }}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-sell-modal *ngIf="showModal"></app-sell-modal>
