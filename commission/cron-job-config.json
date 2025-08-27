@@ -1,0 +1,14 @@
+[
+  {
+    "name": "fix-old-commissions",
+    "schedule": "* * * * *",
+    "path": "product-commission/fix-list",
+    "method": "GET"
+  },
+  {
+    "name": "update-dynamic-commissions",
+    "schedule": "0 0 * * *",
+    "path": "dynamic-commission/update",
+    "method": "PUT"
+  }
+]

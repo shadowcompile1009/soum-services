@@ -1,0 +1,243 @@
+/* eslint-disable */
+import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { Observable } from "rxjs";
+
+export const protobufPackage = "payment";
+
+export enum PayoutStatus {
+  COMPLETED = 0,
+  PROCESSING = 1,
+  FAILED = 2,
+  ERROR = 3,
+  UNRECOGNIZED = -1,
+}
+
+export interface GetPaymentOptionsRequest {
+  moduleName: string;
+  isEnabled: boolean;
+}
+
+export interface GetPaymentOptionRequest {
+  id: string;
+}
+
+export interface GetPaymentOptionsResponse {
+  paymentOptions: PaymentOption[];
+}
+
+export interface PaymentOption {
+  id: string;
+  paymentProvider: string;
+  paymentCardType: string;
+  displayName: string;
+}
+
+export interface ReturnUrl {
+  url: string;
+  urlType: string;
+}
+
+export interface CreateTransactionRequest {
+  userId: string;
+  productId: string;
+  amount: number;
+  paymentOptionId: string;
+  soumTransactionNumber: string;
+  transactionType: string;
+  items: CreateTransactionRequest_TransactionItem[];
+  nationalId?: string | undefined;
+  orderId: string;
+  returnUrls: ReturnUrl[];
+  transactionActionType?: string | undefined;
+}
+
+export interface CreateTransactionRequest_TransactionItem {
+  title: string;
+  description: string;
+  unitPrice: string;
+  vatAmount: string;
+  quantity?: number | undefined;
+  category?: string | undefined;
+  productImage?: string | undefined;
+  productId?: string | undefined;
+}
+
+export interface CreateTransactionResponse {
+  transactionId: string;
+  checkoutId: string;
+  checkoutURL: string;
+  soumTransactionNumber: string;
+  transactionStatusId: string;
+  transactionType: string;
+}
+
+export interface GetTransactionRequest {
+  transactionId: string;
+}
+
+export interface TransactionResponse {
+  transactionId: string;
+  checkoutId: string;
+  checkoutURL: string;
+  soumTransactionNumber: string;
+  transactionStatusId: string;
+  transactionType: string;
+  paymentOptionId: string;
+  operationId?: string | undefined;
+  totalAmount: number;
+  paymentOption:
+    | PaymentOption
+    | undefined;
+  /** big number, will delete it soon */
+  providerResponse?: string | undefined;
+}
+
+export interface CaptureTransactionRequest {
+  transactionId: string;
+}
+
+export interface ReverseTransactionRequest {
+  transactionId: string;
+}
+
+export interface GetTransactionBySoumTransactionNumberRequest {
+  soumTransactionNumber: string;
+}
+
+export interface ValidateBNPLForUserRequest {
+  userId: string;
+  productId: string;
+  amount: number;
+  paymentOption: PaymentOption | undefined;
+  soumTransactionNumber: string;
+  transactionType: string;
+  items: ValidateBNPLForUserRequest_TransactionItem[];
+  nationalId?: string | undefined;
+}
+
+export interface ValidateBNPLForUserRequest_TransactionItem {
+  title: string;
+  description: string;
+  unitPrice: string;
+  vatAmount: string;
+}
+
+export interface ValidateBNPLForUserResponse {
+  isValid: boolean;
+  reason?: string | undefined;
+}
+
+export interface CreatePayoutRequest {
+  amount: number;
+  recipientId: string;
+  agentId: string;
+  orderId: string;
+}
+
+export interface CreatePayoutResponse {
+  status: PayoutStatus;
+}
+
+export interface CheckPayoutStatusRequest {
+  orderId: string;
+}
+
+export interface CheckPayoutStatusResponse {
+  status: PayoutStatus;
+}
+
+export const PAYMENT_PACKAGE_NAME = "payment";
+
+export interface PaymentServiceClient {
+  createTransaction(request: CreateTransactionRequest): Observable<CreateTransactionResponse>;
+
+  getTransactionById(request: GetTransactionRequest): Observable<TransactionResponse>;
+
+  captureTransaction(request: CaptureTransactionRequest): Observable<TransactionResponse>;
+
+  reverseTransaction(request: ReverseTransactionRequest): Observable<TransactionResponse>;
+
+  getPaymentOptions(request: GetPaymentOptionsRequest): Observable<GetPaymentOptionsResponse>;
+
+  getPaymentOption(request: GetPaymentOptionRequest): Observable<PaymentOption>;
+
+  getTransactionBySoumTransactionNumber(
+    request: GetTransactionBySoumTransactionNumberRequest,
+  ): Observable<TransactionResponse>;
+
+  validateBnplForUser(request: ValidateBNPLForUserRequest): Observable<ValidateBNPLForUserResponse>;
+
+  createPayout(request: CreatePayoutRequest): Observable<CreatePayoutResponse>;
+
+  checkPayoutStatus(request: CheckPayoutStatusRequest): Observable<CheckPayoutStatusResponse>;
+}
+
+export interface PaymentServiceController {
+  createTransaction(
+    request: CreateTransactionRequest,
+  ): Promise<CreateTransactionResponse> | Observable<CreateTransactionResponse> | CreateTransactionResponse;
+
+  getTransactionById(
+    request: GetTransactionRequest,
+  ): Promise<TransactionResponse> | Observable<TransactionResponse> | TransactionResponse;
+
+  captureTransaction(
+    request: CaptureTransactionRequest,
+  ): Promise<TransactionResponse> | Observable<TransactionResponse> | TransactionResponse;
+
+  reverseTransaction(
+    request: ReverseTransactionRequest,
+  ): Promise<TransactionResponse> | Observable<TransactionResponse> | TransactionResponse;
+
+  getPaymentOptions(
+    request: GetPaymentOptionsRequest,
+  ): Promise<GetPaymentOptionsResponse> | Observable<GetPaymentOptionsResponse> | GetPaymentOptionsResponse;
+
+  getPaymentOption(
+    request: GetPaymentOptionRequest,
+  ): Promise<PaymentOption> | Observable<PaymentOption> | PaymentOption;
+
+  getTransactionBySoumTransactionNumber(
+    request: GetTransactionBySoumTransactionNumberRequest,
+  ): Promise<TransactionResponse> | Observable<TransactionResponse> | TransactionResponse;
+
+  validateBnplForUser(
+    request: ValidateBNPLForUserRequest,
+  ): Promise<ValidateBNPLForUserResponse> | Observable<ValidateBNPLForUserResponse> | ValidateBNPLForUserResponse;
+
+  createPayout(
+    request: CreatePayoutRequest,
+  ): Promise<CreatePayoutResponse> | Observable<CreatePayoutResponse> | CreatePayoutResponse;
+
+  checkPayoutStatus(
+    request: CheckPayoutStatusRequest,
+  ): Promise<CheckPayoutStatusResponse> | Observable<CheckPayoutStatusResponse> | CheckPayoutStatusResponse;
+}
+
+export function PaymentServiceControllerMethods() {
+  return function (constructor: Function) {
+    const grpcMethods: string[] = [
+      "createTransaction",
+      "getTransactionById",
+      "captureTransaction",
+      "reverseTransaction",
+      "getPaymentOptions",
+      "getPaymentOption",
+      "getTransactionBySoumTransactionNumber",
+      "validateBnplForUser",
+      "createPayout",
+      "checkPayoutStatus",
+    ];
+    for (const method of grpcMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("PaymentService", method)(constructor.prototype[method], method, descriptor);
+    }
+    const grpcStreamMethods: string[] = [];
+    for (const method of grpcStreamMethods) {
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("PaymentService", method)(constructor.prototype[method], method, descriptor);
+    }
+  };
+}
+
+export const PAYMENT_SERVICE_NAME = "PaymentService";
