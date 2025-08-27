@@ -1,0 +1,8 @@
+[
+  {
+    "name": "test",
+    "schedule": "* * * * *",
+    "path": "/path-to-api",
+    "method": "GET"
+  }
+]
