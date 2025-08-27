@@ -1,0 +1,59 @@
+{
+  "hyperpay": {
+    "pay_url": "HYPER_PAY_URL",
+    "pay_auth_key": "HYPER_PAY_AUTH_KEY",
+    "pay_split_url": "HYPER_PAY_SPLIT_URL",
+    "pay_split_email": "HYPER_PAY_SPLIT_EMAIL",
+    "pay_split_pass": "HYPER_PAY_SPLIT_PASS",
+    "pay_split_config_id": "HYPER_PAY_SPLIT_CONFIG_ID",
+    "pay_notification_key": "HYPER_PAY_NOTIFICATION_KEY",
+    "stc_entity_id": "STC_ENTITY_ID",
+    "ur_pay_entity_id": "UR_PAY_ENTITY_ID",
+    "mada_entity_id": "MADA_ENTITY_ID",
+    "apple_entity_id": "APPLE_ENTITY_ID",
+    "visa_entity_id": "VISA_ENTITY_ID"
+  },
+  "freshchat": {
+    "api_uri": "FRESHCHAT_API_URI",
+    "token": "FRESHCHAT_API_TOKEN",
+    "sender": "FRESHCHAT_SENDER_PHONE_NUMBER",
+    "namespace": "FRESHCHAT_NAMESPACE",
+    "storage_type": "STORAGE_TYPE",
+    "lang_policy": "FRESHCHAT_LANG_POLICY",
+    "lang": "FRESHCHAT_LANG"
+  },
+  "activitylog": {
+    "api_url": "ACTIVITY_LOG_URL",
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX",
+    "kafka_topic": "KAFKA_TOPIC_CREATE_ACTIVITY_LOG"
+  },
+  "notification": {
+    "kafka_brokers": "NOTIFICATION_KAFKA_BROKERS",
+    "prefix": "NOTIFICATION_PREFIX",
+    "kafka_topic": "KAFKA_TOPIC_CREATE_NOTIFICATION_LOG"
+  },
+  "search": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX",
+    "kafka_topic": "KAFKA_TOPIC_SYNC_PRODUCTS"
+  },
+  "categoryKafka": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX"
+  },
+  "torodWebhookKafka": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX"
+  },
+  "product": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX",
+    "kafka_topic": "KAFKA_TOPIC_PRODUCT_VIEW"
+  },
+  "gtmEvent": {
+    "kafka_brokers": "KAFKA_BROKERS",
+    "prefix": "PREFIX",
+    "kafka_topic": "KAFKA_TOPIC_TO_CREATE_GOOGLE_GTM_EVENT"
+  }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "name": "update-model-job",
+    "schedule": "* * * * *",
+    "path": "rest/api/v1/model/summary",
+    "method": "PUT"
+  },
+  {
+    "name": "auto-approve-product",
+    "schedule": "* * * * *",
+    "path": "rest/api/v1/product/auto-approve",
+    "method": "GET"
+  },
+  {
+    "name": "generate-old-saved-invoices",
+    "schedule": "*/30 * * * *",
+    "path": "rest/api/v1/invoice/generate",
+    "method": "PUT"
+  },
+  {
+    "name": "sync-search-products",
+    "schedule": "* * * * *",
+    "path": "rest/api/v1/search/sync",
+    "method": "GET"
+  },
+  {
+    "name": "in-transit-orders-automation",
+    "schedule": "0 */4 * * *",
+    "path": "rest/api/v1/dm-orders/in-transit-orders/smsa/automation",
+    "method": "PUT"
+  },
+  {
+    "name": "awaiting-orders-automation",
+    "schedule": "0 */4 * * *",
+    "path": "rest/api/v1/dm-orders/awaiting-orders/smsa/automation",
+    "method": "PUT"
+  },
+  {
+    "name": "remove-expired-products",
+    "schedule": "* * * * *",
+    "path": "rest/api/v1/search/sync/cron/product",
+    "method": "DELETE"
+  },
+  {
+    "name": "calculate-user-rates",
+    "schedule": "*/5 * * * *",
+    "path": "rest/api/v1/user/rates",
+    "method": "GET"
+  },
+  {
+    "name": "whatsapp-automation-for-awaiting-seller-to-ship",
+    "schedule": "*/30 * * * *",
+    "path": "rest/api/v1/dm-orders/awaiting-seller-to-ship/automation",
+    "method": "POST"
+  },
+  {
+    "name": "migrate-product-commissions",
+    "schedule": "*/30 * * * *",
+    "path": "rest/api/v1/order/migrate-commission",
+    "method": "GET"
+  },
+  {
+    "name": "confirm-availability-automation",
+    "schedule": "* * * * *",
+    "path": "rest/api/v1/dm-orders/confirm-availability/automation",
+    "method": "POST"
+  },
+  {
+    "name": "send-daily-report-seller-response",
+    "schedule": "0 0 * * *",
+    "path": "rest/api/v1/dm-orders/daily-report-seller-response",
+    "method": "POST"
+  },
+  {
+    "name": "update-trending-tag",
+    "schedule": "0 0 * * *",
+    "path": "rest/api/v1/product/update-trending-key",
+    "method": "GET"
+  }
+]
