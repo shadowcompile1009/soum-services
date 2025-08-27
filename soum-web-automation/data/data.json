@@ -1,0 +1,68 @@
+{
+    "search":{
+    
+        "Item" : "IPhone",
+        "Laptops" : "Laptops",
+        "Invalid" : "asdf"
+    
+    },
+    
+    "allCategories":[
+        "Mobiles" ,
+        "Tablets", 
+        "Gaming",
+        "Laptops",
+        "Smartwatches", 
+        "Headphones", 
+        "Accessories",
+        "Home Appliances", 
+        "Routers", 
+        "PC Parts", 
+        "Desktops", 
+        "Cameras", 
+        "Monitors", 
+        "Speakers", 
+        "Printers & Scanners", 
+        "Car Plates", 
+        "Security & Dash Cameras", 
+        "Cars",
+        "Real Estate"
+    ],
+    
+    "productCondtionTagEnglish": ["Like New" , "Excellent", "Lightly Used", "Noticeably Used"],
+    
+    "productConditionTagArabic": ["أخو الجديد", "حالة ممتازة", "استخدام نظيف", "استخدام ملحوظ"],
+    
+    "allCategoryEnglish": "MobilesTabletsGamingLaptopsSmartwatchesDesktopsHeadphonesAccessoriesPC PartsCamerasMonitorsSpeakersRoutersPrinters & ScannersSecurity & Dash CamerasCar PlatesHome AppliancesCarsReal Estate",
+    
+    "allCategoryArabic" : "جوالاتأجهزة لوحيةساعات ذكيةلابتوباتألعاب فيديوكمبيوترات مكتبيةسماعاتاكسسواراتقطع الكمبيوتركاميراتشاشات كمبيوترمكبرات صوتراوتراتطابعات وماسحات ضوئيةكاميرات الأمان والمراقبةلوح سياراتأجهزة منزليةسيارات",
+    
+    "appStoreLink":"https://play.google.com/store/apps/details?",
+    
+    "googlePlayLink": "https://play.google.com/store/apps/details?",
+    
+    "firstBreadUrl": "https://soum.sa/en",
+    
+    "secondBreadUrl": "https://soum.sa/en/category/mobiles",
+    
+    "thirdBreadUrl": "https://soum.sa/en/search?query=iphone",
+    
+    "productsPerPage" : 21,
+    
+    "sppProductPhotos" : 5,
+    
+    "sellURL": "https://soum.sa/en/sell",
+    
+    "loginURL": "https://soum.sa/en/login",
+    
+    "blogURL": "https://soum.sa/en/blog",
+    
+    "homePageURL" : "https://soum.sa/en",
+    
+    "pdfTabURL" : "https://cdn.soum.sa/uploads/termsAndCondition.pdf",
+    
+    "collectionCount": 10,
+    
+    "popularSearches": 10
+    
+    }
