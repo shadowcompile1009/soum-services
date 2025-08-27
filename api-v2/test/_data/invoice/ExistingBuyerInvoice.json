@@ -1,0 +1,22 @@
+{
+  "_id": "61dfbea393531a1e403bb971",
+  "bill_type": "buyer",
+  "invoice_number": "B-000222",
+  "tax_invoice_number": "B-000221",
+  "issue_date": "2022-01-13",
+  "bill_to": "DummyUser17 -",
+  "address": "Saudii - Saduii - Ryad - 71759",
+  "commission_detail": "{\"commission_en\":\"Commission\",\"commission_ar\":\"وساطة بيع منتج خلال المنصة\",\"unit_price\":1,\"discount\":1,\"unit_price_after_discount\":0,\"quantity\":1,\"tax\":0,\"sub_total\":0}",
+  "order_detail": "{\"device_en\":\"iPhone 12 Pro Max-256 GB\",\"device_ar\":\"ايفون 12 برو ماكس-256 GB\",\"unit_price\":20,\"discount\":2,\"unit_price_after_discount\":18,\"quantity\":1,\"tax\":0,\"sub_total\":18}",
+  "order": "611503c1485a4f74c530510b",
+  "total_taxable_amount": 0,
+  "total_vat": 0,
+  "total_amount_due": 0,
+  "total_amount_due_device": 18,
+  "total_discount": 1,
+  "net_amount": 0,
+  "shipping_charge": 0,
+  "created_at": "2022-01-13T05:54:43.587Z",
+  "updated_at": "2022-01-13T05:54:43.587Z",
+  "__v": 0
+}

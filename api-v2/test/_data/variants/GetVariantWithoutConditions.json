@@ -1,0 +1,52 @@
+[
+  false,
+  {
+    "code": 200,
+    "result": [
+      {
+        "_id": "632b378ff49ff67c8b3ffe93",
+        "varient_ar": "الإصدار 15, المعالج كور أي 7, الجيل الجيل الثامن, الرام 8 جيجابيات, سعة التخزين 1 TB",
+        "position": 0,
+        "status": "Active",
+        "created_at": "2022-09-21T16:10:35.877Z",
+        "updated_at": "2022-09-21T16:10:35.877Z",
+        "category_id": "60575fdb826cc52db3d02acc",
+        "brand_id": "62bd48c5e93e14fd25b0ebc8",
+        "model_id": "62bd4d2939ad4d8d5dfb23bb",
+        "varient": "Series 15, Processor Core i7, Generation 8th Gen, Ram 8 GB, Storage memory 1 TB",
+        "current_price": 1899,
+        "deleted_date": null,
+        "attributes": [
+          {
+            "_id": "632b378ff49ff67c8b3ffe94",
+            "feature_id": "62d914fb48259b003737a5cc",
+            "attribute_id": "62d914fb48259b003737a5c9"
+          },
+          {
+            "_id": "632b378ff49ff67c8b3ffe95",
+            "feature_id": "62d91a5a0a94ff0038babeb3",
+            "attribute_id": "62d91a5a0a94ff0038babeaf"
+          },
+          {
+            "_id": "632b378ff49ff67c8b3ffe96",
+            "feature_id": "62d91b0fbc7f390037c8a786",
+            "attribute_id": "62d91b0fbc7f390037c8a782"
+          },
+          {
+            "_id": "632b378ff49ff67c8b3ffe97",
+            "feature_id": "62d91c78bc7f390037c8a79d",
+            "attribute_id": "62d91c78bc7f390037c8a798"
+          },
+          {
+            "_id": "632b378ff49ff67c8b3ffe98",
+            "feature_id": "62d91d763013790037c78d2c",
+            "attribute_id": "62d91d763013790037c78d10"
+          }
+        ],
+        "migration_source": "migration_service_create",
+        "__v": 0,
+        "conditions": []
+      }
+    ]
+  }
+]

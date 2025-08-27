@@ -1,0 +1,76 @@
+[
+  false,
+  {
+    "code": 200,
+    "result": [
+      {
+        "_id": "6339ab448350a5333b409e5f",
+        "varient_ar": "السنة 2020, حجم الشاشة 13\", المميزات منفذين Thunderbolt 3, المعالج كور أي 3, الرام 8 جيجابيات, سعة التخزين 512 GB",
+        "position": 0,
+        "status": "Active",
+        "created_at": "2022-10-02T15:15:23.172Z",
+        "updated_at": "2022-10-02T15:15:23.172Z",
+        "category_id": "60575fdb826cc52db3d02acc",
+        "brand_id": "606f42c42f4f6a212bd3339d",
+        "model_id": "62f36a0599bf3f00194e12fa",
+        "varient": "Year 2020, Screen size 13\", Features Two Thunderbolt 3 ports, Processor Core i3, Ram 8 GB, Storage memory 512 GB",
+        "current_price": 4599,
+        "deleted_date": null,
+        "attributes": [
+          {
+            "_id": "6339ab448350a5333b409e60",
+            "feature_id": "62e133b0e3b8df0037a5d178",
+            "attribute_id": "62e133b0e3b8df0037a5d16f"
+          },
+          {
+            "_id": "6339ab448350a5333b409e61",
+            "feature_id": "62e1344c6cb6d40037583a7f",
+            "attribute_id": "62e1344c6cb6d40037583a7b"
+          },
+          {
+            "_id": "6339ab448350a5333b409e62",
+            "feature_id": "62e13aad140a600037f53848",
+            "attribute_id": "62e13aad140a600037f53842"
+          },
+          {
+            "_id": "6339ab448350a5333b409e63",
+            "feature_id": "62d91a5a0a94ff0038babeb3",
+            "attribute_id": "62d91a5a0a94ff0038babead"
+          },
+          {
+            "_id": "6339ab448350a5333b409e64",
+            "feature_id": "62d91c78bc7f390037c8a79d",
+            "attribute_id": "62d91c78bc7f390037c8a798"
+          },
+          {
+            "_id": "6339ab448350a5333b409e65",
+            "feature_id": "62d91d763013790037c78d2c",
+            "attribute_id": "62d91d763013790037c78d25"
+          }
+        ],
+        "migration_source": "migration_v1.0",
+        "__v": 0,
+        "model_migration_source": "Updated old model_id = 6130a87002b602013df6b271 with 62f36a0599bf3f00194e12fa",
+        "model_variant_map_id": "6339ad38796696cfdcf5f6ce",
+        "conditions": [
+          {
+            "_id": "6360d1e1582709003a8fd93f",
+            "like_new": "3399",
+            "light_use": "3199",
+            "good_condition": "2499",
+            "extensive_use": "1599",
+            "like_new_ar": "3399",
+            "light_use_ar": "3199",
+            "good_condition_ar": "2499",
+            "extensive_use_ar": "1599",
+            "createdAt": "2022-11-01T06:01:20.110Z",
+            "updated_at": "2022-11-01T06:01:20.110Z",
+            "varient_id": "6339ab448350a5333b409e5f",
+            "migration_source": "migration service create condition",
+            "__v": 0
+          }
+        ]
+      }
+    ]
+  }
+]

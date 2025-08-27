@@ -1,0 +1,50 @@
+{
+  "checkout_id": "9015F7C18C5D6142C39C5581C7A781B7.prod01-vm-tx09",
+  "order_number": "SOUM16442393691051",
+  "payment_type": "TABBY",
+  "transaction_id": "",
+  "return_reason": "",
+  "dispute_comment": "",
+  "dispute_validity": "",
+  "transaction_detail": "",
+  "transaction_status": "Pending",
+  "paymentReceivedFromBuyer": "No",
+  "paymentMadeToSeller": "No",
+  "buy_type": "Direct",
+  "dispute": "No",
+  "status": "Active",
+  "delivery_desc": "",
+  "isUserNotified": false,
+  "sourcePlatform": "",
+  "bid_id": "",
+  "order_refund_status": {
+    "refund": false
+  },
+  "last_payout": "",
+  "invoice_generated": "pending",
+  "_id": "62011a0856369558e66ca207",
+  "buyer": "62011339b9e206c51f2b5e96",
+  "seller": "61f4cea30d43585161d79f26",
+  "product": "61fd6403f5636246c75400f4",
+  "buyer_address": {
+    "address_id": "620114c78ecfb73813fe7b12",
+    "address": "الرياض",
+    "city": "السلي حي السعادة",
+    "postal_code": "21121",
+    "address_type": "",
+    "latitude": "",
+    "longitude": ""
+  },
+  "buy_amount": 800,
+  "shipping_charge": 0,
+  "vat": 6,
+  "commission": 40,
+  "grand_total": 846,
+  "promos": {
+    "sellerPromocodeId": null,
+    "buyerPromocodeId": null
+  },
+  "created_at": "2022-02-07T13:09:28.986Z",
+  "updated_at": "2022-02-07T13:09:28.986Z",
+  "__v": 0
+}

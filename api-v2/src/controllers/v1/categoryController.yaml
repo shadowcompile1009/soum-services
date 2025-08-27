@@ -1,0 +1,200 @@
+/v1/category:
+  get:
+    tags:
+      - Category
+    summary: Get all category with sorting position ASC default
+    description: Get all category with sorting position ASC default
+    operationId: getListCategory
+
+    parameters: []
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetCategoriesResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetCategoriesResponse"
+  post:
+    tags:
+      - Category
+    summary: Create new category with basic information
+    description: Create new category with basic information
+    operationId: postCreateCategory
+
+    parameters: []
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/definitions/Category"
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PostCategoryResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PostCategoryResponse"
+/v1/category/{categoryId}:
+  get:
+    tags:
+      - Category
+    summary: Get specific category via id
+    description: Get specific category via id
+    operationId: getCategory
+
+    parameters:
+      - in: path
+        name: categoryId
+        description: Specific category id
+        required: true
+        schema:
+          type: string
+          example: 6063f95f929f926b67347b0d
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetCategoryResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetCategoryResponse"
+  put:
+    tags:
+      - Category
+    summary: Update category with specific information
+    description: Update category with specific information
+    operationId: putUpdateCategory
+
+    parameters:
+      - in: path
+        name: categoryId
+        description: Specific category id
+        required: true
+        schema:
+          type: string
+          example: 6063f95f929f926b67347b0d
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/definitions/Category"
+  delete:
+    tags:
+      - Category
+    summary: Delete category by ID
+    description: Delete category by ID
+    operationId: deleteCategory
+
+    parameters:
+      - in: path
+        name: categoryId
+        description: Specific category id
+        required: true
+        schema:
+          type: string
+          example: 6063f95f929f926b67347b0d
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PutCategoryResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PutCategoryResponse"
+/v1/category/{categoryId}/listing-photo:
+  put:
+    tags:
+      - Category
+    summary: Upload listing photo of category
+    description: Upload listing photo of category
+    operationId: putListingPhoto
+
+    parameters:
+      - in: path
+        name: categoryId
+        description: Category Id needs to be updated
+        required: true
+        schema:
+          type: string
+          example: 6063f95f929f926b67347b0d
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/definitions/ListingPhotoCategory"
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PutListingPhotoCategoryResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PutListingPhotoCategoryResponse"
+/v1/category/{categoryId}/browsing-photo:
+  put:
+    tags:
+      - Category
+    summary: Upload browsing photo of category
+    description: Upload browsing photo of category
+    operationId: putBrowsingPhoto
+
+    parameters:
+      - in: path
+        name: categoryId
+        description: Category Id needs to be updated
+        required: true
+        schema:
+          type: string
+          example: 6063f95f929f926b67347b0d
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/definitions/BrowsingPhotoCategory"
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PutBrowsingPhotoCategoryResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PutBrowsingPhotoCategoryResponse"
+/v1/category/super/{categoryId}:
+  get:
+    tags:
+      - Category
+    summary: Get categories by super category ID
+    description: Get all categories by super category ID
+    operationId: getListCategoryBySuperCategoryID
+    parameters:
+      - in: path
+        name: categoryId
+        description: Specific category id
+        required: true
+        schema:
+          type: string
+          example: 6063f95f929f926b67347b0d
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetCategoriesResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetCategoriesResponse"

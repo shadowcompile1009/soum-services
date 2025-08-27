@@ -1,0 +1,394 @@
+/v1/variant/{variantId}:
+  get:
+    tags:
+      - Variant
+    summary: Get specific variant with id etc
+    description: Get specific variant with id
+    operationId: getVariant
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY1Mjk0MjU4NSwiZXhwIjoxNjU1NTM0NTg1fQ.VPsHwnphlAZ4y-CfNqef6fQlGfQFqksiAq_irFSHaU8
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: variantId
+        description: "Variant Id"
+        required: true
+        schema:
+          type: string
+          example: "632b378ff49ff67c8b3ff43b"
+    responses:
+      "200":
+        description: "successful operation"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetVariantsByIdResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetVariantByIdResponse"
+  put:
+    tags:
+      - Variant
+    summary: Update varient in variants
+    description: Update varient in variants
+    operationId: putVariant
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY1Mjk0MjU4NSwiZXhwIjoxNjU1NTM0NTg1fQ.VPsHwnphlAZ4y-CfNqef6fQlGfQFqksiAq_irFSHaU8
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: variantId
+        description: "Variant Id"
+        required: true
+        schema:
+          type: string
+          example: "60640658929f92309d347b54"
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/definitions/Variant"
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PutVariantResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PutVariantResponse"
+  delete:
+    tags:
+      - Variant
+    summary: Delete varient in variants
+    description: Delete varient in variants
+
+    operationId: deleteVariant
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY1Mjk0MjU4NSwiZXhwIjoxNjU1NTM0NTg1fQ.VPsHwnphlAZ4y-CfNqef6fQlGfQFqksiAq_irFSHaU8
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: variantId
+        description: "Variant Id"
+        required: true
+        schema:
+          type: string
+          example: 60640658929f92309d347b54
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1RemoveVariantSuccessful"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1RemoveVariantSuccessful"
+/v1/variant:
+  get:
+    tags:
+      - Variant
+    summary: Get variants array based on model id
+    description: Get variants array based on model id
+    operationId: getVariantsViaModelId
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY1Mjk0MjU4NSwiZXhwIjoxNjU1NTM0NTg1fQ.VPsHwnphlAZ4y-CfNqef6fQlGfQFqksiAq_irFSHaU8
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: modelId
+        description: "Model Id"
+        required: true
+        schema:
+          type: string
+          example: "60640658929f92309d347b14"
+    responses:
+      "200":
+        description: "successful operation"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetVariantsViaModelIdResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1GetVariantsViaModelIdResponse"
+  post:
+    tags:
+      - Variant
+    summary: Add varient in variants
+    description: Add varient in variants
+    operationId: postVariant
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTY1Mjk0MjU4NSwiZXhwIjoxNjU1NTM0NTg1fQ.VPsHwnphlAZ4y-CfNqef6fQlGfQFqksiAq_irFSHaU8
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/definitions/Variant"
+    responses:
+      "201":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1PostVariantResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1PostVariantResponse"
+/v1/variant/attribute:
+  get:
+    tags:
+      - Variant
+    summary: Get base attributes using Model ID
+    description: Get base attributes and filtered attributes by Model ID
+    operationId: getBaseAttributeViaModelId
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWMxYzNjZTVmOTNmMDAxOTc2ZTAxOCIsImlhdCI6MTY2NDI4OTc2NCwiZXhwIjoxNjY2ODgxNzY0fQ.ewONoZplVrIozR00BDND8P516mTMOIhzWxCa_9QcDag
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+      - in: query
+        name: modelId
+        description: "Model Id"
+        required: true
+        schema:
+          type: string
+          example: "62f369e71ebcc5001a3b2f59"
+    responses:
+      "200":
+        description: "successful operation"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetBaseAttributeResponse"
+/v1/variant/filter/attribute:
+  get:
+    tags:
+      - Variant
+    summary: Filter next attribute option
+    description: Get all possible next variant options with previous variant selection
+    operationId: getFilterAttribute
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWMxYzNjZTVmOTNmMDAxOTc2ZTAxOCIsImlhdCI6MTY2NDI4OTc2NCwiZXhwIjoxNjY2ODgxNzY0fQ.ewONoZplVrIozR00BDND8P516mTMOIhzWxCa_9QcDag
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+      - in: query
+        name: modelId
+        description: "Model Id"
+        required: true
+        schema:
+          type: string
+          example: "62f369e71ebcc5001a3b2f59"
+      - in: query
+        name: filterId
+        description: "filter ID (base attribute ID)"
+        required: true
+        schema:
+          type: string
+          example: "62e133b0e3b8df0037a5d178"
+      - in: query
+        name: optionId
+        description: "option ID (base option ID)"
+        required: true
+        schema:
+          type: string
+          example: "62e133b0e3b8df0037a5d177"
+      - in: query
+        name: attributeId
+        description: "attributeId (next attribute ID you want to get all possible options)"
+        required: true
+        schema:
+          type: string
+          example: "62e13aad140a600037f53848"
+      - in: query
+        name: previousOptions
+        description: "All previous ids of options chosen during listing process (separated by ',' and do not add the 1st option)"
+        required: true
+        schema:
+          type: string
+          example: "62e1344c6cb6d40037583a7d,62e13aad140a600037f53845"
+    responses:
+      "200":
+        description: "successful operation"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetFilterAttributeResponse"
+/v1/variant/attributes:
+  get:
+    tags:
+      - Variant
+    summary: Integrate all options selected to get the final variant
+    description: Use all the variants selected in the listing to get the final variant information from the database
+    operationId: getVariantFromAttributes
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWMxYzNjZTVmOTNmMDAxOTc2ZTAxOCIsImlhdCI6MTY2NDI4OTc2NCwiZXhwIjoxNjY2ODgxNzY0fQ.ewONoZplVrIozR00BDND8P516mTMOIhzWxCa_9QcDag
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+      - in: query
+        name: modelId
+        description: "Model Id"
+        required: true
+        schema:
+          type: string
+          example: "62f369e71ebcc5001a3b2f59"
+      - in: query
+        name: attributeId
+        description: "The base Attribute of the model (the 1st attribute to choose from)"
+        required: true
+        schema:
+          type: string
+          example: "62e133b0e3b8df0037a5d178"
+      - in: query
+        name: optionId
+        description: "The base option chosen (the 1st one chosen)"
+        required: true
+        schema:
+          type: string
+          example: "62e133b0e3b8df0037a5d177"
+      - in: query
+        name: filterIds
+        description: "All ids of options chosen during listing process (separated by ',' and do not add the 1st option)"
+        required: true
+        schema:
+          type: string
+          example: "62e1344c6cb6d40037583a7d,62e13aad140a600037f53845,62d91a5a0a94ff0038babeaf,62d91c78bc7f390037c8a798,62d91d763013790037c78d2a"
+    responses:
+      "200":
+        description: "successful operation"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetVariantByAttributesResponse"
+/v1/variant/attribute/options:
+  get:
+    tags:
+      - Variant
+    summary: Get attributes options by Model ID
+    description: Get attribute options by Model ID
+    operationId: getAttributeOptionsVariant
+    parameters:
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: client-web
+      - in: query
+        name: modelId
+        description: "Model Id"
+        required: false
+        schema:
+          type: string
+          example: "62f369e71ebcc5001a3b2f59"
+      - in: query
+        name: categoryId
+        description: "Category Id"
+        required: false
+        schema:
+          type: string
+          example: "60575fdb826cc52db3d02acc"
+      - in: query
+        name: brandId
+        description: "Brand Id"
+        required: false
+        schema:
+          type: string
+          example: "6069faf484541d77f553167a"
+    responses:
+      "200":
+        description: "successful operation"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1GetBaseAttributeOptionsResponse"
+      "400":
+        description: failed to get attribute options by Model ID
+        content:
+          application/json:
+            examples:
+              addAnswerSuccess:
+                $ref: "#/components/examples/v1GetAttributeOptionsFailed"

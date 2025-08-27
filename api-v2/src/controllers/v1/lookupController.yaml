@@ -1,0 +1,22 @@
+/v1/lookup:
+  get:
+    tags:
+      - Lookup
+    summary: Get list of lookups
+    description: >-
+      Get list of lookups
+    operationId: getLookups
+    parameters:
+      - in: header
+        name: cache
+        required: false
+        schema:
+          type: string
+          example: enable
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/Lookup"

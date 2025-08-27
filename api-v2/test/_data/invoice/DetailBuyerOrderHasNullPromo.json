@@ -1,0 +1,97 @@
+{
+  "_id": "611bbd978582ab289b4e4392",
+  "checkout_id": "807BC2E96C8608BFDECF9D040CF06A0E.uat01-vm-tx01",
+  "order_number": "SOUM16292079599622",
+  "payment_type": "STC_PAY",
+  "transaction_id": "8ac7a4a07b51a052017b545ca8112f81",
+  "return_reason": "",
+  "dispute_comment": "",
+  "dispute_validity": "",
+  "transaction_detail": "{\"id\":\"8ac7a4a07b51a052017b545ca8112f81\",\"paymentType\":\"DB\",\"paymentBrand\":\"STC_PAY\",\"amount\":\"1269.00\",\"currency\":\"SAR\",\"descriptor\":\"8309.9090.0680 Soum online\",\"merchantTransactionId\":\"SOUM16292079599622\",\"result\":{\"code\":\"000.100.110\",\"description\":\"Request successfully processed in 'Merchant in Integrator Test Mode'\"},\"resultDetails\":{\"ExtendedDescription\":\"Approved or completed successfully\",\"clearingInstituteName\":\"Simulator_Test\",\"ConnectorTxID1\":\"8ac7a4a2715570060171588b74922040\",\"ConnectorTxID3\":\"26K00247\",\"ConnectorTxID2\":\"4372\",\"AcquirerResponse\":\"00\",\"reconciliationId\":\"122181249086315863284555830375\",\"risk.score\":\"0\"},\"customer\":{\"givenName\":\"MonaSolimanTest\",\"surname\":\"MonaSolimanTest\",\"ip\":\"197.52.92.160\",\"ipCountry\":\"EG\"},\"billing\":{\"street1\":\"Cairo\",\"city\":\"Mokattam\",\"state\":\"MOKATTAM\",\"postcode\":\"11411\",\"country\":\"SA\"},\"customParameters\":{\"SHOPPER_payment_mode\":\"qr_code\"},\"risk\":{\"score\":\"0\"},\"buildNumber\":\"97f0054b09ee8450755a5896928ab84025e1a208@2021-08-17 09:14:35 +0000\",\"timestamp\":\"2021-08-17 13:46:03+0000\",\"ndc\":\"807BC2E96C8608BFDECF9D040CF06A0E.uat01-vm-tx01\"}",
+  "transaction_status": "Success",
+  "paymentReceivedFromBuyer": "Yes",
+  "paymentMadeToSeller": "Yes",
+  "buy_type": "Direct",
+  "dispute": "No",
+  "status": "Active",
+  "delivery_desc": "",
+  "buyer": {
+    "_id": "60da07f53bde511843c59d52",
+    "countryCode": "966",
+    "name": "MonaTestBuyer",
+    "address": {
+      "address_id": "60da07f53bde511843c59d51",
+      "address": "Cairo new",
+      "city": "Mokattam new",
+      "postal_code": "11413",
+      "address_type": "",
+      "latitude": "",
+      "longitude": ""
+    }
+  },
+  "seller": {
+    "_id": "60da07f53bde511843c59d16",
+    "countryCode": "966",
+    "name": "MonaTestSeller",
+    "address": {
+      "address_id": "6161ad24695d6e97aefcb811",
+      "address": "mokattam 9 st El tegareen area villa no 18 1st block",
+      "city": "cairo",
+      "postal_code": "11411",
+      "address_type": "",
+      "latitude": "",
+      "longitude": ""
+    }
+  },
+  "product": {
+    "_id": "61194ac81370cf4e99c94fb8",
+    "category_id": {
+      "_id": "6063f9b0929f92ef7f347b0e",
+      "category_name": "Laptop"
+    },
+    "brand_id": {
+      "_id": "606d91d0072588f44e164050",
+      "brand_name": "Apple"
+    },
+    "model_id": {
+      "_id": "607055651343a00374c66ab8",
+      "model_name_ar": "ماكب بوك برو",
+      "model_name": "Macbook Pro",
+      "current_price": 50
+    },
+    "varient": "i7",
+    "varient_ar": "i7",
+    "sell_price": 1200,
+    "varient_id": "607055901343a0f99ac66ab9"
+  },
+  "buyer_address": {
+    "address_id": "60da07f53bde511843c59d51",
+    "address": "Cairo",
+    "city": "Mokattam",
+    "postal_code": "11411",
+    "address_type": "",
+    "latitude": "",
+    "longitude": ""
+  },
+  "buy_amount": 1200,
+  "shipping_charge": 0,
+  "vat": 9,
+  "commission": 60,
+  "grand_total": 1269,
+  "promos": {
+    "buyerPromocodeId": null
+  },
+  "created_at": "2021-08-17T13: 45: 59.187Z",
+  "updated_at": "2021-08-17T13: 45: 59.187Z",
+  "__v": 0,
+  "shipment_detail": {},
+  "pickup_detail": {},
+  "commission_percentage": {
+    "buyer_commission_percentage": 5,
+    "seller_commission_percentage": 5,
+    "shipping_charge_percentage": 0,
+    "vat_percentage": 15
+  },
+  "split_payout_detail": "{\"status\":true,\"data\":{\"configId\":\"1c11327d420b0590da0a9b961516c7cb\",\"merchantTransactionId\":\"SOUM16292079599622\",\"transferOption\":\"0\",\"beneficiary\":[{\"name\":\"Soum\",\"accountId\":\"68200019878000\",\"debitCurrency\":\"SAR\",\"transferAmount\":138,\"transferCurrency\":\"SAR\",\"payoutBeneficiaryAddress1\":\"Al Jadwal St Ar Rayan\",\"payoutBeneficiaryAddress2\":\"Riyadh, SA\",\"payoutBeneficiaryAddress3\":\"11564\"},{\"name\":\"MonaTestSeller\",\"accountId\":\"SA9650000000033217408001\",\"debitCurrency\":\"SAR\",\"transferAmount\":1131,\"transferCurrency\":\"SAR\",\"bankIdBIC\":\"INMASARI\",\"payoutBeneficiaryAddress1\":\"Cairo2\",\"payoutBeneficiaryAddress2\":\"Mokattam2\",\"payoutBeneficiaryAddress3\":\"11311\"}],\"uniqueId\":\"ec3e210f3930a42a10739446324100f3\"},\"message\":\"Your payout transaction has been received\",\"errors\":[]}",
+  "isUserNotified": true
+}

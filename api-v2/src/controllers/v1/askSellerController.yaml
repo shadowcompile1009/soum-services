@@ -1,0 +1,219 @@
+/v1/askSeller:
+  get:
+    tags:
+      - AskSeller
+    summary: Get questions and answers from products SPP
+    description: Get questions and answers from products SPP
+    operationId: getAskSeller
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/askSellerData"
+/v1/askSeller/delete/{questionID}:
+  put:
+    tags:
+      - AskSeller
+    summary: Get questions and answers from products SPP
+    description: Get questions and answers from products SPP
+    operationId: deleteAskSeller
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: questionID
+        description: ID of the question
+        required: true
+        type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              reason:
+                type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/askSellerData"
+/v1/askSeller/deleted:
+  get:
+    tags:
+      - AskSeller
+    summary: Get deleted questions and answers from products SPP
+    description: Get deleted questions and answers from products SPP
+    operationId: getAskSeller
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/askSellerData"
+/v1/askSeller/{sellerId}/pending:
+  get:
+    tags:
+      - AskSeller
+    summary: Get pending questions of a seller
+    description: Get pending questions of a seller
+    operationId: getPendingAskSeller
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: sellerId
+        description: ID of seller
+        required: true
+        type: string
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/askSellerData"
+/v1/askSeller/{buyerId}/ask:
+  get:
+    tags:
+      - AskSeller
+    summary: Get all questions of a buyer
+    description: Get all questions of a buyer
+    operationId: getAllQuestionOfBuyer
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgxNDM0MDYsImV4cGlyZXNJbiI6NDMyMCwiaXAiOm51bGwsImVtYWlsX2FkZHJlc3MiOiJ0Lm5ndXllbkBzb3VtLnNhIiwiaWQiOiI2MTJkZGIxNjA4OWQ3NTI4ZDNhNmZhMjIifQ.sGWiB-9vK9wjTQzzJdSktK5N7DdsFNh_OqMsQk6_izs
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: buyerId
+        description: ID of buyer
+        required: true
+        type: string
+      - in: query
+        name: size
+        description: Page size
+        required: false
+        schema:
+          type: string
+          example: 20
+      - in: query
+        name: page
+        description: Page number
+        required: false
+        schema:
+          type: string
+          example: 1
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/definitions/askSellerData"

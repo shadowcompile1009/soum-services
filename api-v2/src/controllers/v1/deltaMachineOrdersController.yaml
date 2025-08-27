@@ -1,0 +1,600 @@
+/v1/dm-orders/:
+  get:
+    tags:
+      - DeltaMachineOrders
+    summary: Get all DM orders information
+    description: Get all DM orders information
+    operationId: list
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetDMOListResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetDMOListResponse'
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Create new DM order
+    description: Create new DM order
+    operationId: create
+    parameters:
+      - in: header
+        name: token
+        required: false
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/CreateDMOrder'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PostDMOResponse'
+
+/v1/dm-orders/{orderId}:
+  get:
+    tags:
+      - DeltaMachineOrders
+    summary: Get DM order by order id
+    description: Get DM order information by order id
+    operationId: load
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 61ff617ef04b9c442cbbbe8e
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PostDMOResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetDMOResponse'
+  put:
+    tags:
+      - DeltaMachineOrders
+    summary: Update DM order
+    description: Update new DM order
+    operationId: update
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+          example: 61ff617ef04b9c442cbbbe8e
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/UpdateDMOrder'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PutDMOResponse'
+  delete:
+    tags:
+      - DeltaMachineOrders
+    summary: Delete a DM order
+    description: ""
+    operationId: delete
+    parameters:
+      - in: path
+        name: id
+        description: DM order Id needs to be deleted
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/v1DeleteContentResponse"
+            examples:
+              successExample:
+                $ref: "#/components/examples/v1DeleteContentResponse"
+/v1/dm-orders/statuses:
+  get:
+    tags:
+      - DeltaMachineOrders
+    summary: Get all DM order statuses information
+    description: Get all DM orders statuses information
+    operationId: listStatuses
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetDMOListStatusResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetDMOListStatusResponse'
+/v1/dm-orders/export:
+  get:
+    tags:
+      - DeltaMachineOrders
+    summary: Get all DM order export fields and download as a file
+    description: Get all DM order export fields and download as a file
+    operationId: exportList
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetDMOExportResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetDMOExportResponse'
+/v1/dm-orders/order/detail/{orderId}:
+  get:
+    tags:
+      - DeltaMachineOrders
+    summary: Get DM order detail
+    description: Get DM order detail
+    operationId: getOrderInfo
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 61ff617ef04b9c442cbbbe8e
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetDMOOrderDetailResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetDMOOrderDetailResponse'
+/v1/dm-orders/payref/history/{orderId}:
+  get:
+    tags:
+      - DeltaMachineOrders
+    summary: Get all refund and payout history information
+    description: Get all refund and payout history information
+    operationId: listPayoutRefundHistory
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 61ff617ef04b9c442cbbbe8e
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetPayoutListResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetPayoutListResponse'
+/v1/dm-orders/payout/{orderId}:
+  put:
+    tags:
+      - DeltaMachineOrders
+    summary: Edit payout payment
+    description: Edit payout payment
+    operationId: updatePayoutOrderInfo
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 606f59fd2f4f6a4316d333e0
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/EditPayoutDMO'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1EditPayoutResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1EditPayoutResponse'
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Create payout payment
+    description: Create payout payment
+    operationId: payoutOrderHyperSplit
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 606f59fd2f4f6a4316d333e0
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/CreatePayoutDMO'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1CreatePayoutResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1CreatePayoutResponse'
+/v1/dm-orders/refund/{orderId}:
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Create instant refund or reversal payment
+    description: Create instant refund or reversal payment
+    operationId: refundPayment
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: true
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 606f59fd2f4f6a4316d333e0
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/CreateRefundDMO'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1CreateRefundResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1CreateRefundResponse'
+/v1/dm-orders/nct-reasons:
+  get:
+    tags:
+      - DeltaMachineOrders
+    summary: Get all NCT reasons
+    description: Get all NCT reasons
+    operationId: listNCTReasons
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg3MTQ3NDUsImV4cGlyZXNJbiI6NDMyMCwiZXhwaXJ5RGF0ZSI6IjIwMjMtMDMtMTNUMjE6NTE6MzUrMDc6MDAiLCJpcCI6Ijo6MSIsInVzZXJJZCI6IjY0MGYwYjMxNDUwNjc3NjljYTE2YTc5YyJ9.kqxOSov3NcUS_GY9CcTNnjKZkE9IbvVRUqxksNldM4s
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetListNCTReasonResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetListNCTReasonResponse'
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Create NCT reason list
+    description: Initialize NCT reason list
+    operationId: createNCTReasons
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg3MTQ3NDUsImV4cGlyZXNJbiI6NDMyMCwiZXhwaXJ5RGF0ZSI6IjIwMjMtMDMtMTNUMjE6NTE6MzUrMDc6MDAiLCJpcCI6Ijo6MSIsInVzZXJJZCI6IjY0MGYwYjMxNDUwNjc3NjljYTE2YTc5YyJ9.kqxOSov3NcUS_GY9CcTNnjKZkE9IbvVRUqxksNldM4s
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/CreateNCTReasonList'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PostNCTReasonListResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1PostNCTReasonListResponse'
+/v1/dm-orders/dmo-nct-reasons:
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Create DMO NCT reason
+    description: Create DMO NCT reason
+    operationId: createDmoNCTReason
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg3ODQxODAsImV4cGlyZXNJbiI6NDMyMCwiZXhwaXJ5RGF0ZSI6IjIwMjMtMDMtMTRUMTA6MDg6NTArMDA6MDAiLCJpcCI6Ijo6ZmZmZjoxNzIuMjAuMjEuMjIwIiwidXNlcklkIjoiNjQxMDMxY2YzMGVjZmRlMTgxNjZhZTgyIn0.jrx5inL9ZTDtO-FkCD_Qa33L-M1EbE3T1O0ulJjUBVw
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/CreateDmoNCTReason'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PostDmoNCTReasonResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1PostDmoNCTReasonResponse'
+/v1/dm-orders/capture/{orderId}:
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Capture BNPL Order
+    description: Capture BNPL Order
+    operationId: captureOrder
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 606f59fd2f4f6a4316d333e0
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1CaptureResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1CaptureResponse'
+/v1/dm-orders/close/{orderId}:
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Close BNPL Order
+    description: Close BNPL Order
+    operationId: closeOrder
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+          example: 606f59fd2f4f6a4316d333e0
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1CloseResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1CloseResponse'
+/v1/dm-orders/capture/orders/all:
+  post:
+    tags:
+      - DeltaMachineOrders
+    summary: Capture all BNPL Orders
+    description: Capture all BNPL Orders
+    operationId: captureAllOrders
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/v1CaptureAllRequest'
+    responses:
+      '200':
+        description: successful operation

@@ -1,0 +1,5925 @@
+components:
+  schemas:
+    v1PostNCTReasonListResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              id: 
+                type: string
+                example: 64100ce966f3f42f8c2be289
+              name:
+                type: string
+                example: sold-elsewhere
+              displayName:
+                type: string
+                example: Sold elsewhere
+              sellerWithdrawal:
+                type: boolean
+                example: true
+              createdAt:
+                type: string
+                example: "2023-03-13T13:29:11.878Z"
+              updatedAt:
+                type: string
+                example: "2023-03-13T13:29:11.878Z"
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PostDmoNCTReasonResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              id: 
+                type: string
+                example: 64100ce966f3f42f8c2be289
+              userId:
+                type: string
+                example: 640f0b3145067769ca16a79c
+              nctReasonId:
+                type: string
+                example: 640f2527fc23084100a529a9
+              dmoId:
+                type: string
+                example: 62e2504fc220f60037c6c231
+              orderId:
+                type: string
+                example: 62e250437a1e8f00190a3cfd
+              createdAt:
+                type: string
+                example: "2023-03-13T13:29:11.878Z"
+              updatedAt:
+                type: string
+                example: "2023-03-13T13:29:11.878Z"
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetListNCTReasonResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: sold-elsewhere
+              displayName:
+                type: string
+                example: Sold elsewhere
+              id:
+                type: string
+                example: 640f2527fc23084100a529a4
+              sellerWithdrawal:
+                type: boolean
+                example: true
+              createdAt:
+                type: string
+                example: "2023-03-13T13:29:11.878Z"
+              updatedAt:
+                type: string
+                example: "2023-03-13T13:29:11.878Z"
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetSecurityFeeResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            transactionId:
+              type: string
+              example: 630f18c115495162b8e0ed88
+            userId:
+              type: string
+              example: 810f18c115495162b8e0ed77
+            status:
+              type: string
+              example: Available
+            shippingCharges:
+              type: number
+              example: 0
+            createdAt:
+              type: date
+              example: "2021-04-04T17:51:58.527Z"
+            updatedAt:
+              type: date
+              example: "2021-04-04T17:51:58.527Z"
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1DeleteDMUResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: 'User successfully deleted'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PutEnableMFA:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            qrCode:
+              type: string
+              example: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAAAklEQVR4AewaftIAAAdrSURBVO3BQY4cy5LAQDLR978yR0tfBZCoaun9GDezP1jrEg9rXeRhrYs8rHWRh7Uu8rDWRR7WusjDWhd5WOsiD2td5GGtizysdZGHtS7ysNZFHta6yMNaF/nhQyp/U8U3qUwVJypTxaQyVZyoTBUnKicVk8pJxYnK31TxiYe1LvKw1kUe1rrID19W8U0q36QyVUwqJxUnFZPKScVvqphUJpWp4qTim1S+6WGtizysdZGHtS7ywy9TeaPiDZVvqphUJpWpYlKZKt5QOamYVP4llTcqftPDWhd5WOsiD2td5IfLVUwqk8pUMVV8QuWk4qRiUpkqJpWpYqqYVG7ysNZFHta6yMNaF/nh/5mKE5Wp4o2KN1SmiknlROUNlaniJg9rXeRhrYs8rHWRH35Zxb+kclJxonJSMalMFZPKGxWTylRxonKiMlW8UfFf8rDWRR7WusjDWhf54ctU/qWKSWWqmFSmikllqphUpopJZaqYVE5UpopJZao4qZhU3lD5L3tY6yIPa13kYa2L/PChiv8lKlPFScWkMlV8omJS+S+p+F/ysNZFHta6yMNaF7E/+IDKVDGpfFPFN6mcVLyhMlWcqLxR8TepfFPFb3pY6yIPa13kYa2L/PChik9UTCpTxaQyVfxNKp9QOak4UZkqTlSmiknljYpJ5aRiUpkqvulhrYs8rHWRh7Uu8sOXqUwVk8qkcqIyVbyhMlWcVEwqU8UbKm+oTBVvqEwVJxWTylQxqUwVn1CZKj7xsNZFHta6yMNaF/nhl6l8omJS+YTKVDGpvKFyUvEJlanipOJEZar4hMpUMalMFZPKNz2sdZGHtS7ysNZF7A8+oPJGxaTymyomlaniRGWqmFR+U8WkMlVMKicVb6hMFZPKN1V84mGtizysdZGHtS5if/BFKlPFpHJS8TepTBUnKlPFGypTxYnKVDGpTBWTylTxm1Smir/pYa2LPKx1kYe1LvLDh1SmiknlDZVPVHxC5Q2Vk4oTlanijYo3VKaKT6j8lzysdZGHtS7ysNZFfvhQxUnFb1L5popJZao4UZlUpoo3KiaVNyomlTdUpoqTihOVqeKbHta6yMNaF3lY6yI/fJnKGxWTyknFJ1ROVKaKNyomlROVqWJSeaNiUjlROak4qZhUTip+08NaF3lY6yIPa13kh19WMamcVJyonKhMFScVk8qJylQxqXxCZap4Q+WkYlKZKiaVqeITKlPFNz2sdZGHtS7ysNZFfvjHVD5R8QmVb6qYVCaVk4oTlaliqjhROVGZKiaVk4oTlUllqvjEw1oXeVjrIg9rXeSHL6v4pooTlaniN1VMKicVb6icVHyi4kTlpGJSmVSmipOKb3pY6yIPa13kYa2L/PCPVZyovKEyVZxUTCqTylQxVZyoTBWTylRxovJGxYnKicr/koe1LvKw1kUe1rrID1+mclJxojJVfFPFpDJVTCpvqJyoTBWTyknFpHKiMlW8UfGGyknFb3pY6yIPa13kYa2L2B/8IpWTiknlpGJSOamYVN6omFROKt5QmSq+SeWk4l9SmSo+8bDWRR7WusjDWhf54ctUpopJZVI5qZhUpopJ5TdVfEJlqjhReaPiDZWp4g2VqeJEZar4poe1LvKw1kUe1rqI/cEHVE4qJpWTiknljYo3VN6omFTeqPiXVKaKE5WTihOVqWJSmSo+8bDWRR7WusjDWhf54csq3qg4qZhUpop/qeINlTcqJpWTiknlROWk4jdVfNPDWhd5WOsiD2td5Ie/rOINlaliUjmpmFTeqHhD5Y2KSeWkYlI5qXhDZVJ5o2KqmFROKj7xsNZFHta6yMNaF/nhl6lMFZPKScWkMlWcqEwVk8pUcaIyVUwVJyonFZPKGyonFZPKVDGpTBWTyqQyVZxUfNPDWhd5WOsiD2td5If/OJU3VKaKSWWqOFE5UfmEyknFpHJS8QmVE5U3VP6mh7Uu8rDWRR7Wuoj9wf8wlaniROWbKk5UpooTlaniEypTxaQyVbyhMlWcqJxUfOJhrYs8rHWRh7Uu8sOHVP6miqniRGWqmFTeqJhUpooTlTdU/iWVqeITFb/pYa2LPKx1kYe1LvLDl1V8k8qJyhsq31QxqUwVv0llqphUPlHxTSpTxTc9rHWRh7Uu8rDWRX74ZSpvVHyi4kTlm1SmikllqphUpopPqEwVk8qJyjepTBW/6WGtizysdZGHtS7yw/9zFScqJxUnFScVk8pU8UbFScWk8kbFpDKpTBUnKlPFJx7WusjDWhd5WOsiP1xOZao4UZkqJpWTikllqphU3lA5UTmpOKk4UZkqJpVJZar4TQ9rXeRhrYs8rHWRH35ZxW+qmFSmim+qmFQmlaliUjmpmFROKiaVT6hMFVPFf9nDWhd5WOsiD2td5IcvU/mbVE5UpopPqHxTxaQyVUwqk8pJxaQyVbyhMlVMFZPKpPKbHta6yMNaF3lY6yL2B2td4mGtizysdZGHtS7ysNZFHta6yMNaF3lY6yIPa13kYa2LPKx1kYe1LvKw1kUe1rrIw1oXeVjrIv8HneG0vrzCLyYAAAAASUVORK5CYII=
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: QR code generated
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PutDisableMFA:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: 'success'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: MFA disabled
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PostVerifyMFA:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            userId:
+              type: string
+              example: 630f18c115495162b8e0ed88
+            token:
+              type: string
+              example: 630f18c115495162b8e0ed88ahvgfhjkkjdsfkgjhjhjghghgh
+            firstName:
+              type: string
+              example: fahid
+            lastName:
+              type: string
+              example: sami
+            username:
+              type: string
+              example: fahid.sami
+            email:
+              type: string
+              example: fahid@soum.sa
+            phoneNumber:
+              type: string
+              example: +9667788996655
+            isMFAEnabled:
+              type: boolean
+              example: true
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PostDMUResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            username:
+              type: string
+              example: martinDev123
+            email:
+              type: string
+              example: martin123@yopmail.com
+            phoneNumber:
+              type: string
+              example: 0123456789
+            id:
+              type: string
+              example: 630f18c115495162b8e0ed88
+            roleId:
+              type: string
+              example: 630f18c115495162b8e0ed88
+            status: 
+              type: string
+              example: Active
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetDMRolesResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 630f18c115495162b8e0ed88
+              name:
+                type: string
+                example: admin
+              displayName:
+                type: string
+                example: Admin
+              canAccessAll:
+                type: boolean
+                example: true
+    v1GetDMOListUserResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            total:
+              type: number
+              example: 2
+            limit:
+              type: number
+              example: 10
+            offset:
+              type: number
+              example: 0
+            data: 
+              type: array
+              items:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    example: martinDev123
+                  email:
+                    type: string
+                    example: martin123@yopmail.com
+                  phoneNumber:
+                    type: string
+                    example: 0123456789
+                  id:
+                    type: string
+                    example: 630f18c115495162b8e0ed88
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1EditPayoutResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            order_id:
+              type: string
+              example: 6074779e5ad11480163cc75f
+            product_id:
+              type: string
+              example: 6073fa7f5ad114c12a3cc74f
+            product_name:
+              type: string
+              example: iPhone 12 Pro Max
+            variant:
+              type: string
+              example: 256 GB
+            seller_name:
+              type: string
+              example: Bader
+            seller_phone:
+              type: string
+              example: 96611111111200
+            duration_of_created_order:
+              type: number
+              example: 5
+            sell_price:
+              type: number
+              example: 100
+            commission:
+              type: number
+              example: 5
+            commission_amount:
+              type: number
+              example: 0.25
+            vat:
+              type: number
+              example: 0.5
+            shipping_charge:
+              type: number
+              example: 0
+            net_seller:
+              type: number
+              example: 4.71
+            bank_name:
+              type: string
+              example:  بنك الراجحي
+            iban:
+              type: string
+              example: SA4280000621608010034700
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1CreateRefundResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            isSuccess:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: 'Refund action was successfully executed'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1CaptureResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            paymentStatus:
+              type: string
+              example: 'Completed'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1CloseResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            paymentStatus:
+              type: string
+              example: 'Closed'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1CreatePayoutResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            isSuccess:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: 'Payout action was successfully executed'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetPayoutListResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              createdAt:
+                type: string
+                example: "2022-08-03T10:17:24.042Z"
+              dmoTransactionId:
+                type: string
+                example: RD01329678
+              _id:
+                type: string
+                example: 6159600ca7cbd32ebee847ae
+              transactionType:
+                type: string
+                example: Refund
+              transactionStatus:
+                type: string
+                example: Failed
+              paymentMethod:
+                type: string
+                example: Instant Refund
+              orderId:
+                type: string
+                example: 6159600ca7cbd32ebee847ae
+              paymentGatewayTransactionId:
+                type: string
+                example: f5bf279f2582c07c51775a543de96e96
+              transactionTimestamp:
+                type: string
+                example: "03/08/2022 10:17:39 AM"
+              doneBy:
+                type: string
+                example: Fahid
+              amount:
+                type: number
+                example: 5
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetDMOListStatusResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: return-label-sent
+              displayName:
+                type: string
+                example: Return Label Sent
+              id:
+                type: string
+                example: 6159600ca7cbd32ebee847ae
+              submodule:
+                type: string
+                example: "Active"
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetDMOOrderDetailResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            refundAmmountToPay:
+              type: number
+              example: 52.86
+            buyerPaymentMethod:
+              type: string
+              example: MADA
+            grandTotalForBuyer:
+              type: number
+              example: 52.88
+            shippingCharges:
+              type: number
+              example: 0
+            orderDate:
+              type: string
+              example: "2021-04-04T17:51:58.527Z"
+            discountTotal:
+              type: number
+              example: 5
+            buyerCommision:
+              type: number
+              example: 10
+            sellPrice:
+              type: number
+              example: 56.88
+            vat:
+              type: number
+              example: 7
+            paymentMethods:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                    example: instantRefund
+                  displayName:
+                    type: string
+                    example: Instant Refund
+                  recommended:
+                    type: boolean
+                    example: false
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetDMOListResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            total:
+              type: number
+              example: 18
+            limit:
+              type: number
+              example: 10
+            offset:
+              type: number
+              example: 0
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  orderId:
+                    type: string
+                    example: 6159600ca7cbd32ebee847ac
+                  statusId:
+                    type: string
+                    example: 6159600ca7cbd32ebee847ad
+                  id:
+                    type: string
+                    example: 6159600ca7cbd32ebee847ae
+                  trackingNumber:
+                    type: string
+                    example: "290325258756"
+                  createdAt:
+                    type: string
+                    example: "2022-08-06T23:38:58.828Z"
+                  updatedAt:
+                    type: string
+                    example: "2022-08-06T23:38:58.828Z"
+                  orderData:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        example: 62eae6f56803350019d858a7
+                      productName:
+                        type: string
+                        example: iPhone 12
+                      orderNumber:
+                        type: string
+                        example: SOUM16598291195207
+                      orderType:
+                        type: string
+                        example: R-O
+                      orderStatus:
+                        type: string
+                        example: New order
+                      sellerPhone:
+                        type: string
+                        example: "+966111111305424"
+                      buyerPhone:
+                        type: string
+                        example: "+966111111305425"
+                      sellerCity:
+                        type: string
+                        example: Riyadh
+                      buyerCity:
+                        type: string
+                        example: Makkah
+                      buyerPromoCode:
+                        type: string
+                        example: LZ20
+                      createdAt:
+                        type: string
+                        example: "2022-08-06T23:38:39.671Z"
+                      grandTotal:
+                        type: number
+                        example: 1928.5
+                      payoutAmount:
+                        type: number
+                        example: 1913.5
+                      paymentStatus:
+                        type: string
+                        example: Success
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetDMOExportResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            total:
+              type: number
+              example: 18
+            limit:
+              type: number
+              example: 10
+            offset:
+              type: number
+              example: 0
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  orderId:
+                    type: string
+                    example: 6159600ca7cbd32ebee847ac
+                  statusId:
+                    type: string
+                    example: 6159600ca7cbd32ebee847ad
+                  id:
+                    type: string
+                    example: 6159600ca7cbd32ebee847ae
+                  trackingNumber:
+                    type: string
+                    example: "290325258756"
+                  createdAt:
+                    type: string
+                    example: "2022-08-06T23:38:58.828Z"
+                  updatedAt:
+                    type: string
+                    example: "2022-08-06T23:38:58.828Z"
+                  orderData:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        example: 62eae6f56803350019d858a7
+                      productName:
+                        type: string
+                        example: iPhone 12
+                      orderNumber:
+                        type: string
+                        example: SOUM16598291195207
+                      orderType:
+                        type: string
+                        example: R-O
+                      orderStatus:
+                        type: string
+                        example: New order
+                      sellerPhone:
+                        type: string
+                        example: "+966111111305424"
+                      buyerPhone:
+                        type: string
+                        example: "+966111111305425"
+                      buyerName:
+                        type: string
+                        example: Abu Ibrahim
+                      buyerCity:
+                        type: string
+                        example: Makkah
+                      sellerName:
+                        type: string
+                        example: Abdullah AlHamdi
+                      buyerPostalCode:
+                        type: string
+                        example: "1321"
+                      sellerBankName:
+                        type: string
+                        example: AL Habib
+                      sellerIBAN:
+                        type: string
+                        example: HJSDJGHFGJHJSHDGFGHJJHJH
+                      sellerBankBIC:
+                        type: string
+                        example: SDHBSHGJDAFGHJGHSAJDFJHAS
+                      sellerAcountName:
+                        type: string
+                        example: Abdullah Alhamdi
+                      sellerSecretKey:
+                        type: string
+                        example: LZFGHIJFV
+                      buyerAddress:
+                        type: string
+                        example: "طريق المطار"
+                      sellerPostalCode:
+                        type: string
+                        example: "73629"
+                      sellerAddress:
+                        type: string
+                        example: "حي السلام"
+                      buyerStreet:
+                        type: string
+                        example: "حي قرطبة طريق المطار"
+                      sellerStreet:
+                        type: string
+                        example: "السلام حي السلام"
+                      buyerDistrict:
+                        type: string
+                        example: "حي قرطبة"
+                      sellerDistrict:
+                        type: string
+                        example: "حي قرطبة"
+                      varient:
+                        type: string
+                        example: 4 GB
+                      sellerPromoCode:
+                        type: string
+                        example: LZ20
+                      sellPrice:
+                        type: number
+                        example: 115
+                      buyType:
+                        type: string
+                        example: Direct
+                      sourcePlatform:
+                        type: string
+                        example: IOS
+                      paymentType:
+                        type: string
+                        example: MADA
+                      sellerCity:
+                        type: string
+                        example: Riyadh
+                      buyerPromoCode:
+                        type: string
+                        example: LZ20
+                      createdAt:
+                        type: string
+                        example: "2022-08-06T23:38:39.671Z"
+                      grandTotal:
+                        type: number
+                        example: 1928.5
+                      payoutAmount:
+                        type: number
+                        example: 1913.5
+                      paymentStatus:
+                        type: string
+                        example: Success
+                      productPictures:
+                        type: string
+                        example: https://soum01.fra1.digitaloceanspaces.com/soum-prod/products/46E7B404-23FD-467C-8A8C-893812CF95E3-1618343715127.png
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PostDMOResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            code:
+              type: number
+              example: 200
+            result:
+              type: object
+              properties:
+                orderId:
+                  type: string
+                  example: 6159600ca7cbd32ebee847ac
+                statusId:
+                  type: string
+                  example: 6159600ca7cbd32ebee847ad
+                id:
+                  type: string
+                  example: 6159600ca7cbd32ebee847ae
+                trackingNumber:
+                  type: string
+                  example: "290325258756"
+                createdAt:
+                  type: string
+                  example: "2022-08-06T23:38:58.828Z"
+                updatedAt:
+                  type: string
+                  example: "2022-08-06T23:38:58.828Z"
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PutDMOResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            code:
+              type: number
+              example: 200
+            result:
+              type: object
+              properties:
+                orderId:
+                  type: string
+                  example: 6159600ca7cbd32ebee847ac
+                statusId:
+                  type: string
+                  example: 6159600ca7cbd32ebee847ad
+                id:
+                  type: string
+                  example: 6159600ca7cbd32ebee847ae
+                trackingNumber:
+                  type: string
+                  example: "290325258756"
+                createdAt:
+                  type: string
+                  example: "2022-08-06T23:38:58.828Z"
+                updatedAt:
+                  type: string
+                  example: "2022-08-06T23:38:58.828Z"
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1GetSettingsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                example: |-
+                  {
+                    "primary_color": "#2a9d8f",
+                    "secondary_color": "#168aad",
+                    "font-family": "Montserrat Open-Sans",
+                  }
+              status:
+                type: string
+                example: Enabled
+              _id:
+                type: string
+                example: 6159600ca7cbd32ebee847ac
+              name:
+                type: string
+                example: theme_color
+              description:
+                type: string
+                example: Theme Color
+              type:
+                type: string
+                example: json
+              setting_category:
+                type: string
+                example: Admin Web
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1AddSettingResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                example: 'false'
+              status:
+                type: string
+                example: Enabled
+              _id:
+                type: string
+                example: 61596726e3efc539cda77602
+              name:
+                type: string
+                example: skip_defect_photos
+              description:
+                type: string
+                example: Seller is able to skip upload defect photos
+              type:
+                type: string
+                example: boolean
+              setting_category:
+                type: string
+                example: Admin Web
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1UpdateSettingResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                example: 'false'
+              status:
+                type: string
+                example: Enabled
+              _id:
+                type: string
+                example: 61596726e3efc539cda77602
+              name:
+                type: string
+                example: skip_defect_photos
+              description:
+                type: string
+                example: Seller is able to skip upload defect photos
+              type:
+                type: string
+                example: boolean
+              setting_category:
+                type: string
+                example: Admin Web
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PostAuthenticationResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: User account is updated
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetContentResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: Welcome to SOUM, a new experience for shopping
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PostContentResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 610a021460ab6e6b9467eef7
+            client-type:
+              type: string
+              example: mobile_web
+            message:
+              type: array
+              items:
+                type: object
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PutContentResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: Update content successfully
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1DeleteContentResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: Delete content successfully
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1ResetPasswordResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: Password reset request accepted
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1VerifyResetPasswordResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: Password reset completed
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1LoginResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            token:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            expiresIn:
+              type: number
+              example: 12345
+            expiryDate:
+              type: string
+              example: '2021-08-14T12:22:26+07:00'
+            username:
+              type: string
+              example: dev
+            email_address:
+              type: string
+              example: dev@mail.com
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PostCategoryResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            category_name_ar:
+              type: string
+              example: جوال
+            category_name:
+              type: string
+              example: Mobile
+            category_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            listing_photo:
+              type: string
+              example: ''
+            browsing_photo:
+              type: string
+              example: ''
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PutListingPhotoCategoryResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            category_name_ar:
+              type: string
+              example: جوال
+            category_name:
+              type: string
+              example: Mobile
+            category_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            listing_photo:
+              type: string
+              example: ''
+            browsing_photo:
+              type: string
+              example: ''
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PutBrowsingPhotoCategoryResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            category_name_ar:
+              type: string
+              example: جوال
+            category_name:
+              type: string
+              example: Mobile
+            category_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            listing_photo:
+              type: string
+              example: ''
+            browsing_photo:
+              type: string
+              example: ''
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetModelResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string,
+              example: 6064064a929f92c76a347b13
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            questions:
+              type: array
+            model_name_ar:
+              type: string
+              example: ايفون 6
+            model_name:
+              type: string
+              example: Iphone 6
+            brand_id:
+              type: string
+              example: 60640602929f92968a347b12
+            category_id:
+              type: string
+              example: 60661c60fdc090d1ce2d4914
+            model_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/iphone-6-1617167946197.jpg
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string,
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status,
+          type: string
+          example: success
+          enum: -success
+            -false
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetModelSettingResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6064064a929f92c76a347b13
+            status:
+              type: boolean
+              example: true
+            commissionSettings:
+              type: object
+              properties:
+                excellentCommission:
+                  type: number
+                  example: 6
+                fairCommission:
+                  type: number
+                  example: 7
+                expensiveLBCommission:
+                  type: number
+                  example: 8
+                expensiveUBCommission:
+                  type: number
+                  example: 9
+                toggleStatus:
+                  type: boolean
+                  example: false
+            keySellerCommissionSettings:
+              type: object
+              properties:
+                excellentCommission:
+                  type: number
+                  example: 6
+                fairCommission:
+                  type: number
+                  example: 7
+                expensiveLBCommission:
+                  type: number
+                  example: 8
+                expensiveUBCommission:
+                  type: number
+                  example: 9
+                toggleStatus:
+                  type: boolean
+                  example: false
+            priceNudgingSettings:
+              type: boolean
+              example: false
+            createdAt:
+              type: date
+              example: '2021-03-31T04:11:56.653Z'
+            updatedAt:
+              type: date,
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status,
+          type: string
+          example: success
+          enum: -success
+            -false
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetModelsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string,
+                example: 6064064a929f92c76a347b13
+              position:
+                type: number
+                example: 1
+              status:
+                type: string
+                example: Active
+              questions:
+                type: array
+              model_name_ar:
+                type: string
+                example: ايفون 6
+              model_name:
+                type: string
+                example: Iphone 6
+              brand_id:
+                type: string
+                example: 60640602929f92968a347b12
+              category_id:
+                type: string
+                example: 60661c60fdc090d1ce2d4914
+              model_icon:
+                type: string
+                example: >-
+                  https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/iphone-6-1617167946197.jpg
+              created_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+              deleted_date:
+                type: string,
+                example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status,
+          type: string
+          example: success
+          enum: -success
+            -false
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetModelsSuggestionsResponse:
+       type: object
+       properties:
+         responseData:
+           type: array
+           items:
+             type: object
+             properties:
+               model_name_suggestion:
+                 type: string
+                 example: Iphone 6
+           description: Success status,
+         message:
+           description: Response Message
+           type: string
+           example: null
+         timestamp:
+           type: string
+           example: '2019-08-06 02:31:20'
+         violations:
+           type: array
+           items:
+             type: object
+           example: null
+    v1GetModelsSuggestionResponse:
+       type: object
+       properties:
+         responseData:
+           type: array
+           items:
+             type: object
+             properties:
+               model_name_suggestion:
+                 type: string
+                 example: ايفون 6
+         status:
+           description: Success status,
+           type: string
+           example: success
+           enum: -success
+             -false
+         message:
+           description: Response Message
+           type: string
+           example: null
+         timestamp:
+           type: string
+           example: '2019-08-06 02:31:20'
+         violations:
+           type: array
+           items:
+             type: object
+           example: null
+    v1GetModelsSummaryResponse:
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string,
+                example: 6064064a929f92c76a347b13
+              arName:
+                type: string,
+                example: ايفون 13
+              enName:
+                type: string,
+                example: Iphone 13
+              modelIcon:
+                type: string,
+                example: https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/iphone-6-1617167946197.jpg
+              totalAvailableProducts:
+                type: integer,
+                example: 30
+        status:
+          description: Success status,
+          type: string
+          example: success
+          enum: -success
+            -false
+        message:
+          description: Response Message
+          type: string
+          example: 'Models fetched successfully'
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    GetModelsSummaryResponseV101:
+      properties:
+        responseData:
+          type: object
+          properties:
+            hasNextPage :
+              type: boolean,
+              example: false
+            total:
+              type: integer,
+              example: 39
+            docs:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string,
+                    example: 6064064a929f92c76a347b13
+                  arName:
+                    type: string,
+                    example: ايفون 13
+                  enName:
+                    type: string,
+                    example: Iphone 13
+                  modelIcon:
+                    type: string,
+                    example: https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/iphone-6-1617167946197.jpg
+                  totalAvailableProducts:
+                    type: integer,
+                    example: 30
+        status:
+          description: Success status,
+          type: string
+          example: success
+          enum: -success
+            -false
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetBrandResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 60640602929f92968a347b12
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            brand_name_ar:
+              type: string
+              example: أبل
+            brand_name:
+              type: string
+              example: Apple
+            brand_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/brands/Apple-1618249395831.png
+            category_id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetAllBrandsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 60640602929f92968a347b12
+              position:
+                type: number
+                example: 1
+              status:
+                type: string
+                example: Active
+              brand_name_ar:
+                type: string
+                example: أبل
+              brand_name:
+                type: string
+                example: Apple
+              brand_icon:
+                type: string
+                example: >-
+                  https://soum01.fra1.digitaloceanspaces.com/soum-dev/brands/Apple-1618249395831.png
+              category_id:
+                type: string
+                example: 6063f95f929f926b67347b0d
+              created_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+              deleted_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetBrandsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 60640602929f92968a347b12
+              position:
+                type: number
+                example: 1
+              status:
+                type: string
+                example: Active
+              brand_name_ar:
+                type: string
+                example: أبل
+              brand_name:
+                type: string
+                example: Apple
+              brand_icon:
+                type: string
+                example: >-
+                  https://soum01.fra1.digitaloceanspaces.com/soum-dev/brands/Apple-1618249395831.png
+              category_id:
+                type: string
+                example: 6063f95f929f926b67347b0d
+              created_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+              deleted_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PostBrandResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            category_id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            brand_name_ar:
+              type: string
+              example: علامة تجارية جديدة للجوّال
+            brand_name:
+              type: string
+              example: New mobile brand
+            brand_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PutBrandResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 2
+            status:
+              type: string
+              example: Active
+            brand_name_ar:
+              type: string
+              example: علامة تجارية جديدة للجوّال
+            brand_name:
+              type: string
+              example: New mobile brand
+            category_id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            brand_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetCategoryResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            category_name_ar:
+              type: string
+              example: جوال
+            category_name:
+              type: string
+              example: Mobile
+            category_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            listing_photo:
+              type: string
+              example: ''
+            browsing_photo:
+              type: string
+              example: ''
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PutCategoryResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            category_name_ar:
+              type: string
+              example: جوال
+            category_name:
+              type: string
+              example: Mobile
+            category_icon:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            listing_photo:
+              type: string
+              example: ''
+            browsing_photo:
+              type: string
+              example: ''
+            created_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deleted_date:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetCategoriesResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 6063f95f929f926b67347b0d
+              position:
+                type: number
+                example: 1
+              status:
+                type: string
+                example: Active
+              category_name_ar:
+                type: string
+                example: جوال
+              category_name:
+                type: string
+                example: Mobile
+              category_icon:
+                type: string
+                example: >-
+                  https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+              listing_photo:
+                type: string
+                example: ''
+              browsing_photo:
+                type: string
+                example: ''
+              created_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+              deleted_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetVariantResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            id:
+              type: string,
+              example: 60640658929f92309d347b14
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            varientAr:
+              type: string
+              example: 32GB
+            varientEn:
+              type: string
+              example: 32GB
+            brandId:
+              type: string
+              example: 60640602929f92968a347b12
+            categoryId:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            modelId:
+              type: string
+              example: 6064064a929f92c76a347b13
+            deletedDate:
+              type: string,
+              example: '2021-03-31T04:11:56.653Z'
+            currentPrice:
+              type: number,
+              example: 1
+            attributes:
+              type: object
+              properties:
+                featureId:
+                  type: string
+                  example: 6120c1456e3c2b30a1274943
+                attributeId:
+                  type: string
+                  example: 6120c1456e3c2b30a1274944
+        status:
+          description: Success status,
+          type: string
+          example: success
+          enum: -success
+            -false
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetVariantsViaModelIdResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          responseData:
+            type: object
+            properties:
+              id:
+                type: string,
+                example: 60640658929f92309d347b14
+              position:
+                type: number
+                example: 1
+              status:
+                type: string
+                example: Active
+              varientAr:
+                type: string
+                example: 32GB
+              varientEn:
+                type: string
+                example: 32GB
+              brandId:
+                type: string
+                example: 60640602929f92968a347b12
+              categoryId:
+                type: string
+                example: 6063f95f929f926b67347b0d
+              modelId:
+                type: string
+                example: 6064064a929f92c76a347b13
+              deletedDate:
+                type: string,
+                example: '2021-03-31T04:11:56.653Z'
+              currentPrice:
+                type: number,
+                example: 1
+              attributes:
+                type: object
+                properties:
+                  featureId:
+                    type: string
+                    example: 6120c1456e3c2b30a1274943
+                  attributeId:
+                    type: string
+                    example: 6120c1456e3c2b30a1274944
+      status:
+        description: Success status,
+        type: string
+        example: success
+        enum: -success
+          -false
+      message:
+        description: Response Message
+        type: string
+        example: null
+      timestamp:
+        type: string
+        example: '2019-08-06 02:31:20'
+      violations:
+        type: array
+        items:
+          type: object
+        example: null
+    v1PostVariantResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            id:
+              type: string,
+              example: 60640658929f92309d347b14
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            varientAr:
+              type: string
+              example: 32GB
+            varientEn:
+              type: string
+              example: 32GB
+            brandId:
+              type: string
+              example: 60640602929f92968a347b12
+            categoryId:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            modelId:
+              type: string
+              example: 6064064a929f92c76a347b13
+            deletedDate:
+              type: string,
+              example: '2021-03-31T04:11:56.653Z'
+            currentPrice:
+              type: number,
+              example: 1
+            attributes:
+              type: array
+              items:
+                type: object
+                properties:
+                  featureId:
+                    type: string
+                    example: 6120c1456e3c2b30a1274943
+                  attributeId:
+                    type: string
+                    example: 6120c1456e3c2b30a1274944
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PutVariantResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            id:
+              type: string,
+              example: 60640658929f92309d347b14
+            position:
+              type: number
+              example: 1
+            status:
+              type: string
+              example: Active
+            varientAr:
+              type: string
+              example: 32GB
+            varientEn:
+              type: string
+              example: 32GB
+            brandId:
+              type: string
+              example: 60640602929f92968a347b12
+            categoryId:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            modelId:
+              type: string
+              example: 6064064a929f92c76a347b13
+            createdAt:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            deletedDate:
+              type: string,
+              example: '2021-03-31T04:11:56.653Z'
+            currentPrice:
+              type: number,
+              example: 1
+            attributes:
+              type: object
+              properties:
+                featureId:
+                  type: string
+                  example: 6120c1456e3c2b30a1274943
+                attributeId:
+                  type: string
+                  example: 6120c1456e3c2b30a1274944
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1RemoveVariantSuccessful:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: 'Variant is removed successfully'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetBaseAttributeResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            baseAttribute: 
+              type: object
+              properties:
+                id:
+                  type: string,
+                  example: 62e133b0e3b8df0037a5d178
+                nameAr: 
+                  type: string,
+                  example: السنة
+                nameEn:
+                  type: string
+                  example: Year
+                options:
+                  type: array
+                  items:
+                    type: object 
+                    example: [
+                      {
+                        "id": "62e133b0e3b8df0037a5d177",
+                        "nameAr": "2012",
+                        "nameEn": "2012"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d174",
+                        "nameAr": "2015",
+                        "nameEn": "2015"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d16e",
+                        "nameAr": "2021",
+                        "nameEn": "2021"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d175",
+                        "nameAr": "2014",
+                        "nameEn": "2014"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d176",
+                        "nameAr": "2013",
+                        "nameEn": "2013"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d16f",
+                        "nameAr": "2020",
+                        "nameEn": "2020"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d16d",
+                        "nameAr": "2022",
+                        "nameEn": "2022"
+                      }
+                    ]
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetFilterAttributeResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            queryAttribute: 
+              type: object
+              properties:
+                id:
+                  type: string,
+                  example: 62e1344c6cb6d40037583a7f
+                nameAr: 
+                  type: string,
+                  example: حجم الشاشة
+                nameEn:
+                  type: string
+                  example: Screen Size
+                options:
+                  type: array
+                  items:
+                    type: object 
+                    example: [
+                      {
+                        "id": "62e1344c6cb6d40037583a7d",
+                        "nameAr": "15\"",
+                        "nameEn": "15\""
+                      },
+                      {
+                        "id": "62e1344c6cb6d40037583a7b",
+                        "nameAr": "13\"",
+                        "nameEn": "13\""
+                      }
+                    ]
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetVariantByAttributesResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 632b378ff49ff67c8b3ff73a
+            categoryId:
+              type: string
+              example: 60575fdb826cc52db3d02acc
+            brandId:
+              type: string
+              example: 606f42c42f4f6a212bd3339d,
+            modelId: 
+              type: string
+              example: 62f369e71ebcc5001a3b2f59,
+            varientEn:
+              type: string
+              example: Year 2012, Screen size 15\", Features Two Thunderbolt 2 ports, Processor Core i7, Ram 8 GB, Storage memory 750 GB
+            varientAr: 
+              type: string,
+              example: السنة 2012, حجم الشاشة 15\", المميزات منفذين Thunderbolt 2, المعالج كور أي 7, الرام 8 جيجابيات, سعة التخزين 750 GB
+            currentPrice:
+              type: number
+              example: 1199
+            position:
+              type: number
+              example: 0
+            createdAt:
+              type: string
+              example: '2022-09-21T16:10:35.877Z'
+            status:
+              type: string
+              example: Active
+            deletedDate:
+              type: string
+              example: null
+            attributes:
+              type: array
+              items: 
+                type: object
+                example: [
+                  {
+                    "featureId": "62e133b0e3b8df0037a5d178",
+                    "attributeId": "62e133b0e3b8df0037a5d177",
+                    "nameAr": "السنة",
+                    "nameEn": "Year",
+                    "options": [
+                      {
+                        "id": "62e133b0e3b8df0037a5d177",
+                        "nameAr": "2012",
+                        "nameEn": "2012"
+                      }
+                    ]
+                  },
+                  {
+                    "featureId": "62e1344c6cb6d40037583a7f",
+                    "attributeId": "62e1344c6cb6d40037583a7d",
+                    "nameAr": "حجم الشاشة",
+                    "nameEn": "Screen Size",
+                    "options": [
+                      {
+                        "id": "62e1344c6cb6d40037583a7d",
+                        "nameAr": "15\"",
+                        "nameEn": "15\""
+                      }
+                    ]
+                  },
+                  {
+                    "featureId": "62e13aad140a600037f53848",
+                    "attributeId": "62e13aad140a600037f53845",
+                    "nameAr": "المميزات",
+                    "nameEn": "Features",
+                    "options": [
+                      {
+                        "id": "62e13aad140a600037f53845",
+                        "nameAr": "منفذين Thunderbolt 2",
+                        "nameEn": "Two Thunderbolt 2 ports"
+                      }
+                    ]
+                  },
+                  {
+                    "featureId": "62d91a5a0a94ff0038babeb3",
+                    "attributeId": "62d91a5a0a94ff0038babeaf",
+                    "nameAr": "المعالج",
+                    "nameEn": "Processor",
+                    "options": [
+                      {
+                        "id": "62d91a5a0a94ff0038babeaf",
+                        "nameAr": "كور أي 7",
+                        "nameEn": "Core i7"
+                      }
+                    ]
+                  },
+                  {
+                    "featureId": "62d91c78bc7f390037c8a79d",
+                    "attributeId": "62d91c78bc7f390037c8a798",
+                    "nameAr": "الرام",
+                    "nameEn": "Ram",
+                    "options": [
+                      {
+                        "id": "62d91c78bc7f390037c8a798",
+                        "nameAr": "8 جيجابيات",
+                        "nameEn": "8 GB"
+                      }
+                    ]
+                  },
+                  {
+                    "featureId": "62d91d763013790037c78d2c",
+                    "attributeId": "62d91d763013790037c78d2a",
+                    "nameAr": "سعة التخزين",
+                    "nameEn": "Storage Memory",
+                    "options": [
+                      {
+                        "id": "62d91d763013790037c78d2a",
+                        "nameAr": "750 GB",
+                        "nameEn": "750 GB"
+                      }
+                    ]
+                  }
+                ]
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PGetProductResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 611a4942b4fc49a59f324bae
+            product_name:
+              type: string
+              example: Iphone 8
+            product_name_ar:
+              type: string
+              example: Test
+            status:
+              type: string
+              example: DRAFT
+            active:
+              type: boolean
+              example: true
+            current_price:
+              type: number
+              example: 100
+            discount:
+              type: number
+              example: 20
+            sell_price:
+              type: number
+              example: 150
+            bid_price:
+              type: number
+              example: 120
+            current_bid_price:
+              type: number
+              example: 98
+            product_image:
+              type: string
+            brand:
+              type: number
+              example: 6110eaba5ea84ec3376160ad
+            category:
+              type: number
+              example: 6110e70efb7313686e879608
+            model:
+              type: number
+              example: 6110e6b5fb7313686e879607
+            promo_code:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 6120c1456e3c2b30a12749f8
+                code:
+                  type: string
+                  example: ABC123
+            deleted_date:
+              type: string
+            features: 
+              type: object
+              properties:
+                en: 
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name: 
+                        type: string
+                      value: 
+                        type: string
+                ar: 
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name: 
+                        type: string
+                      value: 
+                        type: string
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1AddProductToWishListResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: Added to wishlist successfully
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetWishListOfProductResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 611a4942b4fc49a59f324bae
+              product_name:
+                type: string
+                example: Iphone 8
+              product_name_ar:
+                type: string
+                example: Test
+              status:
+                type: string
+                example: DRAFT
+              active:
+                type: boolean
+                example: true
+              current_price:
+                type: number
+                example: 100
+              discount:
+                type: number
+                example: 20
+              sell_price:
+                type: number
+                example: 150
+              bid_price:
+                type: number
+                example: 120
+              current_bid_price:
+                type: number
+                example: 98
+              product_image:
+                type: string
+              brand:
+                type: number
+                example: 6110eaba5ea84ec3376160ad
+              category:
+                type: number
+                example: 6110e70efb7313686e879608
+              model:
+                type: number
+                example: 6110e6b5fb7313686e879607
+              deleted_date:
+                type: string
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PostCreateResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6139c76f0fa1f16ce0e49bb6
+            responses:
+              type: array
+              items:
+                type: object
+                properties:
+                  question_id:
+                    type: string
+                    example: 6139c4fcbff9e15fc8a2f5b9
+                  answer_ids:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        answer_id:
+                          type: string
+                          example: 6139c4fdbff9e15fc8a2f5ba
+                        sub_choices:
+                          type: array
+                          items:
+                            type: string
+                            examples: 6139c4fdbff9e15fc8a2f5bc
+            product:
+              type: string
+              examples: 6139af921362ca6328797a0f
+            score:
+              type: number
+              examples: 80
+            created_date:
+              type: string
+            deleted_date:
+              type: string
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PGetResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6139cb10df9eba48ec21d08e
+            responses:
+              type: array
+              items:
+                type: object
+                properties:
+                  question_id:
+                    type: string
+                    example: 6139c4fcbff9e15fc8a2f5b9
+                  answer_ids:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        answer_id:
+                          type: string
+                          example: 6139c4fdbff9e15fc8a2f5ba
+                        sub_choices:
+                          type: array
+                          items:
+                            type: string
+                            examples: 6139c4fdbff9e15fc8a2f5bc
+            created_date:
+              type: string
+            deleted_date:
+              type: string
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PutResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 613b3250decdeb19084fb3d4
+            responses:
+              type: array
+              items:
+                type: object
+                properties:
+                  question_id:
+                    type: string
+                    example: 613898cf1b2fce001f85491f
+                  answer_ids:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        answer_id:
+                          type: string
+                          example: 613898cf1b2fce001f854920
+                        sub_choices:
+                          type: array
+                          items:
+                            type: string
+                            examples: 613898cf1b2fce001f854923
+                  choices:
+                    type: array
+                    items:
+                      type: string
+                    example: '[]'
+            score:
+              type: number
+            created_date:
+              type: string
+            deleted_date:
+              type: string
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1DeleteResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: 'Done to remove response'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PGetFilterResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              response_id:
+                type: string
+                example: 613f702ef25af2794bf2634b
+              question_id:
+                type: string
+                example: 6139c4fcbff9e15fc8a2f5b9
+              question_type:
+                type: string
+                example: yes-no-without-options
+              order:
+                type: number
+                example: 1
+              question_en:
+                type: string
+                example: Screen replacement or a repair requiring opening the watch?
+              question_ar:
+                type: string
+                example: استبدلت الشاشة أو فتحت الساعة للصيانة?
+              answers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    answer_id:
+                      type: string
+                      example: 6139c4fdbff9e15fc8a2f5ba
+                    answer_en:
+                      type: string
+                      example: 'Yes'
+                    answer_ar:
+                      type: string
+                      example: نعم
+                    icon:
+                      type: string
+                      example: icon
+                    score:
+                      type: number
+                      example: -6.4
+                    sub_choices:
+                      type: array
+              choices:
+                type: array
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetColorsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 611f14bade167a50ef36f9be
+              color_name_ar:
+                type: string
+                example: أحمر
+              color_name_en:
+                type: string
+                example: Red
+              color_code:
+                type: string
+                example: df554f
+              created_date:
+                type: string
+              updated_date:
+                type: string
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PostCreateProductResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 6177bc26f2d741fe3c400de5
+            user_id:
+              type: string
+              example: 612ddb16089d7528d3a6fa22
+            brand_id:
+              type: string
+              example: 60640602929f92968a347b12
+            category_id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            model_id:
+              type: string
+              example: 607486ce1dda2e1754145bca
+            varient_id:
+              type: string
+              example: 607487851dda2ee5b0145bd5
+            varient:
+              type: string
+              example: '256 GB'
+            varient_ar:
+              type: string
+              example: '256 GB'
+            code:
+              type: string
+              example: '0z1vif9'
+            product_images:
+              type: array
+              example: []
+            createdDate:
+              type: string
+              example: '2021-10-26T08:28:22.527Z'
+            updatedDate:
+              type: string
+              example: '2021-10-26T08:28:22.527Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PostSingleIllustration:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: >-
+            https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/image_2021_09_07T02_38_40_664Z-1630983008987.png
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: Done to upload image
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetProductQuestionResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            product_questions:
+              type: array
+              items:
+                type: object
+                properties:
+                  question:
+                    type: string
+                    example: 'Screen replacement or a repair requiring opening the mobile'
+                  answer:
+                    type: string
+                    example: 'Yes'
+            product_questions_ar:
+              type: array
+              items:
+                type: object
+                properties:
+                  question:
+                    type: string
+                    example: 'استبدلت الشاشة أو فتحت الجهاز للصيانة'
+                  answer:
+                    type: string
+                    example: 'نعم'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetSellingProductResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            productList:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 614c336a43c9a7d7567b1717
+                  product_images:
+                    type: array
+                    items:
+                      type: string
+                      example: https://soum01.fra1.digitaloceanspaces.com/soum-dev/products/images-1632383850321.jpg
+                  defected_images:
+                    type: array
+                    items:
+                      type: string
+                  description:
+                    type: string
+                    example: nice
+                  answer_to_questions:
+                    type: string
+                    example: '[{"question":"How are you","answer":"1"}]'
+                  answer_to_questions_ar:
+                    type: string
+                    example: '[{"question":"كيف حالك","answer":"1"}]'
+                  grade:
+                    type: string
+                    example: 'Extensive use'
+                  score:
+                    type: number
+                    example: 0
+                  current_bid_price:
+                    type: number
+                    example: 11
+                  sell_status:
+                    type: string
+                    example: 'Available'
+                  user_id:
+                    type: string
+                    example: '60da07f53bde511843c59cf0'
+                  category_id:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: '6063f9b0929f92ef7f347b0e'
+                      category_name_ar:
+                        type: string
+                        example: لابتوب
+                      status:
+                        type: string
+                        example: 'Active'
+                      category_name:
+                        type: string
+                        example: لابتوب
+                      category_icon:
+                        type: string
+                        example: 'https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/Group-914-1633600570965.png'
+                      position:
+                        type: number
+                        example: 2
+                  brand_id:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: '606d91d0072588f44e164050'
+                      brand_name_ar:
+                        type: string
+                        example: 'أبل'
+                      status:
+                        type: string
+                        example: 'Active'
+                      category_id:
+                        type: string
+                        example: 6063f9b0929f92ef7f347b0e
+                      brand_name:
+                        type: string
+                        example: 'أبل'
+                      brand_icon:
+                        type: string
+                        example: 'https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/Group-914-1633600570965.png'
+                  model_id:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: '607055651343a00374c66ab8'
+                      model_name_ar:
+                        type: string
+                        example: 'ماكب بوك برو'
+                      status:
+                        type: string
+                        example: 'Active'
+                      category_id:
+                        type: string
+                        example: 6063f9b0929f92ef7f347b0e
+                      brand_id:
+                        type: string
+                        example: '606d91d0072588f44e164050'
+                      model_name:
+                        type: string
+                        example: 'ماكب بوك برو'
+                      model_icon:
+                        type: string
+                        example: 'https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/mbp16touch-silver-select-201911-1617974628949.jpg'
+                  varient:
+                    type: string
+                    example: 'i7'
+                  body_cracks:
+                    type: string
+                    example: 'no'
+                  sell_price:
+                    type: number
+                    example: 31
+                  bid_price:
+                    type: number
+                    example: 12
+                  promocode:
+                    type: object
+                  createdDate:
+                    type: string
+                    example: '2021-09-23T07:57:30.414Z'
+                  expiryDate:
+                    type: string
+                    example: '2021-10-30T23:30:58.422Z'
+                  varient_id:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: '607055901343a0f99ac66ab9'
+                      varient_ar:
+                        type: string
+                        example: 'i7'
+                      status:
+                        type: string
+                        example: 'Active'
+                      category_id:
+                        type: string
+                        example: 6063f9b0929f92ef7f347b0e
+                      brand_id:
+                        type: string
+                        example: '606d91d0072588f44e164050'
+                      model_id:
+                        type: string
+                        example: '607055651343a00374c66ab8'
+                      varient:
+                        type: string
+                        example: 'i7'
+                      current_price:
+                        type: number
+                        example: 45
+                  bidding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        user_id:
+                          type: string
+                          example: 60da07f53bde511843c59cf2
+                        bid_id:
+                          type: string
+                          example: 614c413443c9a73d0a7b1afd
+                        bid_price:
+                          type: number
+                          example: 31
+                        bid_date:
+                          type: string
+                          example: '2021-09-23T08:56:20.763Z'
+                        checkout_id:
+                          type: string
+                          example: '0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01'
+                        pay_bid_amount:
+                          type: string
+                          example: '0.10'
+                        payment_type:
+                          type: string
+                          example: STC_PAY
+                        remaining_bid_amount:
+                          type: string
+                          example: '22.21'
+                        grand_total:
+                          type: string
+                          example: '22.21'
+                        vat:
+                          type: string
+                          example: '0.16'
+                        commission:
+                          type: string
+                          example: '1.05'
+                        shipping_charge:
+                          type: string
+                          example: '0'
+                        buy_amount:
+                          type: number
+                          example: 21
+                        bid_status:
+                          type: string
+                          example: 'open'
+                        transaction_status:
+                          type: string
+                          example: 'Success'
+                        payment_take:
+                          type: string
+                          example: 'full'
+                        order_number:
+                          type: string
+                          example: 'SOUM16323873814005'
+                        transaction_detail:
+                          type: string
+                          example: '{"id":"8ac7a4a27c102b4e017c11dec2e904a9","paymentType":"DB","paymentBrand":"STC_PAY","amount":"0.10","currency":"SAR","descriptor":"9913.7679.2160 Soum online","merchantTransactionId":"SOUM16323873814005","result":{"code":"000.100.110","description":"Request successfully processed in ''Merchant in Integrator Test Mode''"},"resultDetails":{"ExtendedDescription":"Transaction succeeded","AcquirerResponse":"000.000.000","risk.score":"01","clearingInstituteName":"Simulator_Test","ConnectorTxID1":"8ac7a4a27c102b4e017c11dec2e904a9"},"customer":{"givenName":"DummyUser12","surname":"DummyUser12","ip":"197.36.170.165","ipCountry":"EG"},"billing":{"street1":"22","city":"22","state":"22","postcode":"22","country":"SA"},"customParameters":{"SHOPPER_payment_mode":"qr_code"},"risk":{"score":"0"},"buildNumber":"9a5c40b7ed47d06e766cba8a41686563a42fc76f@2021-09-22 11:13:08 +0000","timestamp":"2021-09-23 08:56:26+0000","ndc":"0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01"}'
+                        transaction_id:
+                          type: string
+                          example: '8ac7a4a27c102b4e017c11dec2e904a9'
+                  discount:
+                    type: string
+                    example: '49'
+                  current_price:
+                    type: number
+                    example: 45
+                  bid_data:
+                    type: object
+                    properties:
+                      user_id:
+                        type: string
+                        example: '60da07f53bde511843c59cf2'
+                      bid_id:
+                        type: string
+                        example: 614c413443c9a73d0a7b1afd
+                      bid_price:
+                        type: number
+                        example: 31
+                      bid_date:
+                        type: string
+                        example: '2021-09-23T08:56:20.763Z'
+                      checkout_id:
+                        type: string
+                        example: '0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01'
+                      pay_bid_amount:
+                        type: string
+                        example: '0.10'
+                      payment_type:
+                        type: string
+                        example: STC_PAY
+                      remaining_bid_amount:
+                        type: string
+                        example: '22.21'
+                      grand_total:
+                        type: string
+                        example: '22.21'
+                      vat:
+                        type: string
+                        example: '0.16'
+                      commission:
+                        type: string
+                        example: '1.05'
+                      shipping_charge:
+                        type: string
+                        example: '0'
+                      buy_amount:
+                        type: number
+                        example: 21
+                      bid_status:
+                        type: string
+                        example: 'open'
+                      transaction_status:
+                        type: string
+                        example: 'Success'
+                      payment_take:
+                        type: string
+                        example: 'full'
+                      order_number:
+                        type: string
+                        example: 'SOUM16323873814005'
+                      transaction_detail:
+                        type: string
+                        example: '{"id":"8ac7a4a27c102b4e017c11dec2e904a9","paymentType":"DB","paymentBrand":"STC_PAY","amount":"0.10","currency":"SAR","descriptor":"9913.7679.2160 Soum online","merchantTransactionId":"SOUM16323873814005","result":{"code":"000.100.110","description":"Request successfully processed in ''Merchant in Integrator Test Mode''"},"resultDetails":{"ExtendedDescription":"Transaction succeeded","AcquirerResponse":"000.000.000","risk.score":"01","clearingInstituteName":"Simulator_Test","ConnectorTxID1":"8ac7a4a27c102b4e017c11dec2e904a9"},"customer":{"givenName":"DummyUser12","surname":"DummyUser12","ip":"197.36.170.165","ipCountry":"EG"},"billing":{"street1":"22","city":"22","state":"22","postcode":"22","country":"SA"},"customParameters":{"SHOPPER_payment_mode":"qr_code"},"risk":{"score":"0"},"buildNumber":"9a5c40b7ed47d06e766cba8a41686563a42fc76f@2021-09-22 11:13:08 +0000","timestamp":"2021-09-23 08:56:26+0000","ndc":"0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01"}'
+                      transaction_id:
+                        type: string
+                        example: '8ac7a4a27c102b4e017c11dec2e904a9'
+            pagination:
+              type: object
+              properties:
+                total:
+                  type: number
+                pages:
+                  type: number
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetFeedsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: number
+                example: 1
+              arName:
+                type: string
+                example: 'عروض ساخنه'
+              enName:
+                type: string
+                example: 'Hot Deals'
+              totalProducts:
+                type: number
+                example: 20
+              totalActiveProducts:
+                type: number
+                example: 18
+              collectionStatus:
+                type: string
+                example: Active
+                enum:
+                  - Active
+                  - InActive
+                  - Deleted
+    v1PostFeedResponse:
+      type: object
+      properties:
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1UpdateFeedResponse:
+      type: object
+      properties:
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1UpdateFeedStatusResponse:
+      type: object
+      properties:
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    adminEditPriceProductLogResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            product_images:
+              type: array
+              items:
+                type: string
+                example: https://soum01.fra1.digitaloceanspaces.com/soum-dev/products/images-1632383850321.jpg
+            defected_images:
+              type: array
+              items:
+                type: string
+            description:
+              type: string
+              example: nice
+            answer_to_questions:
+              type: string
+              example: '[{"question":"How are you","answer":"1"}]'
+            answer_to_questions_ar:
+              type: string
+              example: '[{"question":"كيف حالك","answer":"1"}]'
+            grade:
+              type: string
+              example: 'Extensive use'
+            score:
+              type: number
+              example: 0
+            current_bid_price:
+              type: number
+              example: 11
+            sell_status:
+              type: string
+              example: 'Available'
+            user_id:
+              type: string
+              example: '60da07f53bde511843c59cf0'
+            category_id:
+              type: object
+              properties:
+                category_name_ar:
+                  type: string
+                  example: لابتوب
+                status:
+                  type: string
+                  example: 'Active'
+                category_name:
+                  type: string
+                  example: لابتوب
+                category_icon:
+                  type: string
+                  example: 'https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/Group-914-1633600570965.png'
+                position:
+                  type: number
+                  example: 2
+            brand_id:
+              type: object
+              properties:
+                brand_name_ar:
+                  type: string
+                  example: 'أبل'
+                status:
+                  type: string
+                  example: 'Active'
+                category_id:
+                  type: string
+                  example: 6063f9b0929f92ef7f347b0e
+                brand_name:
+                  type: string
+                  example: 'أبل'
+                brand_icon:
+                  type: string
+                  example: 'https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/Group-914-1633600570965.png'
+            model_id:
+              type: object
+              properties:
+                model_name_ar:
+                  type: string
+                  example: 'ماكب بوك برو'
+                status:
+                  type: string
+                  example: 'Active'
+                category_id:
+                  type: string
+                  example: 6063f9b0929f92ef7f347b0e
+                brand_id:
+                  type: string
+                  example: '606d91d0072588f44e164050'
+                model_name:
+                  type: string
+                  example: 'ماكب بوك برو'
+                model_icon:
+                  type: string
+                  example: 'https://soum01.fra1.digitaloceanspaces.com/soum-dev/models/mbp16touch-silver-select-201911-1617974628949.jpg'
+            body_cracks:
+              type: string
+              example: 'no'
+            sell_price:
+              type: number
+              example: 31
+            bid_price:
+              type: number
+              example: 12
+            promocode:
+              type: object
+            createdDate:
+              type: string
+              example: '2021-09-23T07:57:30.414Z'
+            expiryDate:
+              type: string
+              example: '2021-10-30T23:30:58.422Z'
+            varient_id:
+              type: object
+              properties:
+                varient_ar:
+                  type: string
+                  example: 'i7'
+                status:
+                  type: string
+                  example: 'Active'
+                category_id:
+                  type: string
+                  example: 6063f9b0929f92ef7f347b0e
+                brand_id:
+                  type: string
+                  example: '606d91d0072588f44e164050'
+                model_id:
+                  type: string
+                  example: '607055651343a00374c66ab8'
+            varient:
+              type: string
+              example: 'i7'
+            current_price:
+              type: number
+              example: 45
+            bidding:
+              type: array
+              items:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                    example: 60da07f53bde511843c59cf2
+                  bid_id:
+                    type: string
+                    example: 614c413443c9a73d0a7b1afd
+                  bid_price:
+                    type: number
+                    example: 31
+                  bid_date:
+                    type: string
+                    example: '2021-09-23T08:56:20.763Z'
+                  checkout_id:
+                    type: string
+                    example: '0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01'
+                  pay_bid_amount:
+                    type: string
+                    example: '0.10'
+                  payment_type:
+                    type: string
+                    example: STC_PAY
+                  remaining_bid_amount:
+                    type: string
+                    example: '22.21'
+                  grand_total:
+                    type: string
+                    example: '22.21'
+                  vat:
+                    type: string
+                    example: '0.16'
+                  commission:
+                    type: string
+                    example: '1.05'
+                  shipping_charge:
+                    type: string
+                    example: '0'
+                  buy_amount:
+                    type: number
+                    example: 21
+                  bid_status:
+                    type: string
+                    example: 'open'
+                  transaction_status:
+                    type: string
+                    example: 'Success'
+                  payment_take:
+                    type: string
+                    example: 'full'
+                  order_number:
+                    type: string
+                    example: 'SOUM16323873814005'
+                  transaction_detail:
+                    type: string
+                    example: '{"id":"8ac7a4a27c102b4e017c11dec2e904a9","paymentType":"DB","paymentBrand":"STC_PAY","amount":"0.10","currency":"SAR","descriptor":"9913.7679.2160 Soum online","merchantTransactionId":"SOUM16323873814005","result":{"code":"000.100.110","description":"Request successfully processed in ''Merchant in Integrator Test Mode''"},"resultDetails":{"ExtendedDescription":"Transaction succeeded","AcquirerResponse":"000.000.000","risk.score":"01","clearingInstituteName":"Simulator_Test","ConnectorTxID1":"8ac7a4a27c102b4e017c11dec2e904a9"},"customer":{"givenName":"DummyUser12","surname":"DummyUser12","ip":"197.36.170.165","ipCountry":"EG"},"billing":{"street1":"22","city":"22","state":"22","postcode":"22","country":"SA"},"customParameters":{"SHOPPER_payment_mode":"qr_code"},"risk":{"score":"0"},"buildNumber":"9a5c40b7ed47d06e766cba8a41686563a42fc76f@2021-09-22 11:13:08 +0000","timestamp":"2021-09-23 08:56:26+0000","ndc":"0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01"}'
+                  transaction_id:
+                    type: string
+                    example: '8ac7a4a27c102b4e017c11dec2e904a9'
+            discount:
+              type: string
+              example: '49'
+            bid_data:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: '60da07f53bde511843c59cf2'
+                bid_id:
+                  type: string
+                  example: 614c413443c9a73d0a7b1afd
+                bid_price:
+                  type: number
+                  example: 31
+                bid_date:
+                  type: string
+                  example: '2021-09-23T08:56:20.763Z'
+                checkout_id:
+                  type: string
+                  example: '0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01'
+                pay_bid_amount:
+                  type: string
+                  example: '0.10'
+                payment_type:
+                  type: string
+                  example: STC_PAY
+                remaining_bid_amount:
+                  type: string
+                  example: '22.21'
+                grand_total:
+                  type: string
+                  example: '22.21'
+                vat:
+                  type: string
+                  example: '0.16'
+                commission:
+                  type: string
+                  example: '1.05'
+                shipping_charge:
+                  type: string
+                  example: '0'
+                buy_amount:
+                  type: number
+                  example: 21
+                bid_status:
+                  type: string
+                  example: 'open'
+                transaction_status:
+                  type: string
+                  example: 'Success'
+                payment_take:
+                  type: string
+                  example: 'full'
+                order_number:
+                  type: string
+                  example: 'SOUM16323873814005'
+                transaction_detail:
+                  type: string
+                  example: '{"id":"8ac7a4a27c102b4e017c11dec2e904a9","paymentType":"DB","paymentBrand":"STC_PAY","amount":"0.10","currency":"SAR","descriptor":"9913.7679.2160 Soum online","merchantTransactionId":"SOUM16323873814005","result":{"code":"000.100.110","description":"Request successfully processed in ''Merchant in Integrator Test Mode''"},"resultDetails":{"ExtendedDescription":"Transaction succeeded","AcquirerResponse":"000.000.000","risk.score":"01","clearingInstituteName":"Simulator_Test","ConnectorTxID1":"8ac7a4a27c102b4e017c11dec2e904a9"},"customer":{"givenName":"DummyUser12","surname":"DummyUser12","ip":"197.36.170.165","ipCountry":"EG"},"billing":{"street1":"22","city":"22","state":"22","postcode":"22","country":"SA"},"customParameters":{"SHOPPER_payment_mode":"qr_code"},"risk":{"score":"0"},"buildNumber":"9a5c40b7ed47d06e766cba8a41686563a42fc76f@2021-09-22 11:13:08 +0000","timestamp":"2021-09-23 08:56:26+0000","ndc":"0AE1EFAA2ECFDB9DA20450F33D20B032.uat01-vm-tx01"}'
+                transaction_id:
+                  type: string
+                  example: '8ac7a4a27c102b4e017c11dec2e904a9'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    adminGetProductLogResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+                example: 'AA has changed Buy Now Price from 30 SAR to 35 SAR at 03/03/2022 11:19:28 AM'
+              userId:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: '605ca1266575df62e8fca154'
+                  name:
+                    type: string
+                    example: 'AA'
+              productId:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: '60d23755ddd9c4d7dcaa1cbc'
+                  sell_price:
+                    type: number
+                    example: 25
+                  bid_price:
+                    type: number
+                    example: 20
+              createdDate:
+                type: string
+                example: '2022-03-03T04:19:34.371Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    getMppProductsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              originalPrice:
+                type: number
+                example: 70
+              productId:
+                type: string
+                example: 60d23755ddd9c4d7dcaa1cbc
+              modelName:
+                type: string
+                example: string
+              arModelName:
+                type: string
+                example: string
+              productImage:
+                type: string
+                example: imageUrlPath
+              sellPrice:
+                type: number
+                example: 35
+              grandTotal:
+                type: number
+                example: 37
+              grade:
+                type: string
+                example: string
+              arGrade:
+                type: string
+                example: string
+              variantName:
+                type: string
+                example: string
+              arVariantName:
+                type: string
+                example: string
+              highlights:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    arContent:
+                      type: string
+                      example: string
+                    content:
+                      type: string
+                      example: string
+                    iconUrl:
+                      type: string
+                      example: imageUrl
+              attributes:
+                type: array
+                items:
+                  properties:
+                    title:
+                      type: Object 
+                      properties:
+                        arName:
+                          type: string
+                          example: 'string'
+                        erName:
+                          type: string
+                          example: 'string'
+                    value:
+                      properties:
+                        arName:
+                          type: string
+                          example: 'string'
+                        erName:
+                          type: string
+                          example: 'string'
+              isGreatDeal:
+                type: boolean
+                example: true
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    getExploreProductsResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            hasNextPage :
+              type: boolean,
+              example: false
+            total:
+              type: integer,
+              example: 39
+            docs:
+              type: array
+              items:
+                type: object
+                properties:
+                  productId:
+                    type: string
+                    example: 60d23755ddd9c4d7dcaa1cbc
+                  modelName:
+                    type: string
+                    example: string
+                  arModelName:
+                    type: string
+                    example: string
+                  productImage:
+                    type: string
+                    example: imageUrlPath
+                  grandTotal:
+                    type: number
+                    example: 37
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetAdminFullFeedResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            position:
+              type: number
+              example: 1
+            arName:
+              type: string
+              example: 'عروض ساخنه'
+            enName:
+              type: string
+              example: 'Hot Deals'
+            totalProducts:
+              type: number
+              example: 20
+            totalActiveProducts:
+              type: number
+              example: 18
+            collectionStatus:
+              type: string
+              example: Active
+              enum:
+                - Active
+                - InActive
+                - Deleted
+            items:
+              type: array
+              items:
+                properties:
+                  position:
+                    type: number
+                    example: 1
+                  productId:
+                    type: number
+                    example: 614c336a43c9a7d7567b1717
+                  modelName:
+                    type: string
+                    example: 'string'
+                  sellPrice:
+                    type: number
+                    example: 100
+                  sellStatus:
+                    type: enum
+                      - 'Sold'
+                      - 'Available'
+                      - 'Locked'
+                  expiryDate:
+                    type: string
+                    example: 22-01-2022
+                  feedId:
+                    type: number
+                    example: 614c336a43c9a7d7567b1717
+                  status:
+                    type: enum
+                      - 'Active'
+                      - 'InActive'
+                      - 'Deleted'
+    v1GetAllFeedResponse:
+      type: array
+      properties:
+        responseData:
+          type: object
+          properties:
+            arName:
+              type: string
+              example: 'عروض ساخنه'
+            enName:
+              type: string
+              example: 'Hot Deals'
+            items:
+              type: array
+              items:
+                properties:
+                  originalPrice:
+                    type: number
+                    example: 120
+                  productId:
+                    type: sting
+                    example: 614c336a43c9a7d7567b1717
+                  modelName:
+                    type: string
+                    example: 'string'
+                  arModelName:
+                    type: string
+                    example: 'string'
+                  productImage:
+                    type: string
+                    example: 'stringUrl'
+                  sellPrice:
+                    type: number
+                    example: 100
+                  grandTotal:
+                    type: number
+                    example: 110
+                  grade:
+                    type: string
+                    example: 'string'
+                  arGrade:
+                    type: string
+                    example: 'string'
+                  variantName:
+                    type: string
+                    example: 'string'
+                  arVariantName:
+                    type: string
+                    example: 'string'
+                  discount:
+                    type: number
+                    example: 10
+    v1GetFullFeedResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            arName:
+              type: string
+              example: 'عروض ساخنه'
+            enName:
+              type: string
+              example: 'Hot Deals'
+            items:
+              type: array
+              items:
+                properties:
+                  originalPrice:
+                    type: number
+                    example: 120
+                  productId:
+                    type: sting
+                    example: 614c336a43c9a7d7567b1717
+                  modelName:
+                    type: string
+                    example: 'string'
+                  arModelName:
+                    type: string
+                    example: 'string'
+                  productImage:
+                    type: string
+                    example: 'stringUrl'
+                  sellPrice:
+                    type: number
+                    example: 100
+                  grandTotal:
+                    type: number
+                    example: 110
+                  grade:
+                    type: string
+                    example: 'string'
+                  arGrade:
+                    type: string
+                    example: 'string'
+                  variantName:
+                    type: string
+                    example: 'string'
+                  arVariantName:
+                    type: string
+                    example: 'string'
+                  discount:
+                    type: number
+                    example: 10
+                  attributes:
+                    type: array
+                    items:
+                      properties:
+                        title:
+                          type: Object 
+                          properties:
+                            arName:
+                              type: string
+                              example: 'string'
+                            erName:
+                              type: string
+                              example: 'string'
+                        value:
+                          properties:
+                            arName:
+                              type: string
+                              example: 'string'
+                            erName:
+                              type: string
+                              example: 'string'
+    v1GetFeedItemResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            position:
+              type: number
+              example: 1
+            productId:
+              type: number
+              example: 614c336a43c9a7d7567b1717
+            modelName:
+              type: string
+              example: 'string'
+            sellPrice:
+              type: number
+              example: 100
+            sellStatus:
+              type: enum
+                - 'Sold'
+                - 'Available'
+                - 'Locked'
+            expiryDate:
+              type: string
+              example: 22-01-2022
+            feedId:
+              type: number
+              example: 614c336a43c9a7d7567b1717
+            status:
+              type: enum
+                - 'Active'
+                - 'InActive'
+                - 'Deleted'
+    v1GetBanksResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 605c4f0fff37e80e2c58fcf7
+              bankName:
+                type: string
+                example: NCB Riyad
+              bankCode:
+                type: string
+                example: NCBKSARI
+              bankName_ar:
+                type: string
+                example: NCBKSARI
+              status:
+                type: string
+                example: Inactive
+              created_date:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+              updated_at:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1AddNewAddressResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 624fa6bbc89f912eb8a9a333
+            street:
+              type: string
+              example: 'Cairo - Egypt'
+            district:
+              type: string
+              example: 'Assuit'
+            postal_code:
+              type: string
+              example: '71758'
+            longitude:
+              type: string
+              example: ''
+            latitude:
+              type: string
+              example: ''
+            is_default:
+              type: boolean
+              example: false
+            user_id:
+              type: string
+              example: 605ca1266575df62e8fca154
+            created_date:
+              type: string
+              example: 2022-04-08T03:06:35.699Z
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetUserAddressResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 624fa6bbc89f912eb8a9a333
+              street:
+                type: string
+                example: 'Cairo - Egypt'
+              district:
+                type: string
+                example: 'Assuit'
+              postal_code:
+                type: string
+                example: '71758'
+              longitude:
+                type: string
+                example: ''
+              latitude:
+                type: string
+                example: ''
+              is_default:
+                type: boolean
+                example: false
+              user_id:
+                type: string
+                example: 605ca1266575df62e8fca154
+              created_date:
+                type: string
+                example: 2022-04-08T03:06:35.699Z
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1UpdateAddressResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 624fa6bbc89f912eb8a9a333
+            street:
+              type: string
+              example: 'Cairo - Egypt'
+            district:
+              type: string
+              example: 'Assuit'
+            postal_code:
+              type: string
+              example: '71758'
+            longitude:
+              type: string
+              example: ''
+            latitude:
+              type: string
+              example: ''
+            is_default:
+              type: boolean
+              example: false
+            user_id:
+              type: string
+              example: 605ca1266575df62e8fca154
+            created_date:
+              type: string
+              example: 2022-04-08T03:06:35.699Z
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1DeleteAddressResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: 'User address is removed successfully'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetAttributesResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: '629367535c555d3f8f60e00d'
+              nameAr:
+                type: string
+                example: 'Name ar'
+              nameEn:
+                type: string
+                example: 'Name en'
+    v1PostAttributeResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              nameAr:
+                type: string
+                example: 'Name ar'
+              nameEn:
+                type: string
+                example: 'Name en'
+              options:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nameAr:
+                      type: string
+                      example: 'Name ar'
+                    nameEn:
+                      type: string
+                      example: 'Name en'
+    v1PutAttributeResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              nameAr:
+                type: string
+                example: 'Name ar'
+              nameEn:
+                type: string
+                example: 'Name en'
+              options:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: '614c336a43c9a7d7567b1717'
+                    nameAr:
+                      type: string
+                      example: 'Name ar'
+                    nameEn:
+                      type: string
+                      example: 'Name en'
+    v1GetFullAttributeResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: '629367535c555d3f8f60e00d'
+              nameAr:
+                type: string
+                example: 'Name ar'
+              nameEn:
+                type: string
+                example: 'Name en'
+              options:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: '629367535c555d3f8f60e00d'
+                    nameAr:
+                      type: string
+                      example: 'Name ar'
+                    nameEn:
+                      type: string
+                      example: 'Name en'
+    v1BuyerCityResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            city: 
+              type: string
+              example: 'Jeddah'
+        status:
+          description: Success status
+          type: string
+          example: success
+    refundOrderResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: null
+        status:
+          description: operation status
+          type: string
+          example: depends on the operation status
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    listProductsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              originalPrice:
+                type: number
+                example: 70
+              productId:
+                type: string
+                example: 60d23755ddd9c4d7dcaa1cbc
+              productImage:
+                type: string
+                example: imageUrlPath
+              sellPrice:
+                type: number
+                example: 35
+              grandTotal:
+                type: number
+                example: 37
+              grade:
+                type: string
+                example: string
+              arGrade:
+                type: string
+                example: string
+              variantName:
+                type: string
+                example: string
+              arVariantName:
+                type: string
+                example: string
+              discount:
+                type: number
+                example: 45.5
+              sellerId:
+                type: string
+                example: string
+              liked:
+                type: boolean
+                example: true
+              highlights:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    arContent:
+                      type: string
+                      example: string
+                    content:
+                      type: string
+                      example: string
+                    iconUrl:
+                      type: string
+                      example: imageUrl
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - "false"
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: "2021-12-14 16:19:09"
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    getFilterProductsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              originalPrice:
+                type: number
+                example: 70
+              productId:
+                type: string
+                example: 60d23755ddd9c4d7dcaa1cbc
+              modelName:
+                type: string
+                example: string
+              arModelName:
+                type: string
+                example: string
+              productImage:
+                type: string
+                example: imageUrlPath
+              sellPrice:
+                type: number
+                example: 35
+              grandTotal:
+                type: number
+                example: 37
+              grade:
+                type: string
+                example: string
+              arGrade:
+                type: string
+                example: string
+              variantName:
+                type: string
+                example: string
+              arVariantName:
+                type: string
+                example: string
+              tags:
+                type: string
+                example: "soumChoice"
+              highlights:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    arContent:
+                      type: string
+                      example: string
+                    content:
+                      type: string
+                      example: string
+                    iconUrl:
+                      type: string
+                      example: imageUrl
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+        timestamp:
+          type: string
+          example: '2021-12-14 16:19:09'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetFavResponse:
+      type: object
+      properties:
+        message:
+          description: Response Message
+          type: string
+          example: "Favorites fetched successfully"
+        responseData:
+          type: object
+          items:
+            type: object
+            properties:
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - "false"
+        timestamp:
+          type: string
+          example: "2021-12-14 16:19:09"
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1FavoriteAddedSuccess:
+      type: object
+      properties:
+        message:
+          description: Response Message
+          type: string
+          example: "Favorites added successfully"
+        responseData:
+          type: object
+          properties:
+            n:
+              type: string
+              example: 624fa6bbc89f912eb8a9a333
+            nModified: 
+              type: boolean
+              example: true
+            ok: 
+              type: number
+              example: 1
+            upserted:
+              type: object
+              properties:
+                  index:
+                    type: number
+                    example: 1
+                  _id:
+                    type: string
+                    example: 624fa6bbc89f912eb8a9a333              
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: []
+    v1PostBannerResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            status:
+              type: string
+              example: active
+            _id:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            banner_name:
+              type: string
+              example: Deals
+            banner_type:
+              type: string
+              example: mpp
+            banner_page:
+              type: string
+              example: home
+            banner_value:
+              type: string
+              example: 6063f95f929f926b67347b0d
+            position:
+              type: number
+              example: 1
+            banner_image:
+              type: string
+              example: >-
+                https://soum01.fra1.digitaloceanspaces.com/soum-dev/category/image-container-1631399895208.png
+            region:
+              type: string
+              example: ksa
+            lang:
+              type: string
+              example: ar
+            created_at:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+            updated_at:
+              type: string
+              example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: Banner is created successfully
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetBannersResponse:
+      type: object
+      properties:
+        message:
+          description: Response Message
+          type: string
+          example: banners fetched successfully
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                example: active
+              _id:
+                type: string
+                example: 60640602929f92968a347b12
+              position:
+                type: number
+                example: 1
+              banner_name:
+                type: string
+                example: Deals
+              banner_type:
+                type: string
+                example: mpp
+              banner_page:
+                type: string
+                example: home
+              banner_position:
+                type: string
+                example: lower
+              banner_value:
+                type: string
+                example: 60640602929f92968a347b12
+              banner_image:
+                type: string
+                example: >-
+                  https://soum01.fra1.digitaloceanspaces.com/soum-dev/brands/Apple-1618249395831.png
+              region:
+                type: string
+                example: ksa
+              lang:
+                type: string
+                example: ar
+              updated_at:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+              created_at:
+                type: string
+                example: '2021-03-31T04:11:56.653Z'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1RemoveBannerSuccessful:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: 'Banner is removed successfully'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1UpdateBannerSuccessful:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: 'Banner is updated successfully'
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetVariantsByIdResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          responseData:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 632b378ff49ff67c8b3ff43b
+              categoryId:
+                type: string
+                example: 605760789269ccf731430e86
+              brandId:
+                type: string
+                example: 606b52309537c00601d3ba9f
+              modelId:
+                type: string
+                example: 607336de1f2faf3a7ad109cd
+              varientEn:
+                type: string
+                example: Capacity 1 TB
+              varientAr:
+                type: string
+                example: السعة 1 TB
+              currentPrice:
+                type: integer
+                example: 1950
+              position:
+                type: integer
+                example: 0
+              createdAt:
+                type: string
+                example: 2022-09-21T16:10:35.877Z
+              status:
+                type: string
+                example: Active
+              attributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    featureId:
+                      type: string
+                      example: 62e2aed53bb6130038e9130b
+                    attributeId:
+                      type: string
+                      example: 62e2aed53bb6130038e91302
+                    nameAr:
+                      type: string
+                      example: السعة
+                    nameEn:
+                      type: string
+                      example: Capacity
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 62e2aed53bb6130038e91302
+                          nameAr:
+                            type: string
+                            example: 1 TB
+                          nameEn:
+                            type: string
+                            example: 1 TB
+              priceRanges:
+                type: array
+                items:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        label:
+                          type: string
+                          example: Expensive
+                        from:
+                          type: integer
+                          example: 1594
+                        to:
+                          type: integer
+                          example: 15940
+                  example:
+                    - like_new:
+                        - label: Expensive
+                          from: 1594
+                          to: 15940
+                        - label: Fair
+                          from: 1593
+                          to: 1304
+                        - label: Excellent
+                          from: 1303
+                          to: 0
+                    - light_use:
+                        - label: Expensive
+                          from: 1484
+                          to: 14840
+                        - label: Fair
+                          from: 1483
+                          to: 1214
+                        - label: Excellent
+                          from: 1213
+                          to: 0
+                    - good_condition:
+                        - label: Expensive
+                          from: 1154
+                          to: 11540
+                        - label: Fair
+                          from: 1153
+                          to: 944
+                        - label: Excellent
+                          from: 943
+                          to: 0
+                    - like_new_ar:
+                        - label: Expensive
+                          from: 1594
+                          to: 15940
+                        - label: Fair
+                          from: 1593
+                          to: 1304
+                        - label: Excellent
+                          from: 1303
+                          to: 0
+                    - light_use_ar:
+                        - label: Expensive
+                          from: 1484
+                          to: 14840
+                        - label: Fair
+                          from: 1483
+                          to: 1214
+                        - label: Excellent
+                          from: 1213
+                          to: 0
+                    - good_condition_ar:
+                        - label: Expensive
+                          from: 1154
+                          to: 11540
+                        - label: Fair
+                          from: 1153
+                          to: 944
+                        - label: Excellent
+                          from: 943
+                          to: 0
+                    - extensive_use_ar:
+                        - label: Expensive
+                          from: 769
+                          to: 7690
+                        - label: Fair
+                          from: 768
+                          to: 629
+                        - label: Excellent
+                          from: 628
+                          to: 0
+      status:
+        description: Success status,
+        type: string
+        example: success
+        enum: -success
+          -false
+      message:
+        description: Response Message
+        type: string
+        example: null
+      timestamp:
+        type: string
+        example: '2022-12-27 08:12:13'
+      violations:
+        type: array
+        items:
+          type: object
+        example: null
+    v1GetSellerCutPrice:
+      type: object
+      properties:
+        responseData:
+          type: number
+          example: 2334.67
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1DeleteConditionResponse:
+      type: object
+      properties:
+        responseData:
+          type: object
+          example: {code: 200}
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1AddUserToWaitlistListResponse:
+      type: object
+      properties:
+        responseData:
+          type: string
+          example: Added to wait list successfully
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetBaseAttributeOptionsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+              type: object
+              properties:
+                id:
+                  type: string,
+                  example: 62e133b0e3b8df0037a5d178
+                nameAr: 
+                  type: string,
+                  example: السنة
+                nameEn:
+                  type: string
+                  example: Year
+                options:
+                  type: array
+                  items:
+                    type: object 
+                    example: [
+                      {
+                        "id": "62e133b0e3b8df0037a5d177",
+                        "nameAr": "2012",
+                        "nameEn": "2012"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d174",
+                        "nameAr": "2015",
+                        "nameEn": "2015"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d16e",
+                        "nameAr": "2021",
+                        "nameEn": "2021"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d175",
+                        "nameAr": "2014",
+                        "nameEn": "2014"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d176",
+                        "nameAr": "2013",
+                        "nameEn": "2013"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d16f",
+                        "nameAr": "2020",
+                        "nameEn": "2020"
+                      },
+                      {
+                        "id": "62e133b0e3b8df0037a5d16d",
+                        "nameAr": "2022",
+                        "nameEn": "2022"
+                      }
+                    ]
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: Get attribute options successful
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1GetAddOnsResponse:
+      type: object
+      properties:
+        responseData:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 60640602929f92968a347b12
+              position:
+                type: number
+                example: 1
+              status:
+                type: string
+                example: Active
+              addOnName:
+                type: string
+                example: أل
+              addOnNameAr:
+                type: string
+                example: Charger
+              addOnIcon:
+                type: string
+                example: >-
+                  https://soum01.fra1.digitaloceanspaces.com/soum-dev/brands/Apple-1618249395831.png
+              addOnPrice:
+                type: number
+                example: 120
+    v1PGetProductActivationStatus:
+      type: object
+      properties:
+        responseData:
+          type: object
+          properties:
+            isActivated:
+              type: boolean
+              example: true
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: Response Message
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null
+    v1PUpdateProductActivationStatus:
+      type: object
+      properties:
+        responseData:
+          type: boolean
+          example: true
+        status:
+          description: Success status
+          type: string
+          example: success
+          enum:
+            - success
+            - 'false'
+        message:
+          description: 'Product is updated successfully'
+          type: string
+          example: null
+        timestamp:
+          type: string
+          example: '2019-08-06 02:31:20'
+        violations:
+          type: array
+          items:
+            type: object
+          example: null

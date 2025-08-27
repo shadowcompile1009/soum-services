@@ -1,0 +1,16 @@
+{
+  "_id": "61128d8c3cf985b555b6775e",
+  "userType": "Buyer",
+  "promoType": "Percentage",
+  "status": "Active",
+  "fromDate": "2021-08-11T00:00:00.000Z",
+  "toDate": "2021-08-21T00:00:00.000Z",
+  "discount": 210,
+  "code": "sw23",
+  "percentage": 15,
+  "createdDate": "2021-08-10T14:30:36.346Z",
+  "updatedDate": "2021-08-10T14:30:36.346Z",
+  "__v": 0,
+  "referralCode": null,
+  "buyerPromocodeId": "61128d8c3cf985b555b6775e"
+}

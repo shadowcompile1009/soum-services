@@ -1,0 +1,65 @@
+[
+  {
+    "_id": "616e712b4dbcc599bde87924",
+    "isRead": false,
+    "productData": {
+      "brandName": "Apple",
+      "brandNameAr": "أبل",
+      "modelName": "Macbook Pro",
+      "modelNameAr": "ماكب بوك برو",
+      "bidValue": 46,
+      "productId": "61629725695d6e8d0ffcd31a"
+    },
+    "activityType": "BuyerBidRejected",
+    "userData": {
+      "userName": "DummyUser17",
+      "id": "60da07f53bde511843c59cf0"
+    },
+    "push_tokens": [
+      {
+        "_id": "61cc1fbace93bf6b52b47ff7",
+        "platform": "android",
+        "status": "Enabled",
+        "fcm_token": "ftD-HmyrRtuj8p0_A3Kwi3:APA91bEImVOOdUUOi8lZHhaRPOhE7yvec-NeHEbSu--kS0Lj1WJwP6nLgLy4rGfMycGofHuH-CQxPklNH5ERSsaQiel5TfQZsTKL9pw6yEJ7-WfSaIyvpo7mrnZqibS4poTIgtSuaMhL"
+      }
+    ],
+    "message": {
+      "title": "ادخل سومة أعلى!",
+      "body": "سومتك للمنتج أبل ماكب بوك برو بالسعر 46 ريال غير مناسبة للبائع، مازال البائع يبحث عن عرض اعلى.",
+      "screenPage": "ProductDetailsScreen",
+      "productId": "61629725695d6e8d0ffcd31a"
+    }
+  },
+  {
+    "_id": "61756c0e9b7affc09f16699f",
+    "isRead": false,
+    "productData": {
+      "brandName": "Apple",
+      "brandNameAr": "أبل",
+      "modelName": "iPhone XR",
+      "modelNameAr": " XR ايفون",
+      "bidValue": 178,
+      "productId": "615ad73f0bfca5856a639787"
+    },
+    "activityType": "BuyerBidRejected",
+    "userData": {
+      "userName": "DummyUser99",
+      "id": "60da07f53bde511843c59cfc"
+    },
+    "push_tokens": [
+      {
+        "_id": "61cc1fbace93bf6b52b47ff7",
+        "platform": "android",
+        "status": "Enabled",
+        "lang": "en",
+        "fcm_token": "ftD-HmyrRtuj8p0_A3Kwi3:APA91bEImVOOdUUOi8lZHhaRPOhE7yvec-NeHEbSu--kS0Lj1WJwP6nLgLy4rGfMycGofHuH-CQxPklNH5ERSsaQiel5TfQZsTKL9pw6yEJ7-WfSaIyvpo7mrnZqibS4poTIgtSuaMhL"
+      }
+    ],
+    "message": {
+      "title": "Place a new bid",
+      "body": "Your 178 SAR bid on Apple iPhone XR is rejected.",
+      "screenPage": "ProductDetailsScreen",
+      "productId": "615ad73f0bfca5856a639787"
+    }
+  }
+]

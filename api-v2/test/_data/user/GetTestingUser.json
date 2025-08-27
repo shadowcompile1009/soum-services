@@ -1,0 +1,48 @@
+{
+  "_id": "6057280c7b6600be053415d6",
+  "otpTime": 1616324606088,
+  "otpVerification": true,
+  "profilePic": "",
+  "secretKey": "jl59qep9",
+  "cards": ["8ac9a4a87868ed230178a7b2369112f9"],
+  "token": [
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTcyODBjN2I2NjAwYmUwNTM0MTVkNiIsImlhdCI6MTY2NDQzNjY4MCwiZXhwIjoxNjY3MDI4NjgwfQ.4DV8XPEcJVF56fPMdeQIUnVfKbuBEVsxsLvY8-WbF5s"
+  ],
+  "loginWith": "manual",
+  "status": "Active",
+  "mobileNumber": "11111111111",
+  "countryCode": "966",
+  "otp": "",
+  "updatedDate": "2021-03-21T11:03:40.715Z",
+  "createdDate": "2021-03-21T11:03:40.715Z",
+  "__v": 0,
+  "name": "Bader ",
+  "password": "$2a$10$30.ZuWQ4N6T1sSfxHNk6K.dEaeLm.Vnd7ZdH.nFwvj2fhnpWyIgf6",
+  "address": {
+    "address_id": "62ba2377aaa0f5002db2a4c5",
+    "address": "الريان الجدول",
+    "city": "الرياض",
+    "postal_code": "10000",
+    "address_type": "",
+    "latitude": "",
+    "longitude": ""
+  },
+  "bankDetail": {
+    "accountHolderName": "Bader Almubarak",
+    "accountId": "U2FsdGVkX1/MZGQOlV0SXnJ35G1aDCjNO6T9pHshWvE5FiIEW8Xyy3dvWoRQ+rts",
+    "bankBIC": "U2FsdGVkX18kMCT0N9+yeDfEYF99YmXC/BfwElxdMVw=",
+    "bankName": "بنك الراجحي"
+  },
+  "language": "en",
+  "userType": "Dummy",
+  "lastLoginDate": "2022-09-29T07:31:20.292Z",
+  "referralCode": "BZv597",
+  "referralCodeUsed": false,
+  "addresses": ["62ba2377aaa0f5002db2a4c5"],
+  "created_date": "2022-06-29T01:41:10.720Z",
+  "is_address_migration": false,
+  "preferences": { "skip_post_listing": true, "skip_pre_listing": true },
+  "updated_date": "2022-06-29T01:41:10.720Z",
+  "cleaned": "clean",
+  "isBetaUser": false
+}

@@ -1,0 +1,198 @@
+/v1/Attribute/:
+  get:
+    tags:
+      - Attribute
+    summary: Get all attribute information
+    description: Get all attribute information
+    operationId: getAllAttributes
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: query
+        name: like
+        required: false
+        schema:
+          type: string
+          example: screen
+      - in: query
+        name: page
+        required: false
+        schema:
+          type: number
+          example: 1
+      - in: query
+        name: size
+        required: false
+        schema:
+          type: number
+          example: 30
+      - in: query
+        name: optionsIncluded
+        required: false
+        schema:
+          type: boolean
+          example: true
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetAttributesResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetAttributesResponse'
+  post:
+    tags:
+      - Attribute
+    summary: Create new attribute
+    description: Create new attribute
+    operationId: createAttribute
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/CreateAttribute'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PostAttributeResponse'
+
+/v1/Attribute/{id}:
+  get:
+    tags:
+      - Attribute
+    summary: Get attribute information by id
+    description: Get attribute information by id
+    operationId: getAttribute
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: id
+        required: false
+        schema:
+          type: string
+          example: '629367535c555d3f8f60e00d'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1GetFullAttributeResponse'
+            examples:
+              successExample:
+                $ref: '#/components/examples/v1GetFullAttributeResponse'
+  put:
+    tags:
+      - Attribute
+    summary: update attribute
+    description: update attribute
+    operationId: updateAttribute
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: id
+        required: false
+        schema:
+          type: string
+          example: '629367535c555d3f8f60e00d'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/definitions/UpdateAttribute'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PutAttributeResponse'
+  delete:
+    tags:
+      - Attribute
+    summary: delete attribute
+    description: delete attribute
+    operationId: deleteAttribute
+    parameters:
+      - in: header
+        name: token
+        required: true
+        schema:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkYjE2MDg5ZDc1MjhkM2E2ZmEyMiIsImlhdCI6MTYzMTAwNzM4NSwiZXhwIjoxNjMzNTk5Mzg1fQ.5byciTrTEgINRZmJFfVJew_btr6kphN9qEiOWeyeM1U
+      - in: header
+        name: client-id
+        required: false
+        schema:
+          type: string
+          example: admin-web
+      - in: path
+        name: id
+        required: false
+        schema:
+          type: string
+          example: '629367535c555d3f8f60e00d'
+    responses:
+      '200':
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1PutAttributeResponse'
