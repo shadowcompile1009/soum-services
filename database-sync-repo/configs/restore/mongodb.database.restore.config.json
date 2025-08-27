@@ -1,0 +1,46 @@
+[
+  {
+    "service": "main",
+    "database": "soum-prod"
+  },
+  {
+    "service": "wallet",
+    "database": "soum-production-wallet"
+  },
+  {
+    "service": "homepage",
+    "database": "soum-production-sa-homepage"
+  },
+  {
+    "service": "category",
+    "database": "soum-production-sa-category"
+  },
+  {
+    "service": "bid",
+    "database": "soum-production-sa-bid"
+  },
+  {
+    "service": "commission",
+    "database": "soum-production-sa-commission"
+  },
+  {
+    "service": "review",
+    "database": "soum-production-sa-review"
+  },
+  {
+    "service": "merchant",
+    "database": "soum-production-sa-merchant"
+  },
+  {
+    "service": "dm-backend",
+    "database": "soum-production-sa-dm-backend"
+  },
+  {
+    "service": "addon",
+    "database": "soum-production-sa-addon"
+  },
+  {
+    "service": "invoice",
+    "database": "soum-production-invoice"
+  }
+]

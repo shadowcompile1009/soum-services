@@ -1,0 +1,16 @@
+{
+  "name": "analytics-data-sync",
+  "version": "1.0.0",
+  "description": "clean production database snapshot for staging",
+  "scripts": {},
+  "author": "Soum",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@types/deepmerge": "^2.2.0",
+    "crypto-js": "^4.1.1",
+    "deepmerge": "^4.3.1",
+    "flat-obj": "^3.0.0",
+    "mongodb": "^4.7.0",
+    "unflatten": "^1.0.4"
+  }
+}

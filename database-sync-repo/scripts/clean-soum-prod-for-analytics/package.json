@@ -1,0 +1,13 @@
+{
+    "name": "clean-db-for-analytics",
+    "version": "1.0.0",
+    "description": "clean mongo database so thats its clean for analytics",
+    "scripts": {},
+    "author": "Soum",
+    "license": "UNLICENSED",
+    "dependencies": {
+      "crypto-js": "^4.1.1",
+      "mongodb": "^4.7.0"
+    }
+  }
+  

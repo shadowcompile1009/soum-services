@@ -1,0 +1,11 @@
+{
+  "name": "cleanup-typesense",
+  "version": "1.0.0",
+  "description": "clean up typesense indexes and collections",
+  "scripts": {},
+  "author": "Soum",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "typesense": "^1.7.2"
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "delete-database",
+    "version": "1.0.0",
+    "description": "delete database",
+    "scripts": {},
+    "author": "Soum",
+    "license": "UNLICENSED",
+    "dependencies": {
+      "mongodb": "^4.7.0"
+    }
+  }
+  

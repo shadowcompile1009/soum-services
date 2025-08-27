@@ -1,0 +1,38 @@
+[
+  {
+    "service": "main"
+  },
+  {
+    "service": "wallet"
+  },
+  {
+    "service": "homepage"
+  },
+  {
+    "service": "category"
+  },
+  {
+    "service": "bid"
+  },
+  {
+    "service": "invoice"
+  },
+  {
+    "service": "commission"
+  },
+  {
+    "service": "review"
+  },
+  {
+    "service": "merchant"
+  },
+  {
+    "service": "dm-backend"
+  },
+  {
+    "service": "addon"
+  },
+  {
+    "service": "invoice"
+  }
+]

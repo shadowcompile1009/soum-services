@@ -1,0 +1,11 @@
+{
+  "name": "sync-typesense",
+  "version": "1.0.0",
+  "description": "sync typesense from production to development",
+  "scripts": {},
+  "author": "Soum",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "typesense": "^1.7.2"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "snapshot-production-typesense-collections",
+  "version": "1.0.0",
+  "description": "snapshot production typesense collections",
+  "scripts": {},
+  "author": "Soum",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "typesense": "^1.7.2"
+  }
+}

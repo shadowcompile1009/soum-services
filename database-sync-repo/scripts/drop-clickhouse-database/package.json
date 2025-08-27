@@ -1,0 +1,11 @@
+{
+    "name": "drop-clickhouse-database",
+    "version": "1.0.0",
+    "description": "drop clickhouse database",
+    "scripts": {},
+    "author": "Soum",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "@clickhouse/client": "^0.0.15"
+    }
+}

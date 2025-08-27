@@ -1,0 +1,12 @@
+{
+  "name": "export-data-ims-seeders",
+  "version": "1.0.0",
+  "description": "export data for ims seeders",
+  "scripts": {},
+  "author": "Soum",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bson": "^4.7.0",
+    "mongodb": "^4.7.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "clean-up-all-typesense-collections",
+  "version": "1.0.0",
+  "description": "Delete all typesense collections in development",
+  "scripts": {},
+  "author": "Soum",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "typesense": "^1.7.2"
+  }
+}

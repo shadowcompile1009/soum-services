@@ -1,0 +1,23 @@
+[
+  {
+    "service": "authz"
+  },
+  {
+    "service": "ler"
+  },
+  {
+    "service": "notification"
+  },
+  {
+    "service": "product"
+  },
+  {
+    "service": "payment"
+  },
+  {
+    "service": "category"
+  },
+  {
+    "service": "order"
+  }
+]

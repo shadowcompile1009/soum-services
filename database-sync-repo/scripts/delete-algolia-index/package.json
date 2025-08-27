@@ -1,0 +1,11 @@
+{
+    "name": "delete-algolia-index",
+    "version": "1.0.0",
+    "description": "delete algolia index",
+    "scripts": {},
+    "author": "Soum",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "algoliasearch": "^4.17.0"
+    }
+}

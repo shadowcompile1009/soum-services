@@ -1,0 +1,12 @@
+{
+    "name": "unsert-products-search-sync",
+    "version": "1.0.0",
+    "description": "unsert products search sync",
+    "scripts": {},
+    "author": "Soum",
+    "license": "UNLICENSED",
+    "dependencies": {
+      "mongodb": "^4.7.0"
+    }
+  }
+  

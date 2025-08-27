@@ -1,0 +1,57 @@
+[
+  {
+    "database": "soum-production-invoice",
+    "country": "sa",
+    "service": "invoice"
+  },
+  {
+    "database": "soum-production-sa-addon",
+    "country": "sa",
+    "service": "addon"
+  },
+  {
+    "database": "soum-production-wallet",
+    "country": "sa",
+    "service": "wallet"
+  },
+  {
+    "database": "soum-production-sa-dm-backend",
+    "country": "sa",
+    "service": "dm-backend"
+  },
+  {
+    "database": "soum-production-sa-bid",
+    "country": "sa",
+    "service": "bid"
+  },
+  {
+    "database": "soum-production-sa-category",
+    "country": "sa",
+    "service": "category"
+  },
+  {
+    "database": "soum-production-sa-commission",
+    "country": "sa",
+    "service": "commission"
+  },
+  {
+    "database": "soum-production-sa-homepage",
+    "country": "sa",
+    "service": "homepage"
+  },
+  {
+    "database": "soum-production-sa-merchant",
+    "country": "sa",
+    "service": "merchant"
+  },
+  {
+    "database": "soum-production-sa-review",
+    "country": "sa",
+    "service": "review"
+  },
+  {
+    "database": "soum-prod",
+    "country": "sa",
+    "service": "main"
+  }
+]

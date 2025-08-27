@@ -1,0 +1,42 @@
+[
+  {
+    "database": "soum-production-sa-authz-db",
+    "country": "sa",
+    "service": "authz"
+  },
+  {
+    "database": "soum-production-sa-ler-db",
+    "country": "sa",
+    "service": "ler"
+  },
+  {
+    "database": "soum-production-sa-notification-db",
+    "country": "sa",
+    "service": "notification"
+  },
+  {
+    "database": "soum-production-sa-payment-db",
+    "country": "sa",
+    "service": "payment"
+  },
+  {
+    "database": "soum-production-sa-category-db",
+    "country": "sa",
+    "service": "category"
+  },
+  {
+    "database": "soum-production-sa-product-db",
+    "country": "sa",
+    "service": "product"
+  },
+  {
+    "database": "soum-production-sa-web-cms-db",
+    "country": "sa",
+    "service": "web-cms"
+  },
+  {
+    "database": "soum-production-sa-order-db",
+    "country": "sa",
+    "service": "order"
+  }
+]
